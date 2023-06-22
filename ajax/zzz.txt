@@ -1,0 +1,56 @@
+<?php include('../dbcon.php');
+
+    
+if(isset($_POST["Submit"]))
+{
+    // $limit=$_POST["limit"];
+    // $std=$_POST["start"];
+    $sn=0;
+    $query="SELECT `invest`.*,`register`.`full`,`register`.`mobile` FROM `invest`,`register` WHERE `invest`.`cid`=`register`.`cid` ORDER BY `invest`.`id` ASC ";
+    $retval=mysqli_query($conn, $query);
+    while ($row = mysqli_fetch_array($retval)) 
+    {
+        $id=$row['id'];
+        $sn=$sn+1;
+        //$qry="SELECT `referal`.*,`invest`.`invest`,`invest`.`regdate`,`register`.`full`,`register`.`mobile` FROM `referal`,`invest`,`register` WHERE `referal`.`refcid`=`register`.`cid` AND `referal`.`id`='$id'";
+        $qry="SELECT `referal`.*,`register`.`full`,`register`.`mobile` FROM `referal`,`register` WHERE `referal`.`refcid`=`register`.`cid` AND `id`='$id'";
+        $confirm1=mysqli_query($conn,$qry);
+        $a = 0;
+        $rowNo =  mysqli_num_rows($confirm1);
+        $no = $rowNo+2; ?>
+            
+                <tr>
+                    <th rowspan="<?php echo $no; ?>"><?php echo $sn; ?>.</th>
+                </tr>
+                <tr>
+                    <th>Investor</th>
+                    <td colspan="2"><?php echo $row['id']; ?></td>
+                    <td><?php echo $row['full']; ?></td>
+                    <td><?php echo $row['mobile']; ?></td>
+                    <td><?php echo $row['regdate']; ?></td>
+                    <td><?php echo $row['invest']; ?></td>  
+                    <td><?php echo $row['asign']; ?></td>  
+                    <td><?php echo $row['pday']; ?></td>  
+                    <td><?php echo $row['pmonth']; ?></td>  
+                </tr>
+                <?php
+                while($row1=mysqli_fetch_array($confirm1))
+                {?>
+                    <tr style="background-color:#ADDDD0;"> 
+                        <?php if($a==0){?>
+                            <th rowspan="<?php echo $rowNo; ?>">Introducer</th>
+                        <?php $a++; } ?>
+                        <td></td>
+                        <td colspan="2"><?php echo $row1['full']; ?></td>
+                        <td><?php echo $row1['mobile']; ?></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><?php echo $row1['refpday']; ?></td>
+                        <td><?php echo $row1['refpmonth']; ?></td>
+                    
+                    </tr>
+                <?php } ?>
+        <?php
+    }  }
+?>
