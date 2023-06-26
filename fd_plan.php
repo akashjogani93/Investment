@@ -136,6 +136,11 @@
             var fddate = $('#regdate').val();
             var to_date = $('#to_date').val();
             var invest = $('#invest').val();
+            if(invest==0)
+            {
+                alert("Please Enter Valid Amount");
+                exit();
+            }
             var year = 5;
             if(cid !='' & fddate !='' & to_date !='' & invest !='')
             {

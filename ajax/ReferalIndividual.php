@@ -8,6 +8,10 @@ if(isset($_POST["submit"]))
         $limit=$_POST["limit"];
         $std=$_POST["start"];
         $query="SELECT `invest`.*,`register`.`full`,`register`.`mobile` FROM `invest`,`register` WHERE `invest`.`cid`=`register`.`cid` ORDER BY `invest`.`id` ASC LIMIT $std, $limit;";
+    }else
+    {
+        $name=$_POST["name"];
+        $query="SELECT `invest`.*,`register`.`full`,`register`.`mobile` FROM `invest`,`register` WHERE `invest`.`cid`=`register`.`cid` AND `register`.`cid`='$name'";
     }
 
     $retval=mysqli_query($conn, $query);
@@ -29,7 +33,7 @@ if(isset($_POST["submit"]))
             if($invest=='0')
             {
                 $intro[$i][2]='0';
-                    $intro[$i][3]=round(0*30);
+                $intro[$i][3]=round(0*30);
             }
             $i=$i+1;
         }

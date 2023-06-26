@@ -10,7 +10,7 @@
             <tr>
                 <td>
                     <a href="fd_plan.php?fd_id=<?php echo $ROW['f_cid']; ?>&fd_name=<?php echo $ROW['full']; ?>" class="btn btn-info">Invest</a>
-                    <button class="btn btn-danger fd-edit" id="fd-edit">Edit</button>
+                    <!-- <button class="btn btn-danger fd-edit" id="editfd">Edit</button> -->
                 </td>
                 <td><?php echo $ROW['f_cid']; ?></td>
                 <td><?php echo $ROW['full']; ?></td>

@@ -89,6 +89,10 @@
                                         <label for="inputEmail3" style="color:white;" class="form_label">..</label>
                                         <a type="button" id="search1" class="btn btn-primary">Load Data</a>
                                     </div>
+                                    <div class="group-form col-md-1">
+                                        <label for="inputEmail3" style="color:white;" class="form_label">..</label>
+                                        <a type="button" id="refre" class="btn btn-warning">Refresh</a>
+                                    </div>
                                 </div></br>
                             </div>
                         </form>
@@ -163,6 +167,25 @@
                             </tbody>    
                         </table>
                     </div>
+                    <div id="tablepdf2" style="overflow-x: auto; height:400px; display:none;">
+                        <table id="example2" class="table table-striped table-bordered table-hover example1">
+                            <thead>
+                                <tr>
+                                    <th>Action</th>
+                                    <th>In_id</th>
+                                    <th>Investor Name</th>
+                                    <th>Invest Date</th>
+                                    <th>Invest Amount</th>
+                                    <th>Assigned %</th>
+                                    <th>Per Day</th>
+                                    <th>Per Month</th>
+                                </tr>
+                            </thead>
+                            <tbody id="mytable2">
+                                
+                            </tbody>    
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>
@@ -231,18 +254,24 @@
 
         $('#search1').click(function()
         {
-            //     var name=$('#inputZip1').val();
-            //        $.ajax({
-            //         url:"ajax/ReferalIndividual.php",
-            //        method:"POST",
-            //        data:{submit:"submit", name:name},
-            //        cache:false,
-            //        success:function(data)
-            //        {
-            //            $('#mytable').html(data);
-            //            action ='active';
-            //        }
-            //    });
+                var name=$('#full1').val();
+                $.ajax({
+                    url:"ajax/ReferalIndividual.php",
+                   method:"POST",
+                   data:{submit:"name", name:name},
+                   cache:false,
+                   success:function(data)
+                   {
+                        $('#tablepdf').hide();
+                        $('#tablepdf2').show();
+                       $('#mytable2').html(data);
+                   }
+               });
+        });
+        $('#refre').click(function()
+        {
+            $('#tablepdf').show();
+            $('#tablepdf2').hide();
         });
 
     });

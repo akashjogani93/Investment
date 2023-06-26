@@ -234,14 +234,7 @@
 
                 console.log(td1Value);
             }
-
-            $('.fd-edit').click(function() 
-            {
-                debugger;
-                var closestRow = $(this).closest('tr');
-                debugger;
-                alert(closestRow)
-            });
+            
 	</script>
 
 
