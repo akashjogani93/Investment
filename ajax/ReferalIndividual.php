@@ -1,5 +1,6 @@
 <?php include('../dbcon.php');
 
+
 if(isset($_POST["submit"]))
 {
     $submit=$_POST["submit"];
@@ -44,7 +45,8 @@ if(isset($_POST["submit"]))
             $intro[$i][2]='-';
             $intro[$i][3]='-';
             $i=$i+1;
-        } ?>
+        } 
+        ?>
             <tr>
                 <td><button onclick="editupdate(<?php echo $row['id']; ?>)" class="btn btn-info">Edit</button></td>
                 <td><?php echo $row['id']; ?></td>
@@ -54,11 +56,62 @@ if(isset($_POST["submit"]))
                 <td><?php echo $row['asign']; ?></td>  
                 <td><?php echo $row['pday']; ?></td>  
                 <td><?php echo $row['pmonth']; ?></td>
-               
+                       
+                <!-- Introducer 1  -->
+                <td><?php echo $intro[1][0]; ?></td>
+                <td><?php echo $intro[1][1]; ?></td>
+                <td><?php echo $intro[1][2]; ?></td>
+                <td><?php echo $intro[1][3]; ?></td>
+
+                <!-- Introducer 2 -->
+                <td><?php echo $intro[2][0]; ?></td>
+                <td><?php echo $intro[2][1]; ?></td>
+                <td><?php echo $intro[2][2]; ?></td>
+                <td><?php echo $intro[2][3]; ?></td>
+
+                <!-- Introducer 3 -->
+                <td><?php echo $intro[3][0]; ?></td>
+                <td><?php echo $intro[3][1]; ?></td>
+                <td><?php echo $intro[3][2]; ?></td>
+                <td><?php echo $intro[3][3]; ?></td>
+
+                <!-- Introducer 4 -->
+                <td><?php echo $intro[4][0]; ?></td>
+                <td><?php echo $intro[4][1]; ?></td>
+                <td><?php echo $intro[4][2]; ?></td>
+                <td><?php echo $intro[4][3]; ?></td>
+
+                <!-- Introducer 5 -->
+                <td><?php echo $intro[5][0]; ?></td>
+                <td><?php echo $intro[5][1]; ?></td>
+                <td><?php echo $intro[5][2]; ?></td>
+                <td><?php echo $intro[5][3]; ?></td>
+
+                <!-- Introducer 6 -->
+                <td><?php echo $intro[6][0]; ?></td>
+                <td><?php echo $intro[6][1]; ?></td>
+                <td><?php echo $intro[6][2]; ?></td>
+                <td><?php echo $intro[6][3]; ?></td>
+
+                <!-- Introducer 7 -->
+                <td><?php echo $intro[7][0]; ?></td>
+                <td><?php echo $intro[7][1]; ?></td>
+                <td><?php echo $intro[7][2]; ?></td>
+                <td><?php echo $intro[7][3]; ?></td>
+
+                <!-- Introducer 8 -->
+                <td><?php echo $intro[8][0]; ?></td>
+                <td><?php echo $intro[8][1]; ?></td>
+                <td><?php echo $intro[8][2]; ?></td>
+                <td><?php echo $intro[8][3]; ?></td>
+
             </tr>
         <?php
     }
-
 }
+
+?>
+
+
 
 

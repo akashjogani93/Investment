@@ -1,5 +1,5 @@
 <body class="hold-transition skin-blue sidebar-mini">
-<link rel="stylesheet" href="loader.css">
+<!-- <link rel="stylesheet" href="loader.css"> -->
     <div class="wrapper" id="form1">
         <style>
             .error {
@@ -75,19 +75,11 @@
             });
         </script>
         <div class="content-wrapper">
-            <!-- <section class="content-header">
-                <h1>
-                   Investment Details
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                </ol>
-            </section> -->
             <section class="content">
                 <div class="box box-default">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="form-horizontal" id="addform" action="store_insert.php" method="POST">
+                            <!-- <form class="form-horizontal" id="addform" action="store_insert.php" method="POST"> -->
                                 <div class="box-body">
                                     <div class="group-form col-md-6" id="namewise">
                                         <label for="inputEmail3" class="form_label">Search Name</label>
@@ -96,14 +88,14 @@
                                     </div>
                                     <div class="group-form col-md-1">
                                         <label for="inputEmail3" style="color:white;" class="form_label">..</label>
-                                        <a type="button" id="search1" class="btn btn-primary">Load Data</a>
+                                        <button id="search1" class="btn btn-primary">Load Data</button>
                                     </div>
                                     <div class="group-form col-md-1">
                                         <label for="inputEmail3" style="color:white;" class="form_label">..</label>
-                                        <a href="current_month_payment.php" id="search" class="btn btn-warning">Refresh</a>
+                                        <button id="refresh" class="btn btn-warning">Refresh</button>
                                     </div>
                                 </div>
-                            </form>
+                            <!-- </form> -->
                         </div>
                     </div>
                 </div>
@@ -120,25 +112,9 @@
                             Current Month Details
                         </h3></center> -->
                         <div id="tablepdf" style="overflow-x: auto; height:400px;">
-                            <table id="example" class="table table-striped table-bordered table-hover example">
-                                <thead>
-                                    <tr>
-                                    <th scope="col">Cust-ID</th>
-                                    <th scope="col">Full Name</th>
-                                    <th scope="col">Total Investment</th>
-                                    <!-- <th scope="col">Till Date Payment</th> -->
-                                <th scope="col">Current Payment</th>
-                
-                                    <th scope="col">Bank Name</th>
-                                    <th scope="col">Account No</th>
-                                    <th scope="col">IFSC Code</th>
-                                    <!-- <th scope="col">Pan Card Number</th> -->
-                                    </tr>
-                                </thead>
-                                <tbody id="mytable">
-                
-                                </tbody>
-                            </table>
+                            <div id="app">
+                                <my-component></my-component>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -146,6 +122,7 @@
         </div>
     </div>
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -157,80 +134,166 @@
     <script>
         $(document).ready(function()
         {
-            var limit = 100;
-            var start = -100;
-            var t="true";
-            var action = 'inactive';
-            function load_customer_data(limit,start)
-            {
-                let log = $.ajax({
-                    url: 'ajax/CurrentMonthPayment1.php',
-                    type: "POST",
-                    data: {
-                        Submit:'submit',
-                        limit: limit,
-                        start: start,
-                        k : 0,
-                    },
-                    cache:false,
-                    success:function(data) 
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    limit: 500,
+                    start: -500,
+                    t: "true",
+                    action: 'inactive',
+                    records: [],
+                    searchResults: [],
+                    isLoading: true,
+                    showOriginalTable: true,
+                    showSearchTable: false
+                },
+                methods: {
+                    load_customer_data: function() 
                     {
-                        $('#mytable').append(data);
-                        if(data == 0)
-                        {
-                        action = 'active';
-                        }
-                        else
-                        {
-                        action = "inactive";
-                        }
-                                
+                        alert('hi');
+                        let self = this;
+                        let ss= $.ajax({
+                            url: 'ajax/CurrentMonthPayment1.php',
+                            type: "POST",
+                            data: {
+                            currentMonthPayment: 'currentMonthPayment',
+                            limit: self.limit,
+                            start: self.start,
+                            k: 0,
+                            },
+                            cache: false,
+                            success: function(data) 
+                            {
+                                alert('hi');
+                                console.log(data)
+                                if (data.length === 0) {
+                                    self.action = 'active';
+                                    self.isLoading = false;
+                                    loading();
+                                } else {
+                                    self.records = self.records.concat(data);
+                                    self.start += self.limit;
+                                    self.load_customer_data();
+                                }
+                            },
+                                error: function(xhr, status, error) {
+                                console.error(error);
                             }
                         });
-                        console.log(log)
+                        console.log(ss);
+                    },
+                    fetchData: function() {
+                        var self = this;
+                        self.load_customer_data();
+                    },
+                    searchClicked: function() 
+                    {
+                        var cid = $('#full1').val();
+                        var name = $('#full').val();
+                        if (name === '') {
+                            alert('Please Select Name');
+                            return;
+                        }
+                        var self = this;
+                        let co=$.ajax({
+                            url: 'ajax/CurrentMonthPayment1.php',
+                            type: "POST",
+                            data: {
+                                currentMonthPayment: 'submit',
+                                cid: cid,
+                                k: 1,
+                            },
+                            cache:false,
+                            success:function(data)
+                            {
+                                self.searchResults = data;
+                                self.showOriginalTable = false;
+                                self.showSearchTable = true;
+                            }
+                        });
+                    },
+                    refreshClicked: function() 
+                    {
+                        this.showSearchTable = false;
+                        this.showOriginalTable = true;
                     }
-                    
-            var myVar = setInterval(function(){ 
-                if(action == 'inactive')
-                {
-                    start = start + limit;
-                    $(document.body).css({'cursor' : 'not-allowed'});
-                    load_customer_data(limit, start);
-                 }
-                 else{
-                        clearInterval(myVar);
-                        $(document.body).css({'cursor' : 'default'});
-                        loading()
-                    }
-            }, 300);
+                },
+                mounted: function() {
+                    this.fetchData();
+                },
+                template: `
+                    <div>
+                        <table v-if="showOriginalTable && records.length > 0" id="example" class="table table-striped table-bordered table-hover example">
+                            <thead>
+                            <tr>
+                                <th>Cust-ID</th>
+                                <th>Full Name</th>
+                                <th>Total Investment</th>
+                                <!--<th>Till Date Payment</th>-->
+                                <th>Current Payment</th>
+                                <th>Bank Name</th>
+                                <th>Account No</th>
+                                <th>IFSC Code</th>
+                                <th>Pan Card Number</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(record, index) in records" :key="index">
+                                    <td>{{ record.custId }}</td>
+                                    <td>{{ record.fullName }}</td>
+                                    <td>{{ record.totalInvestment }}</td>
+                                    <!--<td>{{ record.tillDatePayment }}</td>-->
+                                    <td>{{ record.currentPayment }}</td>
+                                    <td>{{ record.bankName }}</td>
+                                    <td>{{ record.accountNo }}</td>
+                                    <td>{{ record.ifscCode }}</td>
+                                    <td>{{ record.panCardNumber }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <center><div v-if="isLoading" class="loader">Loading...</div></center>
+                        <table v-if="showSearchTable" id="example1" class="table table-striped table-bordered table-hover example">
+                            <thead>
+                                <tr>
+                                    <th>Cust-ID</th>
+                                    <th>Full Name</th>
+                                    <th>Total Investment</th>
+                                    <!--<th>Till Date Payment</th>-->
+                                    <th>Current Payment</th>
+                                    <th>Bank Name</th>
+                                    <th>Account No</th>
+                                    <th>IFSC Code</th>
+                                    <th>Pan Card Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(result, index) in searchResults" :key="index">
+                                    <td>{{ result.custId }}</td>
+                                    <td>{{ result.fullName }}</td>
+                                    <td>{{ result.totalInvestment }}</td>
+                                    <!--<td>{{ result.tillDatePayment }}</td>-->
+                                    <td>{{ result.currentPayment }}</td>
+                                    <td>{{ result.bankName }}</td>
+                                    <td>{{ result.accountNo }}</td>
+                                    <td>{{ result.ifscCode }}</td>
+                                    <td>{{ result.panCardNumber }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                `,
+            });
 
-            $('#search1').click(function()
+            $('#search1').click(function() {
+                app.searchClicked();
+            });
+
+            // Event listener for the "Refresh" button
+            $('#refresh').click(function() 
             {
-                // alert('hii');
-                // var table=$('#example').dataTable()
-                // table.destroy();
-                var cid=$('#full1').val();
-                var name=$('#full').val();
-                if(name=='')
-                {
-                    alert('Please Select Name');
-                    exit();
-                }
-                    // var table=$('#example').dataTable()
-                    //     table.destroy();
-                   $.ajax({
-                    url: 'ajax/CurrentMonthPayment1.php',
-                    type: "POST",
-                   data:{Submit:"cid", cid:cid},
-                   cache:false,
-                   success:function(data)
-                   {
-                       
-                        action="active";
-                      $('#mytable').html(data);
-                      clearInterval(myVar);
-                   }
-                 });
+                $("#full1").val('');
+                $("#full").val('');
+                app.refreshClicked();
             });
         });
     </script>
@@ -239,15 +302,11 @@
     <script>
             function loading()
             {
-                //    alert('hii');
                 oTable = $('#example').dataTable({
-                    // pageLength : "All",
                     "paging": false,
                     searching:false,
                     dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                    buttons: [
-                    'csv', 'excel'
-                    ],
+                    buttons: ['csv', 'excel'],
                 });
             }
         

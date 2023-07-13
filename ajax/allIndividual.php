@@ -8,16 +8,28 @@ if(isset($_POST["submit"]))
     }else if($new=='cid')
     {
         $cid=$_POST["cid"];
-        $sql="SELECT `invest`.*,`register`.`bank`,`register`.`account`,`register`.`cid`,`register`.`full` FROM `invest`,`register` WHERE `invest`.`cid`=`register`.`cid` AND `invest`.`cid`='$cid'";
-        
+        // $from=$_POST["from"];
+        // $to=$_POST["to"];
+        $start=date("Y-m-d", strtotime($_POST["from"]));
+        $end=date("Y-m-d", strtotime($_POST["to"]));
+        if("31"==date("d", strtotime($_POST["to"])))
+        {
+            $end=date("Y-m-d", strtotime($_POST["to"]));
+        }
+        $sql="SELECT `invest`.*,`register`.`bank`,`register`.`account`,`register`.`cid`,`register`.`full` FROM `invest`,`register` WHERE `invest`.`regdate`<='$end' AND `invest`.`cid`=`register`.`cid` AND `invest`.`cid`='$cid'";
+
+        // $query ="SELECT `invest`.`i_id` AS `id`,`resister`.`cid` AS `cid`,`resister`.`full_name` as `fullname`,`resister`.`bank` as `bank`, `resister`.`acc_no` as `acc`,`invest`.`i_date` as `date`,`invest`.`temp` as `iv_amt`,`invest`.`pecentage` as `perc`,`invest`.`perday` as `day_amt` FROM `resister`,`invest` WHERE  `invest`.`i_date`<='$end' AND `resister`.`cid` = `invest`.`cid` AND `resister`.`full_name`='$name';";
     }
     else if($new=='date')
     {
-        $from=$_POST["from"];
-        $to=$_POST["to"];
+        $from=date("Y-m-d", strtotime($_POST["from"]));
+        $to=date("Y-m-d", strtotime($_POST["to"]));
+        if("31"==date("d", strtotime($_POST["to"])))
+        {
+            $to=date("Y-m-d", strtotime($_POST["to"]));
+        }
         $sql="SELECT `invest`.*,`register`.`bank`,`register`.`account`,`register`.`cid`,`register`.`full` FROM `invest`,`register` WHERE `invest`.`cid`=`register`.`cid` AND `invest`.`regdate` BETWEEN '$from' AND '$to'";
         // $sql = "SELECT `invest`.*,`register`.`bank`,`register`.`account`,`register`.`cid`,`register`.`full` FROM `invest`,`register` WHERE `invest`.`cid`=`register`.`cid`";
-        
     }
     $params = $columns = $totalRecords = $data = array(); //all variables declared;
 
@@ -74,9 +86,9 @@ if(isset($_POST["submit"]))
     //iterate on results row and create new index array of data
     $data=[];
     $temp=[];
-    $start=date("Y-m-01", strtotime("first day of this month"));
-    $end=date("Y-m-d");
-    if(date("d", strtotime($end))=="31"){ $end=date("Y-m-30");}
+    // $start=date("Y-m-01", strtotime("first day of this month"));
+    // $end=date("Y-m-d");
+    // if(date("d", strtotime($end))=="31"){ $end=date("Y-m-30");}
     while($row = mysqli_fetch_row($queryRecords) )
     {
         $temp[0]=$row[0];
@@ -87,18 +99,19 @@ if(isset($_POST["submit"]))
         $temp[5]=$row[4]; //asign
         $temp[6]=$row[5]; //pday
         // $temp[7]=$row[6];
+
         $today=date("d-m-Y");
         $i_days=date_diff1($today,$temp[3]);
         $srch_date=date_diff1($today,$start);
-
-        if($i_days>$srch_date){$date1=$temp[3];}else{$date1=$temp[3];}
+        
+        if($i_days>$srch_date){$date1=$start;}else{$date1=$temp[3];}
         $days=date_diff1($end,$date1);
         $totalinte=$temp[6]*$days;
         $totalmonth=$temp[6]*30;
 
         $temp[7]=$days;
-        $temp[8]=$totalinte;
-        $temp[9]=$totalmonth;
+        $temp[8]=round($totalinte);
+        $temp[9]=round($totalmonth);
         array_push($data,$temp);
     }
     // $data1[]=array($data);
@@ -121,11 +134,33 @@ if(isset($_POST["submit1"]))
     $new=$_POST["submit1"];
     if($new=='Submit')
     {
-        $sql = "SELECT `referal`.*,`invest`.`invest`,`invest`.`regdate`,`register`.`full` FROM `referal`,`invest`,`register` WHERE `referal`.`refcid`=`register`.`cid` AND `referal`.`id`=`invest`.`id`";
+        $cid=$_POST["cid"];
+
+        $start=date("Y-m-d", strtotime($_POST["from"]));
+        $end=date("Y-m-d", strtotime($_POST["to"]));
+        if("31"==date("d", strtotime($_POST["to"])))
+        {
+            $end=date("Y-m-d", strtotime($_POST["to"]));
+        }
+        $sql="SELECT `referal`.*,`invest`.`cid`,`invest`,`invest`,`invest`.`regdate`,`register`.`full` FROM `referal`,`invest`,`register` WHERE `invest`.`regdate`<='$end' AND `referal`.`refcid`='$cid' AND `referal`.`id`=`invest`.`id` AND `invest`.`cid`=`register`.`cid`";
     }else if($new=='cid')
     {
         $cid=$_POST["cid"];
-        $query="SELECT `invest`.*,`register`.`bank`,`register`.`account`,`register`.`cid`,`register`.`full` FROM `invest`,`register` WHERE `invest`.`cid`=`register`.`cid` AND `invest`.`cid`='$cid'";
+
+        $start=date("Y-m-d", strtotime($_POST["from"]));
+        $end=date("Y-m-d", strtotime($_POST["to"]));
+        if("31"==date("d", strtotime($_POST["to"])))
+        {
+            $end=date("Y-m-d", strtotime($_POST["to"]));
+        }
+        // $sql = "SELECT `referal`.*,`invest`.`invest`,`invest`.`regdate`,`register`.`full` FROM `referal`,`invest`,`register` WHERE `referal`.`refcid`=`register`.`cid` AND `referal`.`id`=`invest`.`id`";
+
+        // $query="SELECT `invest`.*,`register`.`bank`,`register`.`account`,`register`.`cid`,`register`.`full` FROM `invest`,`register` WHERE `invest`.`cid`=`register`.`cid` AND `invest`.`cid`='$cid'";
+
+        // $sql="SELECT `referal`.*,`invest`.`invest`,`invest`.`regdate`,`register`.`full` FROM `referal`,`invest`,`register` WHERE `referal`.`id`=`invest`.`id` AND `invest`.`cid`=`register`.`cid` AND `referal`.`refcid`='$cid' AND `invest`.`regdate`<'$end';";
+        // $sql="SELECT `referal`.* FROM `referal` WHERE `referal`.`refcid`='$cid'";
+
+        // $query="SELECT `introduce`.`i_id` AS `id`, `resister`.`cid` as `cid`,`resister`.`full_name` as `fullname`, `invest`.`i_date` AS `date`,`invest`.`temp` AS `value`,`introduce`.`r_pecentag` as `perc`, `introduce`.`r_perday` AS `perday` FROM `resister`,`introduce`, `invest` WHERE `introduce`.`i_id`=`invest`.`i_id` AND `invest`.`cid`=`resister`.`cid` AND `introduce`.`r_name`='$name' AND `invest`.`i_date`<'$end';";
     }
     $params = $columns = $totalRecords = $data = array(); //all variables declared;
 
@@ -182,33 +217,33 @@ if(isset($_POST["submit1"]))
     //iterate on results row and create new index array of data
     $data=[];
     $temp=[];
-    $start=date("Y-m-01", strtotime("first day of this month"));
-    $end=date("Y-m-d");
-    if(date("d", strtotime($end))=="31"){ $end=date("Y-m-30");}
+    // $start=date("Y-m-01", strtotime("first day of this month"));
+    // $end=date("Y-m-d");
+    // if(date("d", strtotime($end))=="31"){ $end=date("Y-m-30");}
+    $today=date("d-m-Y");
+    $srch_date=date_diff1($today,$start);
     while($row = mysqli_fetch_row($queryRecords) )
     {
-        $temp[0]=$row[0];
-        $temp[1]=$row[2]; //investid
-        $temp[2]=$row[8]; //name
-        $temp[3]=$row[6]; //amount
-        $temp[4]=$row[3]; //asign
+        $temp[0]=$row[1]; //investid
+        $temp[1]=$row[10]; //name
+        $temp[2]=$row[8]; //amount
+        $temp[3]=$row[3]; //asign
 
-        $pday=(($temp[3]*$temp[4]/100)/30);
-        $temp[5]=$pday; //pday
+        $pday=(($temp[2]*$temp[3]/100)/30);
+        $temp[4]=round($pday); //pday
 
-        //date Calculation
-        $today=date("d-m-Y");
-        $i_days=date_diff1($today,$row[7]);
-        $srch_date=date_diff1($today,$start);
+        // //date Calculation
+        
+        $i_days=date_diff1($today,$row[9]);
 
-        if($i_days>$srch_date){$date1=$row[7];}else{$date1=$row[7];}
+        if($i_days>$srch_date){$date1=$start;}else{$date1=$row[9];}
         $days=date_diff1($end,$date1);
         $totalinte=$pday*$days;
         $totalmonth=$pday*30;
 
-        $temp[6]=$days;
-        $temp[7]=$totalinte;
-        $temp[8]=$totalmonth;
+        $temp[5]=$days;
+        $temp[6]=round($totalinte);
+        $temp[7]=round($totalmonth);
         array_push($data,$temp);
     }
     $json_data = array(
@@ -233,11 +268,11 @@ if(isset($_POST["submit1"]))
         $days=abs(round($diff/86400));
         if($days==0)
         {
-        return $days;
+            return $days;
         }
         else
         {
-        return $days;
+            return $days+1;
         }
         
     }

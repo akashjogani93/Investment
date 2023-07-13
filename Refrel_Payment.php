@@ -4,8 +4,6 @@
         .error {
             color: red;
         }
-        
-        /* Ensure that the demo table scrolls */
         th, td { white-space: nowrap; }
         div.dataTables_wrapper { }
         .table-striped>tbody>tr:nth-child(odd)>td, 
@@ -28,7 +26,8 @@
         tex();
     </script>
     <script type="text/javascript">
-        $(function() {
+        $(function() 
+        {
             $(".full").autocomplete({
                 source: 'widraw_searchName.php',
                 focus: function (event, ui) {
@@ -48,7 +47,7 @@
             <div class="box box-default">
                 <div class="row">
                     <div class="col-md-12">
-                        <form class="form-horizontal" id="addform" action="store_insert.php" method="POST">
+                        <form class="form-horizontal" id="addform" method="POST">
                             <div class="box-body">
                                 <div class="row">
                                     <div class="group-form col-md-2">
@@ -70,7 +69,8 @@
                                         <label for="inputEmail3" class="form_label">Select To Date</label>
                                         <input type="date"  class="form-control" name="todate"  id="todate">
                                         <script>
-                                            $(document).ready( function() {
+                                            $(document).ready( function() 
+                                            {
                                                 var yourDateValue = new Date();
                                                 var formattedDate = yourDateValue.toISOString().substr(0, 10)
                                                 $('#todate').val(formattedDate);
@@ -109,63 +109,9 @@
                         </div>
                     </div></br>
                     <div id="tablepdf" style="overflow-x: auto; height:400px;">
-                        <table id="example1" class="table table-striped table-bordered table-hover example1">
-                            <thead>
-                                <tr>
-                                    <th>Action</th>
-                                    <th>In_id</th>
-                                    <th>Investor Name</th>
-                                    <th>Invest Date</th>
-                                    <th>Invest Amount</th>
-                                    <th>Assigned %</th>
-                                    <th>Per Day</th>
-                                    <th>Per Month</th>
-
-                                    <!-- <th>1st Introducer</th>
-                                    <th>%</th>
-                                    <th>Perday Amount</th>
-                                    <th>T.A</th>
-
-                                    <th>2st Introducer</th>
-                                    <th>%</th>
-                                    <th>Perday Amount</th>
-                                    <th>T.A</th>
-
-                                    <th>3st Introducer</th>
-                                    <th>%</th>
-                                    <th>Perday Amount</th>
-                                    <th>T.A</th>
-
-                                    <th>4st Introducer</th>
-                                    <th>%</th>
-                                    <th>Perday Amount</th>
-                                    <th>T.A</th>
-
-                                    <th>5st Introducer</th>
-                                    <th>%</th>
-                                    <th>Perday Amount</th>
-                                    <th>T.A</th>
-
-                                    <th>6st Introducer</th>
-                                    <th>%</th>
-                                    <th>Perday Amount</th>
-                                    <th>T.A</th>
-
-                                    <th>7st Introducer</th>
-                                    <th>%</th>
-                                    <th>Perday Amount</th>
-                                    <th>T.A</th>
-
-                                    <th>8st Introducer</th>
-                                    <th>%</th>
-                                    <th>Perday Amount</th>
-                                    <th>T.A</th> -->
-                                </tr>
-                            </thead>
-                            <tbody id="mytable1">
-                                
-                            </tbody>    
-                        </table>
+                        <div id="app">
+                            <my-component></my-component>
+                        </div>
                     </div>
                     <div id="tablepdf2" style="overflow-x: auto; height:400px; display:none;">
                         <table id="example2" class="table table-striped table-bordered table-hover example1">
@@ -179,11 +125,50 @@
                                     <th>Assigned %</th>
                                     <th>Per Day</th>
                                     <th>Per Month</th>
+                                    <th>1st Introducer</th>
+                                    <th>%</th>
+                                    <th>Perday Amount</th>
+                                    <th>T.A</th>
+
+                                    <th>2nd Introducer</th>
+                                    <th>%</th>
+                                    <th>Perday Amount</th>
+                                    <th>T.A</th>
+
+                                    <th>3th Introducer</th>
+                                    <th>%</th>
+                                    <th>Perday Amount</th>
+                                    <th>T.A</th>
+
+                                    <th>4th Introducer</th>
+                                    <th>%</th>
+                                    <th>Perday Amount</th>
+                                    <th>T.A</th>
+
+                                    <th>5th Introducer</th>
+                                    <th>%</th>
+                                    <th>Perday Amount</th>
+                                    <th>T.A</th>
+
+                                    <th>6th Introducer</th>
+                                    <th>%</th>
+                                    <th>Perday Amount</th>
+                                    <th>T.A</th>
+
+                                    <th>7th Introducer</th>
+                                    <th>%</th>
+                                    <th>Perday Amount</th>
+                                    <th>T.A</th>
+
+                                    <th>8th Introducer</th>
+                                    <th>%</th>
+                                    <th>Perday Amount</th>
+                                    <th>T.A</th>
                                 </tr>
                             </thead>
                             <tbody id="mytable2">
                                 
-                            </tbody>    
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -191,6 +176,7 @@
         </section>
     </div>
     <?php include("footer.php"); ?>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
         <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -200,7 +186,6 @@
         <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script> 
 </div>
     <script>
-
         function editupdate(cid)
         {
             if(confirm("Are you sure?")==true){
@@ -212,45 +197,169 @@
     <script>
         $(document).ready(function()
         {
-            var limit = 300;
-            var start = -300;
-            var t = "true";
-            var action = 'inactive';
-            function load_customer_data(limit, start)
-            {
+            Vue.component('my-component', {
+            template: `
+                <div>
+                    <!-- Your existing HTML content here -->
+                    <table id="example1" class="table table-striped table-bordered table-hover example1">
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>In_id</th>
+                                <th>Investor Name</th>
+                                <th>Invest Date</th>
+                                <th>Invest Amount</th>
+                                <th>Assigned %</th>
+                                <th>Per Day</th>
+                                <th>Per Month</th>
+
+                                <th>1st Introducer</th>
+                                <th>%</th>
+                                <th>Perday Amount</th>
+                                <th>T.A</th>
+
+                                <th>2nd Introducer</th>
+                                <th>%</th>
+                                <th>Perday Amount</th>
+                                <th>T.A</th>
+
+                                <th>3th Introducer</th>
+                                <th>%</th>
+                                <th>Perday Amount</th>
+                                <th>T.A</th>
+
+                                <th>4th Introducer</th>
+                                <th>%</th>
+                                <th>Perday Amount</th>
+                                <th>T.A</th>
+
+                                <th>5th Introducer</th>
+                                <th>%</th>
+                                <th>Perday Amount</th>
+                                <th>T.A</th>
+
+                                <th>6th Introducer</th>
+                                <th>%</th>
+                                <th>Perday Amount</th>
+                                <th>T.A</th>
+
+                                <th>7th Introducer</th>
+                                <th>%</th>
+                                <th>Perday Amount</th>
+                                <th>T.A</th>
+
+                                <th>8th Introducer</th>
+                                <th>%</th>
+                                <th>Perday Amount</th>
+                                <th>T.A</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mytable1">
+                        </tbody>    
+                    </table>
+                    <div v-if="loading" class="loader">Loading...</div>
+                    </div>
+                </div>
+            `,
+            data() {
+                return {
+                limit: 50, // Change the limit to 100 for displaying 100 rows at a time
+                start: -50,
+                action: 'inactive',
+                intervalId: null,
+                loading: false
+                };
+            },
+            methods: {
+                load_customer_data() {
+                const self = this;
+                self.loading = true; // Show loading indicator
                 $.ajax({
-                    url:"ajax/ReferalIndividual.php",
-                    method:"POST",
-                    data:{submit:"submit",limit:limit, start:start},
-                    cache:false,
-                    success:function(data)
-                    {
-                        $('#mytable1').append(data);
-                        console.log(data);
-                        if(data == 0)
-                        {
-                            action = 'active';
-                        }
-                        else
-                        {
-                            action = "inactive";
-                        }
+                    url: 'ajax/ReferalIndividual.php',
+                    method: 'POST',
+                    data: { submit: 'submit', limit: self.limit, start: self.start },
+                    cache: false,
+                    success: function (data) {
+                    $('#example1').append(data); // Update the table ID to "example1"
+                    console.log(data);
+                    if (data == 0) {
+                        self.action = 'active';
+                    } else {
+                        self.action = 'inactive';
+                    }
+                    self.loading = false; // Hide loading indicator
+                    },
+                    error: function () {
+                    self.loading = false; // Hide loading indicator in case of error
                     }
                 });
+                },
+                startInterval() {
+                const self = this;
+                self.intervalId = setInterval(function () {
+                    if (self.action === 'inactive') {
+                    self.start += self.limit;
+                    self.load_customer_data();
+                    } else {
+                    clearInterval(self.intervalId);
+                    $(document.body).css({ cursor: 'default' });
+                    alert('No more records found!');
+                    self.loading = false; // Hide loading indicator
+                    // Call other methods as needed
+                    }
+                }, 300);
+                },
+            },
+            mounted() {
+                this.startInterval();
             }
+            });
 
-        var myVar = setInterval(function()
-        { 
-            if(action == 'inactive')
-            {
-                start = start + limit;
-                load_customer_data(limit, start);
-            }else{
-                clearInterval(myVar);
-                $(document.body).css({'cursor' : 'default'});
-                loading()
-            }
-        }, 300);
+            // Create the Vue app
+            var app = new Vue({
+            el: '#app'
+            });
+
+
+                //     var limit = 300;
+                //     var start = -300;
+                //     var t = "true";
+                //     var action = 'inactive';
+                //     function load_customer_data(limit, start)
+                //     {
+                //         $.ajax({
+                //             url:"ajax/ReferalIndividual.php",
+                //             method:"POST",
+                //             data:{submit:"submit",limit:limit, start:start},
+                //             cache:false,
+                //             success:function(data)
+                //             {
+                //                 $('#mytable1').append(data);
+                //                 console.log(data);
+                //                 if(data == 0)
+                //                 {
+                //                     action = 'active';
+                //                 }
+                //                 else
+                //                 {
+                //                     action = "inactive";
+                //                 }
+                //             }
+                //         });
+                //     }
+
+                // var myVar = setInterval(function()
+                // { 
+                //     if(action == 'inactive')
+                //     {
+                //         start = start + limit;
+                //         load_customer_data(limit, start);
+                //     }else{
+                //         clearInterval(myVar);
+                //         $(document.body).css({'cursor' : 'default'});
+                //         loading()
+                //     }
+                // }, 300);
 
         $('#search1').click(function()
         {
@@ -265,6 +374,7 @@
                         $('#tablepdf').hide();
                         $('#tablepdf2').show();
                        $('#mytable2').html(data);
+                       loading1();
                    }
                });
         });
@@ -280,13 +390,34 @@
         });
         function loading()
         {
-            
             oTable = $('#example1').dataTable({
                 pageLength : 10,
                 "lengthMenu": [[10, 25, 100, -1], [10, 25, 100, "All"]],
                 dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
                 buttons: [
-                'csv', 'excel'
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: ':visible:not(:first-child)' // Exclude the first column from the export
+                    }
+                }
+                ],
+            });
+            // alert('hii');
+        }
+        function loading1()
+        {
+            oTable = $('#example2').dataTable({
+                pageLength : 10,
+                "lengthMenu": [[10, 25, 100, -1], [10, 25, 100, "All"]],
+                dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                buttons: [
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: ':visible:not(:first-child)' // Exclude the first column from the export
+                    }
+                }
                 ],
             });
             // alert('hii');

@@ -1,6 +1,5 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <link rel="stylesheet" href="loader.css">
-
     <div class="wrapper" id="form1">
         <style>
             .error {
@@ -20,19 +19,15 @@
                 background-color: #C9CCD5;
                 padding:15px;  
             }
-            
             table.dataTable thead {background-color:#D3E4CD}
-
         </style>
-        
         <?php require_once("header.php"); ?>
         <script>
             $("#dyna").text("All Customers Details");
             tex();
         </script>
-         <script type="text/javascript">
+        <script type="text/javascript">
             $(function() {
-                
                 $(".full").autocomplete({
             
                     source: 'investment_searchName.php',
@@ -45,20 +40,10 @@
                         $("#full1").val(ui.item.value);
                         $("#full").val(ui.item.label);
                 }
-                    
                 }); 
             });
-            
         </script>
         <div class="content-wrapper">
-            <!-- <section class="content-header">
-                <h1>
-                    Search customers Date Wise 
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                </ol>
-            </section> -->
             <section class="content">
                 <div class="box box-default">
                     <div class="row">
@@ -71,9 +56,6 @@
                                             <select class="col-sm-4 form-control form-control-sm" id="select" name="option">
                                                 <option>Search By Name</option>
                                                 <option>Search By Date</option>
-                                                <!-- <option>Search By Amount</option>
-                                                <option>Date & Amount</option>
-                                                <option>Name & Amount</option>     -->
                                             </select>                
                                         </div>
                                         <div class="group-form col-md-4" id="namewise">
@@ -85,9 +67,6 @@
                                             <label for="inputEmail3" class="form_label">Select From Date</label>
                                                 <input  type="date"  class="col-sm-4 form-control form-control-sm full" name="fromdate" id="fromdate">                
                                         </div>
-                                        <!-- <div class="group-form col-md-1">
-                                            <label for="inputEmail3" class="form_label">TO</label>
-                                        </div> -->
                                         <div class="group-form col-md-3" id="datewise2" style="display: none;">
                                             <label for="inputEmail3" class="form_label">Select To Date</label>
                                             <input type="date"  class="form-control" name="todate"  id="todate">
@@ -100,7 +79,6 @@
                                                 });
                                             </script> 
                                         </div>
-
                                         <div class="group-form col-md-1">
                                             <label for="inputEmail3" style="color:white;" class="form_label">..</label>
                                             <a type="button" id="search" class="btn btn-primary">Load Data</a>
@@ -150,7 +128,6 @@
                                 </tbody>    
                                 
                             </table> 
-                            <!-- <center><div class="loader"></div></center> -->
                         </div>
                     </div>
                 </div>
@@ -158,26 +135,36 @@
             </section>
         </div>
     </div>
-        
-      
-        <script type="text/javascript">
-            $( document ).ready(function() 
-            {
-                
-                let log=$('#employee_grid').DataTable({
-                "lengthMenu": [[100, -1], [100, "All"]],
-                dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                                    buttons: [
-                                    'csv', 'excel', 'pdf', 'print'
-                                    ],
-                            "bProcessing": true,
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script> 
+    <script type="text/javascript">
+        $( document ).ready(function() 
+        {
+            let log=$('#employee_grid').DataTable({
+                    "lengthMenu": [[100, -1], [100, "All"]],
+                    dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                    buttons: [ {
+                                extend: 'excel',
+                                exportOptions: {
+                                    columns: ':visible:not(:first-child)' // Exclude the first column from the export
+                                }
+                            }],
+                    "bProcessing": true,
                     "serverSide": true,
+                    "searching": false,
                     "ajax":{
                         url :"ajax/load_customers.php", // json datasource
                         type: "post",  // type of method ,GET/POST/DELETE
                         datatype: 'json',
                         data:{submit:'Submit',d1:'not_date'},
-                        error: function(){
+                        error: function()
+                        {
                             $("#employee_grid_processing").css("display","none");
                         }
                         // ,
@@ -186,95 +173,107 @@
                         //   console.log(data);
                         // }
                     }
-                }); 
-                $('#select').change(function()
-                {
-                    var option=$(this).val();
-                    //console.log(option);
-                    if(option=="Search By Date")
-                    {
-                        $('#namewise').hide();
-                        $('#datewise1').show();
-                        $('#datewise2').show();
-                        
-                    }else if(option=="Search By Name")
-                    {
-                        $('#namewise').show();
-                        $('#datewise1').hide();
-                        $('#datewise2').hide();
-                    }
-                });
-                $('#search').click(function()
-                {
-                    var filter=$('#select').val();
-                    if(filter=="Search By Name")
-                    {
-                        var cid=$('#full1').val();
-                        var name=$('#full').val();
-                        if(name=='')
-                        {
-                            alert('Please Select Name');
-                            exit();
-                        }
-                        var table = $('#employee_grid').DataTable();
-                        table.destroy();
-                        let log=$('#employee_grid').DataTable({
-                            "lengthMenu": [[100, -1], [100, "All"]],
-                            dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                            buttons: [ 'csv', 'excel', 'pdf', 'print'],
-                            "bProcessing": true,
-                            "serverSide": true,
-                            "ajax":{
-                                url :"ajax/load_customers.php", // json datasource
-                                type: "post",  // type of method ,GET/POST/DELETE
-                                datatype: 'json',
-                                data:{submit:'Submit',d1:"name",cid:cid},
-                                error: function(){
-                                    $("#employee_grid_processing").css("display","none");
-                                }
-                                    // ,
-                                    // success:function(data)
-                                    // {
-                                    //   console.log(data);
-                                    // }
-                                }
-                            });
-                    }else
-                    {
-                        var d1=$('#fromdate').val();
-                        var d2=$('#todate').val();
-                        if(d1=='')
-                        {
-                            alert('Please Select From Date');
-                            exit();
-                        }
-                        var table=$('#employee_grid').DataTable();
-                        table.destroy();
-
-                        let log=$('#employee_grid').DataTable({
-                            "lengthMenu": [[100, -1], [100, "All"]],
-                            dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                            buttons: [ 'csv', 'excel', 'pdf', 'print'],
-                            "bProcessing": true,
-                            "serverSide": true,
-                            "ajax":{
-                                url :"ajax/load_customers.php", // json datasource
-                                type: "post",  // type of method ,GET/POST/DELETE
-                                datatype: 'json',
-                                data:{submit:'Submit',d1:d1,d2:d2},
-                                error: function(){
-                                    $("#employee_grid_processing").css("display","none");
-                                }
-                                    // ,
-                                    // success:function(data)
-                                    // {
-                                    //   console.log(data);
-                                    // }
-                                }
-                            });
-                    }
-                });
             });
-        </script>
 
-</body><?php include("footer.php"); ?>
+            $('#select').change(function()
+            {
+                var option=$(this).val();
+                if(option=="Search By Date")
+                {
+                    $('#namewise').hide();
+                    $('#datewise1').show();
+                    $('#datewise2').show();
+                }else if(option=="Search By Name")
+                {
+                    $('#namewise').show();
+                    $('#datewise1').hide();
+                    $('#datewise2').hide();
+                }
+            });
+
+            $('#search').click(function()
+            {
+                var filter=$('#select').val();
+                if(filter=="Search By Name")
+                {
+                    var cid=$('#full1').val();
+                    var name=$('#full').val();
+                    if(name=='')
+                    {
+                        alert('Please Select Name');
+                        exit();
+                    }
+                    var table = $('#employee_grid').DataTable();
+                    table.destroy();
+
+                    let log=$('#employee_grid').DataTable({
+                        "lengthMenu": [[100, -1], [100, "All"]],
+                        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                        buttons: [ {
+                                extend: 'excel',
+                                exportOptions: {
+                                    columns: ':visible:not(:first-child)' // Exclude the first column from the export
+                                }
+                            }],
+                        "bProcessing": true,
+                        "serverSide": true,
+                        "searching": false,
+                        "ajax":{
+                            url :"ajax/load_customers.php", // json datasource
+                            type: "post",  // type of method ,GET/POST/DELETE
+                            datatype: 'json',
+                            data:{submit:'Submit',d1:"name",cid:cid},
+                            error: function(){
+                                $("#employee_grid_processing").css("display","none");
+                            }
+                                // ,
+                                // success:function(data)
+                                // {
+                                //   console.log(data);
+                                // }
+                        }
+                    });
+                }else
+                {
+                    var d1=$('#fromdate').val();
+                    var d2=$('#todate').val();
+                    if(d1=='')
+                    {
+                        alert('Please Select From Date');
+                        exit();
+                    }
+                    var table=$('#employee_grid').DataTable();
+                    table.destroy();
+                    let log=$('#employee_grid').DataTable({
+                        "lengthMenu": [[100, -1], [100, "All"]],
+                        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                        buttons: [ {
+                                extend: 'excel',
+                                exportOptions: {
+                                    columns: ':visible:not(:first-child)' // Exclude the first column from the export
+                                }
+                            }],
+                        "bProcessing": true,
+                        "serverSide": true,
+                        "searching": false,
+                        "ajax":{
+                            url :"ajax/load_customers.php", // json datasource
+                            type: "post",  // type of method ,GET/POST/DELETE
+                            datatype: 'json',
+                            data:{submit:'Submit',d1:d1,d2:d2},
+                            error: function(){
+                                $("#employee_grid_processing").css("display","none");
+                            }
+                                // ,
+                                // success:function(data)
+                                // {
+                                //   console.log(data);
+                                // }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+<?php include("footer.php"); ?>

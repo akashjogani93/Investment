@@ -102,12 +102,12 @@ if($_SESSION["type"]<>"member")
                                 // $conf=mysqli_query($conn,$sel);
                                 // while($row=mysqli_fetch_array($conf))
                                 // {
-                                //     $reg=$row['regdate'];
-                                //     $id=$row['id'];
-                                //     $year = date('Y', strtotime($reg));
-                                //     $Month = date('M', strtotime($reg));
-                                //     echo $year;
-                                //     echo $Month;
+                                    // $reg=$row['regdate'];
+                                    // $id=$row['id'];
+                                    // $year = date('Y', strtotime($reg));
+                                    // $Month = date('M', strtotime($reg));
+                                    // echo $year;
+                                    // echo $Month;
                                 //     $up="UPDATE `invest` SET `year`='$year',`month`='$Month' WHERE `id`='$id'";
                                 //     $co=mysqli_query($conn,$up);
                                 // }
