@@ -7,7 +7,10 @@
     <div class="wrapper" id="form1">
       
         <?php require_once("header.php"); ?>
-
+        <script>
+            $("#dyna").text("Customer Current Balance");
+            tex();
+        </script>
         <script type="text/javascript">
             $(function() {
                 
@@ -124,7 +127,7 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>Cid</th>
+                                    <th>Cust-Id</th>
                                     <th>Member Name</th>
                                     <th>Total Investment</th>
                                     <th>Withdrawal</th>

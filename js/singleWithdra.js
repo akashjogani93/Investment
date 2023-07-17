@@ -107,11 +107,11 @@ function searchfull()
         },
         success:function(data) 
         {
-            
+            if ($.fn.DataTable.isDataTable('#example1')) {
+                $('#example1').DataTable().destroy();
+            }
             $("#example1 tbody").empty().html(data);
-            $('.loader').fadeOut();
-            //$('.mytable').html(data);
-            //alert(data);
+            $('#dis_loader').fadeOut();
             console.log(data);
             oTable = $('#example1').dataTable({
                 searching:false,
@@ -137,7 +137,6 @@ function searchfull()
 
 function debit(id)
 {
-    //alert("hi");
     let log = $.ajax({
         url: 'ajax/widrawDebit.php',
         type: "POST",
@@ -193,14 +192,8 @@ function widraw()
     var asign=$('#asign').val();
     var pday=$('#pday').val();
     var pmonth=$('#pmonth').val();
+    var file=$('#agreement')[0].files[0];
 
-    // if(full1 == ''){alert("Search Name For Widraw");exit();}
-    // if(investid == ''){alert("Select Invest Amount");exit();}
-    // if(investid == ''){alert("Select Invest Amount");exit();}
-    // if(regdate == ''){alert("Select Widraw Date");exit();}
-    // if(wamt == '' || wamt == 0){alert("Add Widraw Amount");exit();}
-    // if(asign == ''){alert("Asign Percentage");exit();}
-    
     if(wamt=='' || wamt==0)
     {
         $('#wamtlable').html(`<span style='color:red'>Add Widraw Amount..</span>`);
@@ -213,23 +206,27 @@ function widraw()
         exit();
     }else
     {
-        log = $.ajax({
-            url: 'ajax/widrawInsert.php',
-            type: "POST",
-            data: {
-                investid : investid,
-                full1 : full1,
-                regdate : regdate,
-                wamt : wamt,
-                ramt : ramt,
-                asign : asign,
-                pday : pday,
-                pmonth : pmonth
-            },success: function(data) {
-                alert(data);
-                 searchfull()
-                // $('#full1').val('');
-                // $('#full').val('');
+
+        var form_data = new FormData();
+        form_data.append('investid', investid);
+        form_data.append('full1', full1);
+        form_data.append('regdate', regdate);
+        form_data.append('wamt', wamt);
+        form_data.append('ramt', ramt);
+        form_data.append('asign', asign);
+        form_data.append('pday', pday);
+        form_data.append('pmonth', pmonth);
+        form_data.append('file', file);
+        let log=$.ajax({
+            url:"ajax/widrawInsert.php",
+            method:"POST",
+            data:form_data,
+            contentType: false,
+            processData: false,
+            success: function(response) 
+            {
+                alert(response);
+                searchfull()
                 $('#regdate').val('');
                 $('#regdate1').val('');
                 $('#amt').val('');
@@ -241,6 +238,34 @@ function widraw()
                 $('#investedamt').html(`<span style='color:green'>Invested Amount..</span>`);
             }
         });
+        // log = $.ajax({
+        //     url: 'ajax/widrawInsert.php',
+        //     type: "POST",
+        //     data: {
+        //         investid : investid,
+        //         full1 : full1,
+        //         regdate : regdate,
+        //         wamt : wamt,
+        //         ramt : ramt,
+        //         asign : asign,
+        //         pday : pday,
+        //         pmonth : pmonth
+        //     },success: function(data) {
+        //         alert(data);
+        //         searchfull()
+        //         // $('#full1').val('');
+        //         // $('#full').val('');
+        //         $('#regdate').val('');
+        //         $('#regdate1').val('');
+        //         $('#amt').val('');
+        //         $('#wamt').val('');
+        //         $('#ramt').val('');
+        //         $('#asign').val('');
+        //         $('#pday').val('');
+        //         $('#pmonth').val('');
+        //         $('#investedamt').html(`<span style='color:green'>Invested Amount..</span>`);
+        //     }
+        // });
     }
      
 

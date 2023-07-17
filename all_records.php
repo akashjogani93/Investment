@@ -53,7 +53,6 @@
     <script>
         $(document).ready(function()
         {
-            // alert('hii');
             let log=$.ajax({
                 url:"ajax/total_records.php",
                 type:'POST',
@@ -65,7 +64,6 @@
                     $('#invest').html(num+'/-');
                     var words = convertNumberToWords(num);
                     // $('#investinwords').html(words);
-                    
                     // console.log(log);
                 }
             });

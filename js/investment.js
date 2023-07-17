@@ -136,7 +136,8 @@ $(document).ready(function()
     });
 
     //submit button to submit code
-    $("#form").on('submit',(function(e){
+    $("#form").on('submit',(function(e)
+    {
         e.preventDefault();
         var cid = $('#full1').val();
         // get all referals
@@ -219,8 +220,7 @@ $(document).ready(function()
 function searchfull()
 {
     var cid = $('#full1').val();
-    //alert('hii')
-    console.log(full);
+    // console.log(full);
     let log = $.ajax({
         url: 'ajax/investSearchDetail.php',
         type: "POST",
@@ -321,7 +321,7 @@ $(function() {
 
 
 
-//Single Investment page 
+        //Single Investment page 
         function searchfullsingle()
         {
             var table1=$('#example1').DataTable();
@@ -364,7 +364,7 @@ $(function() {
             table1.destroy(); 
             var oTable;
             var full1=$('#full1').val();
-            console.log(full1);
+            // console.log(full1);
 
             let log = $.ajax({
                 url: 'ajax/load_singleReferalData.php',
@@ -391,11 +391,10 @@ $(function() {
                     // console.log(data);
                 }
             });
-            console.log(log)
+            // console.log(log)
         }
         function totalinterest()
         {
-            //alert('hii')
             var full1=$('#full1').val();
             let log = $.ajax({
                 url: 'ajax/totalinterest.php',
@@ -406,15 +405,15 @@ $(function() {
                 },
                 success:function(data) 
                 {
-                    //alert(data[0]);
-                    $('#totalmonth').html(data[0].toFixed(2));
-                    $('#totalinvest').html(data[1].toFixed(2));
-                    $('#totaint').html(data[2].toFixed(2));
-                    $('#refmonth').html(data[3].toFixed(2));
-                    $('#refint').html(data[4].toFixed(2));
-                    $('#refamount').html(data[5].toFixed(2));
-                    $('#totalint').val(data[6].toFixed(2));
-                    $('#regdate1').val(data[7].toFixed(2));
+                    $('.dis_loader').fadeOut();
+                    $('#totalmonth').html(Math.round(data[0]));
+                    $('#totalinvest').html(Math.round(data[1]).toFixed(2));
+                    $('#totaint').html(Math.round(data[2]).toFixed(2));
+                    $('#refmonth').html(Math.round(data[3]).toFixed(2));
+                    $('#refint').html(Math.round(data[4]).toFixed(2));
+                    $('#refamount').html(Math.round(data[5]).toFixed(2));
+                    $('#totalint').val(Math.round(data[6]).toFixed(2));
+                    $('#regdate1').val(Math.round(data[7]).toFixed(2));
                 }
             });
 

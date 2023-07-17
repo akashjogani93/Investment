@@ -1,8 +1,7 @@
 <script>
     var de='';
     var in_id= "<?php echo $_GET['cid']; ?>";
-    
-    //alert(in_id);
+    var bo='';
     let log = $.ajax({
         url: 'ajax/editInvestment.php',
         type: "POST",
@@ -12,6 +11,7 @@
         },
         success: function(data)
         {
+            console.log(data);
             $("#in_id").val(in_id);
             $("#full").val(data[0].full);
             $("#full1").val(data[0].cid);
@@ -25,10 +25,17 @@
             $("#regdate").val(data[0].regdate);
             $("#pmode").val(data[0].pmode);
             de=data[0].img;
-            console.log(log)
+            bo=data[0].path;
+            if(de !='')
+            {
+                $('#proof').show();
+            }
+            if(bo !='')
+            {
+                $('#bondagrement').show();
+            }
+            // console.log(log)
             referals();
-            
-            
         }
         
         //console.log(log)
@@ -91,23 +98,44 @@
 
     function picture()
     { 
+        
         if(de !='')
         {
             var pic = de.slice(3);
-            $('#dow').show();
-            $(".item a[href='#']").prop("href", pic);
-            document.getElementById('bigpic').src = pic.replace();
+            var link = document.createElement("a");
+            link.href = pic;
+            link.download = "image.jpg";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }else
         {
             alert("No Photo Uploaded..");
             exit();
         }
     }
-    function view()
+    // function viewProf()
+    // {
+    //     window.open(de)
+    // }
+    function bond()
     {
-        // alert('hii');
-        window.open(de)
+        if(bo !='')
+        {
+            var pic = "ajax/"+bo;
+            var link = document.createElement("a");
+            link.href = pic;
+            link.download = "agreement.jpg";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }else
+        {
+            alert("No Bond Uploaded..");
+            exit();
+        }
     }
+
 </script>
 
 <script>

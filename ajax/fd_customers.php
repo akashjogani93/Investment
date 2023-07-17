@@ -10,9 +10,13 @@
             <tr>
                 <td>
                     <a href="fd_plan.php?fd_id=<?php echo $ROW['f_cid']; ?>&fd_name=<?php echo $ROW['full']; ?>" class="btn btn-info">Invest</a>
-                    <!-- <button class="btn btn-danger fd-edit" id="editfd">Edit</button> -->
+                    <button class="btn btn-danger fd-edit" id="editfd" onclick="fdedit(this)">Edit</button>
                 </td>
                 <td><?php echo $ROW['f_cid']; ?></td>
+                <td style="display:none"><?php echo $ROW['fname']; ?></td>
+                <td style="display:none"><?php echo $ROW['mname']; ?></td>
+                <td style="display:none"><?php echo $ROW['lname']; ?></td>
+                <td style="display:none"><?php echo $ROW['regdate']; ?></td>
                 <td><?php echo $ROW['full']; ?></td>
                 <td><?php echo $ROW['mobile']; ?></td>
                 <td><?php echo $ROW['gen']; ?></td>

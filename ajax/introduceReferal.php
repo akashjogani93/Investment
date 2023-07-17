@@ -1,7 +1,6 @@
 <?php
 require_once('../dbcon.php');
 include('../sms.php');
-use Dompdf\Dompdf;
 
 $cid=$_POST['full1'];
 $regdate = $_POST['regdate'];
@@ -14,12 +13,13 @@ $pday = $_POST['pday'];
 $pmonth = $_POST['pmonth'];
 $pmode = $_POST['pmode'];
 $image = $_FILES['screen'];
+$agreement = $_FILES['agreement'];
 $mobile = $_POST['mobile'];
 $profile = upload_Profile($image,"../img/");
-$msg = "Rs ".$invest.", successfully Added to your account.\nFrom: SHIVAM ASSOCIATES.\nThank You.";
-// $referals =$_POST['referals']; 
-    $q="INSERT INTO `invest`(`cid`, `regdate`, `invest`, `asign`, `pday`, `pmonth`,`pmode`,`img`,`year`,`month`)VALUES 
-    ('$cid','$regdate','$invest','$asign','$pday','$pmonth','$pmode','$profile','$year','$Month');";
+$agreement1 = upload_Profile($agreement,"pdf/");
+$msg = "Rs ".$invest.", Successfully Added to your account.\nFrom: SHIVAM ASSOCIATES.\nThank You.";
+    $q="INSERT INTO `invest`(`cid`, `regdate`, `invest`, `asign`, `pday`, `pmonth`,`pmode`,`img`,`year`,`month`,`path`)VALUES 
+    ('$cid','$regdate','$invest','$asign','$pday','$pmonth','$pmode','$profile','$year','$Month','$agreement1');";
     $conform=mysqli_query($conn,$q);
     if($conform)
     {
@@ -27,106 +27,6 @@ $msg = "Rs ".$invest.", successfully Added to your account.\nFrom: SHIVAM ASSOCI
         $cfm=mysqli_query($conn,$q1);
         $row=mysqli_fetch_array($cfm);
         $invest_id=$row[0];
-
-        require_once './dompdf/autoload.inc.php';
-        $dompdf = new Dompdf();
-        $agrement='<!DOCTYPE html>
-        <html>
-        <head>
-            <title>Agreement Bond</title>
-            <!-- Bootstrap CSS -->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-            <!-- Custom CSS -->
-            <style>
-                body {
-                    font-family: Arial, sans-serif;
-                    padding: 20px;
-                }
-                h1 {
-                    margin-bottom: 30px;
-                    text-align: center;
-                    font-size: 36px;
-                    font-weight: bold;
-                    color: #007bff;
-                }
-                p {
-                    font-size: 18px;
-                    line-height: 1.5;
-                    margin-bottom: 20px;
-                }
-                .signature-box {
-                    margin-top: 50px;
-                    border: 1px solid #ccc;
-                    padding: 20px;
-                    text-align: center;
-                    position: relative;
-                }
-                .signature-box::before {
-                    content: "Signature";
-                    font-size: 16px;
-                    font-weight: bold;
-                    position: absolute;
-                    top: -15px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background-color: #fff;
-                    padding: 0 10px;
-                }
-                .signature-box input[type="text"] {
-                    border: none;
-                    border-bottom: 1px solid #ccc;
-                    width: 80%;
-                    padding: 5px 10px;
-                    margin-bottom: 20px;
-                }
-                .signature-box .btn {
-                    background-color: #007bff;
-                    color: #fff;
-                    font-size: 18px;
-                    padding: 10px 20px;
-                    border-radius: 5px;
-                    border: none;
-                }
-                .signature-box .btn:hover {
-                    background-color: #0062cc;
-                    cursor: pointer;
-                }
-                label{
-                    position:relative;
-                    bottom:20px;
-                }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <h1>Agreement Bond</h1>
-                <p>This agreement bond ("Agreement") is made and entered into on the date of <strong>['.$regdate.']</strong> by and between <strong>[insert party 1 name]</strong> and <strong>[insert party 2 name]</strong>.</p>
-                <p>Whereas, the parties wish to enter into an agreement for Amount Invested<strong>['.$invest.']</strong> on the terms and conditions set forth herein, the parties agree as follows:</p>
-                <ol>
-                    <li><strong>[insert first term of agreement]</strong></li>
-                    <li><strong>[insert second term of agreement]</strong></li>
-                    <li><strong>[insert third term of agreement]</strong></li>
-                </ol>
-                <div class="signature-box">
-                    <label for="party1-name">Party 1 Name:</label>
-                    <input type="text" id="party1-name" name="party1-name" required></br>
-                 
-                    <label for="party2-name">Party 2 Name:</label>
-                    <input type="text" id="party2-name" name="party2-name" required></br>
-                    
-                </div>
-            </div>
-        </body>
-        </html>';
-
-        $dompdf->loadHtml($agrement);
-        $dompdf->setPaper('A4', 'landscape'); 
-        $dompdf->render();
-        $output = $dompdf->output();
-        $pdf=file_put_contents('./pdf/'.$invest_id.'agrement.pdf', $output);
-        $path='./pdf/'.$invest_id.'agrement.pdf';
-
-        $confor=mysqli_query($conn,"UPDATE `invest` SET `path`='$path' WHERE `id`='$invest_id'");
       	sms($mobile,$msg,$conn);
         echo $invest_id;
         // foreach ($referals as $referal)

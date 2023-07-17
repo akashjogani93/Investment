@@ -125,20 +125,12 @@
                                     <label for="inputEmail3" class="form_label">Relationship *</label>
 									<input type="text" class=" col-sm-4 form-control form-control-sm" name="rel" id="rel" placeholder="Father" required>
                                 </div>
-								<div class="group-form col-md-4">
-									<?php if('reg'=='reg')
-											{
-												?>
-													<button type="submit" name="submit" id="sub" class="btn btn-primary regsub" style="margin-top:25px;">Submit</button>
-												<?php
-											}else
-											{
-												?>
-													<button type="submit" name="update" class="btn btn-danger" style="margin-top:25px;">Update</button>
-													<a href="register_customer.php" class="btn btn-primary" style="margin-top:25px;">Back</a>
-												<?php
-											}
-									?>
+								<div class="group-form col-md-4" id="formsub">
+                                        <button type="submit" name="submit" id="sub" class="btn btn-primary regsub" style="margin-top:25px;">Submit</button>
+                                </div>
+								<div class="group-form col-md-4" id="formup" style="display:none;">
+                                    <button type="submit" name="update" class="btn btn-danger" style="margin-top:25px;">Update</button>
+                                    <a href="fd_customers.php" class="btn btn-primary" style="margin-top:25px;">Back</a>
                                 </div>
                             </div></br>
                         </div>
@@ -158,6 +150,10 @@
                                 <tr>
                                     <th>Action</th>
                                     <th>Sl No</th>
+                                    <th style="display:none">F Name</th>
+                                    <th style="display:none">M Name</th>
+                                    <th style="display:none">L Name</th>
+                                    <th style="display:none">Date</th>
                                     <th>Full Name</th>
                                     <th>Mobile</th>
                                     <th>Gender</th>
@@ -193,7 +189,6 @@
 	<script>
 		$(document).ready(function()
 		{
-            // $('input').attr('autofocus', false);
 			let log=$.ajax({
 				url: 'ajax/fd_customers.php',
 				type: "POST",
@@ -227,12 +222,41 @@
                 return true;        
             }
 
-            function edit_fd(id)
-            {
-                var closestRow =id.closest('tr');
-                var td1Value = closestRow.find('td:nth-child(1)').text();
+            // function edit_fd(id)
+            // {
+            //     var closestRow =id.closest('tr');
+            //     var td1Value = closestRow.find('td:nth-child(1)').text();
 
-                console.log(td1Value);
+            //     console.log(td1Value);
+            // }
+            var next=true;
+            function fdedit(element)
+            {
+                var closestRow = $(element).closest("tr");
+                var id = closestRow.find("td:eq(1)").text();
+                var fname = closestRow.find("td:eq(2)").text();
+                var mname = closestRow.find("td:eq(3)").text();
+                var lname = closestRow.find("td:eq(4)").text();
+                var date = closestRow.find("td:eq(5)").text();
+                var mobile = closestRow.find("td:eq(7)").text();
+                var gender = closestRow.find("td:eq(8)").text();
+                var adds = closestRow.find("td:eq(9)").text();
+                var nominee = closestRow.find("td:eq(10)").text();
+                var relation = closestRow.find("td:eq(11)").text();
+                $('#cid').val(id);
+                $('#regdate').val(date);
+                $('#fname').val(fname);
+                $('#mname').val(mname);
+                $('#lname').val(lname);
+                $('#mobile').val(mobile);
+                $('#address').val(adds);
+                $('#nom').val(nominee);
+                $('#rel').val(relation);
+                $('#gen').val(gender);
+                $('#formsub').hide();
+                $('#formup').show();
+                // alert(column2Value)
+                // console.log(column2Value)
             }
             
 	</script>

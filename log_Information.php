@@ -1,18 +1,10 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper" id="form1">
-        
         <style>
             .error {
                 color: red;
             }
-            
-            /* Ensure that the demo table scrolls */
             th, td { white-space: nowrap; }
-            
-            div.dataTables_wrapper {
-               
-                
-            }
             
             .table-striped>tbody>tr:nth-child(odd)>td, 
             .table-striped>tbody>tr:nth-child(odd)>th 
@@ -26,7 +18,6 @@
                 background-color: #C9CCD5;
                 padding:15px;  
             }
-            
             table.dataTable thead {background-color:#D3E4CD}
         </style>
         
@@ -37,14 +28,6 @@
             $("#dyna").text("LOG INFORMATION");
         </script>
         <div class="content-wrapper">
-            <!-- <section class="content-header">
-                <h1>
-                    LOG INFORMATION
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                </ol>
-            </section> -->
             <section class="content">
                 <div class="box box-default">
                     <div class="row">
@@ -54,23 +37,27 @@
                                     <div class="group-form col-md-3" id="namewise">
                                         <label for="inputEmail3" class="form_label">From Date</label>
                                         
-                                        <input class="col-sm-4 form-control form-control-sm" type="datetime-local" id="date" name="start" autocomplete="off" placeholder="dd-mm-yyyy" id="dat1" required>
+                                        <input class="col-sm-4 form-control form-control-sm" type="text" id="date" name="start" autocomplete="off" placeholder="dd-mm-yyyy" id="dat1" required>
+                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+                                        <script>
+                                            $(document).ready(function() {
+                                                $('#date , #d2').datetimepicker();
+                                            });
+                                        </script>
                                     </div>
                                     <div class="group-form col-md-3" id="namewise">
                                         <label for="inputEmail3" class="form_label">TO Date</label>
-                                        <input class="col-sm-4 form-control form-control-sm" type="datetime-local" id="d2" name="end" autocomplete="off" placeholder="dd-mm-yyyy" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"  title="Enter a date in this formart DD-MM-YYYY" id="dat2"  required>
+                                        <input class="col-sm-4 form-control form-control-sm" type="text" id="d2" name="end" autocomplete="off" placeholder="dd-mm-yyyy" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"  title="Enter a date in this formart DD-MM-YYYY" id="dat2"  required>
                                     </div>
                                     <div class="group-form col-md-3" id="namewise">
                                      
                                         <?php
-                                            //$endtime=$_SESSION['endtime'];
-                                            //echo $endtime;
                                             if($_SESSION['endtime']<date('Y-m-d h:i:s'))
                                             {
                                                 if((date("h")==12) && date("h",strtotime($_SESSION["endtime"]))==1)
                                                 {
                                                     ?>
-                                                        <a href="coading.php?stop_schedule=stop"onclick="return confirm('Are you sure..?');" class="btn btn-danger" type="reset">Stop</a>
+                                                        <a href="coading.php?stop_schedule=stop"onclick="return confirm('Are you sure..?');" style="margin-top:30px;" class="btn btn-danger" type="reset">Stop</a>
                                                     <?php
                                                 }
                                                 else
@@ -83,7 +70,7 @@
                                             else
                                             {
                                                 ?>
-                                                        <a href="coading.php?Stop_Schedule=stop" onclick="return confirm('Are you sure..?');" class="btn btn-sm btn-danger col-md-12" type="reset">Stop</a>
+                                                        <a href="coading.php?Stop_Schedule=stop" onclick="return confirm('Are you sure..?');" style="margin-top:30px;" class="btn btn-sm btn-danger col-md-12" type="reset">Stop</a>
                                                 <?php
                                             }
                                         ?>

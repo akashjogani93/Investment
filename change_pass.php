@@ -10,15 +10,6 @@
                 $("#dyna").text("Change Password");
             </script>
         <div class="content-wrapper">
-            <!-- <section class="content-header">
-                <h1>
-                    Change Password Admin Side.
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                </ol>
-            </section> -->
-
             <section class="content">
                 <div class="box">
                     <div class="box-body">
@@ -28,17 +19,17 @@
                     <thead>
                     	<tr>
 	                    	<th>Enter Password:</th>
-                        <td><input type="text" name="old" class="form-control form-control-sm" required="" style="border:1px solid black;">
+                        <td><input type="text" name="old" class="form-control form-control-sm" required="" style="border:1px solid black; width:50%">
                         <input type="text" value="0" name="id" class="form-control form-control-sm" required="" style="display:none;">
                        
                     	</tr>
                     	<tr>
                     		<th>Create password:</th>
-                    		<td><input type="text" name="createpass" id="files" class="form-control form-control-sm"  required="" style="border:1px solid black;"/></td>
+                    		<td><input type="text" name="createpass" id="files" class="form-control form-control-sm"  required="" style="border:1px solid black; width:50%"/></td>
                     	</tr>
                     	<tr>
                     		<th>Confirm Password</th>
-                    		<td><input type="text" class="form-control form-control-sm" name="confirmpass" required="" title="Select Html File" style="border:1px solid black;"></td>
+                    		<td><input type="text" class="form-control form-control-sm" name="confirmpass" required="" title="Select Html File" style="border:1px solid black; width:50%"></td>
                     	</tr>
                           
                     		<tr>

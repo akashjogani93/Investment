@@ -18,55 +18,61 @@
 
 ?>
 
-       <?php if(isset($_POST['full1']))
+       <?php 
+       if(isset($_POST['full1']))
+        {
+            $full=$_POST['full1'];
+            $start=date("Y-m-01", strtotime("first day of this month"));
+            $end=date("Y-m-d");
+            if(date("d", strtotime($end))=="31"){ $end=date("Y-m-30");}
+            $data="";
+            $today=date("d-m-Y");
+            $srch_date=date_diff1($today,$start);
+            $query="SELECT `invest`.*,`register`.`bank`,`register`.`account`,`register`.`cid` FROM `invest`,`register` WHERE `invest`.`cid`='$full' AND `invest`.`cid`=`register`.`cid`  ORDER BY `invest`.`id`";
+            $retval=mysqli_query($conn, $query);
+            $result = mysqli_num_rows($retval);
+            if($result>0)
             {
-                $full=$_POST['full1'];
-                $start=date("Y-m-01", strtotime("first day of this month"));
-                $end=date("Y-m-d");
-                if(date("d", strtotime($end))=="31"){ $end=date("Y-m-30");}
-                $data="";
-                $query="SELECT `invest`.*,`register`.`bank`,`register`.`account`,`register`.`cid` FROM `invest`,`register` WHERE `invest`.`cid`='$full' AND `invest`.`cid`=`register`.`cid`  ORDER BY `invest`.`id`";
-                $retval=mysqli_query($conn, $query);
                 while ($row = mysqli_fetch_array($retval)) 
                 {
                     $id=$row['id'];
-                    // $w_value=0;
-                    // $q="SELECT * FROM `widraw` WHERE `inv_id`='$id' AND `wdate`>'$end';";
-                    // $cfm = mysqli_query($conn,$q) or die(mysqli_error());
-                    // $result = mysqli_num_rows($cfm);
-                    // if($result>0)
-                    // {
-                    //     $dat=mysqli_fetch_array($cfm);
-                    //     $w_value=$dat['wamt'];
-                    //     //echo "<script>alert($w_value);</script>";
-                    // }
+                    $w_value=0;
+                    $q="SELECT * FROM `widraw` WHERE `inv_id`='$id' AND `wdate`>'$end';";
+                    $cfm = mysqli_query($conn,$q) or die(mysqli_error());
+                    $result = mysqli_num_rows($cfm);
+                    if($result>0)
+                    {
+                        $dat=mysqli_fetch_array($cfm);
+                        $w_value=$dat['wamt'];
+                    }
                     
                     $bank=$row['bank'];
                     $account=$row['account'];
                     $regdate=$row['regdate'];
-                    $invest=$row['invest'];
+                    $invest=$row['invest']+$w_value;
                     $asign=$row['asign'];
-                    $pday=$row['pday'];
+                    // $pday=$row['pday'];
                     $pmonth=$row['pmonth'];
                     $pmode=$row['pmode'];
                     $path=$row['path'];
+                    $img=$row['img'];
+                    $pday=(($invest*$asign/100)/30);
                     //date Calculation
                     $today=date("d-m-Y");
 
                     $i_days=date_diff1($today,$regdate);
                     
-                    
-                    $srch_date=date_diff1($today,$start);
                     if($i_days>$srch_date)
                     {
                         $date1=$start;
                     }else{
                         $date1=$regdate;
-                        //echo "<script>alert('Customer Invested After your Search date');</script>";
                     }
                     $days=date_diff1($end,$date1);
                     $totalinte=$pday*$days;
+                    // investment_edit.php?cid=12
                     $data.='<tr>
+                                <td><button onclick="editupdate('.$id.')" class="btn btn-info">Edit</button></td>
                                 <td>'.$id.'</td>
                                 <td>'.$bank.'</td>
                                 <td>'.$account.'</td>
@@ -78,6 +84,13 @@
                                 <td>'.$totalinte.'</td>
                                 <td>'.$pmonth.'</td>
                                 <td>'.$pmode.'</td>';
+                                if($img=='')
+                                {
+                                    $data.='<td>Invalid</td>';
+                                }else
+                                {
+                                    $data.='<td><a href="ajax/'.$img.'" target="_blank" class="btn btn-info">Proof</a></td>';
+                                }
                                 if($path=='')
                                 {
                                     $data.='<td>Invalid</td></tr>';
@@ -89,6 +102,7 @@
                 }  
                 echo json_encode($data);
             } 
+        }
             
         ?>
 

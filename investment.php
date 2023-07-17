@@ -113,9 +113,13 @@
                                         <option>Online</option>
                                     <select>
                                 </div>
-                                <div class="group-form col-md-4">
+                                <div class="group-form col-md-2">
                                     <label for="inputEmail3" class="form_label">Confirmation:</label>
-                                    <input type="file" class="form-control form-control-smss" placeholder="" name="screen" id="screen">
+                                    <input type="file" class="form-control form-control-smss" placeholder="" name="screen" id="screen" accept=".png, .jpeg, .jpg"> 
+                                </div>    
+                                <div class="group-form col-md-2">
+                                    <label for="inputEmail3" class="form_label">Agreement:</label>
+                                    <input type="file" class="form-control form-control-smss" placeholder="" name="agreement" id="agreement" accept=".png, .jpeg, .jpg"> 
                                 </div>                
                             </div></br>
                             <div id="show">

@@ -78,16 +78,15 @@
                                 <div class="box-body">
                                     <div class="row">
                                         <div class="form-group col-md-8">
-                                            <label for="inputEmail3" class="col-sm-4 control-label">Search Full Name</label>
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Full Name</label>
                                             <div class="col-sm-8">
-                                                <input  type="text" class="form-control full" name="full" id="full" placeholder="Search Full Name" required="required">
-                                                   
+                                                <input  type="text" class="form-control full" name="full" id="full" placeholder="Search Full Name" required="required" readonly>
                                             </div>
                                         </div>
-                                        <div class="group-form col-md-1">
+                                        <!-- <div class="group-form col-md-1">
                                             <label for="inputEmail3" class="form_label"></label>
                                             <a type="button" id="search1" onclick="searchfull()" class="btn btn-primary">Search</a>
-                                        </div>
+                                        </div> -->
                                         <!-- <div class="form-group col-md-4">
                                             <label for="inputEmail3" class="col-sm-4 control-label">Investment Date</label>
                                             <div class="col-sm-8">
@@ -163,15 +162,13 @@
                                     <label for="inputEmail3" class="form_label">Per Month:</label>
                                         <input type="text" class=" col-sm-4 form-control form-control-sm" readonly name="pmonth" id="pmonth"
                                             placeholder="Per Mounth Amount">
-
-                                    
                                 </div>
                                 
                             </div></br>
                             <div class="row">
-                                <div class="group-form col-md-4">
+                                <div class="group-form col-md-2">
                                     <label for="inputEmail3" class="form_label">Investment Date</label>
-                                    <input type="date" class="col-sm-4 form-control form-control-sm" required name="regdate" id="regdate" placeholder="Registration Date">
+                                    <input type="date" class="col-sm-4 form-control form-control-sm" required name="regdate" id="regdate" placeholder="Registration Date" readonly>
                                 </div>
                                 <script>
                                     $(document).ready( function() {
@@ -181,7 +178,7 @@
                                     });
                                 
                                 </script>
-                                <div class="group-form col-md-4">
+                                <div class="group-form col-md-2">
                                     <label for="inputEmail3" class="form_label">Payment Mode:</label>
                                     <select class="form-control form-control-sm" name="pmode" required id="pmode">
                                         <option value="">Select Mode</option>
@@ -191,85 +188,29 @@
                                     <select>
                                 </div>
                                 <div class="group-form col-md-2">
-                                    <!-- <label for="inputEmail3" class="form_label">Upload Screenshot:</label>
-                                        <input type="file" class=" col-sm-4 form-control form-control-sm" name="screen" id="screen"
-                                            placeholder="screen %"> -->
-                                            <img id="img1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSlc_piJr999mRLgWEgWyB5bJRR1uR3lImSTfhyTaxFi_TPOjm5" height="150px" width="150px" onclick="image_select()" >
-                                            <input style="display: none;" type="file" class="form-control-sm" placeholder="" name="screen" id="screen" onchange="readURL(this); Filevalidation();">
-                                            <h5 style="color: red;">Edit Proof</h5>
-
-                                        <script type="text/javascript">
-                                             function image_select(){
-                                                $('#screen').trigger('click');
-                                                }
-
-                                                function readURL(input){
-                                                    if(input.files && input.files[0])
-                                                        {
-                                                            var reader =new FileReader();
-                                                            reader.onload=function(e){
-                                                                $('#img1').attr('src',e.target.result);
-                                                            }
-                                                            reader.readAsDataURL(input.files[0]);
-                                                        }
-                                                }
-                                        </script>
-                                        
-                                    
+                                    <label for="inputEmail3" class="form_label">Confirmation:</label>
+                                    <input type="file" class="form-control form-control-smss" placeholder="" name="screen" id="screen" accept=".png, .jpeg, .jpg"> 
                                 </div>
-                                <div class="group-form col-md-2 item" style="Display:inline-block;">
-                                    <img id="bigpic" src="bigpic" height="150px" width="150px"/>
-
-                                    <button type="button" onclick="picture()" >Show</button>
-                                        <!-- <div class="item" id="dow" style="Display:none;"> -->
-                                        <a id="dow" style="border:1px solid black; background-color:red; padding:5px; color:white; Display:none;" href="#" download>download</a>
-                                        <!-- <button type="button" onclick="view()" >View</button> -->
-                                        <!-- </div> -->
-                                    </div>
-                            </div></br>
+                                <div class="group-form col-md-2" id="proof" style="display:none;">
+                                    <button type="button" onclick="picture()" style="margin-top:25px;">Download</button>
+                                    <!-- <button type="button" onclick="viewProf()" style="margin-top:25px;">View</button> -->
+                                </div>
+                                <div class="group-form col-md-2">
+                                    <label for="inputEmail3" class="form_label">Agreement:</label>
+                                    <input type="file" class="form-control form-control-smss" placeholder="" name="agreement" id="agreement" accept=".png, .jpeg, .jpg"> 
+                                </div>
+                                <div class="group-form col-md-2" id="bondagrement" style="display:none;">
+                                    <button type="button" onclick="bond()" style="margin-top:25px;">Download</button>
+                                    <!-- <button type="button" onclick="viewBond()" style="margin-top:25px;">View Bond</button> -->
+                                </div>
+                            </div>
+                            </br>
                             <div id="show">
                                     <hr><center><h3>
                                             REFERALS
                                     </h3></center></br><hr>
-                                <!-- <div class="row">
-                                <hr><center><h3>
-                                            REFERRALS
-                                    </h3></center></br><hr>
-                                    <div class="group-form col-md-4">
-                                        <label for="inputEmail3" class="form_label">Search Referal:</label>
-                                            <input type="text" class=" col-sm-4 form-control form-control-sm referal" name="referal[]" id="referal"
-                                                placeholder="Search Referal">
-                                            <input type="hidden" name="referal1[]" id="referal1" class="referal1">
-
-                                    </div>
-                                    <div class="group-form col-md-2">
-                                        <label for="inputEmail3" class="form_label">Asign %:</label>
-                                            <input type="text" class=" col-sm-4 form-control form-control-sm asignke" name="refAsign[]" id="refAsign[]"
-                                                placeholder="Asign %">
-
-                                        
-                                    </div>
-                                    <div class="group-form col-md-2">
-                                        <label for="inputEmail3" class="form_label">Per Day:</label>
-                                            <input type="text" class=" col-sm-4 form-control form-control-sm perkey" readonly name="refpday[]" id="refpday[]"
-                                                placeholder="Per Day Amount">
-
-                                        
-                                    </div>
-                                    <div class="group-form col-md-2">
-                                        <label for="inputEmail3" class="form_label">Per Month:</label>
-                                            <input type="text" class=" col-sm-4 form-control form-control-sm permkeys" readonly name="refpmonth[]" id="refpmonth[]"
-                                                placeholder="Per Mounth Amount">
-                                    </div>
-                                    <div class="group-form col-md-2">
-                                        
-                                        <a class="col-sm-4 btn btn-sm form-control form-control-sm btn-danger remove" style="margin-top:20px;">Remove</a>
-                                    </div>
-                                    
-                                </div> -->
                             </div></br>
                             <div class="row">
-                                
                                 <div class="group-form col-md-2">
                                     <a class="col-sm-4 btn btn-sm form-control form-control-sm btn-danger add_more">Add Referals</a>
                                 </div>
@@ -422,7 +363,7 @@
                     
                     success: function(data)
                     {
-                        console.log(log);
+                        // console.log(log);
                         let log1 = $.ajax({
                             url: 'ajax/edit_referalInvestment1.php',
                             type: "POST",
@@ -432,27 +373,28 @@
                             },
                             success: function(response) 
                             {
-                                console.log(log1);
                                 alert(response)
-                                $('#full').val('');
-                                $('#full1').val('');
-                                $('#in_id').val('');
-                                $('#invest').val('');
-                                $('#asign').val('');
-                                $('#pday').val('');
-                                $('#pmonth').val('');
-                                $('#bank').val('');
-                                $('#acc').val('');
-                                $('#mobile').val('');
-                                $('.remove:not(:first)').parent().parent().remove();
-                                $('.referal').val('');
-                                $('.referal1').val('');
-                                $('.asignke').val('');
-                                $('.perkey').val('');
-                                $('.addonTot').val('');
-                                $('.permkeys').val('');
-                                $('#pmode').val('');
-                                $('#screen').val('');
+                                window.history.back();
+                                // $('#full').val('');
+                                // $('#full1').val('');
+                                // $('#in_id').val('');
+                                // $('#invest').val('');
+                                // $('#asign').val('');
+                                // $('#pday').val('');
+                                // $('#pmonth').val('');
+                                // $('#bank').val('');
+                                // $('#acc').val('');
+                                // $('#mobile').val('');
+                                // $('.remove:not(:first)').parent().parent().remove();
+                                // $('.referal').val('');
+                                // $('.referal1').val('');
+                                // $('.asignke').val('');
+                                // $('.perkey').val('');
+                                // $('.addonTot').val('');
+                                // $('.permkeys').val('');
+                                // $('#pmode').val('');
+                                // $('#screen').val('');
+                                
                             }
                         });
                     }

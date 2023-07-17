@@ -1,11 +1,9 @@
 <body class="hold-transition skin-blue sidebar-mini">
-<!-- <link rel="stylesheet" href="loader.css"> -->
     <div class="wrapper" id="form1">
         <style>
             .error {
                 color: red;
             }
-            /* Ensure that the demo table scrolls */
             th, td { white-space: nowrap; }
             
             div.dataTables_wrapper {
@@ -150,7 +148,6 @@
                 methods: {
                     load_customer_data: function() 
                     {
-                        alert('hi');
                         let self = this;
                         let ss= $.ajax({
                             url: 'ajax/CurrentMonthPayment1.php',
@@ -164,12 +161,18 @@
                             cache: false,
                             success: function(data) 
                             {
-                                alert('hi');
                                 console.log(data)
-                                if (data.length === 0) {
+                                if (data.length === 0) 
+                                {
                                     self.action = 'active';
                                     self.isLoading = false;
-                                    loading();
+                                    // loading();
+                                    $('#example').DataTable({
+                                        "paging": false,
+                                        searching:false,
+                                        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                                        buttons: ['csv', 'excel'],
+                                    });
                                 } else {
                                     self.records = self.records.concat(data);
                                     self.start += self.limit;
@@ -199,7 +202,7 @@
                             url: 'ajax/CurrentMonthPayment1.php',
                             type: "POST",
                             data: {
-                                currentMonthPayment: 'submit',
+                                currentMonthPayment: 'currentMonthPayment',
                                 cid: cid,
                                 k: 1,
                             },
@@ -209,6 +212,7 @@
                                 self.searchResults = data;
                                 self.showOriginalTable = false;
                                 self.showSearchTable = true;
+                                $('#example').DataTable().destroy();
                             }
                         });
                     },
@@ -223,7 +227,8 @@
                 },
                 template: `
                     <div>
-                        <table v-if="showOriginalTable && records.length > 0" id="example" class="table table-striped table-bordered table-hover example">
+                        <div v-if="showOriginalTable && records.length > 0">
+                        <table id="example" class="table table-striped table-bordered table-hover example">
                             <thead>
                             <tr>
                                 <th>Cust-ID</th>
@@ -252,7 +257,9 @@
                             </tbody>
                         </table>
                         <center><div v-if="isLoading" class="loader">Loading...</div></center>
-                        <table v-if="showSearchTable" id="example1" class="table table-striped table-bordered table-hover example">
+                        </div>
+                        <div v-if="showSearchTable">
+                        <table id="example1" class="table table-striped table-bordered table-hover example">
                             <thead>
                                 <tr>
                                     <th>Cust-ID</th>
@@ -280,6 +287,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 `,
             });
@@ -287,14 +295,25 @@
             $('#search1').click(function() {
                 app.searchClicked();
             });
-
-            // Event listener for the "Refresh" button
             $('#refresh').click(function() 
             {
                 $("#full1").val('');
                 $("#full").val('');
                 app.refreshClicked();
-            });
+
+                if ($.fn.DataTable.isDataTable('#example')) {
+                    $('#example').DataTable().destroy();
+                }
+
+                if (app.showOriginalTable) {
+                    $('#example').DataTable({
+                        "paging": false,
+                        searching: false,
+                        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                        buttons: ['csv', 'excel'],
+                    });
+                }
+            }); 
         });
     </script>
 
@@ -309,6 +328,15 @@
                     buttons: ['csv', 'excel'],
                 });
             }
+            // function loading1()
+            // {
+            //     oTable = $('#example1').dataTable({
+            //         "paging": false,
+            //         searching:false,
+            //         dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+            //         buttons: ['csv', 'excel'],
+            //     });
+            // }
         
     </script>
 </body>

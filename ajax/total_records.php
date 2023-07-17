@@ -21,9 +21,6 @@
     }
     if(isset($_POST['withdraw']))
     {
-        // $dd=$_POST['submit'];
-        // echo $dd;
-
         $query="SELECT * FROM `widraw`";
         $exc=mysqli_query($conn,$query);
         $wamt1=0;
@@ -60,8 +57,6 @@
             $wamt=$pday*$days;
             $wamt1+=$wamt;
         }
-
-
         echo json_encode($wamt1);
         mysqli_close($conn);
     }

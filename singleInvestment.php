@@ -1,12 +1,9 @@
 <body class="hold-transition skin-blue sidebar-mini">
-<!-- <link rel="stylesheet" href="loader.css"> -->
     <div class="wrapper" id="form1">
     <style>
             .error {
                 color: red;
             }
-            
-            /* Ensure that the demo table scrolls */
             th, td { white-space: nowrap; }
             .table-striped>tbody>tr:nth-child(odd)>td, 
             .table-striped>tbody>tr:nth-child(odd)>th 
@@ -27,7 +24,42 @@
                 position: relative;
                 overflow-x: scroll;
             }
-
+            .loader {
+                display: inline-block;
+                position: relative;
+                width: 80px;
+                height: 80px;
+            }
+                .loader div {
+                display: inline-block;
+                position: absolute;
+                left: 8px;
+                width: 16px;
+                background: pink;
+                animation: loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+            }
+                .loader div:nth-child(1) {
+                left: 8px;
+                animation-delay: -0.24s;
+            }
+                .loader div:nth-child(2) {
+                left: 32px;
+                animation-delay: -0.12s;
+            }
+                .loader div:nth-child(3) {
+                left: 56px;
+                animation-delay: 0;
+            }
+                @keyframes loader {
+                0% {
+                    top: 8px;
+                    height: 64px;
+                }
+                50%, 100% {
+                    top: 24px;
+                    height: 32px;
+                }
+            }
            
         </style>
         <?php require_once("header.php"); 
@@ -39,14 +71,6 @@
         </script>
         <script type="text/javascript" src="js/investment.js"></script>
         <div class="content-wrapper">
-            <!-- <section class="content-header">
-                <h1>
-                    Search A Single Investment Details
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                </ol>
-            </section> -->
             <section class="content">
                 <div class="box box-default">
                     <div class="row">
@@ -101,6 +125,7 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
+                                    <th>Action</th>
                                     <th>Sl NO</th>
                                     <th>Bank</th>
                                     <th>Account No</th>
@@ -112,6 +137,7 @@
                                     <th>Total Interest</th>
                                     <th>Month Amount</th>
                                     <th>Payment Mode</th>
+                                    <th>Payment Proof</th>
                                     <th>Agreement</th>
                                 </tr>
                             </thead>
@@ -119,6 +145,7 @@
                             </tbody>
                             <tbody>
                                 <tr>
+                                    <th></th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
@@ -131,10 +158,17 @@
                                     <th id="totalmonth">0.00</th>
                                     <th></th>
                                     <th></th>
+                                    <th></th>
                                 </tr>
                             </tbody>
                         </table>
-                        <center><div class="loader"></div></center>  
+                        <!-- <center><div class="loader"></div></center> -->
+                        <center>
+                            <div class="dis_loader">
+                                <div class="loader"><div></div><div></div><div></div></div>
+                                <div>First Search Name..<div>
+                            </div>
+                        </center>
                     </div>
                 </div>
                 <div class="box">
@@ -178,7 +212,13 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <center><div class="loader"></div></center>
+                        <!-- <center><div class="loader"></div></center> -->
+                        <center>
+                            <div class="dis_loader">
+                                <div class="loader"><div></div><div></div><div></div></div>
+                                <div>First Search Name..<div>
+                            </div>
+                        </center>
                     </div>
                 </div>
             </section>
@@ -186,7 +226,12 @@
         <?php include("footer.php"); ?>
     </div>
     <script>
-        
+         function editupdate(cid)
+        {
+            if(confirm("Are you sure?")==true){
+                location = "investment_edit.php?cid="+cid;
+            }
+        }
     </script>
         
 </body>

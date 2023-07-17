@@ -1,9 +1,45 @@
 <body class="hold-transition skin-blue sidebar-mini">
-<link rel="stylesheet" href="loader.css">
+<!-- <link rel="stylesheet" href="loader.css"> -->
     <div class="wrapper" id="form1">
         <style>
             .error {
                 color: red;
+            }
+            .loader {
+                display: inline-block;
+                position: relative;
+                width: 80px;
+                height: 80px;
+            }
+                .loader div {
+                display: inline-block;
+                position: absolute;
+                left: 8px;
+                width: 16px;
+                background: pink;
+                animation: loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+            }
+                .loader div:nth-child(1) {
+                left: 8px;
+                animation-delay: -0.24s;
+            }
+                .loader div:nth-child(2) {
+                left: 32px;
+                animation-delay: -0.12s;
+            }
+                .loader div:nth-child(3) {
+                left: 56px;
+                animation-delay: 0;
+            }
+                @keyframes loader {
+                0% {
+                    top: 8px;
+                    height: 64px;
+                }
+                50%, 100% {
+                    top: 24px;
+                    height: 32px;
+                }
             }
         </style>
         <?php require_once("header.php"); ?>
@@ -34,15 +70,6 @@
                 $("#dyna").text("Withdraw Details");
                 tex();
             </script>
-            <!-- <section class="content-header">
-                <h1>
-                    Widraw Details
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                </ol>
-            </section> -->
-
             <section class="content">
                 <div class="box box-default">
                     <div class="row">
@@ -92,7 +119,7 @@
                                         <input type="text" class=" col-sm-4 form-control form-control-sm" readonly name="amt" id="amt"
                                             placeholder="Invested Amount:"> 
                                 </div>
-                                <div class="group-form col-md-3">
+                                <div class="group-form col-md-4">
                                     <label for="inputEmail3" id="wamtlable" class="form_label">Withdraw Amount:</label>
                                         <input type="text" class="col-sm-4 form-control form-control-sm wamt investone" name="wamt" id="wamt"
                                             placeholder="Widraw Amount" pattern="[0-9]{10}">
@@ -126,9 +153,11 @@
                                     <label for="inputEmail3" class="form_label">Per Month:</label>
                                         <input type="text" class=" col-sm-4 form-control form-control-sm" readonly name="pmonth" id="pmonth"
                                             placeholder="Per Month">
-
-                                    
                                 </div>
+                                <div class="group-form col-md-2">
+                                    <label for="inputEmail3" class="form_label">Agreement:</label>
+                                    <input type="file" class="form-control form-control-smss" placeholder="" name="agreement" id="agreement" accept=".png, .jpeg, .jpg"> 
+                                </div>  
                                 <div class="group-form col-md-2">
                                     <button onclick="widraw()" id="sub" class="btn btn-info col-sm-4 form-control form-control-sm" style="margin-top:25px;">Withdraw</button>
                                 </div>
@@ -161,7 +190,12 @@
                             
                             </tbody>
                         </table>
-                        <center><div class="loader"></div></center>
+                        <center>
+                            <div id="dis_loader">
+                                <div class="loader"><div></div><div></div><div></div></div>
+                                <div>First Search Name..<div>
+                            </div>
+                        </center>
                     </div>
                 </div>
             </section>

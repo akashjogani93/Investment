@@ -1,19 +1,12 @@
 <body class="hold-transition skin-blue sidebar-mini">
-<!-- <link rel="stylesheet" href="loader.css"> -->
     <div class="wrapper" id="form1">
         <style>
             .error {
                 color: red;
             }
-            
-            /* Ensure that the demo table scrolls */
             th, td { white-space: nowrap; }
-            
             div.dataTables_wrapper {
-               
-                
             }
-            
             .table-striped>tbody>tr:nth-child(odd)>td, 
             .table-striped>tbody>tr:nth-child(odd)>th 
             {
@@ -44,6 +37,43 @@
                 background-color: #AF2D2D;
                 color: white;
             }
+
+            .loader {
+                display: inline-block;
+                position: relative;
+                width: 80px;
+                height: 80px;
+            }
+                .loader div {
+                display: inline-block;
+                position: absolute;
+                left: 8px;
+                width: 16px;
+                background: pink;
+                animation: loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+            }
+                .loader div:nth-child(1) {
+                left: 8px;
+                animation-delay: -0.24s;
+            }
+                .loader div:nth-child(2) {
+                left: 32px;
+                animation-delay: -0.12s;
+            }
+                .loader div:nth-child(3) {
+                left: 56px;
+                animation-delay: 0;
+            }
+                @keyframes loader {
+                0% {
+                    top: 8px;
+                    height: 64px;
+                }
+                50%, 100% {
+                    top: 24px;
+                    height: 32px;
+                }
+            }
         </style>
 
         <?php require_once("header.php");   ?>
@@ -54,9 +84,7 @@
         </script>
         <script type="text/javascript">
             $(function() {
-                
                 $(".full").autocomplete({
-
                     source: 'widraw_searchName.php',
                     focus: function (event, ui) {
                         event.preventDefault();
@@ -67,37 +95,20 @@
                         $("#full1").val(ui.item.value);
                         $("#full").val(ui.item.label);
                 }
-                    
                 });
-                
-                
             });
         </script>
         <div class="content-wrapper">
-            <!-- <section class="content-header">
-                <h1>
-                  MonthWise Payment History
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                </ol>
-            </section> -->
             <section class="content">
                 <div class="box box-default">
                     <div class="row">
                         <div class="col-md-12">
-                            <!-- <form class="form-horizontal" id="addform" action="store_insert.php" method="POST"> -->
                                 <div class="box-body">
                                     <div class="row">
                                         <div class="group-form col-md-2">
                                             <label for="inputEmail3" class="form_label">Apply Filters</label>
                                             <select class="col-sm-4 form-control form-control-sm" id="select" name="option">
-                                                <!-- <option>Search By Name</option> -->
-                                                 <option>Search By Date</option>
-                                                <!-- <option>Search By Amount</option>
-                                                <option>Name & Amount</option>
-                                                <option>Name & Date</option> -->
-                                                
+                                                <option>Search By Date</option>
                                             </select>                
                                         </div>
                                         <!-- <div class="group-form col-md-4" id="namewise">
@@ -167,24 +178,6 @@
                             <div id="app">
                                 <my-component></my-component>
                             </div>
-                            <!-- <table id="example1" class="table table-striped table-bordered table-hover example1">
-                                <thead>
-                                    <tr>
-                                        <th>Cust-ID</th>
-                                        <th>Full Name</th>
-                                        <th>Payment Amount</th>
-                                        <th>Payment Date</th>
-                                        <th>Bank Name</th>
-                                        <th>Account No</th>
-                                        <th>IFSC Code</th>
-                                        <th>Pan Card Number</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="mytable1">
-                                    
-                                </tbody>    
-                            
-                            </table> -->
                         </div>
                     </div>
                 </div>
@@ -205,25 +198,24 @@
     <script type="text/javascript">
         $(document).ready(function()
         {
-
             var app = new Vue({
                 el: '#app',
-                data: {
-                    limit: 500,
-                    start: -500,
-                    t: "true",
-                    action: 'inactive',
-                    action1: 'inactive',
+                data:{
+                    limit:300,
+                    start:-300,
                     records: [],
                     searchResults: [],
                     isLoading: true,
+                    searchLoading: true,
+                    t:'true',
                     showOriginalTable: true,
                     showSearchTable: false
                 },
-                methods: {
-                    load_customer_data: function() {
+                methods:{
+                    load_customer_data: function() 
+                    {
                         let self = this;
-                       let ss= $.ajax({
+                        let loadDirect= $.ajax({
                             url: 'ajax/CurrentMonthPayment1.php',
                             type: "POST",
                             data: {
@@ -236,11 +228,17 @@
                             success: function(data) 
                             {
                                 console.log(data)
-                                if (data.length === 0) {
-                                    self.action = 'active';
+                                if (data.length === 0) 
+                                {
                                     self.isLoading = false;
-                                    loading();
-                                } else {
+                                    $('#example').DataTable({
+                                        "paging": false,
+                                        searching:false,
+                                        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                                        buttons: ['csv', 'excel'],
+                                    });
+                                }else 
+                                {
                                     self.records = self.records.concat(data);
                                     self.start += self.limit;
                                     self.load_customer_data();
@@ -250,7 +248,7 @@
                                 console.error(error);
                             }
                         });
-                        console.log(ss);
+                        console.log(loadDirect);
                     },
                     load_search_data: function(searchlimit, srarchstart, fromdate, todate)
                     {
@@ -272,20 +270,27 @@
                                 console.log(data);
                                 self.showOriginalTable = false;
                                 self.showSearchTable = true;
-                                if (data.length === 0) {
-                                    self.action1 = 'active';
-                                    self.isLoading = false;
-                                    loading1();
+                                if (data.length === 0) 
+                                {
+                                    self.searchLoading = false;
+                                    
+                                    $('#example1').DataTable({
+                                        "paging": false,
+                                        searching:false,
+                                        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                                        buttons: ['csv', 'excel'],
+                                    });
                                 } else {
                                     self.searchResults = self.searchResults.concat(data);
-                                    self.srarchstart += self.searchlimit; // Update the start value
-                                    self.load_search_data(self.searchlimit, self.srarchstart, fromdate, todate); // Recursive call with updated start value
+                                    self.srarchstart += self.searchlimit;
+                                    self.load_search_data(self.searchlimit, self.srarchstart, fromdate, todate);
                                 }
                             }
                         });
                         console.log(co);
                     },
-                    fetchData: function() {
+                    fetchData: function()
+                    {
                         var self = this;
                         self.load_customer_data();
                     },
@@ -298,34 +303,15 @@
                             alert('Please Select From Date');
                             return;
                         }
-                        
+                        $('#example').DataTable().destroy();
                         var self = this;
-                        this.records = [];
+                        // this.records = [];
                         this.searchResults = [];
-                        this.isLoading = true;
-                        this.searchlimit=500;
-                        this.srarchstart=-500;
+                        this.searchLoading = true;
+                        this.searchlimit=300;
+                        this.srarchstart=-300;
 
                         this.load_search_data(this.searchlimit, this.srarchstart, fromdate, todate);
-                        // let co=$.ajax({
-                        //     url: 'ajax/CurrentMonthPayment1.php',
-                        //     type: "POST",
-                        //     data: {
-                        //         currentMonthPayment:'monthwisepayment',
-                        //         d1: fromdate,
-                        //         d2: todate,
-                        //         k: 1,
-                        //     },
-                        //     cache:false,
-                        //     success:function(data)
-                        //     {
-                        //         console.log(data);
-                        //         self.searchResults = data;
-                        //         self.showOriginalTable = false;
-                        //         self.showSearchTable = true;
-                        //     }
-                        // });
-                        // console.log(co)
                     },
                     refreshClicked: function() 
                     {
@@ -337,70 +323,79 @@
                     this.fetchData();
                 },
                 template: `
-                    <div>
-                    <table v-if="showOriginalTable && records.length > 0" id="example" class="table table-striped table-bordered table-hover example">
-                        <thead>
-                            <tr>
-                                <th>Cust-ID</th>
-                                <th>Full Name</th>
-                                <th>Payment Amount</th>
-                                <th>Place</th>
-                                <th>Payment Date</th>
-                                <th>Bank Name</th>
-                                <th>Account No</th>
-                                <th>IFSC Code</th>
-                                <th>Pan Card Number</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(record, index) in records" :key="index">
-                                <td>{{ record.custId }}</td>
-                                <td>{{ record.fullName }}</td>
-                                <td>{{ record.totalInvestment }}</td>
-                                <td>{{ record.place }}</td>
-                                <td>{{ record.date }}</td>
-                                <td>{{ record.bankName }}</td>
-                                <td>{{ record.accountNo }}</td>
-                                <td>{{ record.ifscCode }}</td>
-                                <td>{{ record.panCardNumber }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <center>
-                        <div v-if="isLoading" class="loader">Loading...</div>
-                    </center>
-                    <table v-if="showSearchTable" id="example1" class="table table-striped table-bordered table-hover example">
-                        <thead>
-                            <tr>
-                                <th>Cust-ID</th>
-                                <th>Full Name</th>
-                                <th>Payment Amount</th>
-                                <th>Place</th>
-                                <th>Payment Date</th>
-                                <th>Bank Name</th>
-                                <th>Account No</th>
-                                <th>IFSC Code</th>
-                                <th>Pan Card Number</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(result, index) in searchResults" :key="index">
-                                <td>{{ result.custId }}</td>
-                                <td>{{ result.fullName }}</td>
-                                <td>{{ result.totalInvestment }}</td>
-                                <td>{{ result.place }}</td>
-                                <td>{{ result.date }}</td>
-                                <td>{{ result.bankName }}</td>
-                                <td>{{ result.accountNo }}</td>
-                                <td>{{ result.ifscCode }}</td>
-                                <td>{{ result.panCardNumber }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                	<div>
+                        <div v-if="showOriginalTable">
+                            <table id="example" class="table table-striped table-bordered table-hover example">
+                                <thead>
+                                    <tr>
+                                        <th>Cust-ID</th>
+                                        <th>Full Name</th>
+                                        <th>Payment Amount</th>
+                                        <th>Place</th>
+                                        <th>Payment Date</th>
+                                        <th>Bank Name</th>
+                                        <th>Account No</th>
+                                        <th>IFSC Code</th>
+                                        <th>Pan Card Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(record, index) in records" :key="index">
+                                        <td>{{ record.custId }}</td>
+                                        <td>{{ record.fullName }}</td>
+                                        <td>{{ record.totalInvestment }}</td>
+                                        <td>{{ record.place }}</td>
+                                        <td>{{ record.date }}</td>
+                                        <td>{{ record.bankName }}</td>
+                                        <td>{{ record.accountNo }}</td>
+                                        <td>{{ record.ifscCode }}</td>
+                                        <td>{{ record.panCardNumber }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <center>
+                                <div v-if="isLoading" class="loader"><div></div><div></div><div></div></div>
+                            </center>
+                        </div>
+                        <div v-if="showSearchTable">
+                            <table id="example1" class="table table-striped table-bordered table-hover example">
+                                <thead>
+                                    <tr>
+                                        <th>Cust-ID</th>
+                                        <th>Full Name</th>
+                                        <th>Payment Amount</th>
+                                        <th>Place</th>
+                                        <th>Payment Date</th>
+                                        <th>Bank Name</th>
+                                        <th>Account No</th>
+                                        <th>IFSC Code</th>
+                                        <th>Pan Card Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(result, index) in searchResults" :key="index">
+                                        <td>{{ result.custId }}</td>
+                                        <td>{{ result.fullName }}</td>
+                                        <td>{{ result.totalInvestment }}</td>
+                                        <td>{{ result.place }}</td>
+                                        <td>{{ result.date }}</td>
+                                        <td>{{ result.bankName }}</td>
+                                        <td>{{ result.accountNo }}</td>
+                                        <td>{{ result.ifscCode }}</td>
+                                        <td>{{ result.panCardNumber }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <center>
+                                <div v-if="searchLoading" class="loader"><div></div><div></div><div></div></div>
+                            </center>
+                        </div>
                     </div>
                 `,
             });
 
+
+            
             $('#search1').click(function() {
                 app.searchClicked();
             });
@@ -408,108 +403,22 @@
             // Event listener for the "Refresh" button
             $('#refresh').click(function() 
             {
-                // $("#full1").val('');
-                // $("#full").val('');
+                if ($.fn.DataTable.isDataTable('#example')) {
+                    $('#example').DataTable().destroy();
+                }
+                if ($.fn.DataTable.isDataTable('#example1')) {
+                    $('#example1').DataTable().destroy();
+                }
+                if (app.showOriginalTable) {
+                    $('#example').DataTable({
+                        "paging": false,
+                        searching: false,
+                        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                        buttons: ['csv', 'excel'],
+                    });
+                }
                 app.refreshClicked();
             });
-
-            // var limit = 100;
-            // var start = -100;
-            // var t="true";
-            // var action = 'inactive';
-            // function load_customer_data(limit,start)
-            // {
-            //     let log = $.ajax({
-            //         url: 'ajax/CurrentMonthPayment1.php',
-            //         type: "POST",
-            //         data: {
-            //             Submit:'history',
-            //             limit: limit,
-            //             start: start,
-            //             std: "month",
-            //         },
-            //         cache:false,
-            //         success:function(data) 
-            //         {
-            //             $('#mytable1').append(data);
-            //             if(data == 0)
-            //             {
-            //             action = 'active';
-            //             }
-            //             else
-            //             {
-            //             action = "inactive";
-            //             }
-                                
-            //                 }
-            //             });
-            //             console.log(log)
-            // }
-            // var myVar = setInterval(function(){ 
-            //     if(action == 'inactive')
-            //     {
-            //         start = start + limit;
-            //         $(document.body).css({'cursor' : 'not-allowed'});
-            //         load_customer_data(limit, start);
-            //      }
-            //      else{
-            //             clearInterval(myVar);
-            //             $(document.body).css({'cursor' : 'default'});
-            //             loading()
-            //         }
-            // }, 300);
-
-            // $('#search1').click(function()
-            // {
-                // var todate=$('#todate').val();
-                // var fromdate=$('#fromdate').val();
-                // if(fromdate=='')
-                // {
-                //     alert('Please Select From Date');
-                //     exit();
-                // }
-            //     $(document.body).css({'cursor' : 'not-allowed'});
-            //        let log= $.ajax({
-            //                 url: 'ajax/CurrentMonthPayment1.php',
-            //                 type: "POST",
-            //             data:{Submit:"history", std:"std",fromdate:fromdate,todate:todate,},
-            //             cache:false,
-            //             success:function(data)
-            //             {
-                            
-            //                     action="active";
-            //                 $('#mytable1').html(data);
-            //                 clearInterval(myVar);
-            //                 $(document.body).css({'cursor' : 'default'});
-            //             }
-            //             });
-            //             console.log(log);
-            // });
-            
-            function loading()
-            {
-                oTable = $('#example').dataTable({
-                    // pageLength : "All",
-                    "paging": false,
-                    searching:false,
-                    dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                    buttons: [
-                    'csv', 'excel'
-                    ],
-                });
-            }
-            function loading1()
-            {
-                oTable = $('#example1').dataTable({
-                    // pageLength : "All",
-                    "paging": false,
-                    searching:false,
-                    dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                    buttons: [
-                    'csv', 'excel'
-                    ],
-                });
-            }
         });
     </script>
 </body>

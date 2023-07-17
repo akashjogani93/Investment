@@ -1,12 +1,10 @@
 <body class="hold-transition skin-blue sidebar-mini">
-<!-- <link rel="stylesheet" href="loader.css"> -->
     <div class="wrapper" id="form1">
         <style>
             .error {
                 color: red;
             }
             
-            /* Ensure that the demo table scrolls */
             th, td { white-space: nowrap; }
             
             div.dataTables_wrapper {
@@ -44,6 +42,42 @@
                 background-color: #AF2D2D;
                 color: white;
             }
+            .loader {
+                display: inline-block;
+                position: relative;
+                width: 80px;
+                height: 80px;
+            }
+                .loader div {
+                display: inline-block;
+                position: absolute;
+                left: 8px;
+                width: 16px;
+                background: pink;
+                animation: loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+            }
+                .loader div:nth-child(1) {
+                left: 8px;
+                animation-delay: -0.24s;
+            }
+                .loader div:nth-child(2) {
+                left: 32px;
+                animation-delay: -0.12s;
+            }
+                .loader div:nth-child(3) {
+                left: 56px;
+                animation-delay: 0;
+            }
+                @keyframes loader {
+                0% {
+                    top: 8px;
+                    height: 64px;
+                }
+                50%, 100% {
+                    top: 24px;
+                    height: 32px;
+                }
+            }
         </style>
         
         <?php require_once("header.php"); 
@@ -75,19 +109,11 @@
             });
         </script>
         <div class="content-wrapper" style="border:1px solid black;">
-            <!-- <section class="content-header">
-                <h1>
-                   Investment Details
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                </ol>
-            </section> -->
             <section class="content">
                 <div class="box box-default">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="form-horizontal" id="addform" action="store_insert.php" method="POST">
+                            <!-- <form class="form-horizontal" id="addform" action="store_insert.php" method="POST"> -->
                                 <div class="box-body">
                                     <div class="row">
                                         <div class="group-form col-md-2">
@@ -128,10 +154,11 @@
                                         </div>
                                         <div class="group-form col-md-1">
                                             <label for="inputEmail3" style="color:white;" class="form_label">..</label>
-                                            <a href="NewCurrentMonthDetail.php" id="search" class="btn btn-warning">Refresh</a>
+                                            <!-- <a href="NewCurrentMonthDetail.php" id="search" class="btn btn-warning">Refresh</a> -->
+                                            <button id="refresh" class="btn btn-warning">Refresh</button>
                                         </div>
                                 </div>
-                            </form>
+                            <!-- </form> -->
                         </div>
                     </div>
                 </div>
@@ -189,25 +216,24 @@
     <script type="text/javascript">
         $(document).ready(function()
         {
-
             var app = new Vue({
                 el: '#app',
-                data: {
-                    limit: 500,
-                    start: -500,
-                    t: "true",
-                    action: 'inactive',
-                    action1: 'inactive',
+                data:{
+                    limit:300,
+                    start:-300,
                     records: [],
                     searchResults: [],
                     isLoading: true,
+                    searchLoading: true,
+                    t:'true',
                     showOriginalTable: true,
                     showSearchTable: false
                 },
                 methods:{
-                    load_customer_data: function() {
+                    load_customer_data: function() 
+                    {
                         let self = this;
-                        let ss= $.ajax({
+                        let loadDirect= $.ajax({
                             url: 'ajax/CurrentMonthPayment1.php',
                             type: "POST",
                             data: {
@@ -219,12 +245,22 @@
                             cache: false,
                             success: function(data) 
                             {
-                                console.log(data);
-                                if (data.length === 0) {
-                                    self.action = 'active';
+                                console.log(data)
+                                if (data.length === 0) 
+                                {
                                     self.isLoading = false;
-                                    loading();
-                                } else {
+                                    if ($.fn.DataTable.isDataTable('#example')) 
+                                    {
+                                        $('#example').DataTable().destroy();
+                                    }
+                                    $('#example').DataTable({
+                                        "paging": false,
+                                        searching:false,
+                                        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                                        buttons: ['csv', 'excel'],
+                                    });
+                                }else 
+                                {
                                     self.records = self.records.concat(data);
                                     self.start += self.limit;
                                     self.load_customer_data();
@@ -233,131 +269,222 @@
                                 error: function(xhr, status, error) {
                                 console.error(error);
                             }
-                       });
-                       console.log(ss);
-                    },
-                    fetchData: function() {
+                        });
+                        console.log(loadDirect);
+                    },load_search_data: function(searchlimit, srarchstart, fromdate, todate)
+                    {
+                        var self = this;
+                        let co=$.ajax({
+                            url: 'ajax/CurrentMonthPayment1.php',
+                            type: "POST",
+                            data: {
+                                currentMonthPayment:'newCurrentMonth',
+                                limit: searchlimit,
+                                start: srarchstart,
+                                d1: fromdate,
+                                d2: todate,
+                                k: 1,
+                            },
+                            cache:false,
+                            success:function(data)
+                            {
+                                console.log(data);
+                                self.showOriginalTable = false;
+                                self.showSearchTable = true;
+                                if (data.length === 0) 
+                                {
+                                    self.searchLoading = false;
+                                    
+                                    $('#example1').DataTable({
+                                        "paging": false,
+                                        searching:false,
+                                        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                                        buttons: ['csv', 'excel'],
+                                    });
+                                } else {
+                                    self.searchResults = self.searchResults.concat(data);
+                                    self.srarchstart += self.searchlimit;
+                                    self.load_search_data(self.searchlimit, self.srarchstart, fromdate, todate);
+                                }
+                            }
+                        });
+                        console.log(co);
+                    },searchClicked: function()
+                    {
+                        var self = this;
+                        var option=$('#select').val();
+                        if(option=='Search By Name')
+                        {
+                            var cid=$('#full1').val();
+                            var name=$('#full').val();
+                            if(name=='')
+                            {
+                                alert('Please Select Name');
+                                return;
+                            }
+                            $('#example').DataTable().destroy();
+                            $('#example1').DataTable().destroy();
+                            let co=$.ajax({
+                                url: 'ajax/CurrentMonthPayment1.php',
+                                type: "POST",
+                                data: {
+                                    currentMonthPayment: 'newCurrentMonth',
+                                    cid: cid,
+                                    k: 2,
+                                },
+                                cache:false,
+                                success:function(data)
+                                {
+                                    // console.log(data)
+                                    self.searchLoading = false;
+                                    self.searchResults = data;
+                                    self.showOriginalTable = false;
+                                    self.showSearchTable = true;
+                                }
+                            });
+                            // console.log(co);
+                        }else
+                        {
+                            var todate=$('#todate').val();
+                            var fromdate=$('#fromdate').val();
+                            if(fromdate=='')
+                            {
+                                alert('Please Select From Date');
+                                return;
+                            }
+                            $('#example').DataTable().destroy();
+                            this.searchResults = [];
+                            this.searchLoading = true;
+                            this.searchlimit=300;
+                            this.srarchstart=-300;
+                            this.load_search_data(this.searchlimit, this.srarchstart, fromdate, todate);
+                        }
+
+                    },fetchData: function() 
+                    {
                         var self = this;
                         self.load_customer_data();
+                    },refreshClicked: function() 
+                    {
+                        this.showSearchTable = false;
+                        this.showOriginalTable = true;
                     }
-
                 },
-                mounted: function() {
+                mounted: function() 
+                {
                     this.fetchData();
                 },
                 template: `
                     <div>
-                    <table v-if="showOriginalTable && records.length > 0" id="example" class="table table-striped table-bordered table-hover example">
-                        <thead>
-                            <tr>
-                                <th>Cust-ID</th>
-                                <th>Full Name</th>
-                                <th>Current Payment</th>
-                                <th>15% Of Current Payment</th>
-                                <th>Payment Amount</th>
-                                <th>Bank Name</th>
-                                <th>Account No</th>
-                                <th>IFSC Code</th>
-                                <th>Pan Card Number</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(record, index) in records" :key="index">
-                                <td>{{ record.custId }}</td>
-                                <td>{{ record.fullName }}</td>
-                                <td>{{ record.amount }}</td>
-                                <td>{{ record.diduct }}</td>
-                                <td>{{ record.currentPayment }}</td>
-                                <td>{{ record.bankName }}</td>
-                                <td>{{ record.accountNo }}</td>
-                                <td>{{ record.ifscCode }}</td>
-                                <td>{{ record.panCardNumber }}</td>
-                                <td>{{ record.date }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <center>
-                        <div v-if="isLoading" class="loader">Loading...</div>
-                    </center>
-                    <table v-if="showSearchTable" id="example1" class="table table-striped table-bordered table-hover example">
-                        <thead>
-                            <tr>
-                                <th>Cust-ID</th>
-                                <th>Full Name</th>
-                                <th>Current Payment</th>
-                                <th>15% Of Current Payment</th>
-                                <th>Payment Amount</th>
-                                <th>Bank Name</th>
-                                <th>Account No</th>
-                                <th>IFSC Code</th>
-                                <th>Pan Card Number</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(result, index) in searchResults" :key="index">
-                                <td>{{ result.custId }}</td>
-                                <td>{{ result.fullName }}</td>
-                                <td>{{ result.totalInvestment }}</td>
-                                <td>{{ result.place }}</td>
-                                <td>{{ result.date }}</td>
-                                <td>{{ result.bankName }}</td>
-                                <td>{{ result.accountNo }}</td>
-                                <td>{{ result.ifscCode }}</td>
-                                <td>{{ result.panCardNumber }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <div v-if="showOriginalTable">
+                            <table id="example" class="table table-striped table-bordered table-hover example">
+                                <thead>
+                                    <tr>
+                                        <th>Cust-ID</th>
+                                        <th>Full Name</th>
+                                        <th>Current Payment</th>
+                                        <th>15% Of Current Payment</th>
+                                        <th>Payment Amount</th>
+                                        <th>Bank Name</th>
+                                        <th>Account No</th>
+                                        <th>IFSC Code</th>
+                                        <th>Pan Card Number</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(record, index) in records" :key="index">
+                                        <td>{{ record.custId }}</td>
+                                        <td>{{ record.fullName }}</td>
+                                        <td>{{ record.amount }}</td>
+                                        <td>{{ record.diduct }}</td>
+                                        <td>{{ record.currentPayment }}</td>
+                                        <td>{{ record.bankName }}</td>
+                                        <td>{{ record.accountNo }}</td>
+                                        <td>{{ record.ifscCode }}</td>
+                                        <td>{{ record.panCardNumber }}</td>
+                                        <td>{{ record.date }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <center>
+                                <div v-if="isLoading" class="loader"><div></div><div></div><div></div></div>
+                            </center>
+                        </div>
+                        <div v-if="showSearchTable">
+                            <table id="example1" class="table table-striped table-bordered table-hover example">
+                                <thead>
+                                    <tr>
+                                        <th>Cust-ID</th>
+                                        <th>Full Name</th>
+                                        <th>Current Payment</th>
+                                        <th>15% Of Current Payment</th>
+                                        <th>Payment Amount</th>
+                                        <th>Bank Name</th>
+                                        <th>Account No</th>
+                                        <th>IFSC Code</th>
+                                        <th>Pan Card Number</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(result, index) in searchResults" :key="index">
+                                        <td>{{ result.custId }}</td>
+                                        <td>{{ result.fullName }}</td>
+                                        <td>{{ result.amount }}</td>
+                                        <td>{{ result.diduct }}</td>
+                                        <td>{{ result.currentPayment }}</td>
+                                        <td>{{ result.bankName }}</td>
+                                        <td>{{ result.accountNo }}</td>
+                                        <td>{{ result.ifscCode }}</td>
+                                        <td>{{ result.panCardNumber }}</td>
+                                        <td>{{ result.date }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <center>
+                                <div v-if="searchLoading" class="loader"><div></div><div></div><div></div></div>
+                            </center>
+                        </div>
                     </div>
                 `,
             });
-            // var limit = 100;
-            // var start = -100;
-            // var t="true";
-            // var action = 'inactive';
-            // function load_customer_data(limit,start)
-            // {
-            //     let log = $.ajax({
-            //         url: 'ajax/CurrentMonthPayment1.php',
-            //         type: "POST",
-            //         data: {
-            //             Submit:'submit',
-            //             limit: limit,
-            //             start: start,
-            //             k : 1,
-            //         },
-            //         cache:false,
-            //         success:function(data) 
-            //         {
-            //             $('#mytable1').append(data);
-            //             if(data == 0)
-            //             {
-            //             action = 'active';
-            //             }
-            //             else
-            //             {
-            //             action = "inactive";
-            //             }
-                                
-            //                 }
-            //             });
-            //             console.log(log)
-            // }
 
-            // var myVar = setInterval(function(){ 
-            //     if(action == 'inactive')
-            //     {
-            //         start = start + limit;
-            //         $(document.body).css({'cursor' : 'not-allowed'});
-            //         load_customer_data(limit, start);
-            //      }
-            //      else{
-            //             clearInterval(myVar);
-            //             $(document.body).css({'cursor' : 'default'});
-            //             loading()
-            //         }
-            // }, 300);
+            $('#search1').click(function() {
+                app.searchClicked();
+            });
+            $('#refresh').click(function() 
+            {
+                if(app.showOriginalTable==false)
+                {
+                    $("#full1").val('');
+                    $("#full").val('');
+                    $('#fromdate').val('');
+                    app.refreshClicked();
+                }else
+                {
+                    alert('First Search Something..');
+                }
+
+                if ($.fn.DataTable.isDataTable('#example')) 
+                {
+                    $('#example').DataTable().destroy();
+                }
+                if ($.fn.DataTable.isDataTable('#example1')) {
+                    $('#example1').DataTable().destroy();
+                }
+
+                if (app.showOriginalTable) 
+                {
+                    $('#example').DataTable({
+                        "paging": false,
+                        searching: false,
+                        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                        buttons: ['csv', 'excel'],
+                    });
+                }
+            }); 
+            
 
             $('#namewise').show();
             $('#datewise1').hide();
@@ -380,58 +507,6 @@
                     $('#datewise2').hide();
                 }
             });
-            // $('#search1').click(function()
-            // {
-            //     var option=$('#select').val();
-            //     if(option=='Search By Name')
-            //     {
-            //         var cid=$('#full1').val();
-            //         var name=$('#full').val();
-            //         if(name=='')
-            //         {
-            //             alert('Please Select Name');
-            //             exit();
-            //         }
-            //             // var table=$('#example').dataTable()
-            //             //     table.destroy();
-            //         let log=$.ajax({
-            //             url: 'ajax/CurrentMonthPayment1.php',
-            //             type: "POST",
-            //             data:{Submit:"cid", cid:cid,k:1},
-            //             cache:false,
-            //             success:function(data)
-            //             {
-                            
-            //                     action="active";
-            //                 $('#mytable').html(data);
-            //                 clearInterval(myVar);
-            //             }
-            //         });
-            //         console.log(log);
-            //     }
-            // });
-            function loading()
-            {
-                oTable = $('#example').dataTable({
-                    "paging": false,
-                    searching:false,
-                    dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                    buttons: [
-                    'csv', 'excel'
-                    ],
-                });
-            }
-            function loading1()
-            {
-                oTable = $('#example1').dataTable({
-                    "paging": false,
-                    searching:false,
-                    dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                    buttons: [
-                    'csv', 'excel'
-                    ],
-                });
-            }
         });
     </script>
 
