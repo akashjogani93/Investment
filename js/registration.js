@@ -106,7 +106,6 @@ function isNumberKey(evt)
 
 function checku()
 {
-    //alert('hi');
     let acc=$("#acc").val();
     var acc1=acc.length;
     if(acc1>=10)
