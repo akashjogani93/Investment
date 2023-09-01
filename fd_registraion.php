@@ -12,6 +12,54 @@
         <script>
             $("#dyna").text("FD Customer Registration");
             tex();
+
+            
+            //autocomplete names
+            $(function() 
+            {
+                
+                $(".full").autocomplete({
+                    
+                    source: 'investment_searchName.php',
+                    focus: function (event, ui) 
+                    {
+                        $('#fname').val('')
+                        $('#mname').val('')
+                        $('#lname').val('')
+                        $('#mobile').val('')
+                        $('#address').val('')
+                        $('#cust').val('')
+                        event.preventDefault();
+                        $("#full").val(ui.item.label);
+                    },
+                    select: function (event, ui) 
+                    {
+                        event.preventDefault();
+                        $("#cust").val(ui.item.value);
+                        $("#full").val(ui.item.label);
+                        
+                        if(ui.item.value!='')
+                        {
+                           $.ajax({
+                            url:'ajax/fetch_fdregistration.php',
+                            type:'POST',
+                            dataType: 'json',
+                            data: {cid:ui.item.value},
+                            success: function(response)
+                            {
+                                $('#fname').val(response[0].fname)
+                                $('#mname').val(response[0].mname)
+                                $('#lname').val(response[0].lname)
+                                $('#mobile').val(response[0].mobile)
+                                $('#address').val(response[0].address)
+                            }
+                           });
+                        }
+                        console.log(ui.item.value);
+                    }
+                    
+                }); 
+            });
         </script>
         <?php
             require_once("dbcon.php"); 
@@ -27,10 +75,7 @@
                 $cid++;
                 //echo $cid;
             }
-            // $username="SHIVAM".$cid; $password="SHIVAM".rand(10000,100000);
         ?>
-        
-        <!-- <script type="text/javascript" src="js/registration.js"></script> -->
         <div class="content-wrapper">
             <section class="content">
                 <div class="box box-default">
@@ -64,7 +109,13 @@
                                         }
                                     ?>
                                 </div>
-                            </div></br>
+                                <div class="group-form col-md-4">
+                                    <label for="inputEmail3" class="form_label">If Customer Register Then Name</label>
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm full" name="full" id="full" placeholder="Search Name">
+                                    <input type="hidden" name="cust" id="cust">
+                                </div>
+                            </div>
+                            </br>
                             <div class="row">
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">First Name *</label>
