@@ -40,17 +40,21 @@
                                 </div>
                             </div></br>
                             <div class="row">
-                                <div class="group-form col-md-4">
+                                <div class="group-form col-md-3">
                                     <label for="inputEmail3" class="form_label">SlNO</label>
                                     <input type="text" class=" col-sm-4 form-control form-control-sm"  value="<?php echo $cid;?>" name="cid" id="cid" readonly>
                                 </div>
-                                <div class="group-form col-md-4">
+                                <div class="group-form col-md-3">
                                     <label for="inputEmail3" class="form_label">Title</label>
                                     <input type="text" class=" col-sm-4 form-control form-control-sm" name="title" id="title"  required autofocus="off">
                                 </div>
-                                <div class="group-form col-md-4">
+                                <div class="group-form col-md-3">
                                     <label for="inputEmail3" class="form_label">Date</label>
                                     <input type="date" class=" col-sm-4 form-control form-control-sm" name="date" id="date"  required>
+                                </div>
+                                <div class="group-form col-md-3">
+                                    <label for="inputEmail3" class="form_label">Mobile</label>
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm" name="mobile" id="mobile"  required>
                                 </div>
                             </div></br>
                             <div class="row">
@@ -142,6 +146,13 @@
 
                             return false;
                     });
+                    $('#mobile').keypress(function(event){
+                        var keycode = (event.keyCode ? event.keyCode : event.which);
+                            if ((keycode < 48 || keycode > 57))
+                            return false;
+
+                            return true;
+                    });
 
                     $('#sub').click(function()
                     {
@@ -149,9 +160,10 @@
                         var desc = $('#desc').val();
                         var location = $('#location').val();
                         var date = $('#date').val();
+                        var mobile = $('#mobile').val();
                         var file=$('#path')[0].files[0];
 
-                        var inputIds = ['#title', '#date', '#location','#desc', '#path'];
+                        var inputIds = ['#title', '#date','#mobile','#location','#desc', '#path'];
                         
                         for (var i = 0; i < inputIds.length; i++) 
                         {
@@ -170,6 +182,7 @@
                         form_data.append('location', location);
                         form_data.append('date', date);
                         form_data.append('file', file);
+                        form_data.append('mobile', mobile);
                         let log=$.ajax({
                             url:"ajax/upload_events.php",
                             method:"POST",

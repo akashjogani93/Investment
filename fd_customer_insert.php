@@ -24,7 +24,6 @@
             echo "<script>alert('Registration successfull');</script>";
             echo '<script> window.location="fd_registraion.php"; </script>';
          }
-
     }
 
     if(isset($_POST['update']))

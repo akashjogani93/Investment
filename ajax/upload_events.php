@@ -31,8 +31,9 @@ if(isset($_POST['title']))
     $date = $_POST['date'];
     $desc = $_POST['desc'];
     $file = $_FILES['file'];
+    $mobile = $_POST['mobile'];
     $bond1 = upload_Profile($file,"../img/events/");
-    $query = "INSERT INTO events (`title`,`location`,`date`,`description`,`path`) VALUES ('$title','$location','$date','$desc','$bond1')";
+    $query = "INSERT INTO events (`title`,`location`,`date`,`description`,`path`,`mobile`) VALUES ('$title','$location','$date','$desc','$bond1','$mobile')";
     if (mysqli_query($conn, $query))
     {
         echo "<span style='color:green'>New 'EVENT' created successfully</span>";
