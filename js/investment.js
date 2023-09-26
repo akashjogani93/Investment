@@ -7,7 +7,6 @@ $(document).ready(function()
 
     $('.add_more').click(function(e) {
         e.preventDefault();
-        console.log("pass");
         $('#show').after(`<div class="row">  
                         <div class="group-form col-md-4">
                             <label for="inputEmail3" class="form_label">Search Referal:</label>
@@ -36,7 +35,6 @@ $(document).ready(function()
                                     placeholder="Per Mounth Amount">
                         </div>
                         <div class="group-form col-md-2">
-                            
                             <a class="col-sm-4 btn btn-sm form-control form-control-sm btn-danger remove" style="margin-top:20px;">Remove</a>
                         </div>
                         
@@ -150,12 +148,10 @@ $(document).ready(function()
             let asignke = $(item).parent().parent().find('.asignke').val();
             let perkey = $(item).parent().parent().find('.perkey').val();
             let permkeys = $(item).parent().parent().find('.permkeys').val();
-            //console.log(perkey);
             vals[i].push(item.value);
             vals[i].push(asignke);
             vals[i].push(perkey);
             vals[i].push(permkeys);
-            console.log();
             i++;
         });
 

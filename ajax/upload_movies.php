@@ -42,18 +42,75 @@ if(isset($_POST['title']))
     }
     mysqli_close($conn);
 }
+if(isset($_POST['addFunction']))
+{
+    $cate=$_POST['addFunction'];
+     $file = $_FILES['file'];
+    $bond1 = upload_Profile($file,"../img/gallery/");
+    $query="SELECT * FROM `category` WHERE `function`='$cate'";
+    $exc=mysqli_query($conn,$query);
+    if(mysqli_num_rows($exc) > 0)
+    {
+        echo json_encode('fail');
+    }else
+    {
+        $sql="INSERT INTO `category`(`function`,`banner`)VALUES('$cate','$bond1')";
+        $exc1=mysqli_query($conn,$sql);
+        if($exc1)
+        {
+            echo json_encode('success');
+        }
+    }
+}
+
+if(isset($_POST['addFunction1']))
+{
+    $cate=$_POST['addFunction1'];
+    $file = $_FILES['file1'];
+    $bond1 = upload_Profile($file,"../img/insuGallery/");
+    $query="SELECT * FROM `insurancecategory` WHERE `category`='$cate'";
+    $exc=mysqli_query($conn,$query);
+    if(mysqli_num_rows($exc) > 0)
+    {
+        echo json_encode('fail');
+    }else
+    {
+        $sql="INSERT INTO `insurancecategory`(`category`,`banner`)VALUES('$cate','$bond1')";
+        $exc1=mysqli_query($conn,$sql);
+        if($exc1)
+        {
+            echo json_encode('success');
+        }
+
+    }
+}
+
+if(isset($_POST['fetchfun']))
+{
+    $option=[];
+    $query="SELECT `function` FROM `category`";
+    $exc=mysqli_query($conn,$query);
+    while($row=mysqli_fetch_assoc($exc))
+    {
+        // array_push($option, $row['function']);
+        $option[]=$row;
+    }
+    echo json_encode($option);
+}
 
 function upload_Profile($image, $target_dir)
 {   
-        if($image['name']!=""){
+    if($image['name']!="")
+    {
         $target_file = $target_dir . basename($image["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        $msg = " ";
+        $msg =" ";
         try {
             $check = getimagesize($image["tmp_name"]);
             $msg = array();
-            if ($check !== false) {
+            if ($check !== false) 
+            {
                 //echo "File is an image - " . $check["mime"] . ".";
                 $uploadOk = 1;
             }

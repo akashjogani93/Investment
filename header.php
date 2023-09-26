@@ -94,8 +94,6 @@ a:hover{
         <?php if($_SESSION["type"]=="admin") 
                 {
                         ?>
-                            <!-- <li class="header">MAIN NAVIGATION</li> -->
-                            <!-- <li><button class="redirect-button" data-url="home.php"><span>Dashboard</span></button></li> -->
                             <li><a href="home.php"><img class="fa" src="logos/monitor.png"><span>Dashboard</span></a></li>
                             <li><a href="registration.php"><img class="fa" src="logos/contact-form (1).png"><span>Registration</span></a></li>
                             <li><a href="investment.php"><img class="fa" src="logos/save-money.png"><span>Investment</span></a></li>
@@ -104,23 +102,26 @@ a:hover{
                             <li><a href="all_report.php"><img class="fa" src="logos/roadmap.png"><span>All Investment Reports</span></a></li>
                             <li><a href="all_records.php"><img class="fa" src="logos/verify.png"><span>Total Records</span></a></li>
                             <li><a href="super_invest.php"><i class="fa fa-table"></i><span>Single Investment</span></a></li>
-                            <!-- <li class="treeview">
+                            <li class="treeview">
                                 <a href="#">
                                     <img class="fa" src="logos/roadmap.png">
-                                    <span>Reports</span>
+                                    <span>Events</span>
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li><a href="register_customer.php"><i class="fa fa-circle-o"></i>Customer List</a></li>
+                                    <li><a href="events.php"><i class="fa fa-circle-o"></i>Events</a></li>
+                                    <li><a href="movies.php"><i class="fa fa-circle-o"></i>Movies</a></li>
+                                    <li><a href="insurance.php"><i class="fa fa-circle-o"></i>Insurance</a></li>
+                                    <li><a href="insuranceGallery.php"><i class="fa fa-circle-o"></i>Insurance Gallery</a></li>
+                                    <li><a href="gallery.php"><i class="fa fa-circle-o"></i>Add Gallery</a></li>
+                                    <li><a href="banner.php"><i class="fa fa-circle-o"></i>Add Banner</a></li>
                                 </ul>
-                            </li> -->
+                            </li>
                             <li><a href="fd_registraion.php"><img class="fa" src="logos/7.png"><span>FD Registration</span></a></li>
                             <li><a href="fd_plan.php"><img class="fa" src="logos/7.png"><span>FD Plan</span></a></li>
                             <li><a href="team_view.php"><img class="fa" src="logos/7.png"><span>Referral Team</span></a></li>
-                            <li><a href="events.php"><img class="fa" src="logos/7.png"><span>Events</span></a></li>
-                            <li><a href="movies.php"><img class="fa" src="logos/7.png"><span>Movies</span></a></li>
                             <li><a href="change_pass.php"><img class="fa" src="logos/padlock.png"><span>Change Password</span></a></li>
                             <li><a href="logout.php"><img class="fa" src="logos/tog (2).png"><span><?php echo $_SESSION["type"]; ?> logout</span></a></li>
 

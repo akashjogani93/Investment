@@ -1,13 +1,11 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper" id="form1">
-    
         <style>
             .error {
                 color:red;
             }
             
         </style>
-        
         <?php require_once("header.php"); ?>
         <script>
             $("#dyna").text("movies");
@@ -22,7 +20,8 @@
             if(! $retval ) {
                 die('Could not get data: ' . mysqli_error($conn));
             }
-            while($row = mysqli_fetch_assoc($retval)) {
+            while($row = mysqli_fetch_assoc($retval)) 
+            {
                 $cid=$row['max(id)'];
                 $cid++;
             }

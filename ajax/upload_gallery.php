@@ -1,0 +1,99 @@
+<?php
+include("../dbcon.php");
+if(isset($_POST['cate']))
+{
+$urls = $_POST['url'];
+$cate = $_POST['cate'];
+$check = $_POST['check'];
+$check1 = $_POST['check1'];
+$uploadedFiles = [];
+
+if($check==1)
+{
+    $images = $_FILES['images'];
+    foreach ($images['name'] as $key => $name) {
+        $uploadResult = upload_Profile($images, $key, "../img/gallery/");
+        if ($uploadResult) 
+        {
+            $uploadedFiles[] = $uploadResult;
+        }
+    }
+}
+
+if($check1==1)
+{
+    $urlsString = implode(',', $urls);
+}else
+{
+    $urlsString='';
+}
+$uploadedFilesString = implode(',', $uploadedFiles);
+
+
+$sql="INSERT INTO `gallery`(`category`, `gallery`, `urls`) VALUES ('$cate','$uploadedFilesString','$urlsString')";
+$exc=mysqli_query($conn,$sql);
+if($sql)
+{
+    echo json_encode('Added Gallery Successfully');
+}else
+{
+    echo json_encode('Something Went Wrong');
+}
+// echo json_encode($check);
+}
+
+if(isset($_POST['submit']))
+{
+    $cate=$_POST['cat'];
+    if($cate==0 || $cate=='All')
+    {
+        $query="SELECT * FROM `gallery`";
+    }else
+    {
+        $query="SELECT * FROM `gallery` WHERE `category`='$cate'";
+    }
+    $exc=mysqli_query($conn,$query);
+    $rows=[];
+    while($row=mysqli_fetch_assoc($exc))
+    {
+        $rows[]=$row;
+    }
+    echo json_encode($rows);
+}
+
+function upload_Profile($images, $key, $target_dir)
+{
+    $name = $images['name'][$key];
+    $tmp_name = $images['tmp_name'][$key];
+
+    if (isset($name) && isset($tmp_name)) {
+        $target_file = $target_dir . basename($name);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Check if file already exists
+        // if (file_exists($target_file)) {
+        //     return "File '$name' already exists.";
+        // }
+
+        // Allow certain file formats
+        $allowedFormats = ["pdf", "jpg", "jpeg", "png", "gif"];
+        if (!in_array($imageFileType, $allowedFormats)) {
+            return "Invalid file format for '$name'. Only PDF, JPG, JPEG, PNG & GIF files are allowed.";
+        }
+
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            return "Error uploading '$name'.";
+        } else {
+            if (move_uploaded_file($tmp_name, $target_file)) {
+                return $target_file;
+            } else {
+                return "";
+            }
+        }
+    } else {
+        return "";
+    }
+}
+?>
