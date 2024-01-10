@@ -22,7 +22,7 @@ if(($_SESSION["type"]=="")&&($_SESSION["id"]==""))
 }else if($_SESSION["type"]=="manager")
 {
     $id=$_SESSION["id"];
-}else if($_SESSION["type"]=="member")
+}else if($_SESSION["type"]=="Member")
 {
     $id=$_SESSION["id"];
     // cheak for timing permission
@@ -44,15 +44,20 @@ if(($_SESSION["type"]=="")&&($_SESSION["id"]==""))
 a:hover{
     text-decoration:none;
 }
+.fa-solid {
+    font-weight: 900;
+    margin-right: 10px;
+}
 </style>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper" id="form1">
         <!-- <div class="fixs" style="position:fixed;"> -->
             <header class="main-header">
-                <a href="#" class="logo">
+                <center><a href="#" class="logo">
                     <span class="logo-mini"><b>T I<b></span>
-                    <span class="logo-lg"><b>THE INVESTMENT</b></span>  
-                </a>
+                    <span class="logo-lg"><img src="img/shivam.png" class="sidebar-toggle" height="70px" width="70px">
+                    </span>
+                </a></center>
                 <nav class="navbar navbar-static-top">
                     <a href="#" >
                         <img src="logos/tog (1).png" class="sidebar-toggle" data-toggle="offcanvas" role="button" height="50px" width="50px">
@@ -83,28 +88,29 @@ a:hover{
             <aside class="main-sidebar">
                 <section class="sidebar">
             
-                    <div class="user-panel">
+                    <!-- <div class="user-panel">
                         <div class="pull-left image">
                         
                         </div>
                         <div class="pull-left info">
                         </div>
-                    </div>
+                    </div> -->
                     <ul class="sidebar-menu">
+                    <!-- <li><a href="home.php"><img class="fa" src="logos/monitor.png"><span><?php echo $_SESSION["type"]; ?></span></a></li> -->
         <?php if($_SESSION["type"]=="admin") 
                 {
                         ?>
-                            <li><a href="home.php"><img class="fa" src="logos/monitor.png"><span>Dashboard</span></a></li>
-                            <li><a href="registration.php"><img class="fa" src="logos/contact-form (1).png"><span>Registration</span></a></li>
-                            <li><a href="investment.php"><img class="fa" src="logos/save-money.png"><span>Investment</span></a></li>
-                            <li><a href="singleInvestment.php"><img class="fa" src="logos/6.png"><span>Single Investment Details</span></a></li>
-                            <li><a href="singleWidraw.php"><img class="fa" src="logos/cash-withdrawal.png"><span>Withdraw</span></a></li>
-                            <li><a href="all_report.php"><img class="fa" src="logos/roadmap.png"><span>All Investment Reports</span></a></li>
-                            <li><a href="all_records.php"><img class="fa" src="logos/verify.png"><span>Total Records</span></a></li>
-                            <li><a href="super_invest.php"><i class="fa fa-table"></i><span>Single Investment</span></a></li>
+                            <li><a href="home.php"><i class="fa-solid fa-gauge"></i><span>Dashboard</span></a></li>
+                            <li><a href="registration.php"><i class="fa-solid fa-address-card"></i><span>Registration</span></a></li>
+                            <li><a href="investment.php"><i class="fa-solid fa-sack-dollar"></i><span>Investment</span></a></li>
+                            <li><a href="singleInvestment.php"><i class="fa-solid fa-arrow-up-wide-short"></i><span>Single Investment Details</span></a></li>
+                            <li><a href="singleWidraw.php"><i class="fa-solid fa-money-bill-transfer"></i><span>Withdraw</span></a></li>
+                            <li><a href="all_report.php"><i class="fa-solid fa-file-shield"></i><span>All Investment Reports</span></a></li>
+                            <li><a href="all_records.php"><i class="fa-solid fa-calendar-days"></i><span>Total Records</span></a></li>
+                            <li><a href="super_invest.php"><i class="fa fa-table"></i><span>Customer Balance</span></a></li>
                             <li class="treeview">
                                 <a href="#">
-                                    <img class="fa" src="logos/roadmap.png">
+                                    <i class="fa-solid fa-certificate"></i>
                                     <span>Events</span>
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
@@ -119,36 +125,48 @@ a:hover{
                                     <li><a href="banner.php"><i class="fa fa-circle-o"></i>Add Banner</a></li>
                                 </ul>
                             </li>
-                            <li><a href="fd_registraion.php"><img class="fa" src="logos/7.png"><span>FD Registration</span></a></li>
-                            <li><a href="fd_plan.php"><img class="fa" src="logos/7.png"><span>FD Plan</span></a></li>
-                            <li><a href="team_view.php"><img class="fa" src="logos/7.png"><span>Referral Team</span></a></li>
-                            <li><a href="change_pass.php"><img class="fa" src="logos/padlock.png"><span>Change Password</span></a></li>
-                            <li><a href="logout.php"><img class="fa" src="logos/tog (2).png"><span><?php echo $_SESSION["type"]; ?> logout</span></a></li>
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa-solid fa-layer-group"></i>
+                                    <span>Fixed Deposit</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="fd_registraion.php"><i class="fa fa-circle-o"></i>FD Registration</a></li>
+                                    <li><a href="fd_plan.php"><i class="fa fa-circle-o"></i>FD Plan</a></li>
+                                </ul>
+                            </li>
+                            <!-- <li><a href="fd_registraion.php"><img class="fa" src="logos/7.png"><span>FD Registration</span></a></li> -->
+                            <!-- <li><a href="fd_plan.php"><img class="fa" src="logos/7.png"><span>FD Plan</span></a></li> -->
+                            <li><a href="team_view.php"><i class="fa fa-solid fa-users"></i><span>Referral Team</span></a></li>
+                            <li><a href="change_pass.php"><i class="fa-solid fa-key"></i><span>Change Password</span></a></li>
+                            <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a></li>
 
                         <?php
                 }else if($_SESSION["type"]=="manager")
                 {
                     ?>
-                        <li><a href="home.php"><i class="fa fa-table"></i> <span>Dashboard</span></a></li>
-                        <li><a href="super_invest.php"><i class="fa fa-table"></i> <span>Single Investment</span></a></li>
-                        <li><a href="super_investment.php"><i class="fa fa-table"></i> <span>All Investment</span></a></li>
-                        <li><a href="all_report.php"><img class="fa" src="logos/roadmap.png"><span>All Investment Reports</span></a></li>
-                        <li><a href="logout.php"><img class="fa" src="logos/tog (2).png"><span><?php echo $_SESSION["type"]; ?> logout</span></a></li>
+                        <li><a href="home.php"><i class="fa-solid fa-gauge"></i><span>Dashboard</span></a></li>
+                        <li><a href="super_invest.php"><i class="fa-solid fa-arrow-up-wide-short"></i><span>Single Investment</span></a></li>
+                        <li><a href="super_investment.php"><i class="fa-solid fa-file-shield"></i><span>All Investment</span></a></li>
+                        <li><a href="all_report.php"><i class="fa-solid fa-file-shield"></i><span>All Investment Reports</span></a></li>
+                        <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a></li>
 
                         <!-- <li><a href="sub_profile.php"><i class="fa fa-table"></i> <span>Profile</span></a></li> -->
                         <!-- <li><a href="sub_payment.php"><i class="fa fa-table"></i> <span>Payment Details</span></a></li> -->
                         <!-- <li><a href="#"><i class="fa fa-table"></i> <span>Change Password</span></a></li> -->
                         <!-- <li><a href="#"><i class="fa fa-table"></i> <span><?php echo $id; ?></span></a></li> -->
                     <?php
-                }else if($_SESSION["type"]=="member")
+                }else if($_SESSION["type"]=="Member")
                 {
                     ?>  
-                        <li><a href="home.php"><i class="fa fa-table"></i> <span>Dashboard</span></a></li>
-                        <li><a href="sub_profile.php"><i class="fa fa-table"></i> <span>Profile</span></a></li>
-                        <li><a href="sub_payment.php"><i class="fa fa-table"></i> <span>Payment Details</span></a></li>
-                        <li><a href="#"><i class="fa fa-table"></i> <span>Change Password</span></a></li>
-                        <li><a href="logout.php"><img class="fa" src="logos/tog (2).png"><span><?php echo $_SESSION["type"]; ?> logout</span></a></li>
-
+                        <li><a href="home.php"><i class="fa-solid fa-gauge"></i><span>Dashboard</span></a></li>
+                        <li><a href="sub_profile.php"><i class="fa-solid fa-user"></i><span>Profile</span></a></li>
+                        <li><a href="sub_payment.php"><i class="fa-solid fa-file-invoice-dollar"></i><span>Payment Details</span></a></li>
+                        <li><a href="#"><<i class="fa-solid fa-key"></i><span>Change Password</span></a></li>
+                        <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a></li>
                         <!-- <li><a href="#"><i class="fa fa-table"></i> <span><?php echo $id; ?></span></a></li> -->
                     <?php
                 }
@@ -156,15 +174,11 @@ a:hover{
                     </ul>
                 </section>
             </aside>
-        <!-- </div> -->
-
 <script>
    $(document).ready(function()
    {
-   
         $('.redirect-button').click(function(e)
         {
-            
             e.preventDefault();
             var url = $(this).data('url');
 

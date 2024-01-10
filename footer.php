@@ -4,7 +4,7 @@
     reserved.</b>
     </div>
     <!-- style="margin-top:-20px;" -->
-    <strong>Developed By <a target="_blank" href="https://evonitsolution.com/">Evon IT Soultions</a>.</strong>
+    <strong>Developed By <a target="_blank" href="https://evonitsolution.com/">Evon IT Soultion</a>.</strong>
 </footer>
 
     

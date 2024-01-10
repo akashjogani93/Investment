@@ -14,10 +14,7 @@
         }
         
     }
-
-
 ?>
-
        <?php if(isset($_POST['full1']))
             {
                     $a = array();
@@ -32,21 +29,20 @@
                     while ($row = mysqli_fetch_array($retval)) 
                     {
                         $id=$row['id'];
-                        // $w_value=0;
-                        // $q="SELECT * FROM `widraw` WHERE `inv_id`='$id' AND `wdate`>'$end';";
-                        // $cfm = mysqli_query($conn,$q) or die(mysqli_error());
-                        // $result = mysqli_num_rows($cfm);
-                        // if($result>0)
-                        // {
-                        //     $dat=mysqli_fetch_array($cfm);
-                        //     $w_value=$dat['wamt'];
-                        //     //echo "<script>alert($w_value);</script>";
-                        // }
+                        $w_value=0;
+                        $q="SELECT * FROM `widraw` WHERE `inv_id`='$id' AND `wdate`>'$end';";
+                        $cfm = mysqli_query($conn,$q) or die(mysqli_error());
+                        $result = mysqli_num_rows($cfm);
+                        if($result>0)
+                        {
+                            $dat=mysqli_fetch_array($cfm);
+                            $w_value=$dat['wamt'];
+                        }
                         
                         $bank=$row['bank'];
                         $account=$row['account'];
                         $regdate=$row['regdate'];
-                        $invest=$row['invest'];
+                        $invest=$row['invest']+$w_value;
                         $asign=$row['asign'];
                         $pday=$row['pday'];
                         $pmonth=$row['pmonth'];
@@ -73,19 +69,28 @@
                         $total=$total + $pmonth;
                         $amt1=$amt1+$invest;
                         $totalint=$totalint+$totalinte;
-                        
-                       
                     }
                     $pmonthtotal=0;$totalinterest=0;$refinvest=0;
-                    $query1="SELECT `referal`.*,`invest`.`invest`,`invest`.`regdate`,`register`.`full` FROM `referal`,`invest`,`register` WHERE `invest`.`cid`=`register`.`cid` AND `referal`.`id`=`invest`.`id` AND `referal`.`refcid`='$full'";
+                    // $query1="SELECT `referal`.*,`invest`.`invest`,`invest`.`regdate`,`register`.`full` FROM `referal`,`invest`,`register` WHERE `invest`.`cid`=`register`.`cid` AND `referal`.`id`=`invest`.`id` AND `referal`.`refcid`='$full'";
+                    $query1="SELECT DISTINCT `referal`.`id` AS `id`, `register`.`cid` as `cid`, `register`.`full` as `full`, `invest`.`regdate` AS `regdate`,`invest`.`invest` AS `invest`,`referal`.`refasign` as `refasign` FROM `register`,`referal`, `invest` WHERE `referal`.`id`=`invest`.`id` AND `invest`.`cid`=`register`.`cid` AND `referal`.`refcid`='$full' AND `invest`.`regdate`<'$end';";
                     $retval1=mysqli_query($conn, $query1);
                     while ($row1 = mysqli_fetch_array($retval1)) 
                     {
 
                         // $full=$row['full'];
-                        $invest1=$row1['invest'];
-                        $refasign=$row1['refasign'];
                         $id1=$row1['id'];
+                        $w_value=0;
+                        $q="SELECT * FROM `widraw` WHERE `inv_id`='$id1' AND `wdate`>'$end';";
+                        $cfm = mysqli_query($conn,$q) or die(mysqli_error());
+                        $result = mysqli_num_rows($cfm);
+                        if($result>0)
+                        {
+                            $dat=mysqli_fetch_array($cfm);
+                            $w_value=$dat['wamt'];
+                        }
+                        $invest1=$row1['invest']+$w_value;
+                        $refasign=$row1['refasign'];
+                        
                         $regdate1=$row1['regdate'];
                         $pday1=(($invest1*$refasign/100)/30);
                         $pmonth1=($invest1*$refasign/100);
@@ -115,7 +120,6 @@
                     array_push($a,$total,$amt1,round($totalint),$pmonthtotal,round($totalinterest),$refinvest,round($maininterest),$mainmonth);  
                     echo json_encode($a);
             } 
-            
         ?>
 
             

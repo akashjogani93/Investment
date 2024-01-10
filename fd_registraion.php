@@ -119,11 +119,11 @@
                             <div class="row">
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">First Name *</label>
-                                    <input type="text" class=" col-sm-4 form-control form-control-sm" name="fname" id="fname" placeholder="Darrell" required autofocus="off">
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm" name="fname" id="fname" placeholder="Type Here.." required autofocus="off">
                                 </div>
 								<div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Middle Name *</label>
-                                    <input type="text" class=" col-sm-4 form-control form-control-sm" name="mname" id="mname" placeholder="C." required autofocus="off">
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm" name="mname" id="mname" placeholder="Type Here.." required autofocus="off">
                                     <script>
                                         function text(event)
                                         {
@@ -138,13 +138,13 @@
                                 </div>
 								<div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Last Name *</label>
-                                    <input type="text" class=" col-sm-4 form-control form-control-sm" name="lname" id="lname" placeholder="Thorton" required>
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm" name="lname" id="lname" placeholder="Type Here.." required>
                                 </div>
                             </div></br>
                             <div class="row">
 								<div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label" id="lab_mob">Mobile Number *</label>
-                                    <input type="text" class="mob col-sm-4 form-control form-control-sm" name="mobile" id="mobile" placeholder="#######863" required onkeypress="return isNumberKey(event)" maxlength="10" >
+                                    <input type="text" class="mob col-sm-4 form-control form-control-sm" name="mobile" id="mobile" placeholder="Type Here.." required onkeypress="return isNumberKey(event)" maxlength="10" >
                                 </div>
 								<div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Select Gender *</label>
@@ -164,24 +164,24 @@
                                 </div>
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Address *</label>
-                                    <input type="text" class=" col-sm-4 form-control form-control-sm" name="address" id="address" placeholder="2422 Chapel Street Houston, TX 77026" required>
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm" name="address" id="address" placeholder="Type Here.." required>
                                 </div>
                             </div></br>
                             <div class="row">
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Nominee *</label>
-                                    <input type="text" class=" col-sm-4 form-control form-control-sm" name="nom" id="nom" placeholder="Chappel" required>
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm" name="nom" id="nom" placeholder="Type Here.." required>
                                 </div>
 								<div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Relationship *</label>
-									<input type="text" class=" col-sm-4 form-control form-control-sm" name="rel" id="rel" placeholder="Father" required>
+									<input type="text" class=" col-sm-4 form-control form-control-sm" name="rel" id="rel" placeholder="Type Here.." required>
                                 </div>
 								<div class="group-form col-md-4" id="formsub">
                                         <button type="submit" name="submit" id="sub" class="btn btn-primary regsub" style="margin-top:25px;">Submit</button>
                                 </div>
 								<div class="group-form col-md-4" id="formup" style="display:none;">
                                     <button type="submit" name="update" class="btn btn-danger" style="margin-top:25px;">Update</button>
-                                    <a href="fd_customers.php" class="btn btn-primary" style="margin-top:25px;">Back</a>
+                                    <a href="fd_registraion.php" class="btn btn-primary" style="margin-top:25px;">Back</a>
                                 </div>
                             </div></br>
                         </div>
@@ -200,7 +200,7 @@
                             <thead>
                                 <tr>
                                     <th>Action</th>
-                                    <th>Sl No</th>
+                                    <th>Sl.No</th>
                                     <th style="display:none">F Name</th>
                                     <th style="display:none">M Name</th>
                                     <th style="display:none">L Name</th>

@@ -6,23 +6,22 @@
             }
             th, td { white-space: nowrap; }
             
-            .table-striped>tbody>tr:nth-child(odd)>td, 
-            .table-striped>tbody>tr:nth-child(odd)>th 
+            .table-striped>tbody>tr:nth-child(odd)>td,
+            .table-striped>tbody>tr:nth-child(odd)>th
             {
                 background-color: #E5DCC3;
-                padding:15px; 
+                padding:15px;
             }
-            .table-striped>tbody>tr:nth-child(even)>td, 
-            .table-striped>tbody>tr:nth-child(even)>th 
+            .table-striped>tbody>tr:nth-child(even)>td,
+            .table-striped>tbody>tr:nth-child(even)>th
             {
                 background-color: #C9CCD5;
-                padding:15px;  
+                padding:15px;
             }
             table.dataTable thead {background-color:#D3E4CD}
         </style>
-        
         <?php 
-            require_once("header.php"); 
+            require_once("header.php");
         ?>
         <script>
             $("#dyna").text("LOG INFORMATION");
@@ -47,7 +46,7 @@
                                     </div>
                                     <div class="group-form col-md-3" id="namewise">
                                         <label for="inputEmail3" class="form_label">TO Date</label>
-                                        <input class="col-sm-4 form-control form-control-sm" type="text" id="d2" name="end" autocomplete="off" placeholder="dd-mm-yyyy" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"  title="Enter a date in this formart DD-MM-YYYY" id="dat2"  required>
+                                        <input class="col-sm-4 form-control form-control-sm" type="text" id="d2" name="end" autocomplete="off" placeholder="dd-mm-yyyy" title="Enter a date in this formart DD-MM-YYYY" id="dat2"  required>
                                     </div>
                                     <div class="group-form col-md-3" id="namewise">
                                      

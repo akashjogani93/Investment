@@ -59,26 +59,26 @@
                             <div class="row">
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Bank Name:</label>
-                                    <input type="text" class=" col-sm-4 form-control form-control-sm" readonly name="bank" id="bank" placeholder="First National Bank">
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm" readonly name="bank" id="bank" placeholder="Type Here..">
                                     <input type="hidden" name="full1" id="full1">
                                 </div>
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Account No:</label>
-                                    <input type="text" class=" col-sm-4 form-control form-control-sm" readonly name="acc" id="acc" placeholder="1234-5678-9012-3456">
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm" readonly name="acc" id="acc" placeholder="Type Here..">
                                 </div>
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Mobile Number:</label>
-                                    <input type="text" class=" col-sm-4 form-control form-control-sm" readonly name="mobile" id="mobile" placeholder="########863">
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm" readonly name="mobile" id="mobile" placeholder="Type Here..">
                                 </div>
                             </div></br>
                             <div class="row">
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Invest Amount:</label>
-                                    <input type="text" class="col-sm-4 form-control form-control-sm investOne" required name="invest" id="invest" placeholder="500000/-">
+                                    <input type="text" class="col-sm-4 form-control form-control-sm investOne" required name="invest" id="invest" placeholder="Type Here..">
                                 </div>
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Assign %:</label>
-                                    <input type="text" class="col-sm-4 form-control form-control-sm investOne" required name="asign" id="asign" placeholder="2%">
+                                    <input type="text" class="col-sm-4 form-control form-control-sm investOne" required name="asign" id="asign" placeholder="Type Here..">
                                     <script>
                                         $('#invest , #asign').keyup(function() 
                                         {
@@ -92,17 +92,17 @@
                                 </div>
                                 <div class="group-form col-md-2">
                                     <label for="inputEmail3" class="form_label">Per Day:</label>
-                                    <input type="text" class=" col-sm-4 form-control form-control-sm" readonly name="pday" id="pday" placeholder="333.33/-">
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm" readonly name="pday" id="pday" placeholder="Type Here..">
                                 </div>
                                 <div class="group-form col-md-2">
                                     <label for="inputEmail3" class="form_label">Per Month:</label>
-                                    <input type="text" class=" col-sm-4 form-control form-control-sm" readonly name="pmonth" id="pmonth" placeholder="10000/-">
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm" readonly name="pmonth" id="pmonth" placeholder="Type Here..">
                                 </div>
                             </div></br>
                             <div class="row">
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Transaction Date</label>
-                                    <input type="date" class="col-sm-4 form-control form-control-sm" required name="regdate" id="regdate" placeholder="Registration Date">
+                                    <input type="date" class="col-sm-4 form-control form-control-sm" required name="regdate" id="regdate" placeholder="Type Here..">
                                 </div>
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Transaction Type:</label>
@@ -115,11 +115,11 @@
                                 </div>
                                 <div class="group-form col-md-2">
                                     <label for="inputEmail3" class="form_label">Confirmation:</label>
-                                    <input type="file" class="form-control form-control-smss" placeholder="" name="screen" id="screen" accept=".png, .jpeg, .jpg"> 
+                                    <input type="file" class="form-control form-control-smss" placeholder="" name="screen" id="screen" accept=".jpg, .jpeg, .png, .gif, .pdf">
                                 </div>    
                                 <div class="group-form col-md-2">
                                     <label for="inputEmail3" class="form_label">Agreement:</label>
-                                    <input type="file" class="form-control form-control-smss" placeholder="" name="agreement" id="agreement" accept=".png, .jpeg, .jpg"> 
+                                    <input type="file" class="form-control form-control-smss" placeholder="" name="agreement" id="agreement" accept=".jpg, .jpeg, .png, .gif, .pdf"> 
                                 </div>                
                             </div></br>
                             <div id="show">
@@ -138,21 +138,24 @@
                                     </div>
                                     <div class="group-form col-md-2">
                                         <label for="inputEmail3" class="form_label">Assign %:</label>
-                                        <input type="text" class=" col-sm-4 form-control form-control-sm asignke" name="refAsign[]" id="refAsign[]" placeholder="0.5%">
+                                        <input type="text" class=" col-sm-4 form-control form-control-sm asignke" name="refAsign[]" id="refAsign[]" placeholder="Type Here..">
                                     </div>
                                     <div class="group-form col-md-2">
                                         <label for="inputEmail3" class="form_label">Per Day:</label>
-                                        <input type="text" class=" col-sm-4 form-control form-control-sm perkey" readonly name="refpday[]" id="refpday[]" placeholder="83.33/-">
+                                        <input type="text" class=" col-sm-4 form-control form-control-sm perkey" readonly name="refpday[]" id="refpday[]" placeholder="Type Here..">
                                     </div>
                                     <div class="group-form col-md-2">
                                         <label for="inputEmail3" class="form_label">Per Month:</label>
-                                        <input type="text" class=" col-sm-4 form-control form-control-sm permkeys" readonly name="refpmonth[]" id="refpmonth[]" placeholder="2500/-">
-                                    </div>
-                                     <div class="group-form col-md-2">
-                                        <a class="col-sm-4 btn btn-sm form-control form-control-sm btn-danger add_more" id="add_more" style="margin-top:20px;">Add Referrals</a>
+                                        <input type="text" class=" col-sm-4 form-control form-control-sm permkeys" readonly name="refpmonth[]" id="refpmonth[]" placeholder="Type Here..">
                                     </div>
                                 </div>
-                            </div></br>
+                            </div>
+                            <div class="row">
+                                <div class="group-form col-md-2">
+                                    <a class="col-sm-4 btn btn-sm form-control form-control-sm btn-danger add_more" id="add_more" style="margin-top:20px;">Add Referrals</a>
+                                </div>
+                            </div>
+                        </br>
                         </div>
                         <div class="box-footer">
                             <center>

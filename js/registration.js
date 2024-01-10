@@ -122,7 +122,7 @@ function checku()
         });
     }else
     {   
-        $("#msg").html('<p class="text-danger">Account Number Must be Greter 10 digits</p>');
+        $("#msg").html('<p class="text-danger">Account Number Must be Greater 10 digits</p>');
     }
    
 }

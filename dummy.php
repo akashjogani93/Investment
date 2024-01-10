@@ -207,13 +207,13 @@
 $sourceHostname = 'localhost';
 $sourceUsername = 'root';
 $sourcePassword = '';
-$sourceDatabase = 'old_shiv';
+$sourceDatabase = 'oldshivam';
 
 // Destination database connection parameters
 $destinationHostname = 'localhost';
 $destinationUsername = 'root';
 $destinationPassword = '';
-$destinationDatabase = 'shivinvest2';
+$destinationDatabase = 'investment1';
 
 // Number of records to retrieve and insert in each batch
 $batchSize = 1000;
@@ -234,7 +234,7 @@ if ($destinationConnection->connect_error) {
     die('Destination connection failed: ' . $destinationConnection->connect_error);
 }
 
-// $sourceQuery="SELECT `introduce`.*,`resister`.`cid` FROM `introduce`,`resister` WHERE `introduce`.`r_id`>16224 AND `introduce`.`r_name`=`resister`.`full_name` ORDER BY `introduce`.`r_id` ASC";
+// $sourceQuery="SELECT `introduce`.*,`resister`.`cid` FROM `introduce`,`resister` WHERE `introduce`.`r_name`=`resister`.`full_name` ORDER BY `introduce`.`r_id` ASC";
 
 // $sourceResult = $sourceConnection->query($sourceQuery);
 
@@ -261,16 +261,19 @@ if ($destinationConnection->connect_error) {
 // Retrieve data from the source database
 
 // -------------------------------log_permission------------------------------------------
-// $sourceQuery = "SELECT * FROM `log_permission` WHERE `log_per_id`>71 ORDER BY `log_per_id` ASC";
+// $sourceQuery = "SELECT * FROM `log_permission` ORDER BY `w_id` ASC";
+
+// -------------------------------log_permission------------------------------------------
+// $sourceQuery = "SELECT * FROM `withdraw` ORDER BY `w_id` ASC";
 
 // -------------------------------resister------------------------------------------
-// $sourceQuery = "SELECT * FROM `resister` ORDER BY `cid` ASC";
+//  $sourceQuery = "SELECT * FROM `resister` ORDER BY `cid` ASC";
 
 // -------------------------------invest------------------------------------------
-$sourceQuery = "SELECT * FROM `invest` ORDER BY `i_id` ASC";
+// $sourceQuery = "SELECT * FROM `invest` ORDER BY `i_id` ASC";
 
 // -------------------------------introduce------------------------------------------
-// $sourceQuery="SELECT `introduce`.*,`resister`.`cid` FROM `introduce`,`resister` WHERE `introduce`.`r_name`=`resister`.`full_name` ORDER BY `introduce`.`r_id` ASC";
+// $sourceQuery="SELECT * FROM `introduce` ORDER BY `r_id` ASC";
 
 // -------------------------------login------------------------------------------
 // $sourceQuery = "SELECT * FROM `login` ORDER BY `logid` ASC";
@@ -317,28 +320,44 @@ while ($row = $sourceResult->fetch_assoc())
 
      // -------------------------------invest------------------------------------------
 
-          $i_id=$row['i_id'];
-          $cid=$row['cid'];
-          $i_date=$row['i_date'];
-          $value=$row['value'];
-          $pecentage=$row['pecentage'];
-          $perday=$row['perday'];
-          $permonth=$perday*30;
+          // $w_id=$row['w_id'];
+          // $cid=$row['cid'];
+          // $i_id=$row['i_id'];
+          // $w_date=$row['w_date'];
+          // $w_amt=$row['w_amt'];
+          // // $perday=$row['perday'];
+          // // $permonth=$perday*30;
 
-          $year = date('Y', strtotime($i_date));
-          $Month = date('M', strtotime($i_date));
+          // $year = date('Y', strtotime($w_date));
+          // $Month = date('M', strtotime($w_date));
 
-          $insertValues .= "('$i_id','$cid','$i_date','$value','$pecentage','$perday','$permonth','','','$year','$Month',''),";
+          // $insertValues .= "('$w_id','$cid','$i_id','$w_date','$w_amt','$year','$Month',''),";
+     
+     // -------------------------------withdraw------------------------------------------
+
+     // $i_id=$row['i_id'];
+     // $cid=$row['cid'];
+     // $i_date=$row['i_date'];
+     // $value=$row['value'];
+     // $pecentage=$row['pecentage'];
+     // $perday=$row['perday'];
+     // $permonth=$perday*30;
+
+     // $year = date('Y', strtotime($i_date));
+     // $Month = date('M', strtotime($i_date));
+
+     // $insertValues .= "('$i_id','$cid','$i_date','$value','$pecentage','$perday','$permonth','','','$year','$Month',''),";
 
      // -------------------------------introduce------------------------------------------
           // $i_id=$row['i_id'];
           // $r_id=$row['r_id'];
-          // $cid=$row['cid'];
+          // $r_name=$row['r_name'];
+          // // $cid=$row['cid'];
           // $r_pecentag=$row['r_pecentag'];
           // $r_perday=$row['r_perday'];
           // $permonth=$r_perday*30;
 
-          // $insertValues .= "('$r_id','$i_id','$cid','$r_pecentag','$r_perday','$permonth'),";
+          // $insertValues .= "('$r_id','$i_id','$r_name','$r_pecentag','$r_perday','$permonth'),";
      // -------------------------------login------------------------------------------
           // $cid=$row['cid'];
           // $logid=$row['logid'];
@@ -371,17 +390,20 @@ while ($row = $sourceResult->fetch_assoc())
           // $insertQuery = "INSERT INTO `register`(`cid`, `regdate`, `fname`, `mname`, `lname`, `mobile`, `email`, `pan`, `address`, `blood`, `gender`, `bank`, `account`, `ifsc`, `branch`, `nominee`, `relation`, `full`) VALUES $insertValues";
 
           // -------------------------------invest------------------------------------------
-          $insertQuery = "INSERT INTO `invest`(`id`, `cid`, `regdate`, `invest`, `asign`, `pday`, `pmonth`, `pmode`, `img`, `year`, `month`, `path`) VALUES $insertValues";
+          // $insertQuery = "INSERT INTO `invest`(`id`, `cid`, `regdate`, `invest`, `asign`, `pday`, `pmonth`, `pmode`, `img`, `year`, `month`, `path`) VALUES $insertValues";
 
           // -------------------------------introduce------------------------------------------
-          // $insertQuery = "INSERT INTO `referal`(`refid`, `id`, `refcid`, `refasign`, `refpday`, `refpmonth`) VALUES $insertValues";
+          // $insertQuery = "INSERT INTO `referal`(`refid`, `id`, `r_name`, `refasign`, `refpday`, `refpmonth`) VALUES $insertValues";
           // INSERT INTO `log_info`(`logg_id`, `cid`, `login`, `logout`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]')
 
           // -------------------------------login------------------------------------------
           // $insertQuery = "INSERT INTO `login`(`logid`, `cid`, `username`, `password`, `user`) VALUES $insertValues";
 
            // -------------------------------log_info------------------------------------------
-          //  $insertQuery = "INSERT INTO `log_info`(`logg_id`, `cid`, `login`, `logout`) VALUES $insertValues";
+          // $insertQuery = "INSERT INTO `log_info`(`logg_id`, `cid`, `login`, `logout`) VALUES $insertValues";
+
+           // -------------------------------log_info------------------------------------------
+          // $insertQuery = "INSERT INTO `widraw`(`wid`, `cid`, `inv_id`, `wdate`, `wamt`, `year`, `month`, `path`) VALUES $insertValues";
           if ($destinationConnection->query($insertQuery) === TRUE) 
           {
                echo "Inserted $batchCount records successfully.<br>";
@@ -409,16 +431,20 @@ if ($batchCount > 0)
      // $insertQuery = "INSERT INTO `register`(`cid`, `regdate`, `fname`, `mname`, `lname`, `mobile`, `email`, `pan`, `address`, `blood`, `gender`, `bank`, `account`, `ifsc`, `branch`, `nominee`, `relation`, `full`) VALUES $insertValues";
 
      // // -------------------------------invest------------------------------------------
-     $insertQuery = "INSERT INTO `invest`(`id`, `cid`, `regdate`, `invest`, `asign`, `pday`, `pmonth`, `pmode`, `img`, `year`, `month`, `path`) VALUES $insertValues";
+     // $insertQuery = "INSERT INTO `invest`(`id`, `cid`, `regdate`, `invest`, `asign`, `pday`, `pmonth`, `pmode`, `img`, `year`, `month`, `path`) VALUES $insertValues";
 
      // -------------------------------introduce------------------------------------------
-     //  $insertQuery = "INSERT INTO `referal`(`refid`, `id`, `refcid`, `refasign`, `refpday`, `refpmonth`) VALUES $insertValues";
+     //  $insertQuery = "INSERT INTO `referal`(`refid`, `id`, `r_name`, `refasign`, `refpday`, `refpmonth`) VALUES $insertValues";
       
       // -------------------------------login------------------------------------------
      //  $insertQuery = "INSERT INTO `login`(`logid`, `cid`, `username`, `password`, `user`) VALUES $insertValues";
 
      // -------------------------------log_info------------------------------------------
      // $insertQuery = "INSERT INTO `log_info`(`logg_id`, `cid`, `login`, `logout`) VALUES $insertValues";
+
+
+     // $insertQuery = "INSERT INTO `widraw`(`wid`, `cid`, `inv_id`, `wdate`, `wamt`, `year`, `month`, `path`) VALUES $insertValues";
+
     // Execute the INSERT statement
      if ($destinationConnection->query($insertQuery) === TRUE) 
      {

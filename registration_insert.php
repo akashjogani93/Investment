@@ -37,7 +37,7 @@ include('sms.php');
             if($confirm)
             {
                 sms($mobile,$msg,$conn);
-                echo "<script>alert('Registration successfully');</script>";
+                echo "<script>alert('Customer Register Successfully');</script>";
                 echo '<script> window.location="registration.php"; </script>';
             }
          }
@@ -82,13 +82,13 @@ include('sms.php');
             if($confirm)
             {
                 echo "<script>alert('Updated successfully');</script>";
-                echo '<script> window.location="register_customer.php"; </script>';
+                echo '<script> window.location="register_customer1.php"; </script>';
             }
          }
          else
          {
                 echo "<script>alert('Not Updated successfully');</script>";
-                echo '<script> window.location="register_customer.php"; </script>';
+                echo '<script> window.location="register_customer1.php"; </script>';
          }
     }
 ?>

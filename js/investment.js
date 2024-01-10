@@ -137,6 +137,10 @@ $(document).ready(function()
     $("#form").on('submit',(function(e)
     {
         e.preventDefault();
+
+        var button = $("#sub");
+            button.text("Submitting");
+            button.prop("disabled", true);
         var cid = $('#full1').val();
         // get all referals
         var vals = [];
@@ -154,17 +158,14 @@ $(document).ready(function()
             vals[i].push(permkeys);
             i++;
         });
-
-        // console.log(vals)
         if(cid=='')
         {
             alert('Please Select Customer')
-            Exit();
+            return;
         }else
         {
             var formData = new FormData(this);
         }
-        // formData.append('referals',JSON.stringify(vals));
         let log = $.ajax({
             url: 'ajax/introduceReferal.php',
             type: "POST",
@@ -174,9 +175,9 @@ $(document).ready(function()
             cache: false,
             processData:false,
             
-            success: function(data){
-                console.log(log);
-                // alert(data);
+            success: function(data)
+            {
+                // console.log(log);
                 let log1 = $.ajax({
                     url: 'ajax/introduceReferal1.php',
                     type: "POST",
@@ -186,8 +187,9 @@ $(document).ready(function()
                     },
                     success: function(response) 
                     {
-                        console.log(log1);
                         alert(response)
+                        button.text("Submit");
+                        button.prop("disabled", false);
                         $('#full').val('');
                         $('#full1').val('');
                         $('#invest').val('');
@@ -238,7 +240,7 @@ function searchfull()
             
         }
     });
-    console.log(log);
+    // console.log(log);
 }
 
 //image click trigger
@@ -316,12 +318,11 @@ $(function() {
 });
 
 
-
         //Single Investment page 
         function searchfullsingle()
         {
             var table1=$('#example1').DataTable();
-            table1.destroy(); 
+            table1.destroy();
             var oTable;
             var full1=$('#full1').val();
 
@@ -336,7 +337,7 @@ $(function() {
                 {
                     // $('.loader').fadeIn();
                     $('.mytable').html(data);
-                    $('.loader').fadeOut();
+                    // $('.loader').fadeOut();
                     // $('.loader').hide();
                         oTable = $('#example1').dataTable({
                             searching: false,
@@ -352,7 +353,7 @@ $(function() {
                     //console.log(data);
                 }
             });
-            console.log(log)
+            // console.log(log)
         }
         function searchfull1()
         {
@@ -371,9 +372,9 @@ $(function() {
                 },
                 success:function(data) 
                 {
-                     $('.loader').fadeIn();
+                    //  $('.loader').fadeIn();
                     $('.mytable1').html(data);
-                     $('.loader').fadeOut();
+                    //  $('.loader').fadeOut();
                     oTable = $('#example2').dataTable({
                             searching: false,
                             pageLength : 10,
@@ -412,5 +413,6 @@ $(function() {
                     $('#regdate1').val(Math.round(data[7]).toFixed(2));
                 }
             });
+            console.log(log);
 
         }

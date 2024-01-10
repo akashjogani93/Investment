@@ -12,9 +12,9 @@ if(isset($_POST["submit"]))
     }else
     {
         $d2=$_POST["d2"];
-        $sql = "SELECT `register`.*,`login`.`username`,`login`.`password` FROM `register`,`login` WHERE `register`.`cid`=`login`.`cid` AND `register`.`regdate` BETWEEN $d1 AND $d2";
+        $sql = "SELECT `register`.*,`login`.`username`,`login`.`password` FROM `register`,`login` WHERE `register`.`cid`=`login`.`cid` AND `register`.`regdate` BETWEEN '$d1' AND '$d2'";
     }
-    $params = $columns = $totalRecords = $data = array(); //all variables declared;
+    $params = $columns = $totalRecords = $data = array();
 
     $params = $_REQUEST; 
     $new=$_POST["submit"];
@@ -79,7 +79,7 @@ if(isset($_POST["submit"]))
     while($row = mysqli_fetch_row($queryRecords) )
     {
       
-        $temp[0]= "<a href='registration.php?edit={$row[0]}' class='btn btn-danger'>Edit</a><a href='registration.php?view={$row[0]}' class='btn btn-primary'>view</a>";
+        $temp[0]= "<a href='registration.php?edit={$row[0]}' class='btn btn-danger' style='margin-right:2px;'>Edit</a><a href='registration.php?view={$row[0]}' class='btn btn-primary'>view</a>";
         $temp[1]=$row[0];
         $temp[2]=$row[17];
         // $temp[3]=$row[10];

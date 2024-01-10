@@ -5,9 +5,8 @@ $(document).ready(function()
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if ((keycode < 48 || keycode > 57))
         return true;
-        
-        return false;
 
+        return false;
     });
 
     var yourDateValue = new Date();
@@ -174,18 +173,17 @@ function widraw()
     if(full1=='')
     {
         $('#search_name').html(`<span style='color:red'>First Search Customer..</span>`);
-        
         $('#sub').prop('disabled',true);
         $('.investone').attr('readonly','readonly');
         $('.investone').attr('readonly','readonly');
-        exit()
+        return;
     }
     var regdate=$('#regdate').val();
     var regdate1=$('#regdate1').val();
     if(regdate < regdate1)
     {
         alert('Please Select A Valid Date');
-        exit();
+        return;
     }
     var wamt=$('#wamt').val();
     var ramt=$('#ramt').val();
@@ -193,19 +191,22 @@ function widraw()
     var pday=$('#pday').val();
     var pmonth=$('#pmonth').val();
     var file=$('#agreement')[0].files[0];
-
+    var path=$('#agreement').val();
     if(wamt=='' || wamt==0)
     {
         $('#wamtlable').html(`<span style='color:red'>Add Widraw Amount..</span>`);
-        exit();
+        return;
     }
     else if(asign=='')
     {
-        
         $('#asignlable').html(`<span style='color:red'>Select Asign Value..</span>`);
-        exit();
+        return;
     }else
     {
+
+        var button = $("#sub");
+        button.text("Wait..");
+        button.prop("disabled", true);
 
         var form_data = new FormData();
         form_data.append('investid', investid);
@@ -216,7 +217,14 @@ function widraw()
         form_data.append('asign', asign);
         form_data.append('pday', pday);
         form_data.append('pmonth', pmonth);
-        form_data.append('file', file);
+        if(path=='')
+        {
+            form_data.append('id', 1);
+        }else
+        {
+            form_data.append('file', file);
+            form_data.append('id', 0);
+        }
         let log=$.ajax({
             url:"ajax/widrawInsert.php",
             method:"POST",
@@ -227,7 +235,9 @@ function widraw()
             {
                 alert(response);
                 searchfull()
-                $('#regdate').val('');
+                button.text("Submit");
+                button.prop("disabled", false);
+                // $('#regdate').val('');
                 $('#regdate1').val('');
                 $('#amt').val('');
                 $('#wamt').val('');
@@ -238,6 +248,7 @@ function widraw()
                 $('#investedamt').html(`<span style='color:green'>Invested Amount..</span>`);
             }
         });
+        // console.log(log);
         // log = $.ajax({
         //     url: 'ajax/widrawInsert.php',
         //     type: "POST",
@@ -270,3 +281,6 @@ function widraw()
      
 
 }
+
+
+// 9035380506

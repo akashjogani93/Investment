@@ -9,20 +9,20 @@
                 width:100%;
                 align-items:center;
             }
-            .img ,iframe
+            .img
             {
-                width:20%;
+                width:10%;
                 height:100px;
                 margin:10px 15px;
             }
         </style>
         <?php require_once("header.php"); ?>
         <script>
-            $("#dyna").text("Gallery");
+            $("#dyna").text("banner");
             tex();
         </script>
         <?php
-            require_once("dbcon.php"); 
+            require_once("dbcon.php");
         ?>
         <div class="content-wrapper">
             <section class="content">
@@ -31,7 +31,7 @@
                         <div class="row">
                             <div class="group-form col-md-12">
                                 <h3>
-                                    <b>Upload Gallery</b>
+                                    <b>Upload Banner</b>
                                 </h3>
                             </div>
                         </div></br>
@@ -40,99 +40,26 @@
                                 <label for="inputEmail3" class="form_label">Function</label>
                                 <select name="cate" id="cate" class="col-sm-4 form-control form-control-sm">
                                     <option value="">Select Function</option>
-
+                                    <option>Bloodcell Kart</option>
+                                    <option>Insurance</option>
+                                    <option>Home</option>
                                 </select>
-                                <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel">Add Functions</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="text" class="form-control" id="function" name="function">
-                                                </div>
-                                            </div></br>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                     <input type="file" class="form-control" name="banner" id="banner"  accept="image/jpeg, image/png" required>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <center><p id="successText" style="margin-top:10px;"></p></center>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Close</button>
-                                            <button type="button" class="btn btn-primary" id="addFunction">Add</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            </div>
+                            <div class="group-form col-md-4">
+                                <label for="inputEmail3" class="form_label">Gallery</label>
+                                <input type="file" class="col-sm-4 form-control form-control-sm gallery" name="files[]" id="path"  accept="image/jpeg, image/png" multiple>
                             </div>
                             <div class="group-form col-md-2">
-                                <button name="submit" class="btn btn-primary col-sm-4 form-control" style="margin-top:25px;" data-toggle="modal" data-target="#staticBackdrop">Add Functions</button>
+                                <button name="submit" class="btn btn-primary col-sm-4 form-control" style="margin-top:25px;" id="add">Add Banner</button>
                             </div>
                         </div></br>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="group-form col-md-8">
-                                        <label for="inputEmail3" class="form_label">Gallery</label>
-                                        <input type="file" class="col-sm-4 form-control form-control-sm gallery" name="path" id="path"  accept="image/jpeg, image/png" required>
-                                    </div>
-                                    <div class="group-form col-md-4">
-                                        <button class="btn btn-primary col-sm-4 form-control addimage" style="margin-top:25px;">Add More</button>
-                                    </div>
-                                </div></br>
-                                <div id="images">
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="group-form col-md-8">
-                                        <label for="inputEmail3" class="form_label">Vidios Url</label>
-                                        <input type="text" class="col-sm-4 form-control form-control-sm url" name="url" id="url">
-                                    </div>
-                                    <div class="group-form col-md-4">
-                                        <button class="btn btn-primary col-sm-4 form-control addurl" style="margin-top:25px;">Add More</button>
-                                    </div>
-                                </div></br>
-                                <div id="vidios">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="group-form col-md-12">
-                            <?php if('reg'=='reg')
-                                {
-                                    ?>
-                                    <center><button name="submit" id="sub" class="btn btn-primary regsub" style="margin-top:25px;">Submit</button></center>
-                                    <center><div id="submited"></div></center>
-                                    <?php
-                                }else
-                                {
-                                    ?>
-                                        <button type="submit" name="update" class="btn btn-danger" style="margin-top:25px;">Update</button>
-                                        <a href="register_customer.php" class="btn btn-primary" style="margin-top:25px;">Back</a>
-                                    <?php
-                                }
-                            ?>
-                        </div>
                     </div>
                     <div class="box box-default">
                         <div class="box-body">
                             <div class="row">
                                 <div class="group-form col-md-12">
                                     <h3>
-                                        <b>View Gallery</b>
+                                        <b>View Banner</b>
                                     </h3>
                                 </div>
                             </div></br>
@@ -141,6 +68,9 @@
                                     <label for="inputEmail3" class="form_label">Function</label>
                                     <select name="cate1" id="cate1" class="col-sm-4 form-control form-control-sm" onchange="funchange()">
                                         <option value="">Select Function</option>
+                                        <option>Bloodcell Kart</option>
+                                        <option>Insurance</option>
+                                        <option>Home</option>
                                     </select>
                                 </div>
                             </div>
@@ -154,98 +84,13 @@
             <script>
                 $(document).ready(function()
                 {
-                    $('#addFunction').click(function()
-                    {
-                       var cate= $('#function').val()
-                       if(cate=='')
-                       {
-                            $('#function').css('border-color','red');
-                            setTimeout(() => {
-                                $('#function').css('border-color','');
-                            }, 2000);
-                            return;
-                       }
-                       var file=$('#banner')[0].files[0];
-                       var formData1 = new FormData();
-                        formData1.append('addFunction', cate);
-                        formData1.append('file', file);
-                        // console.log(file)
-                         let log=$.ajax({
-                            url: 'ajax/upload_movies.php',
-                            type: 'POST',
-                            data: formData1,
-                            dataType: 'json',
-                            processData: false,
-                            contentType: false,
-                            success: function(data) 
-                            {
-                                if(data=='success')
-                                {
-                                    $('#successText').text('Function Successfully Added');
-                                    setTimeout(() => {
-                                        $('#successText').text('');
-                                        $("#close").click();
-                                    }, 2000);
-                                    loade();
-                                    fetchData(0);
-                                }else
-                                {
-                                    $('#successText').text('Function Already Added');
-                                    setTimeout(() => {
-                                        $('#successText').text('');
-                                    }, 2000);
-                                }
-                            }
-                        });
-                    });
-                    loade();
                     fetchData(0);
-
-                    $('.addimage').click(function(e) 
-                    {
-                        e.preventDefault();
-                        $('#images').after(`<div class="row">  
-                                            <div class="group-form col-md-8">
-                                                <label for="inputEmail3" class="form_label">Gallery</label>
-                                                <input type="file" class="col-sm-4 form-control form-control-sm gallery" name="path" id="path"  accept="image/jpeg, image/png" required>
-                                            </div>
-                                            <div class="group-form col-md-4">
-                                                <a class="col-sm-4 btn btn-sm form-control form-control-sm btn-danger remove" style="margin-top:20px;">Remove</a>
-                                            </div>
-                                        </div></br>`);
-                    });
-
-                    $(document).on('click', '.remove', function(e)
-                    {
-                        e.preventDefault();
-                        let row_item = $(this).parent().parent();
-                        $(row_item).remove();
-                    });
-
-                    $('.addurl').click(function(e) 
-                    {
-                        e.preventDefault();
-                        $('#vidios').after(`<div class="row">  
-                                            <div class="group-form col-md-8">
-                                                <label for="inputEmail3" class="form_label">Vidios Url</label>
-                                                <input type="text" class="col-sm-4 form-control form-control-sm url" name="url" id="url">
-                                            </div>
-                                            <div class="group-form col-md-4">
-                                                <a class="col-sm-4 btn btn-sm form-control form-control-sm btn-danger removeurl" style="margin-top:20px;">Remove</a>
-                                            </div>
-                                        </div></br>`);
-                    });
-
-                    $(document).on('click', '.removeurl', function(e)
-                    {
-                        e.preventDefault();
-                        let row_item = $(this).parent().parent();
-                        $(row_item).remove();
-                    });
-
-                    $('#sub').click(function() 
+                    $('#add').click(function()
                     {
                         var cate = $('#cate').val();
+                        var input = $('#path')[0];
+                        var files = input.files;
+
                         if(cate=='')
                         {
                             $('#cate').css('border-color','red');
@@ -254,61 +99,32 @@
                             }, 2000);
                             return;
                         }
-                        var formData = new FormData();
-                        formData.append('cate', cate);
-
-                        var val = [];
-                        let i = 0;
-                        
-                        $('.gallery').each(function(index, item) {
-                        var fileInput = item;
-                            if (fileInput.files.length > 0) 
-                            {
-                                formData.append('images[]', fileInput.files[0]);
-                                formData.append('check', 1);
-                            }else
-                            {
-                                formData.append('check', 0);
-                            }
-                        });
-                        $('.url').each(function(index, item) 
+                        var form_data = new FormData();
+                            form_data.append('cate', cate);
+                        for (var i = 0; i < files.length; i++) 
                         {
-                            if (item.value.length > 0) 
-                            {
-                                formData.append('url[]', item.value);
-                                formData.append('check1', 1);
-                            }else
-                            {
-                                formData.append('check1', 0);
-                            }
-                        });
-                        formData.forEach(function(value, key) {
-                            console.log('Key:', key, 'Value:', value);
-                        });
+                            form_data.append('files[]', files[i]);
+                        }
                         let log=$.ajax({
-                            url: 'ajax/upload_gallery.php',
-                            type: 'POST',
-                            data: formData,
-                            dataType: 'json',
-                            processData: false,
+                            url:"ajax/banner_upload.php",
+                            method:"POST",
+                            data:form_data,
+                            datatype:'json',
                             contentType: false,
+                            processData: false,
                             success: function(response) 
                             {
-                                console.log(response);
-                                if(response=='Added Gallery Successfully')
+                                if(response==0)
                                 {
-                                    alert(response);
-                                    window.location="gallery.php";
+                                    alert('Added Successfully');
+                                    window.location='banner.php';
                                 }else
                                 {
-                                    alert(response);
+                                    alert('Something Went wrong')
                                 }
-                            },
-                            error: function(xhr, status, error) {
-                                console.error(xhr.responseText);
                             }
                         });
-                        console.log(log)
+                        console.log(log);
                     });
                 });
 
@@ -317,61 +133,61 @@
                     var cate1=$('#cate1').val();
                     fetchData(cate1)
                 }
-                function loade()
-                {
-                       
-                        let fun=$.ajax({
-                            url: 'ajax/upload_movies.php',
-                            type: "POST",
-                            datatype:'json',
-                            data:{fetchfun:"fetchfun"},
-                            cache:false,
-                            success:function(data)
-                            {
-                                data1=JSON.parse(data);
-                                let selectElement = $('#cate');
-                                let selectElement1 = $('#cate1');
-                                selectElement.empty();
-                                selectElement1.empty();
-                                selectElement.append($('<option>', {
-                                    value: '',
-                                    text: 'Select Function'
-                                }));
-                                selectElement1.append($('<option>', {
-                                    value: 'All',
-                                    text: 'Select Function'
-                                }));
-                                for(i=0;i<data1.length;i++)
-                                {
-                                    selectElement.append($('<option>', {
-                                        value: data1[i].id,
-                                        text: data1[i].function
-                                    }));
-                                    selectElement1.append($('<option>', {
-                                        value: data1[i].id,
-                                        text: data1[i].function
-                                    }));
-                                }
-                            }
-                        });
+                    // function loade()
+                    // {
+                    //     let fun=$.ajax({
+                    //         url: 'ajax/upload_movies.php',
+                    //         type: "POST",
+                    //         datatype:'json',
+                    //         data:{fetchfun:"fetchfun"},
+                    //         cache:false,
+                    //         success:function(data)
+                    //         {
+                    //             data1=JSON.parse(data);
+                    //             let selectElement = $('#cate');
+                    //             let selectElement1 = $('#cate1');
+                    //             selectElement.empty();
+                    //             selectElement1.empty();
+                    //             selectElement.append($('<option>', {
+                    //                 value: '',
+                    //                 text: 'Select Function'
+                    //             }));
+                    //             selectElement1.append($('<option>', {
+                    //                 value: 'All',
+                    //                 text: 'Select Function'
+                    //             }));
+                    //             for(i=0;i<data1.length;i++)
+                    //             {
+                    //                 selectElement.append($('<option>', {
+                    //                     value: data1[i].id,
+                    //                     text: data1[i].function
+                    //                 }));
+                    //                 selectElement1.append($('<option>', {
+                    //                     value: data1[i].id,
+                    //                     text: data1[i].function
+                    //                 }));
+                    //             }
+                    //         }
+                    //     });
                         
-                    }
+                    // }
                     function fetchData(ckeck)
                     {
                         let log=$.ajax({
-                            url: 'ajax/upload_gallery.php',
+                            url: 'ajax/banner_upload.php',
                             type: "POST",
-                            data:{submit:"submit",cat:ckeck},
+                            data:{submit:"submit",functio:ckeck},
                             datatype:'json',
                             cache:false,
                             success:function(data)
                             {
                                 data1=JSON.parse(data);
+                                console.log(data1);
                                 $('#galleryData').empty();
                                 var appendData='';
                                 $.each(data1, function(index, item) 
                                 {
-                                    var galleryArray = item.gallery.split(',');
+                                    var galleryArray = item.image.split(',');
                                     var imageHTML = '';
                                     if (galleryArray.length > 0) 
                                     {
@@ -382,44 +198,20 @@
                                     {
                                         imageHTML = '';
                                     }
-
-                                    var vidioArra = item.urls;
-                                    var vidioHTML = '';
-
-                                    if (vidioArra.length > 0) 
-                                    {
-                                        var vidioArray = item.urls.split(',');
-                                        $.each(vidioArray, function(index, url) 
-                                        {
-                                            var embedUrl = url.replace('/watch?v=', '/embed/');
-                                            var videoId = url.match(/(?:v=)([\w-]+)/)[1];
-                                            var embedUrl = `https://www.youtube.com/embed/${videoId}`;
-                                            vidioHTML += `<iframe src="${embedUrl}" frameborder="0" allowfullscreen></iframe>`;
-
-                                        });
-                                    }else
-                                    {
-                                        vidioHTML = '';
-                                    }
-
                                     appendData=`<div class="row">
                                                     <div class="col-md-12">
-                                                        <center><h3>Function-${item.category}</h3></center>
+                                                        <center><h3>Banner-${item.cate}</h3></center>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-12">
                                                         <div class="gallery-images">
                                                             ${imageHTML}
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        ${vidioHTML}
-                                                    </div>
                                                 </div>`;
                                     $('#galleryData').append(appendData);
                                 });
-                                
                             }
                         });
                     }
@@ -427,3 +219,6 @@
         </div>
     </div>
 </body>
+
+
+<!-- ../img/insuGallery/1.jpg,../img/insuGallery/2.jpg,../img/insuGallery/3.jpg,../img/insuGallery/4.jpg,../img/insuGallery/5.jpg,../img/insuGallery/6.jpg,../img/insuGallery/7.jpg,../img/insuGallery/8.jpg,../img/insuGallery/9.jpg,../img/insuGallery/10.jpg,../img/insuGallery/11.jpg,../img/insuGallery/12.jpg,../img/insuGallery/13.jpg,../img/insuGallery/14.jpg,../img/insuGallery/15.jpg,../img/insuGallery/16.jpg,../img/insuGallery/17.jpg,../img/insuGallery/18.jpg,../img/insuGallery/19.jpg,../img/insuGallery/20.jpg,../img/insuGallery/21.jpg,../img/insuGallery/22.jpg -->

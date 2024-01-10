@@ -12,13 +12,13 @@
             .table-striped>tbody>tr:nth-child(odd)>td, 
             .table-striped>tbody>tr:nth-child(odd)>th 
             {
-                background-color: #E5DCC3;
+                /* background-color: #E5DCC3; */
                 padding:15px; 
             }
             .table-striped>tbody>tr:nth-child(even)>td, 
             .table-striped>tbody>tr:nth-child(even)>th 
             {
-                background-color: #C9CCD5;
+                /* background-color: #C9CCD5; */
                 padding:15px;  
             }
             
@@ -48,7 +48,7 @@
             
         ?>
         <script>
-            $("#dyna").text("Investment Details");
+            $("#dyna").text("Current Month Payment");
             tex();
         </script>
         <script type="text/javascript">
@@ -86,7 +86,7 @@
                                     </div>
                                     <div class="group-form col-md-1">
                                         <label for="inputEmail3" style="color:white;" class="form_label">..</label>
-                                        <button id="search1" class="btn btn-primary">Load Data</button>
+                                        <button id="search1" class="btn btn-primary">Search</button>
                                     </div>
                                     <div class="group-form col-md-1">
                                         <label for="inputEmail3" style="color:white;" class="form_label">..</label>
@@ -102,7 +102,7 @@
                         <div class="row">
                             <div class="group-form col-md-12">
                                 <h3>
-                                    <b>  Current Month Details</b>
+                                    <b>Current Month Details</b>
                                 </h3>
                             </div>
                         </div></br>
@@ -135,8 +135,8 @@
             var app = new Vue({
                 el: '#app',
                 data: {
-                    limit: 500,
-                    start: -500,
+                    limit: 200,
+                    start: -200,
                     t: "true",
                     action: 'inactive',
                     records: [],
@@ -161,7 +161,7 @@
                             cache: false,
                             success: function(data) 
                             {
-                                console.log(data)
+                                // console.log(data)
                                 if (data.length === 0) 
                                 {
                                     self.action = 'active';
@@ -170,7 +170,7 @@
                                     $('#example').DataTable({
                                         "paging": false,
                                         searching:false,
-                                        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                                        dom: "<'row'<'col-sm-4 text-left'B><'col-sm-4'f>>tp",
                                         buttons: ['csv', 'excel'],
                                     });
                                 } else {
@@ -309,7 +309,7 @@
                     $('#example').DataTable({
                         "paging": false,
                         searching: false,
-                        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                        dom: "<'row'<'col-sm-4 text-center'B><'col-sm-4'f>>tp",
                         buttons: ['csv', 'excel'],
                     });
                 }

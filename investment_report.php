@@ -10,16 +10,16 @@
             .table-striped>tbody>tr:nth-child(odd)>td, 
             .table-striped>tbody>tr:nth-child(odd)>th 
             {
-                background-color: #E5DCC3;
+                /* background-color: #E5DCC3; */
                 padding:15px; 
             }
             .table-striped>tbody>tr:nth-child(even)>td, 
             .table-striped>tbody>tr:nth-child(even)>th 
             {
-                background-color: #C9CCD5;
+                /* background-color: #C9CCD5; */
                 padding:15px;  
             }
-            table.dataTable thead {background-color:#D3E4CD}
+            /* table.dataTable thead {background-color:#D3E4CD} */
             button.dt-button.buttons-csv.buttons-html5 {
                 background-color: #4AA96C;
                 color: white;
@@ -129,7 +129,7 @@
                                         </div>
                                         <div class="group-form col-md-1">
                                             <label for="inputEmail3" style="color:white;"class="form_label">..</label>
-                                            <a type="button" id="search1" class="btn btn-primary">Load Data</a>
+                                            <a type="button" id="search1" class="btn btn-primary">Search</a>
                                         </div>
                                         <div class="group-form col-md-1">
                                             <label for="inputEmail3" style="color:white;" class="form_label">..</label>
@@ -319,7 +319,7 @@
                         "lengthMenu": [[100, -1], [100, "All"]],
                         searching:false,
                         dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                        buttons: ['csv', 'excel', 'pdf', 'print'],
+                        buttons: ['csv', 'excel'],
                         "bProcessing": true,
                         "serverSide": true,
                         "ajax":{
@@ -361,7 +361,7 @@
                         "lengthMenu": [[100, -1], [100, "All"]],
                         searching:false,
                         dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                        buttons: ['csv', 'excel', 'pdf', 'print'],
+                        buttons: ['csv', 'excel'],
                         "bProcessing": true,
                         "serverSide": true,
                         "ajax":{
@@ -405,7 +405,7 @@
                         "lengthMenu": [[100, -1], [100, "All"]],
                         searching:false,
                         dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                        buttons: ['csv', 'excel', 'pdf', 'print'],
+                        buttons: ['csv', 'excel'],
                         "bProcessing": true,
                         "serverSide": true,
                         "ajax":{
@@ -455,7 +455,7 @@
                         "lengthMenu": [[100, -1], [100, "All"]],
                         searching:false,
                         dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                        buttons: ['csv', 'excel', 'pdf', 'print'],
+                        buttons: ['csv', 'excel'],
                         "bProcessing": true,
                         "serverSide": true,
                         "ajax":{
@@ -504,7 +504,7 @@
                         "lengthMenu": [[100, -1], [100, "All"]],
                         searching:false,
                         dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                        buttons: ['csv', 'excel', 'pdf', 'print'],
+                        buttons: ['csv', 'excel'],
                         "bProcessing": true,
                         "serverSide": true,
                         "ajax":{
@@ -543,7 +543,7 @@
                         "lengthMenu": [[100, -1], [100, "All"]],
                         searching:false,
                         dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                        buttons: ['csv', 'excel', 'pdf', 'print'],
+                        buttons: ['csv', 'excel'],
                         "bProcessing": true,
                         "serverSide": true,
                         "ajax":{
@@ -587,7 +587,7 @@
                         "lengthMenu": [[100, -1], [100, "All"]],
                         searching:false,
                         dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                        buttons: ['csv', 'excel', 'pdf', 'print'],
+                        buttons: ['csv', 'excel'],
                         "bProcessing": true,
                         "serverSide": true,
                         "ajax":{

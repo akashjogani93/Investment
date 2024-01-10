@@ -9,7 +9,7 @@
         <?php require_once("header.php"); ?>
         <div class="content-wrapper">
             <script>
-                $("#dyna").text("All Record");
+                $("#dyna").text("TOTAL AMOUNT DETAIL");
             </script>
             <section class="content">
                 <div class="box">
@@ -61,7 +61,7 @@
                 success: function(data)
                 { 
                     var num = Number(data);
-                    $('#invest').html(num+'/-');
+                    $('#invest').html(num.toFixed(2)+'/-');
                     var words = convertNumberToWords(num);
                     // $('#investinwords').html(words);
                     // console.log(log);
@@ -76,7 +76,7 @@
                 success: function(data)
                 { 
                     var num = Number(data);
-                    $('#withdraw').html(num+'/-');
+                    $('#withdraw').html(num.toFixed(2)+'/-');
                     var words = convertNumberToWords(num);
 
                     // $('#withdrawinwords').html(words);

@@ -97,7 +97,7 @@ if(isset($_POST["submit"]))
         $temp[4]=$row[4];
         if($row[7]=='')
         {
-            $temp[5]='Invalid';
+            $temp[5]='Not Uploaded';
         }else
         {
             $path='./ajax/'.$row[7];

@@ -127,8 +127,8 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>Cust-Id</th>
-                                    <th>Member Name</th>
+                                    <th>cid</th>
+                                    <th>Customer Name</th>
                                     <th>Total Investment</th>
                                     <th>Withdrawal</th>
                                     <th>Current Amount</th>

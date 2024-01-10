@@ -8,11 +8,12 @@ if(isset($_POST['cid']))
     $to_date = $_POST['to_date'];
     $invest = $_POST['invest'];
     $year = $_POST['year'];
-    $q="INSERT INTO `fd`(`cid`,`amount`,`date`,`year`,`todate`)VALUES('$cid','$invest','$fddate','$year','$to_date')";
+    $int = $_POST['int'];
+    $mamount = $_POST['mamount'];
+    $q="INSERT INTO `fd`(`cid`,`amount`,`date`,`year`,`todate`,`interest`,`mamount`)VALUES('$cid','$invest','$fddate','$year','$to_date','$int','$mamount')";
     $conform=mysqli_query($conn,$q);
-    echo 'invested';
+    echo 'FD Added Successfully';
 }
-
 
 if(isset($_POST['submit']))
 {
@@ -24,8 +25,10 @@ if(isset($_POST['submit']))
             <tr>
                 <td><?php echo $row['fd_id']; ?></td>
                 <td><?php echo $row['full']; ?></td>
-                <td><?php echo $row['amount']; ?></td>
                 <td><?php echo $row['year']; ?></td>
+                <td><?php echo $row['amount']; ?></td>
+                <td><?php echo $row['interest']; ?></td>
+                <td><?php echo $row['mamount']; ?></td>
                 <td><?php echo $row['date']; ?></td>
                 <td><?php echo $row['todate']; ?></td>
             </tr>

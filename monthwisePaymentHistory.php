@@ -10,13 +10,13 @@
             .table-striped>tbody>tr:nth-child(odd)>td, 
             .table-striped>tbody>tr:nth-child(odd)>th 
             {
-                background-color: #E5DCC3;
+                /* background-color: #E5DCC3; */
                 padding:15px; 
             }
             .table-striped>tbody>tr:nth-child(even)>td, 
             .table-striped>tbody>tr:nth-child(even)>th 
             {
-                background-color: #C9CCD5;
+                /* background-color: #C9CCD5; */
                 padding:15px;  
             }
             
@@ -105,12 +105,12 @@
                         <div class="col-md-12">
                                 <div class="box-body">
                                     <div class="row">
-                                        <div class="group-form col-md-2">
+                                        <!-- <div class="group-form col-md-2">
                                             <label for="inputEmail3" class="form_label">Apply Filters</label>
                                             <select class="col-sm-4 form-control form-control-sm" id="select" name="option">
                                                 <option>Search By Date</option>
                                             </select>                
-                                        </div>
+                                        </div> -->
                                         <!-- <div class="group-form col-md-4" id="namewise">
                                             <label for="inputEmail3" class="form_label">Search Name</label>
                                             <input  type="text" class="col-sm-4 form-control form-control-sm full" name="full" id="full" placeholder="Search Full Name" required="required">
@@ -143,7 +143,7 @@
                                         <div class="group-form col-md-1">
                                             <label for="inputEmail3" style="color:white;" class="form_label">..</label>
                                             <!-- <a type="button" id="search1" class="btn btn-primary">Load Data</a> -->
-                                            <button id="search1" class="btn btn-primary">Load Data</button>
+                                            <button id="search1" class="btn btn-primary">Search</button>
                                         </div>
                                         <div class="group-form col-md-1">
                                             <label for="inputEmail3" style="color:white;" class="form_label">..</label>
@@ -167,7 +167,7 @@
                         <div class="row">
                             <div class="group-form col-md-12">
                                 <h3>
-                                    <b> Investment Details</b>
+                                    <b>Payment History</b>
                                 </h3>
                             </div>
                         </div></br>
@@ -234,7 +234,7 @@
                                     $('#example').DataTable({
                                         "paging": false,
                                         searching:false,
-                                        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                                        dom: "<'row'<'col-sm-4 text-center'B><'col-sm-4'f>>tp",
                                         buttons: ['csv', 'excel'],
                                     });
                                 }else 
@@ -277,7 +277,7 @@
                                     $('#example1').DataTable({
                                         "paging": false,
                                         searching:false,
-                                        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                                        dom: "<'row'<'col-sm-4 text-center'B><'col-sm-4'f>>tp",
                                         buttons: ['csv', 'excel'],
                                     });
                                 } else {
@@ -331,7 +331,7 @@
                                         <th>Cust-ID</th>
                                         <th>Full Name</th>
                                         <th>Payment Amount</th>
-                                        <th>Place</th>
+                                        <th>Address</th>
                                         <th>Payment Date</th>
                                         <th>Bank Name</th>
                                         <th>Account No</th>
@@ -413,7 +413,7 @@
                     $('#example').DataTable({
                         "paging": false,
                         searching: false,
-                        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                        dom: "<'row'<'col-sm-4 text-center'B><'col-sm-4'f>>tp",
                         buttons: ['csv', 'excel'],
                     });
                 }

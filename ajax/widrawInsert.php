@@ -13,8 +13,18 @@ $ramt = $_POST['ramt'];
 $asign = $_POST['asign'];
 $pday = $_POST['pday'];
 $pmonth = $_POST['pmonth'];
-$file = $_FILES['file'];
-$bond1 = upload_Profile($file,"withdra-pdf/");
+
+$id = $_POST['id'];
+
+if($id==0)
+{
+    $file = $_FILES['file'];
+    $bond1 = upload_Profile($file,"withdra-pdf/");
+}else
+{
+    $bond1='';
+}
+
 
    
 

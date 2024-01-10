@@ -12,12 +12,8 @@
         {
           return $days+1;
         }
-        
     }
-
-
 ?>
-
        <?php 
        if(isset($_POST['full1']))
         {
@@ -28,7 +24,9 @@
             $data="";
             $today=date("d-m-Y");
             $srch_date=date_diff1($today,$start);
-            $query="SELECT `invest`.*,`register`.`bank`,`register`.`account`,`register`.`cid` FROM `invest`,`register` WHERE `invest`.`cid`='$full' AND `invest`.`cid`=`register`.`cid`  ORDER BY `invest`.`id`";
+
+            $query="SELECT `invest`.*,`register`.`bank`,`register`.`account`,`register`.`cid` FROM `invest`,`register` WHERE `invest`.`cid`='$full' AND `invest`.`cid`=`register`.`cid` AND `invest`.`regdate`<='$end' ORDER BY `invest`.`id`";
+
             $retval=mysqli_query($conn, $query);
             $result = mysqli_num_rows($retval);
             if($result>0)
@@ -77,23 +75,23 @@
                                 <td>'.$bank.'</td>
                                 <td>'.$account.'</td>
                                 <td>'.date("d-m-Y",strtotime($regdate)).'</td>
-                                <td>'.$invest.'</td>
+                                <td>'.number_format($invest, 2).'</td>
                                 <td>'.$asign.'</td>
-                                <td>'.$pday.'</td>
+                                <td>'.number_format($pday, 2).'</td>
                                 <td>'.$days.'</td>
-                                <td>'.$totalinte.'</td>
-                                <td>'.$pmonth.'</td>
+                                <td>'.number_format($totalinte, 2).'</td>
+                                <td>'.number_format($pmonth, 2).'</td>
                                 <td>'.$pmode.'</td>';
                                 if($img=='')
                                 {
-                                    $data.='<td>Invalid</td>';
+                                    $data.='<td>Not Uploaded</td>';
                                 }else
                                 {
                                     $data.='<td><a href="ajax/'.$img.'" target="_blank" class="btn btn-info">Proof</a></td>';
                                 }
                                 if($path=='')
                                 {
-                                    $data.='<td>Invalid</td></tr>';
+                                    $data.='<td>Not Uploaded</td></tr>';
                                 }
                                 else
                                 {
@@ -101,7 +99,11 @@
                                 }
                 }  
                 echo json_encode($data);
-            } 
+            }
+            // else
+            // {
+            //     echo '<script>alert("No Investment!");</script>';
+            // }
         }
             
         ?>

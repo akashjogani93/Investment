@@ -10,16 +10,16 @@
             .table-striped>tbody>tr:nth-child(odd)>td, 
             .table-striped>tbody>tr:nth-child(odd)>th 
             {
-                background-color: #E5DCC3;
+                /* background-color: #E5DCC3; */
                 padding:15px; 
             }
             .table-striped>tbody>tr:nth-child(even)>td, 
             .table-striped>tbody>tr:nth-child(even)>th 
             {
-                background-color: #C9CCD5;
+                /* background-color: #C9CCD5; */
                 padding:15px;  
             }
-            table.dataTable thead {background-color:#D3E4CD}
+            /* table.dataTable thead {background-color:blue; color:white;} */
         </style>
         <?php require_once("header.php"); ?>
         <script>
@@ -81,7 +81,7 @@
                                         </div>
                                         <div class="group-form col-md-1">
                                             <label for="inputEmail3" style="color:white;" class="form_label">..</label>
-                                            <a type="button" id="search" class="btn btn-primary">Load Data</a>
+                                            <a type="button" id="search" class="btn btn-primary">Search</a>
                                         </div>
                                         <div class="group-form col-md-1">
                                             <label for="inputEmail3" style="color:white;" class="form_label">..</label>
@@ -107,7 +107,7 @@
                                 <thead>
                                     <tr>
                                         <th>Action</th>
-                                        <th>Id</th>
+                                        <th>Cust Id</th>
                                         <th>Full Name</th>
                                         <th>Address</th>
                                         <th>Mobile</th>
@@ -148,19 +148,19 @@
         {
             let log=$('#employee_grid').DataTable({
                     "lengthMenu": [[100, -1], [100, "All"]],
-                    dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                    dom: "<'row'<'col-sm-2'l><'col-sm-4 text-left'B><'col-sm-1'f>>tp",
                     buttons: [ {
                                 extend: 'excel',
                                 exportOptions: {
-                                    columns: ':visible:not(:first-child)' // Exclude the first column from the export
+                                    columns: ':visible:not(:first-child)'
                                 }
                             }],
                     "bProcessing": true,
                     "serverSide": true,
                     "searching": false,
                     "ajax":{
-                        url :"ajax/load_customers.php", // json datasource
-                        type: "post",  // type of method ,GET/POST/DELETE
+                        url :"ajax/load_customers.php",
+                        type: "post",
                         datatype: 'json',
                         data:{submit:'Submit',d1:'not_date'},
                         error: function()
@@ -212,7 +212,7 @@
                         buttons: [ {
                                 extend: 'excel',
                                 exportOptions: {
-                                    columns: ':visible:not(:first-child)' // Exclude the first column from the export
+                                    columns: ':visible:not(:first-child)'
                                 }
                             }],
                         "bProcessing": true,
@@ -250,15 +250,15 @@
                         buttons: [ {
                                 extend: 'excel',
                                 exportOptions: {
-                                    columns: ':visible:not(:first-child)' // Exclude the first column from the export
+                                    columns: ':visible:not(:first-child)'
                                 }
                             }],
                         "bProcessing": true,
                         "serverSide": true,
                         "searching": false,
                         "ajax":{
-                            url :"ajax/load_customers.php", // json datasource
-                            type: "post",  // type of method ,GET/POST/DELETE
+                            url :"ajax/load_customers.php",
+                            type: "post",
                             datatype: 'json',
                             data:{submit:'Submit',d1:d1,d2:d2},
                             error: function(){

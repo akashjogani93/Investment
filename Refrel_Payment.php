@@ -9,16 +9,16 @@
         .table-striped>tbody>tr:nth-child(odd)>td, 
         .table-striped>tbody>tr:nth-child(odd)>th 
         {
-            background-color: #E5DCC3;
+            /* background-color: #E5DCC3; */
             padding:15px; 
         }
         .table-striped>tbody>tr:nth-child(even)>td, 
         .table-striped>tbody>tr:nth-child(even)>th 
         {
-            background-color: #C9CCD5;
-            padding:15px;  
+            /* background-color: #C9CCD5; */
+            padding:15px;
         }
-        table.dataTable thead {background-color:#D3E4CD}
+        /* table.dataTable thead {background-color:#D3E4CD} */
     </style>
 <?php require_once("header.php");   ?>
     <script>
@@ -50,7 +50,7 @@
                         <form class="form-horizontal" id="addform" method="POST">
                             <div class="box-body">
                                 <div class="row">
-                                    <div class="group-form col-md-2">
+                                    <div class="group-form col-md-2" style="display: none;">
                                         <label for="inputEmail3" class="form_label">Apply Filters</label>
                                         <select class="col-sm-4 form-control form-control-sm" id="select" name="option">
                                             <option>Search By Name</option>
@@ -87,7 +87,7 @@
                                     </div>
                                     <div class="group-form col-md-1">
                                         <label for="inputEmail3" style="color:white;" class="form_label">..</label>
-                                        <a type="button" id="search1" class="btn btn-primary">Load Data</a>
+                                        <a type="button" id="search1" class="btn btn-primary">Search</a>
                                     </div>
                                     <div class="group-form col-md-1">
                                         <label for="inputEmail3" style="color:white;" class="form_label">..</label>
@@ -263,7 +263,7 @@
             `,
             data() {
                 return {
-                limit: 50, // Change the limit to 100 for displaying 100 rows at a time
+                limit: 50,
                 start: -50,
                 action: 'inactive',
                 intervalId: null,
@@ -273,24 +273,24 @@
             methods: {
                 load_customer_data() {
                 const self = this;
-                self.loading = true; // Show loading indicator
+                self.loading = true;
                 $.ajax({
                     url: 'ajax/ReferalIndividual.php',
                     method: 'POST',
                     data: { submit: 'submit', limit: self.limit, start: self.start },
                     cache: false,
                     success: function (data) {
-                    $('#example1').append(data); // Update the table ID to "example1"
+                    $('#example1').append(data);
                     console.log(data);
                     if (data == 0) {
                         self.action = 'active';
                     } else {
                         self.action = 'inactive';
                     }
-                    self.loading = false; // Hide loading indicator
+                    self.loading = false;
                     },
                     error: function () {
-                    self.loading = false; // Hide loading indicator in case of error
+                    self.loading = false;
                     }
                 });
                 },
@@ -304,8 +304,7 @@
                     clearInterval(self.intervalId);
                     $(document.body).css({ cursor: 'default' });
                     alert('No more records found!');
-                    self.loading = false; // Hide loading indicator
-                    // Call other methods as needed
+                    self.loading = false;
                     }
                 }, 300);
                 },
@@ -363,20 +362,20 @@
 
         $('#search1').click(function()
         {
-                var name=$('#full1').val();
-                $.ajax({
-                    url:"ajax/ReferalIndividual.php",
-                   method:"POST",
-                   data:{submit:"name", name:name},
-                   cache:false,
-                   success:function(data)
-                   {
-                        $('#tablepdf').hide();
-                        $('#tablepdf2').show();
-                       $('#mytable2').html(data);
-                       loading1();
-                   }
-               });
+            var name=$('#full1').val();
+            $.ajax({
+                url:"ajax/ReferalIndividual.php",
+                method:"POST",
+                data:{submit:"name", name:name},
+                cache:false,
+                success:function(data)
+                {
+                    $('#tablepdf').hide();
+                    $('#tablepdf2').show();
+                    $('#mytable2').html(data);
+                    loading1();
+                }
+            });
         });
         $('#refre').click(function()
         {

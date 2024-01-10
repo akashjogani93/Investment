@@ -218,7 +218,7 @@
                         </div>
                         <div class="box-footer">
                             <center>
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" id="upp" class="btn btn-primary">Update</button>
                             </center>
                         </div>
                     </form>
@@ -318,8 +318,13 @@
             });
         </script>
         <script>
-            $("#form").on('submit',(function(e){
+            $("#form").on('submit',(function(e)
+            {
                 e.preventDefault();
+
+                var button = $("#upp");
+                    button.text("Updatting");
+                    button.prop("disabled", true);
                 var cid = $('#full1').val();
                 // get all referals
                 var vals = [];
@@ -374,6 +379,8 @@
                             success: function(response) 
                             {
                                 alert(response)
+                                button.text("Submit");
+                                button.prop("disabled", false);
                                 window.history.back();
                                 // $('#full').val('');
                                 // $('#full1').val('');
@@ -394,7 +401,6 @@
                                 // $('.permkeys').val('');
                                 // $('#pmode').val('');
                                 // $('#screen').val('');
-                                
                             }
                         });
                     }

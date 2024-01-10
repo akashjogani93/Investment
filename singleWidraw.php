@@ -58,10 +58,7 @@
                         $("#full1").val(ui.item.value);
                         $("#full").val(ui.item.label);
                 }
-                    
                 });
-                
-                
             });
         </script>
         <script type="text/javascript" src="js/singleWithdra.js"></script>
@@ -74,7 +71,6 @@
                 <div class="box box-default">
                     <div class="row">
                         <div class="col-md-12">
-                            <!-- <form class="form-horizontal" id="addform" action="store_insert.php" method="POST"> -->
                                 <div class="box-body">
                                     <div class="row">
                                         <div class="form-group col-md-8 searchpad">
@@ -91,7 +87,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            <!-- </form> -->
                         </div>
                     </div>
                 </div>
@@ -122,19 +117,17 @@
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" id="wamtlable" class="form_label">Withdraw Amount:</label>
                                         <input type="text" class="col-sm-4 form-control form-control-sm wamt investone" name="wamt" id="wamt"
-                                            placeholder="Widraw Amount" pattern="[0-9]{10}">
+                                            placeholder="Withdraw Amount" pattern="[0-9]{10}">
                                             
                                 </div>
                                 <div class="group-form col-md-2">
                                     <label for="inputEmail3" class="form_label">Withdraw Date</label>
-                                    <input type="date" class="col-sm-4 form-control form-control-sm" name="regdate" id="regdate" placeholder="Widraw Date" required>
+                                    <input type="date" class="col-sm-4 form-control form-control-sm" name="regdate" id="regdate" placeholder="Withdraw Date" required>
                                 </div>
                                 <div class="group-form col-md-2">
                                     <label for="inputEmail3" class="form_label">Remaining Amount:</label>
                                         <input type="text" class=" col-sm-4 form-control form-control-sm" readonly name="ramt" id="ramt"
                                             placeholder="Remaining Amount">
-
-                                    
                                 </div>
                             </div></br>
                             <div class="row">
@@ -156,7 +149,8 @@
                                 </div>
                                 <div class="group-form col-md-2">
                                     <label for="inputEmail3" class="form_label">Agreement:</label>
-                                    <input type="file" class="form-control form-control-smss" placeholder="" name="agreement" id="agreement" accept=".png, .jpeg, .jpg"> 
+                                    <!-- <input type="file" class="form-control form-control-smss" placeholder="" name="agreement" id="agreement" accept=".png, .jpeg, .jpg"> -->
+                                    <input type="file" class="form-control form-control-smss" placeholder="" name="agreement" id="agreement" accept=".jpg, .jpeg, .png, .gif, .pdf"> 
                                 </div>  
                                 <div class="group-form col-md-2">
                                     <button onclick="widraw()" id="sub" class="btn btn-info col-sm-4 form-control form-control-sm" style="margin-top:25px;">Withdraw</button>
@@ -190,12 +184,12 @@
                             
                             </tbody>
                         </table>
-                        <center>
+                        <!-- <center>
                             <div id="dis_loader">
                                 <div class="loader"><div></div><div></div><div></div></div>
                                 <div>First Search Name..<div>
                             </div>
-                        </center>
+                        </center> -->
                     </div>
                 </div>
             </section>

@@ -8,17 +8,17 @@
             .table-striped>tbody>tr:nth-child(odd)>td, 
             .table-striped>tbody>tr:nth-child(odd)>th 
             {
-                background-color: #E5DCC3;
+                /* background-color: #E5DCC3; */
                 padding:15px; 
             }
             .table-striped>tbody>tr:nth-child(even)>td, 
             .table-striped>tbody>tr:nth-child(even)>th 
             {
-                background-color: #C9CCD5;
+                /* background-color: #C9CCD5; */
                 padding:15px;
             }
             
-            table.dataTable thead {background-color:#D3E4CD}
+            /* table.dataTable thead {background-color:#D3E4CD} */
 
             div.dataTables_wrapper {
                 position: relative;
@@ -98,15 +98,14 @@
                                         <div class="group-form col-md-3">
                                             <label for="inputEmail3" class="form_label">Total Interest</label>
                                             <input type="text" class="form-control" name="totalint"  id="totalint"
-                                                    placeholder="Registration Date" readonly>
+                                                    placeholder="Total Interest" readonly>
                                         </div>
                                         <div class="group-form col-md-3">
                                             <label for="inputEmail3" class="form_label">Total Month Amount</label>
                                             <input type="text" class="form-control" name="regdate1"  id="regdate1"
-                                                    placeholder="Registration Date"  readonly>
+                                                    placeholder="Total Amount"  readonly>
 
                                         </div>
-                                        
                                     </div> 
                                 </div>
                             </form>
@@ -126,7 +125,7 @@
                             <thead>
                                 <tr>
                                     <th>Action</th>
-                                    <th>Sl NO</th>
+                                    <th>Sl.No</th>
                                     <th>Bank</th>
                                     <th>Account No</th>
                                     <th>Invest Date</th>
@@ -163,12 +162,12 @@
                             </tbody>
                         </table>
                         <!-- <center><div class="loader"></div></center> -->
-                        <center>
+                        <!-- <center>
                             <div class="dis_loader">
                                 <div class="loader"><div></div><div></div><div></div></div>
                                 <div>First Search Name..<div>
                             </div>
-                        </center>
+                        </center> -->
                     </div>
                 </div>
                 <div class="box">
@@ -213,12 +212,12 @@
                             </tbody>
                         </table>
                         <!-- <center><div class="loader"></div></center> -->
-                        <center>
+                        <!-- <center>
                             <div class="dis_loader">
                                 <div class="loader"><div></div><div></div><div></div></div>
                                 <div>First Search Name..<div>
                             </div>
-                        </center>
+                        </center> -->
                     </div>
                 </div>
             </section>
@@ -228,9 +227,9 @@
     <script>
          function editupdate(cid)
         {
-            if(confirm("Are you sure?")==true){
+            // if(confirm("Are you sure?")==true){
                 location = "investment_edit.php?cid="+cid;
-            }
+            // }
         }
     </script>
         
