@@ -68,6 +68,9 @@
             .deposit-box {
                 margin: 0 29px;
             }
+            .panel-default>.panel-heading {
+                 margin: 0 18px;
+            }
         </style>
         <?php
         //session_start();
@@ -142,15 +145,15 @@
                                 <div class="panel-heading">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <center><h3 class="panel-title">Month Wise Investment And Withdrawal Amount</h3>
+                                            <center><h3 class="panel-title">Year Wise Investment And Withdrawal Amount</h3>
                                                 </br>
                                                 <select name="year" class="form-control" id="year" style="width:25%;">
                                                     <?php
-                                                        $query ="SELECT DISTINCT `year` FROM `invest` ORDER BY `year` DESC";
+                                                        $query = "SELECT DISTINCT EXTRACT(YEAR FROM regdate) AS year1 FROM `invest` ORDER BY `year1` DESC";
                                                         $exe=mysqli_query($conn,$query);
                                                         while($row=mysqli_fetch_array($exe))
                                                         {
-                                                            echo '<option value="'.$row["year"].'">'.$row["year"].'</option>';
+                                                            echo '<option value="'.$row["year1"].'">'.$row["year1"].'</option>';
                                                         }
                                                     ?>
                                                 </select>

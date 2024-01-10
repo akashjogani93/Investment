@@ -214,21 +214,17 @@
                                     <div id="msg"></div>
                                 </div>
                                 <div class="group-form col-md-4">
-                                    <label for="inputEmail3" class="form_label">Bank Name *</label>
-                                    <input type="text" class="col-sm-4 form-control form-control-sm" value="<?php echo $bank;?>" name="bank" id="bank" placeholder="Type Here..." required>    
-                                </div>
-                                <div class="group-form col-md-4">
-                                    <label for="inputEmail3" class="form_label">Nominee *</label>
-                                    <input type="text" class=" col-sm-4 form-control form-control-sm" value="<?php echo $nominee;?>" name="nom" id="nom" placeholder="Type Here..." required>
-                                </div>
-                            </div></br>
-                            <div class="row">
-                                <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">IFSC Code *</label>
                                         <input type="text" class="col-sm-4 form-control form-control-sm ifsc" value="<?php echo $ifsc;?>" name="ifsc" id="ifsc"
                                             placeholder="Type Here..." required>
                                         <div id="ifsc_valid"></div>
                                 </div>
+                                <div class="group-form col-md-4">
+                                    <label for="inputEmail3" class="form_label">Bank Name *</label>
+                                    <input type="text" class="col-sm-4 form-control form-control-sm" value="<?php echo $bank;?>" name="bank" id="bank" placeholder="Type Here..." required>    
+                                </div>
+                            </div></br>
+                            <div class="row">
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Branch Name *</label>
                                         <input type="text" class=" col-sm-4 form-control form-control-sm" value="<?php echo $branch;?>" name="branch" id="branch"
@@ -237,11 +233,13 @@
                                     
                                 </div>
                                 <div class="group-form col-md-4">
+                                    <label for="inputEmail3" class="form_label">Nominee *</label>
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm" value="<?php echo $nominee;?>" name="nom" id="nom" placeholder="Type Here..." required>
+                                </div>
+                                <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Relationship *</label>
                                         <input type="text" class=" col-sm-4 form-control form-control-sm" value="<?php echo $relation;?>" name="rel" id="rel"
                                             placeholder="Type Here..." required>
-
-                                    
                                 </div>
                             </div></br>
                             <?php 

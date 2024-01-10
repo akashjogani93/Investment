@@ -4,12 +4,12 @@
 if(isset($_POST["year"]))
 {
     $year=$_POST['year'];
-    $query="SELECT DISTINCT `month` FROM `invest` WHERE `year`='$year'";
+    $query = "SELECT DISTINCT DATE_FORMAT(regdate, '%b') AS `month1` FROM `invest` WHERE EXTRACT(YEAR FROM regdate) = '$year'";
     $exe=mysqli_query($conn,$query);
     while($row=mysqli_fetch_array($exe))
     {
-        $month=$row["month"];
-        $que="SELECT SUM(`invest`) AS `amt` FROM `invest` WHERE `year`='$year' AND `month`='$month'";
+        $month=$row["month1"];
+        $que = "SELECT SUM(`invest`) AS `amt` FROM `invest` WHERE EXTRACT(YEAR FROM regdate)='$year' AND DATE_FORMAT(regdate, '%b')='$month'";
         $ex=mysqli_query($conn,$que);
         while($row1=mysqli_fetch_array($ex))
         {

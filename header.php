@@ -48,6 +48,9 @@ a:hover{
     font-weight: 900;
     margin-right: 10px;
 }
+span.logo-lg {
+    margin-left: 60px;
+}
 </style>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper" id="form1">

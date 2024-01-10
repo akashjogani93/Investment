@@ -18,9 +18,23 @@ $(document).ready(function()
             }    
         });
 
-        
+        $(".ifsc, .pan").on('input',function ()
+        {
+            var inputvalues = $(this).val();
+            var uppercaseValues = inputvalues.toUpperCase();
+            $(this).val(uppercaseValues);
+        });
 
-        $(".ifsc").change(function () {      
+        $("#fname, #mname, #lname").on('input',function ()
+        {
+            var inputvalues = $(this).val();
+            var uppercaseValues = inputvalues.charAt(0).toUpperCase() + inputvalues.slice(1);
+            uppercaseValues = uppercaseValues.trim();
+            $(this).val(uppercaseValues);
+        });
+
+        $(".ifsc").change(function () 
+        {      
             var inputvalues = $(this).val();
             const ifsc = document.getElementById('ifsc');      
             var reg = /[A-Z|a-z]{4}[0][a-zA-Z0-9]{6}$/;    
@@ -37,10 +51,10 @@ $(document).ready(function()
                     $('#ifsc_valid').html(`<span style='color:red'>IFSC Number Not Valid</span>`);
                     return false;      
                 }    
-            }); 
+        }); 
 
             
-            $('#lname , #nom , #rel , #fname , #mname').keypress(function(event){
+        $('#lname , #nom , #rel , #fname , #mname').keypress(function(event){
 	
                 var keycode = (event.keyCode ? event.keyCode : event.which);
                 if ((keycode < 48 || keycode > 57))
@@ -48,7 +62,7 @@ $(document).ready(function()
 
                 return false;
             
-            });
+        });
             
 
 
