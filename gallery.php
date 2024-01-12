@@ -308,7 +308,7 @@
                                 console.error(xhr.responseText);
                             }
                         });
-                        console.log(log)
+                        // console.log(log)
                     });
                 });
 
@@ -354,7 +354,6 @@
                                 }
                             }
                         });
-                        
                     }
                     function fetchData(ckeck)
                     {
@@ -422,6 +421,7 @@
                                 
                             }
                         });
+                        // console.log(log);
                     }
             </script>
         </div>

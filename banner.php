@@ -124,7 +124,7 @@
                                 }
                             }
                         });
-                        console.log(log);
+                        // console.log(log);
                     });
                 });
 
@@ -214,6 +214,7 @@
                                 });
                             }
                         });
+                        // console.log(log);
                     }
             </script>
         </div>

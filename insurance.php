@@ -151,6 +151,7 @@
                                 $('.mytable').html(data);
                             }
                         }); 
+                        // console.log(log);
                     }
                     $('#desc , #location , #title').keypress(function(event){
                         var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -208,6 +209,7 @@
                             processData: false,
                             success: function(response) 
                             {
+                                // console.log(response);
                                 $('#submited').html(response);
                                 loade();
                                 setTimeout(function() {
@@ -218,7 +220,7 @@
                                 }
                             }
                         });
-                        console.log(log);
+                        // console.log(log);
                     });
                 });
             </script>

@@ -343,7 +343,13 @@
                                         <div class="card bg-c-green order-card">
                                             <div class="card-block">
                                                 <h5 class="m-b-20 text-dark"><b>Current Month Investment</b></h5>
-                                                <h2 class="text-right"><i class="fa-solid fa-sack-dollar f-left"></i><span class="spanshow"><?php echo get_Dash_Data($conn,"SELECT  SUM(`invest`) FROM `invest` WHERE MONTH(regdate) = $current_month AND YEAR(regdate) = $current_year;"); ?></span></h2>
+                                                <h2 class="text-right"><i class="fa-solid fa-sack-dollar f-left"></i>
+                                                    <span class="spanshow">
+                                                        <?php 
+                                                        $currentMonthInv=get_Dash_Data($conn,"SELECT  SUM(`invest`) FROM `invest` WHERE MONTH(regdate) = $current_month AND YEAR(regdate) = $current_year;"); 
+                                                        echo number_format($currentMonthInv,2);
+                                                        ?>
+                                                    </span></h2>
                                             </div>
                                         </div>
                                     </div>

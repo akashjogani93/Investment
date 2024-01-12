@@ -299,6 +299,7 @@
                                 console.error(xhr.responseText);
                             }
                         });
+                        console.log(log);
                     });
                 });
 
@@ -343,6 +344,7 @@
                                 }
                             }
                         });
+                        console.log(fun);
                         
                     }
                     function fetchData(ckeck)
