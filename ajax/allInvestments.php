@@ -109,9 +109,9 @@ if(isset($_POST["submit"]))
         $temp[2]=$row[13];
         $temp[3]=$row[2];
         $temp[4]=$row[4];
-        $temp[5]=$row[3];
-        $temp[6]=$row[5];
-        $temp[7]=$row[6];
+        $temp[5]=number_format($row[3],2);
+        $temp[6]=number_format($row[5],2);
+        $temp[7]=number_format($row[6],2);
         array_push($data,$temp);
     }
     // $data1[]=array($data);

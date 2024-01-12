@@ -22,7 +22,8 @@
             if(! $retval ) {
                 die('Could not get data: ' . mysqli_error($conn));
             }
-            while($row = mysqli_fetch_assoc($retval)) {
+            while($row = mysqli_fetch_assoc($retval)) 
+            {
                 $cid=$row['max(id)'];
                 $cid++;
             }
@@ -217,6 +218,7 @@
                                 }
                             }
                         });
+                        console.log(log);
                     });
                 });
             </script>

@@ -10,7 +10,6 @@
             
             div.dataTables_wrapper {
                
-                
             }
             
             .table-striped>tbody>tr:nth-child(odd)>td, 

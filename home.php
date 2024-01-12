@@ -98,6 +98,17 @@
                         $o=mysqli_fetch_array($confirm);
                         return $o['0'];
                     }   
+
+                    function formatIndianNumber($number) 
+                    {
+                        if ($number >= 10000000) {
+                            return '₹' . number_format($number / 10000000, 2, '.', ',') . ' Crores';
+                        } elseif ($number >= 100000) {
+                            return '₹' . number_format($number / 100000, 2, '.', ',') . ' Lakhs';
+                        } else {
+                            return '₹' . number_format($number, 2, '.', ',');
+                        }
+                    }
             ?>
             <?php 
                 if($_SESSION["type"]<>"Member")
@@ -117,7 +128,19 @@
                                 <div class="card bg-c-green order-card">
                                     <div class="card-block">
                                         <h6 class="m-b-20">Total Investment <i class="fa-solid fa-sack-dollar f-right"></i></h6>
-                                        <h2 class="text-left"><span class="spanshow"><?php echo number_format(get_Dash_Data($conn,"SELECT  SUM(`invest`) FROM `invest`;"),2); ?></span></h2>
+                                        <h2 class="text-left"><span class="spanshow">
+                                            <?php 
+                                                // $investAmt=get_Dash_Data($conn,"SELECT  SUM(`invest`) FROM `invest`;"); 
+                                                //   $investAmt = floatval($investAmt);
+                                                //   $fmt = numfmt_create('en_IN', NumberFormatter::DECIMAL);
+                                                //   $investAmtFormatted = numfmt_format($fmt, $investAmt);
+                                                  
+                                                //   echo '₹' . $investAmtFormatted;
+                                                $investAmt = get_Dash_Data($conn, "SELECT SUM(REPLACE(`invest`, ',', '')) FROM `invest`;");
+                                                $investAmtFormatted = formatIndianNumber($investAmt);
+                                                echo $investAmtFormatted;
+                                                ?>
+                                                </span></h2>
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +148,13 @@
                                 <div class="card bg-c-yellow order-card">
                                     <div class="card-block">
                                         <h6 class="m-b-20">Total Withdrawal <i class="fa-solid fa-money-bill-transfer f-right"></i></h6>
-                                        <h2 class="text-left"><span class="spanshow"><?php echo number_format(get_Dash_Data($conn,"SELECT  SUM(`wamt`) FROM `widraw`;"),2); ?></span></h2>
+                                        <h2 class="text-left"><span class="spanshow">
+                                            <?php 
+                                               $withdraAmt=get_Dash_Data($conn,"SELECT  SUM(REPLACE(`wamt`,',', '')) FROM `widraw`;"); 
+                                               $investAmtFormatted = formatIndianNumber($withdraAmt);
+                                               echo $investAmtFormatted;
+                                            ?>
+                                        </span></h2>
                                     </div>
                                 </div>
                             </div>
@@ -332,7 +361,12 @@
                                         <div class="card bg-c-pink order-card">
                                             <div class="card-block">
                                                 <h5 class="m-b-20"><b>Current Month Withdrawals</b></h5>
-                                                <h2 class="text-right"><i class="fa-solid fa-money-bill-transfer f-left"></i><span class="spanshow"><?php echo get_Dash_Data($conn,"SELECT  SUM(`wamt`) FROM `widraw` WHERE MONTH(wdate) = $current_month AND YEAR(wdate) = $current_year;"); ?></span></h2>
+                                                <h2 class="text-right"><i class="fa-solid fa-money-bill-transfer f-left"></i><span class="spanshow">
+                                                    <?php 
+                                                        $currentMWithDra=get_Dash_Data($conn,"SELECT  SUM(`wamt`) FROM `widraw` WHERE MONTH(wdate) = $current_month AND YEAR(wdate) = $current_year;");
+                                                        echo number_format($currentMWithDra,2);
+                                                    ?>
+                                                </span></h2>
                                             </div>
                                         </div>
                                     </div>
@@ -345,7 +379,6 @@
                     </br>
                     </br>
 </body>
-
 </html>
 <?php //include('footer.php'); ?>     
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -437,8 +470,6 @@
                 });
         </script>
         <?php
-        
-
 }
 ?>
     

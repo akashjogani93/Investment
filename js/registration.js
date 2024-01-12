@@ -1,15 +1,17 @@
 $(document).ready(function()
 {
-    $(".pan").change(function () {      
+    $(".pan").change(function () 
+    {      
         const emailInput = document.getElementById('pan');
         var inputvalues = $(this).val(); 
         var reg = /([A-Z]){5}([0-9]){4}([A-Z]){1}$/;
-        if (inputvalues.match(reg)) { 
-                $('#sub').prop('disabled',false);   
-                emailInput.style.borderColor = '';
-                $('#pan_valid').html(``);
-                return true;    
-            }
+        if(inputvalues.match(reg))
+        {
+            $('#sub').prop('disabled',false);   
+            emailInput.style.borderColor = '';
+            $('#pan_valid').html(``);
+            return true;    
+        }
         else {    
                 emailInput.style.borderColor = 'red';
                 $('#sub').prop('disabled',true);
@@ -33,16 +35,16 @@ $(document).ready(function()
             $(this).val(uppercaseValues);
         });
 
-        $(".ifsc").change(function () 
+        $(".ifsc").change(function ()
         {      
             var inputvalues = $(this).val();
             const ifsc = document.getElementById('ifsc');      
             var reg = /[A-Z|a-z]{4}[0][a-zA-Z0-9]{6}$/;    
-            if (inputvalues.match(reg)) 
+            if (inputvalues.match(reg))
             {
                 $('#sub').prop('disabled',false);  
                 ifsc.style.borderColor = '';
-                $('#ifsc_valid').html(``);                 
+                $('#ifsc_valid').html(``);                
                 return true;    
             }    
             else {    
