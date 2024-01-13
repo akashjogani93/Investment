@@ -80,20 +80,14 @@
                                     <div class="row">
                                         <div class="group-form col-md-4">
                                             <label for="inputEmail3" class="form_label">Search Full Name</label>
-                                            
-                                                <input  type="text" class="col-sm-4 form-control form-control-sm full" name="full" id="full"
-                                                     placeholder="Search Full Name" required="required">
-                                                   <input type="hidden" name="full1" id="full1">
-
-                                            
+                                            <input  type="text" class="col-sm-4 form-control form-control-sm full" name="full" id="full" placeholder="Search Full Name" required="required">
+                                            <input type="hidden" name="full1" id="full1">
                                         </div>
-                                        <div class="group-form col-md-1">
-                                            <label for="inputEmail3" class="form_label" style="color:white;">Interest</label>
-                                            <a type="button" id="search1" onclick="searchfullsingle()" class="btn btn-primary">Search</a>
-                                        </div>
-                                        <div class="group-form col-md-1">
-                                            <label for="inputEmail3" class="form_label" style="color:white;">Interest</label>
-                                            <a href="singleInvestment.php" id="sea" class="btn btn-warning">Refresh</a>
+                                        <div class="group-form col-md-2">
+                                            <div class="butto" style="display:flex;  justify-content: space-between; margin-top:25px; width:80%;">
+                                                <a type="button" id="search1" onclick="searchfullsingle()" class="btn btn-primary">Search</a>
+                                                <a href="singleInvestment.php" id="sea" class="btn btn-warning">Refresh</a>
+                                            </div>
                                         </div>
                                         <div class="group-form col-md-3">
                                             <label for="inputEmail3" class="form_label">Total Interest</label>

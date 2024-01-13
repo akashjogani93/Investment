@@ -68,6 +68,8 @@
                     }
                     $days=date_diff1($end,$date1);
                     $totalinte=$pday*$days;
+                    $formatter = new NumberFormatter('en_IN', NumberFormatter::DECIMAL);
+                    $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, 2);
                     // investment_edit.php?cid=12
                     $data.='<tr>
                                 <td><button onclick="editupdate('.$id.')" class="btn btn-info">Edit</button></td>
@@ -75,7 +77,7 @@
                                 <td>'.$bank.'</td>
                                 <td>'.$account.'</td>
                                 <td>'.date("d-m-Y",strtotime($regdate)).'</td>
-                                <td>'.number_format($invest, 2).'</td>
+                                <td>'.$formatter->format($invest).'</td>
                                 <td>'.$asign.'</td>
                                 <td>'.number_format($pday, 2).'</td>
                                 <td>'.$days.'</td>
@@ -98,6 +100,7 @@
                                     $data.='<td><a href="ajax/'.$path.'" target="_blank" class="btn btn-info">Agreement</a></td></tr>';
                                 }
                 }  
+                setlocale(LC_NUMERIC, 'C');
                 echo json_encode($data);
             }
             // else

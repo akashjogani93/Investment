@@ -93,8 +93,10 @@ if(isset($_POST["submit"]))
         $temp[9]=$row[1];
         $temp[10]=$row[15];
         $temp[11]=$row[16];
-        $temp[12]=$row[18];
-        $temp[13]=$row[19];
+        $temp[12]=$row[6];
+        $temp[13]=$row[10];
+        $temp[14]=$row[18];
+        $temp[15]=$row[19];
         array_push($data,$temp);
     }
     // $data1[]=array($data);

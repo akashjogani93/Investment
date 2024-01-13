@@ -1,7 +1,8 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper" id="form1">
-    <?php $click="reg"; $fname=$mname=$lname=$mobile=$pan=$email=$address=$blood=$gender=$bank="";
-            $ifsc=$branch=$account=$nominee=$relation="";$username='';$password='';?>
+        <?php $click="reg"; $fname=$mname=$lname=$mobile=$pan=$email=$address=$blood=$gender=$bank="";
+                $ifsc=$branch=$account=$nominee=$relation="";$username='';$password='';
+            ?>
         <style>
             .error {
                 color:red;
@@ -132,8 +133,8 @@
                                     <input type="text" class=" col-sm-4 form-control form-control-sm"  value="<?php echo $fname;?>" name="fname" id="fname" placeholder="Type Here..." required>
                                 </div>
                                 <div class="group-form col-md-4">
-                                    <label for="inputEmail3" class="form_label">Middle Name *</label>
-                                    <input type="text" class=" col-sm-4 form-control form-control-sm" value="<?php echo $mname;?>" name="mname" id="mname" placeholder="Type Here..." required>
+                                    <label for="inputEmail3" class="form_label">Middle Name</label>
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm" value="<?php echo $mname;?>" name="mname" id="mname" placeholder="Type Here...">
                                     <script>
                                         function text(event)
                                         {
@@ -214,14 +215,14 @@
                                     <div id="msg"></div>
                                 </div>
                                 <div class="group-form col-md-4">
+                                    <label for="inputEmail3" class="form_label">Bank Name *</label>
+                                    <input type="text" class="col-sm-4 form-control form-control-sm" value="<?php echo $bank;?>" name="bank" id="bank" placeholder="Type Here..." required>    
+                                </div>
+                                <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">IFSC Code *</label>
                                         <input type="text" class="col-sm-4 form-control form-control-sm ifsc" value="<?php echo $ifsc;?>" name="ifsc" id="ifsc"
                                             placeholder="Type Here..." required>
                                         <div id="ifsc_valid"></div>
-                                </div>
-                                <div class="group-form col-md-4">
-                                    <label for="inputEmail3" class="form_label">Bank Name *</label>
-                                    <input type="text" class="col-sm-4 form-control form-control-sm" value="<?php echo $bank;?>" name="bank" id="bank" placeholder="Type Here..." required>    
                                 </div>
                             </div></br>
                             <div class="row">

@@ -17,7 +17,10 @@ if(isset($_POST['Submit']))
                 <td><?php echo $row['location'];?></td>
                 <td><?php echo $row['date'];?></td>
                 <td><a href="<?php echo 'ajax/'.$path ?>" target="_blank"><img src="<?php echo 'ajax/'.$path; ?>" alt="Image" height="100" width="100"></a></td>
-
+                <td>
+                    <button class="btn btn-info" onclick="editEvent(this)">Edit</button>
+                    <button class="btn btn-danger" onclick="deleteEvent(<?php echo $row['id']; ?>)">Delete</button>
+                </td>
             </tr>
         <?php
     }
@@ -26,22 +29,58 @@ if(isset($_POST['Submit']))
 
 if(isset($_POST['title']))
 {
-    $title = $_POST['title'];
-    $location = $_POST['location'];
-    $date = $_POST['date'];
-    $desc = $_POST['desc'];
-    $file = $_FILES['file'];
-    $bond1 = upload_Profile($file,"../img/movie/");
-    $query = "INSERT INTO movie (`title`,`location`,`date`,`description`,`path`) VALUES ('$title','$location','$date','$desc','$bond1')";
+    // $title = $_POST['title'];
+    // $location = $_POST['location'];
+    // $date = $_POST['date'];
+    // $desc = $_POST['desc'];
+    // $file = $_FILES['file'];
+
+    $title = mysqli_real_escape_string($conn, $_POST['title']);
+    $cid = mysqli_real_escape_string($conn, $_POST['cid']);
+    $location = mysqli_real_escape_string($conn, $_POST['location']);
+    $date = mysqli_real_escape_string($conn, $_POST['date']);
+    $desc = mysqli_real_escape_string($conn, $_POST['desc']);
+    
+    $min = 1000;
+    $max = 9999;
+    $randomNumber = rand($min, $max);
+    $fileName = $randomNumber . time();
+
+    if($cid==0)
+    {
+        $file = $_FILES['file'];
+        $bond1 = upload_Profile($file, $fileName, "../img/movie/");
+        $query = "INSERT INTO movie (`title`,`location`,`date`,`description`,`path`) VALUES ('$title','$location','$date','$desc','$bond1')";
+    }
+    else
+    {
+        $file = $_FILES['file'] ?? null;
+        if ($file !== null && !empty($file['name']))
+        {
+            $bond1 = upload_Profile($file, $fileName, "../img/events/");
+            $query="UPDATE `movie` SET `title`='$title',`date`='$date',`location`='$location',`description`='$desc',`path`='$bond1',`mobile`='$mobile' WHERE `id`=$cid";
+        }else
+        {
+            $query="UPDATE `movie` SET `title`='$title',`date`='$date',`location`='$location',`description`='$desc' WHERE `id`=$cid";
+        }
+    }   
     if (mysqli_query($conn, $query))
     {
-        echo "<span style='color:green'>New 'Movies' created successfully</span>";
+        if($cid==0)
+        {
+            echo "<span style='color:green'>New 'Movies' created successfully</span>";
+        }else
+        {
+            echo "<span style='color:green'>'Movies' Updated successfully</span>";
+        }
     }
     else {
             echo "Error: " . $query . "<br>" . mysqli_error($con);
     }
     mysqli_close($conn);
 }
+
+
 if(isset($_POST['addFunction']))
 {
     $cate=$_POST['addFunction'];
@@ -98,20 +137,17 @@ if(isset($_POST['fetchfun']))
     echo json_encode($option);
 }
 
-function upload_Profile($image, $target_dir)
-{   
-    if($image['name']!="")
-    {
-        $target_file = $target_dir . basename($image["name"]);
+function upload_Profile($image, $customFilename, $target_dir)
+{
+    if ($image['name'] != "") {
+        $imageFileType = strtolower(pathinfo($image["name"], PATHINFO_EXTENSION));
+        $target_file = $target_dir . $customFilename . "." . $imageFileType;
         $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        $msg =" ";
+        $msg = " ";
         try {
             $check = getimagesize($image["tmp_name"]);
             $msg = array();
-            if ($check !== false) 
-            {
-                //echo "File is an image - " . $check["mime"] . ".";
+            if ($check !== false) {
                 $uploadOk = 1;
             }
             // Check if file already exists
@@ -127,7 +163,6 @@ function upload_Profile($image, $target_dir)
             // Check if $uploadOk is set to 0 by an error
             if ($uploadOk == 0) {
                 $msg[3] = "Sorry, your file was not uploaded.";
-                // if everything is ok, try to upload file
             } else {
                 if (move_uploaded_file($image["tmp_name"], $target_file)) {
                     //$msg= "The file ". basename( $image["name"]). " has been uploaded.";
@@ -135,13 +170,11 @@ function upload_Profile($image, $target_dir)
                     $msg[4] = "Sorry, there was an error uploading your file.";
                 }
             }
-            // echo "<pre>";
-            // print_r($msg);
             return ltrim($target_file, '');
-            } catch (Exception $e) {
-            // echo "Message" . $e->getmessage();
+        } catch (Exception $e) {
+            // Handle exceptions if needed
         }
-    }else{
+    } else {
         return "";
     }
 }

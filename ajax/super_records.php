@@ -199,6 +199,8 @@ if(isset($_POST['action']))
         $query="SELECT * FROM `register` WHERE `cid`='$cid'";
     }
     $result=mysqli_query($conn,$query);
+    $formatter = new NumberFormatter('en_IN', NumberFormatter::DECIMAL);
+    $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, 2);
     while($out=mysqli_fetch_assoc($result))
     {
         $cid=$out['cid'];
@@ -217,15 +219,15 @@ if(isset($_POST['action']))
             $wamt=$out2['wamt'];
         }
 
-        if($wamt!=0 && $invest!=0 )     
+        if($invest!=0 )     
         {   
             ?>
                 <tr>
                     <td><?php echo $cid; ?></td>
                     <td><?php echo $full; ?></td>
-                    <td><?php echo $invest+$wamt; ?></td>
-                    <td><?php echo $wamt; ?></td>
-                    <td><?php echo $invest; ?></td>
+                    <td><?php echo $formatter->format($invest+$wamt); ?></td>
+                    <td><?php echo $formatter->format($wamt); ?></td>
+                    <td><?php echo $formatter->format($invest); ?></td>
 
                 </tr>
             <?php

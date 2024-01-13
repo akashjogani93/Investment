@@ -11,5 +11,4 @@ while($row=mysqli_fetch_assoc($exc))
     $rows[]=$row;
 }
 echo json_encode($rows);
-
 ?>

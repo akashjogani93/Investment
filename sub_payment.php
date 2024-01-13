@@ -8,10 +8,8 @@
                 position: fixed;
                 bottom: 0;
                 }
-
         </style>
         <?php require_once("header.php"); ?>
-            
         <div class="content-wrapper">
             <!-- <section class="content-header">
                 <h1>

@@ -32,6 +32,8 @@
         while ($row = mysqli_fetch_array($retval)) 
         {
 
+                $formatter = new NumberFormatter('en_IN', NumberFormatter::DECIMAL);
+                $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, 2);
                 $full=$row['full'];
                 $refasign=$row['refasign'];
                 $id=$row['id'];
@@ -67,7 +69,7 @@
                 $data.='<tr>
                             <td>'.$id.'</td>
                             <td>'.$full.'</td>
-                            <td>'.$invest.'</td>  
+                            <td>'.$formatter->format($invest).'</td>  
                             <td>'.$refasign.'</td>
                             <td>'.round($pday).'</td>
                             <td>'.$days.'</td>

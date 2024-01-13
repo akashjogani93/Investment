@@ -89,13 +89,16 @@ if(isset($_POST["submit"]))
     // $start=date("Y-m-01", strtotime("first day of this month"));
     // $end=date("Y-m-d");
     // if(date("d", strtotime($end))=="31"){ $end=date("Y-m-30");}
+
+    $formatter = new NumberFormatter('en_IN', NumberFormatter::DECIMAL);
+    $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, 2);
     while($row = mysqli_fetch_row($queryRecords) )
     {
         $temp[0]=$row[0];
         $temp[1]=$row[15]; //name
         $temp[2]=$row[13]; //account
         $temp[3]=$row[2]; //date
-        $temp[4]=$row[3]; //investamount
+        $temp[4]=$formatter->format($row[3]); //investamount
         $temp[5]=$row[4]; //asign
         $temp[6]=$row[5]; //pday
         // $temp[7]=$row[6];
@@ -110,8 +113,8 @@ if(isset($_POST["submit"]))
         $totalmonth=$temp[6]*30;
 
         $temp[7]=$days;
-        $temp[8]=round($totalinte);
-        $temp[9]=round($totalmonth);
+        $temp[8]=number_format($totalinte,2);
+        $temp[9]=$formatter->format($totalmonth);
         array_push($data,$temp);
     }
     // $data1[]=array($data);
@@ -222,11 +225,14 @@ if(isset($_POST["submit1"]))
     // if(date("d", strtotime($end))=="31"){ $end=date("Y-m-30");}
     $today=date("d-m-Y");
     $srch_date=date_diff1($today,$start);
+
+    $formatter = new NumberFormatter('en_IN', NumberFormatter::DECIMAL);
+    $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, 2);
     while($row = mysqli_fetch_row($queryRecords) )
     {
         $temp[0]=$row[1]; //investid
         $temp[1]=$row[10]; //name
-        $temp[2]=$row[8]; //amount
+        $temp[2]=$formatter->format($row[8]); //amount
         $temp[3]=$row[3]; //asign
 
         $pday=(($temp[2]*$temp[3]/100)/30);
@@ -242,8 +248,8 @@ if(isset($_POST["submit1"]))
         $totalmonth=$pday*30;
 
         $temp[5]=$days;
-        $temp[6]=round($totalinte);
-        $temp[7]=round($totalmonth);
+        $temp[6]=number_format($totalinte,2);
+        $temp[7]=$formatter->format($totalmonth);
         array_push($data,$temp);
     }
     $json_data = array(

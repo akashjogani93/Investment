@@ -123,13 +123,11 @@
                                             <label for="inputEmail3" class="form_label">Amount TO Ending</label>
                                             <input type="text"  class="form-control form-control-sm" name="amtend"  id="amtend" placeholder="Amount TO Ending">
                                         </div>
-                                        <div class="group-form col-md-1">
-                                            <label for="inputEmail3" style="color:white;" class="form_label">..</label>
-                                            <a type="button" id="search1" class="btn btn-primary">Search</a>
-                                        </div>
-                                        <div class="group-form col-md-1">
-                                            <label for="inputEmail3" style="color:white;" class="form_label">..</label>
-                                            <a href="withdraw_report.php" id="search" class="btn btn-warning">Refresh</a>
+                                        <div class="group-form col-md-2">
+                                            <div class="butto" style="display:flex;  justify-content: space-between; margin-top:25px; width:80%;">
+                                                <a type="button" id="search1" class="btn btn-primary">Search</a>
+                                                <a href="withdraw_report.php" id="search" class="btn btn-warning">Refresh</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -27,21 +27,14 @@
         <div class="content-wrapper">
             <section class="content">
                 <div class="box box-default">
-                    <div class="row">
-                        <div class="col-md-12 searchpad">
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="form-group col-md-8">
-                                        <label for="inputEmail3" id="search_name" class="col-sm-3 control-label">Search Full Name</label>
-                                        <div class="col-sm-8">
-                                            <input  type="text" class="form-control full" name="full" id="full" placeholder="Search Full Name" required="required">
-                                        </div>
-                                    </div>
-                                    <div class="group-form col-md-1">
-                                        <label for="inputEmail3" class="form_label"></label>
-                                        <a type="button" id="search1" onclick="searchfull()" class="btn btn-primary">Search</a>
-                                    </div>
-                                </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail3" id="search_name" class="control-label">Search Full Name</label>
+                                <input  type="text" class="form-control full" name="full" id="full" placeholder="Search Full Name" required="required">
+                            </div>
+                            <div class="group-form col-md-1">
+                                <a type="button" id="search1" onclick="searchfull()" class="btn btn-primary" style="margin-top:25px;">Search</a>
                             </div>
                         </div>
                     </div>
@@ -111,6 +104,7 @@
                                         <option>Cash</option>
                                         <option>Bank Check</option>
                                         <option>Online</option>
+                                        <option>Other</option>
                                     <select>
                                 </div>
                                 <div class="group-form col-md-2">

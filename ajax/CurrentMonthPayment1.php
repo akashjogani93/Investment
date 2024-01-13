@@ -277,6 +277,10 @@ if(isset($_POST['currentMonthPayment']))
 
     $result = $conn->query($sql);
     $customerData = array();
+
+    $formatter = new NumberFormatter('en_IN', NumberFormatter::DECIMAL);
+    $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, 2);
+
     if ($result->num_rows > 0)
     {
         while ($row = $result->fetch_assoc()) 
@@ -350,9 +354,9 @@ if(isset($_POST['currentMonthPayment']))
                     $customerData[] = array(
                         'custId' => $row['cid'],
                         'fullName' => $row['full'],
-                        'totalInvestment' =>$inv,
+                        'totalInvestment' =>$formatter->format($inv),
                         'tillDatePayment' =>$row['mobile'],
-                        'currentPayment' => round($pay),
+                        'currentPayment' => $formatter->format($pay),
                         'bankName' => $row['bank'],
                         'accountNo' => $row['account'],
                         'ifscCode' => $row['ifsc'],
@@ -363,7 +367,7 @@ if(isset($_POST['currentMonthPayment']))
                     $customerData[] = array(
                         'custId' => $row['cid'],
                         'fullName' => $row['full'],
-                        'totalInvestment' =>round($pay),
+                        'totalInvestment' =>$formatter->format($pay),
                         'place' =>$row['address'],
                         'date' =>date("d-m-Y",strtotime($end)),
                         'bankName' => $row['bank'],

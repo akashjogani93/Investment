@@ -90,7 +90,6 @@
                                                 <option>Name & Amount</option>
                                                 <option>Asigned By %</option>
                                                 <option>Name & Date</option>
-                                                
                                             </select>                
                                         </div>
                                         <div class="group-form col-md-4" id="namewise">
@@ -112,7 +111,6 @@
                                                     var formattedDate = yourDateValue.toISOString().substr(0, 10)
                                                     $('#todate').val(formattedDate);
                                                 });
-                                            
                                             </script>
                                         </div>
                                         <div class="group-form col-md-2" id="amt1" style="display: none;">
@@ -127,13 +125,11 @@
                                             <label for="inputEmail3" class="form_label">Asigned By %</label>
                                             <input type="text"  class="form-control form-control-sm" name="asi"  id="asi" placeholder="Asigned By Percentage">
                                         </div>
-                                        <div class="group-form col-md-1">
-                                            <label for="inputEmail3" style="color:white;"class="form_label">..</label>
-                                            <a type="button" id="search1" class="btn btn-primary">Search</a>
-                                        </div>
-                                        <div class="group-form col-md-1">
-                                            <label for="inputEmail3" style="color:white;" class="form_label">..</label>
-                                            <a href="investment_report.php" id="search" class="btn btn-warning">Refresh</a>
+                                        <div class="group-form col-md-2">
+                                            <div class="butto" style="display:flex;  justify-content: space-between; margin-top:25px; width:80%;">
+                                                <a type="button" id="search1" class="btn btn-primary">Search</a>
+                                                <a href="investment_report.php" id="search" class="btn btn-warning">Refresh</a>
+                                            </div>
                                         </div>
                                     </div></br>
                                 </div>

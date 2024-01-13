@@ -101,64 +101,38 @@
         <div class="content-wrapper">
             <section class="content">
                 <div class="box box-default">
-                    <div class="row">
-                        <div class="col-md-12">
-                                <div class="box-body">
-                                    <div class="row">
-                                        <!-- <div class="group-form col-md-2">
-                                            <label for="inputEmail3" class="form_label">Apply Filters</label>
-                                            <select class="col-sm-4 form-control form-control-sm" id="select" name="option">
-                                                <option>Search By Date</option>
-                                            </select>                
-                                        </div> -->
-                                        <!-- <div class="group-form col-md-4" id="namewise">
-                                            <label for="inputEmail3" class="form_label">Search Name</label>
-                                            <input  type="text" class="col-sm-4 form-control form-control-sm full" name="full" id="full" placeholder="Search Full Name" required="required">
-                                            <input type="hidden" name="full1" id="full1">
-                                        </div> -->
-                                        <div class="group-form col-md-2" id="datewise1">
-                                            <label for="inputEmail3" class="form_label">Select From Date</label>
-                                            <input  type="date"  class="col-sm-4 form-control form-control-sm" name="fromdate" id="fromdate">
-                                        </div>
-                                        <div class="group-form col-md-2" id="datewise2">
-                                            <label for="inputEmail3" class="form_label">Select To Date</label>
-                                            <input type="date"  class="form-control" name="todate"  id="todate">
-                                            <script>
-                                                $(document).ready( function() {
-                                                    var yourDateValue = new Date();
-                                                    var formattedDate = yourDateValue.toISOString().substr(0, 10)
-                                                    $('#todate').val(formattedDate);
-                                                });
-                                            
-                                            </script>
-                                        </div>
-                                        <div class="group-form col-md-2" id="amt1" style="display: none;">
-                                            <label for="inputEmail3" class="form_label">Amount To Start</label>
-                                            <input type="text"  class="form-control form-control-sm" name="amtstart"  id="amtstart" placeholder="Amount TO Start">
-                                        </div>
-                                        <div class="group-form col-md-2" id="amt2" style="display: none;">
-                                            <label for="inputEmail3" class="form_label">Amount TO Ending</label>
-                                            <input type="text"  class="form-control form-control-sm" name="amtend"  id="amtend" placeholder="Amount TO Ending">
-                                        </div>
-                                        <div class="group-form col-md-1">
-                                            <label for="inputEmail3" style="color:white;" class="form_label">..</label>
-                                            <!-- <a type="button" id="search1" class="btn btn-primary">Load Data</a> -->
-                                            <button id="search1" class="btn btn-primary">Search</button>
-                                        </div>
-                                        <div class="group-form col-md-1">
-                                            <label for="inputEmail3" style="color:white;" class="form_label">..</label>
-                                            <!-- <a href="monthwisePaymentHistory.php" id="search" class="btn btn-warning">Refresh</a> -->
-                                            <button id="refresh" class="btn btn-warning">Refresh</button>
-                                        </div>
-                                    </div></br>
-                                    <!-- <div class="row">
-                                        <div class="col-md-2 pt-3">
-                                            <input class="b2 btn-sm btn-warning" type="button" onclick="exportTableToExcel('example', 'members')" value="Excel" >
-                                            <input class="b2 btn-sm btn-warning" type="button" onclick="printPageArea('tablepdf');"  value="PDF" >
-                                        </div>
-                                    </div> -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="group-form col-md-2" id="datewise1">
+                                <label for="inputEmail3" class="form_label">Select From Date</label>
+                                <input  type="date"  class="col-sm-4 form-control form-control-sm" name="fromdate" id="fromdate">
+                            </div>
+                            <div class="group-form col-md-2" id="datewise2">
+                                <label for="inputEmail3" class="form_label">Select To Date</label>
+                                <input type="date"  class="form-control" name="todate"  id="todate">
+                                <script>
+                                    $(document).ready( function() {
+                                        var yourDateValue = new Date();
+                                        var formattedDate = yourDateValue.toISOString().substr(0, 10)
+                                        $('#todate').val(formattedDate);
+                                    });
+                                
+                                </script>
+                            </div>
+                            <div class="group-form col-md-2" id="amt1" style="display: none;">
+                                <label for="inputEmail3" class="form_label">Amount To Start</label>
+                                <input type="text"  class="form-control form-control-sm" name="amtstart"  id="amtstart" placeholder="Amount TO Start">
+                            </div>
+                            <div class="group-form col-md-2" id="amt2" style="display: none;">
+                                <label for="inputEmail3" class="form_label">Amount TO Ending</label>
+                                <input type="text"  class="form-control form-control-sm" name="amtend"  id="amtend" placeholder="Amount TO Ending">
+                            </div>
+                            <div class="group-form col-md-2">
+                                <div class="butto" style="display:flex;  justify-content: space-between; margin-top:25px; width:80%;">
+                                    <button id="search1" class="btn btn-primary">Search</button>
+                                    <button id="refresh" class="btn btn-warning">Refresh</button>
                                 </div>
-                            <!-- </form> -->
+                            </div>
                         </div>
                     </div>
                 </div>

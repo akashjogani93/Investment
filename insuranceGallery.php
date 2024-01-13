@@ -299,7 +299,7 @@
                                 console.error(xhr.responseText);
                             }
                         });
-                        console.log(log);
+                        // console.log(log);
                     });
                 });
 

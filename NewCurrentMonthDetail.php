@@ -109,54 +109,47 @@
         <div class="content-wrapper" style="border:1px solid black;">
             <section class="content">
                 <div class="box box-default">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- <form class="form-horizontal" id="addform" action="store_insert.php" method="POST"> -->
-                                <div class="box-body">
-                                    <div class="row">
-                                        <div class="group-form col-md-2">
-                                            <label for="inputEmail3" class="form_label">Apply Filters</label>
-                                            <select class="col-sm-4 form-control form-control-sm" id="select" name="option">
-                                                <option>Search By Name</option>
-                                                <option>Search By Date</option>
-                                                <!--<option>Search By Amount</option>
-                                                <option>Name & Amount</option>
-                                                <option>Name & Date</option> -->
-                                                
-                                            </select>                
-                                        </div>
-                                        <div class="group-form col-md-4" id="namewise">
-                                            <label for="inputEmail3" class="form_label">Search Name</label>
-                                            <input  type="text" class="col-sm-4 form-control form-control-sm full" name="full" id="full" placeholder="Search Full Name" required="required">
-                                            <input type="hidden" name="full1" id="full1">
-                                        </div>
-                                        <div class="group-form col-md-2" id="datewise1" style="display: none;">
-                                            <label for="inputEmail3" class="form_label">Select From Date</label>
-                                            <input  type="date"  class="col-sm-4 form-control form-control-sm" name="fromdate" id="fromdate">
-                                        </div>
-                                        <div class="group-form col-md-2" id="datewise2" style="display: none;">
-                                            <label for="inputEmail3" class="form_label">Select To Date</label>
-                                            <input type="date"  class="form-control" name="todate"  id="todate">
-                                            <script>
-                                                $(document).ready( function() {
-                                                    var yourDateValue = new Date();
-                                                    var formattedDate = yourDateValue.toISOString().substr(0, 10)
-                                                    $('#todate').val(formattedDate);
-                                                });
-                                            
-                                            </script>
-                                        </div>
-                                        <div class="group-form col-md-1">
-                                            <button type="button" id="search1" class="btn btn-primary" style="margin-top:25px;" >Search</button>
-                                        </div>
-                                        <div class="group-form col-md-1">
-                                            <button id="refresh" class="btn btn-warning" style="margin-top:25px;">Refresh</button>
-                                        </div>
-                                        <div class="group-form col-md-1">
-                                            <button id="" class="btn btn-success" onclick="exportToExcel()" style="margin-top:25px;">Excel</button>
-                                        </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="group-form col-md-2">
+                                <label for="inputEmail3" class="form_label">Apply Filters</label>
+                                <select class="col-sm-4 form-control form-control-sm" id="select" name="option">
+                                    <option>Search By Name</option>
+                                    <option>Search By Date</option>
+                                    <!--<option>Search By Amount</option>
+                                    <option>Name & Amount</option>
+                                    <option>Name & Date</option> -->
+                                    
+                                </select>                
+                            </div>
+                            <div class="group-form col-md-4" id="namewise">
+                                <label for="inputEmail3" class="form_label">Search Name</label>
+                                <input  type="text" class="col-sm-4 form-control form-control-sm full" name="full" id="full" placeholder="Search Full Name" required="required">
+                                <input type="hidden" name="full1" id="full1">
+                            </div>
+                            <div class="group-form col-md-2" id="datewise1" style="display: none;">
+                                <label for="inputEmail3" class="form_label">Select From Date</label>
+                                <input  type="date"  class="col-sm-4 form-control form-control-sm" name="fromdate" id="fromdate">
+                            </div>
+                            <div class="group-form col-md-2" id="datewise2" style="display: none;">
+                                <label for="inputEmail3" class="form_label">Select To Date</label>
+                                <input type="date"  class="form-control" name="todate"  id="todate">
+                                <script>
+                                    $(document).ready( function() {
+                                        var yourDateValue = new Date();
+                                        var formattedDate = yourDateValue.toISOString().substr(0, 10)
+                                        $('#todate').val(formattedDate);
+                                    });
+                                
+                                </script>
+                            </div>
+                            <div class="group-form col-md-3">
+                                <div class="butto" style="display:flex;  justify-content: space-between; margin-top:25px; width:80%;">
+                                    <button type="button" id="search1" class="btn btn-primary">Search</button>
+                                    <button id="refresh" class="btn btn-warning">Refresh</button>
+                                    <button id="" class="btn btn-success" onclick="exportToExcel()">Excel</button>
                                 </div>
-                            <!-- </form> -->
+                            </div>
                         </div>
                     </div>
                 </div>

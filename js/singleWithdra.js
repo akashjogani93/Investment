@@ -111,7 +111,7 @@ function searchfull()
             }
             $("#example1 tbody").empty().html(data);
             $('#dis_loader').fadeOut();
-            console.log(data);
+            // console.log(data);
             oTable = $('#example1').dataTable({
                 searching:false,
                 pageLength : 25,
@@ -131,6 +131,7 @@ function searchfull()
         }
             
     });
+    // console.log(log)
     
 }
 
@@ -248,35 +249,6 @@ function widraw()
                 $('#investedamt').html(`<span style='color:green'>Invested Amount..</span>`);
             }
         });
-        // console.log(log);
-        // log = $.ajax({
-        //     url: 'ajax/widrawInsert.php',
-        //     type: "POST",
-        //     data: {
-        //         investid : investid,
-        //         full1 : full1,
-        //         regdate : regdate,
-        //         wamt : wamt,
-        //         ramt : ramt,
-        //         asign : asign,
-        //         pday : pday,
-        //         pmonth : pmonth
-        //     },success: function(data) {
-        //         alert(data);
-        //         searchfull()
-        //         // $('#full1').val('');
-        //         // $('#full').val('');
-        //         $('#regdate').val('');
-        //         $('#regdate1').val('');
-        //         $('#amt').val('');
-        //         $('#wamt').val('');
-        //         $('#ramt').val('');
-        //         $('#asign').val('');
-        //         $('#pday').val('');
-        //         $('#pmonth').val('');
-        //         $('#investedamt').html(`<span style='color:green'>Invested Amount..</span>`);
-        //     }
-        // });
     }
      
 

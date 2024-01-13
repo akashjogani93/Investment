@@ -79,14 +79,16 @@
                                                 });
                                             </script> 
                                         </div>
-                                        <div class="group-form col-md-1">
-                                            <label for="inputEmail3" style="color:white;" class="form_label">..</label>
-                                            <a type="button" id="search" class="btn btn-primary">Search</a>
+                                        <div class="group-form col-md-2">
+                                            <div class="butto" style="display:flex;  justify-content: space-between; margin-top:25px; width:80%;">
+                                                <a type="button" id="search" class="btn btn-primary">Search</a>
+                                                <a href="register_customer1.php" id="search" class="btn btn-warning">Refresh</a>
+                                            </div>
                                         </div>
-                                        <div class="group-form col-md-1">
+                                        <!-- <div class="group-form col-md-1">
                                             <label for="inputEmail3" style="color:white;" class="form_label">..</label>
                                             <a href="register_customer1.php" id="search" class="btn btn-warning">Refresh</a>
-                                        </div>
+                                        </div> -->
                                     </div> 
                                 </div>
                             </form>
@@ -117,7 +119,9 @@
                                         <th>Pan Card Number</th>
                                         <th>Registration Date</th>
                                         <th>Nominee</th>
-                                        <th>Relation</th> 
+                                        <th>Relation</th>
+                                        <th>Email</th>
+                                        <th>Gender</th>
                                         <th>Username</th>
                                         <th>Password</th>     
                                     </tr>

@@ -63,9 +63,10 @@ if(isset($_POST['New_pass']))
 	$confirm_pass=$_POST['confirmpass'];
     if($create_pass==$confirm_pass)
 	{
+		
 		$query="SELECT * FROM `login` WHERE `cid`='$id' AND `password`='$password' AND `user`='admin';";
 		$confirm=mysqli_query($conn,$query) or die(mysqli_error());
-		if($confirm)
+		if(mysqli_num_rows($confirm) > 0)
 		{
 			$query="UPDATE `login` SET `password`='$confirm_pass' WHERE `user`='admin' AND `cid`='$id';";
 			$confirm=mysqli_query($conn,$query) or die(mysqli_error());
@@ -74,6 +75,10 @@ if(isset($_POST['New_pass']))
 			    echo "<script>alert('Password Updated');</script>";
 				echo "<script>location='logout.php';</script>";
 			}
+		}else
+		{
+			echo "<script>alert('Password Wrong, Try Again');</script>";
+			echo "<script>location='change_pass.php';</script>";
 		}
 	}else{
 		echo "<script>alert('Password Wrong, Try Again');</script>";

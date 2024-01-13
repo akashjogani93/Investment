@@ -1,4 +1,6 @@
 <?php include('../dbcon.php'); 
+$formatter = new NumberFormatter('en_IN', NumberFormatter::DECIMAL);
+$formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, 2);
     function date_diff1($start,$end)
     {
         $diff=strtotime($start)-strtotime($end);
@@ -38,6 +40,7 @@
         else
         { $default_total1=$total1=0;
             $amt1=0;
+            
             while($out=mysqli_fetch_array($confirm))
             { 
                 $id=$out['id'];
@@ -78,12 +81,12 @@
                     <tr>
                         <td><?php echo $out['id']; ?></td>
                         <td><?php echo date("d-m-Y",strtotime($invest_date)); ?></td>
-                        <td><?php echo $amt; ?></td>
+                        <td><?php echo $formatter->format($amt); ?></td>
                         <td><?php echo $out['asign']; ?></td>
-                        <td><?php echo round($day_amt); ?></td>
+                        <td><?php echo $formatter->format($day_amt); ?></td>
                         <td><?php echo $days ?></td>
-                        <td><?php echo round($month_intres); ?></td>  
-                        <td><?php echo round($default); ?></td>   
+                        <td><?php echo $formatter->format($month_intres); ?></td>  
+                        <td><?php echo $formatter->format($default); ?></td>   
                     </tr>
                 <?php
                 $amt1=$amt1+$amt;
@@ -93,12 +96,12 @@
             <tr style="background-color:silver;" id="botom1">
                 <th></th>
                 <th></th>
-                <th><?php echo $amt1; ?></th>  
+                <th><?php echo $formatter->format($amt1); ?></th>  
                 <th></th>
                 <th></th>
                 <th></th>
-                <th><?php echo round($total1); ?></th>
-                <th><?php echo round($default_total1); ?></th>
+                <th><?php echo $formatter->format($total1); ?></th>
+                <th><?php echo $formatter->format($default_total1); ?></th>
             </tr>
             <?php
         }
@@ -159,12 +162,12 @@
             <tr>
                 <td scope="row"><?php echo $out['id']; ?></td>
                 <td><?php echo $fullname; ?></td>
-                <td><?php echo $amt; ?></td>
+                <td><?php echo $formatter->format($amt); ?></td>
                 <td><?php echo $out['refasign']; ?></td>
-                <td><?php echo round($invest); ?></td>
+                <td><?php echo $formatter->format($invest); ?></td>
                 <td><?php echo $days; ?></td>  
-                <td><?php echo round($month_intres1); ?> </td>
-                <td><?php echo round($default); ?></td>  
+                <td><?php echo $formatter->format($month_intres1); ?> </td>
+                <td><?php echo $formatter->format($default); ?></td>  
             </tr>
         <?php
     }
@@ -172,12 +175,12 @@
         <tr style="background-color:silver;" id="botom">
             <th></th>
             <th></th>
-            <th><?php echo $amt1; ?></th>  
+            <th><?php echo $formatter->format($amt1); ?></th>  
             <th></th>
             <th></th>
             <th></th>
-            <th><?php echo round($total1); ?></th>
-            <th><?php echo round($default_total1); ?></th>
+            <th><?php echo $formatter->format($total1); ?></th>
+            <th><?php echo $formatter->format($default_total1); ?></th>
         </tr>
     <?php
 }

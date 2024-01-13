@@ -4,7 +4,7 @@
     {
         $cid=$_POST['cid'];
         $cust=$_POST['cust'];
-        // if()
+        
         $regdate=$_POST['regdate'];
         
         $fname=$_POST['fname'];

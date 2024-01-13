@@ -25,5 +25,5 @@ if(isset($_GET['Stop_Schedule']))
      $confirm = mysqli_query($conn,$query) or die(mysqli_error());
     echo '<script> window.location= "log_information.php";</script>';
 }
-
+// session Shedule
 ?>

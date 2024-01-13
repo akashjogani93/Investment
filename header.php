@@ -153,7 +153,9 @@ span.logo-lg {
                     ?>
                         <li><a href="home.php"><i class="fa-solid fa-gauge"></i><span>Dashboard</span></a></li>
                         <li><a href="super_invest.php"><i class="fa-solid fa-arrow-up-wide-short"></i><span>Single Investment</span></a></li>
-                        <li><a href="super_investment.php"><i class="fa-solid fa-file-shield"></i><span>All Investment</span></a></li>
+                        <!-- <li><a href="super_investment.php"><i class="fa-solid fa-file-shield"></i><span>All Investment</span></a></li> -->
+                        <li><a href="team_view.php"><i class="fa fa-solid fa-users"></i><span>Referral Team</span></a></li>
+                        <li><a href="all_records.php"><i class="fa-solid fa-calendar-days"></i><span>Total Records</span></a></li>
                         <li><a href="all_report.php"><i class="fa-solid fa-file-shield"></i><span>All Investment Reports</span></a></li>
                         <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a></li>
 
@@ -168,7 +170,7 @@ span.logo-lg {
                         <li><a href="home.php"><i class="fa-solid fa-gauge"></i><span>Dashboard</span></a></li>
                         <li><a href="sub_profile.php"><i class="fa-solid fa-user"></i><span>Profile</span></a></li>
                         <li><a href="sub_payment.php"><i class="fa-solid fa-file-invoice-dollar"></i><span>Payment Details</span></a></li>
-                        <li><a href="#"><<i class="fa-solid fa-key"></i><span>Change Password</span></a></li>
+                        <li><a href="member_change_pass.php"><<i class="fa-solid fa-key"></i><span>Change Password</span></a></li>
                         <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a></li>
                         <!-- <li><a href="#"><i class="fa fa-table"></i> <span><?php echo $id; ?></span></a></li> -->
                     <?php

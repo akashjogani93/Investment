@@ -2,40 +2,19 @@
     include('../dbcon.php');
     if(isset($_POST['submit']))
     {
-        // $dd=$_POST['submit'];
-        // echo $dd;
-
-        $query="SELECT * FROM `invest`";
+        $option=array();
+        $query = "SELECT 
+            (SELECT SUM(wamt) FROM widraw) AS inv,
+            (SELECT SUM(invest) FROM invest) AS inv_invest";
         $exc=mysqli_query($conn,$query);
         $new1=0; $wamt1=0;
         while($con=mysqli_fetch_array($exc))
         {
-            $new=$con['invest'];
-            $new1=$new+$new1;
-           
+            $option[]=$con;
         }
-
-
-        echo json_encode($new1);
+        echo json_encode($option);
         mysqli_close($conn);
     }
-    if(isset($_POST['withdraw']))
-    {
-        $query="SELECT * FROM `widraw`";
-        $exc=mysqli_query($conn,$query);
-        $wamt1=0;
-        while($con=mysqli_fetch_array($exc))
-        {
-            $wamt=$con['wamt'];
-            $wamt1=$wamt+$wamt1;
-           
-        }
-
-
-        echo json_encode($wamt1);
-        mysqli_close($conn);
-    }
-    
     if(isset($_POST['interest']))
     {
         // $current_date = date('Y-m-d');
@@ -68,5 +47,8 @@
     
     // // Calculate the number of days between the two dates
     // $num_days = date_diff($past_date, $current_date)->format('%a');
-                
+    if (isset($_POST['deleteid']))
+    {
+        echo $_POST['deleteid'];
+    }             
 ?>

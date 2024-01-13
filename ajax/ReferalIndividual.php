@@ -1,6 +1,4 @@
 <?php include('../dbcon.php');
-
-
 if(isset($_POST["submit"]))
 {
     $submit=$_POST["submit"];
@@ -14,6 +12,9 @@ if(isset($_POST["submit"]))
         $name=$_POST["name"];
         $query="SELECT `invest`.*,`register`.`full`,`register`.`mobile` FROM `invest`,`register` WHERE `invest`.`cid`=`register`.`cid` AND `register`.`cid`='$name'";
     }
+
+    $formatter = new NumberFormatter('en_IN', NumberFormatter::DECIMAL);
+    $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, 2);
 
     $retval=mysqli_query($conn, $query);
     while ($row = mysqli_fetch_array($retval)) 
@@ -52,10 +53,10 @@ if(isset($_POST["submit"]))
                 <td><?php echo $row['id']; ?></td>
                 <td><?php echo $row['full']; ?></td>
                 <td><?php echo $row['regdate']; ?></td>
-                <td><?php echo $row['invest']; ?></td>  
+                <td><?php echo $formatter->format($row['invest']); ?></td>  
                 <td><?php echo $row['asign']; ?></td>  
-                <td><?php echo $row['pday']; ?></td>  
-                <td><?php echo $row['pmonth']; ?></td>
+                <td><?php echo $formatter->format($row['pday']); ?></td>  
+                <td><?php echo $formatter->format($row['pmonth']); ?></td>
                        
                 <!-- Introducer 1  -->
                 <td><?php echo $intro[1][0]; ?></td>

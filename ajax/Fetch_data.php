@@ -38,6 +38,8 @@ class Main{
         $confirm_query=mysqli_query($conn,$sql) or die(mysqli_error());
         $num= mysqli_num_rows($confirm_query);
         $i=0;
+        $formatter = new NumberFormatter('en_IN', NumberFormatter::DECIMAL);
+        $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, 2);
         while($row=mysqli_fetch_array($confirm_query))
         {
             $cid=$row['cid'];
@@ -68,9 +70,9 @@ class Main{
                     <tr>
                         <td><?php echo $row['cid'];?></td>
                         <td><?php echo $row['full']; ?></td>
-                        <td><?php echo round($pay); ?></td>
-                        <td><?php echo round($a); ?></td>
-                        <td><?php echo round($c); ?></td>
+                        <td><?php echo $formatter->format($pay); ?></td>
+                        <td><?php echo $formatter->format($a); ?></td>
+                        <td><?php echo $formatter->format($c); ?></td>
                         <td><?php echo $row['bank']; ?></td>
                         <td><?php echo $row['account']; ?></td>
                         <td><?php echo $row['ifsc']; ?></td>

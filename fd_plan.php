@@ -195,9 +195,11 @@
                     },success: function(data) 
                     {
                         alert(data);   
-                        fetchall(); 
+                        // fetchall(); 
+                        window.location="fd_plan.php";
                     }
                 });
+                // console.log(log)
             }
             else
             {

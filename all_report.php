@@ -177,7 +177,7 @@ i.fa{
                             </div>
                         </div>
                             <!-- <div class="row">
-                                <div class="group-form col-md-2" >
+                                <div class="groupcol-md-2" >
                                         
                                         
                                         

@@ -4,7 +4,7 @@
 <?php
 include('dbcon.php');
     
-    //get search term
+    //get search term 
     $searchTerm = $_GET['term'];
     
     //get matched data from skills table

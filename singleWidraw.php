@@ -45,7 +45,6 @@
         <?php require_once("header.php"); ?>
         <script type="text/javascript">
             $(function() {
-                
                 $(".full").autocomplete({
 
                     source: 'widraw_searchName.php',
@@ -57,7 +56,7 @@
                         event.preventDefault();
                         $("#full1").val(ui.item.value);
                         $("#full").val(ui.item.label);
-                }
+                    }
                 });
             });
         </script>
@@ -69,24 +68,17 @@
             </script>
             <section class="content">
                 <div class="box box-default">
-                    <div class="row">
-                        <div class="col-md-12">
-                                <div class="box-body">
-                                    <div class="row">
-                                        <div class="form-group col-md-8 searchpad">
-                                            <label for="inputEmail3" id="search_name" class="col-sm-4 control-label">Search Full Name</label>
-                                            <div class="col-sm-8">
-                                                <input  type="text" class="form-control full" name="full" id="full"
-                                                     placeholder="Search Full Name" required="required">
-                                                <input type="hidden" name="full1" id="full1">
-                                                <input type="hidden" name="investid" id="investid">
-                                            </div>
-                                        </div>
-                                        <div class="group-form col-md-1 searchpad1">
-                                            <a type="button" id="search1" onclick="searchfull()" class="btn btn-primary">Search</a>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail3" id="search_name" class="control-label">Search Full Name</label>
+                                <input  type="text" class="form-control full" name="full" id="full" placeholder="Search Full Name" required="required">
+                                <input type="hidden" name="full1" id="full1">
+                                <input type="hidden" name="investid" id="investid">
+                            </div>
+                            <div class="group-form col-md-1">
+                                <a type="button" id="search1" onclick="searchfull()" class="btn btn-primary" style="margin-top:25px;">Search</a>
+                            </div>
                         </div>
                     </div>
                 </div>

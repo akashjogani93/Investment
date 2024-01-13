@@ -122,8 +122,8 @@
                                     <input type="text" class=" col-sm-4 form-control form-control-sm" name="fname" id="fname" placeholder="Type Here.." required autofocus="off">
                                 </div>
 								<div class="group-form col-md-4">
-                                    <label for="inputEmail3" class="form_label">Middle Name *</label>
-                                    <input type="text" class=" col-sm-4 form-control form-control-sm" name="mname" id="mname" placeholder="Type Here.." required autofocus="off">
+                                    <label for="inputEmail3" class="form_label">Middle Name</label>
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm" name="mname" id="mname" placeholder="Type Here.." autofocus="off">
                                     <script>
                                         function text(event)
                                         {

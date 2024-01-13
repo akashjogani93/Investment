@@ -169,7 +169,7 @@
                        var formData1 = new FormData();
                         formData1.append('addFunction', cate);
                         formData1.append('file', file);
-                        // console.log(file)
+                        // console.log(file) gallery
                          let log=$.ajax({
                             url: 'ajax/upload_movies.php',
                             type: 'POST',

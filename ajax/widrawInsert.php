@@ -2,7 +2,6 @@
 require_once('../dbcon.php');
 include('../sms.php');
 // use Dompdf\Dompdf;
-
 $investid = $_POST['investid'];
 $full1 = $_POST['full1'];
 $regdate = $_POST['regdate'];
@@ -13,26 +12,23 @@ $ramt = $_POST['ramt'];
 $asign = $_POST['asign'];
 $pday = $_POST['pday'];
 $pmonth = $_POST['pmonth'];
-
 $id = $_POST['id'];
 
 if($id==0)
 {
     $file = $_FILES['file'];
-    $bond1 = upload_Profile($file,"withdra-pdf/");
+    $typeamount =$wamt.time();
+    $bond1 = upload_Profile($file,$typeamount,"withdra-pdf/");
+
 }else
 {
     $bond1='';
 }
 
-
-   
-
     $q="UPDATE `invest` SET `invest`='$ramt',`asign`='$asign',`pday`='$pday',`pmonth`='$pmonth' WHERE `id`='$investid' AND `cid`='$full1'";
     $conform=mysqli_query($conn,$q);
     if($conform)
     {
-
             $q="INSERT INTO `widraw`(`cid`, `inv_id`, `wdate`,`wamt`,`year`,`month`,`path`) VALUES 
             ('$full1','$investid','$regdate','$wamt','$year','$Month','$bond1');";
             $conf=mysqli_query($conn,$q);
@@ -271,7 +267,7 @@ if($id==0)
                     $confor1=mysqli_query($conn,"UPDATE `invest` SET `path`='$path1' WHERE `id`='$investid'");*/
 
                     $msg="Rs :$wamt, Withdrawaled Successfully From Your Account.\nFrom: SHIVAM ASSOCIATES.\nThank You.";
-                    sms($mobile,$msg,$conn);
+                    // sms($mobile,$msg,$conn);
 
                 
                     echo "Debited Amount Successfully";
@@ -280,50 +276,45 @@ if($id==0)
     }
 
      //upload images profele & other document in jpg,png format
-     function upload_Profile($image, $target_dir)
-     {   
-         if($image['name']!=""){
-         $target_file = $target_dir . basename($image["name"]);
-         $uploadOk = 1;
-         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-         $msg = " ";
-         try {
-             $check = getimagesize($image["tmp_name"]);
-             $msg = array();
-             if ($check !== false) {
-                 //echo "File is an image - " . $check["mime"] . ".";
-                 $uploadOk = 1;
-             }
-             // Check if file already exists
-             if (file_exists($target_file)) {
-                 $msg[1] = "Sorry, file already exists.";
-                 $uploadOk = 0;
-             }
-             // Allow certain file formats
-             if ($imageFileType != "pdf" && $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-                 $msg[2] = "Sorry, only PDF, JPG, JPEG, PNG & GIF files are allowed.";
-                 $uploadOk = 0;
-             }
-             // Check if $uploadOk is set to 0 by an error
-             if ($uploadOk == 0) {
-                 $msg[3] = "Sorry, your file was not uploaded.";
-                 // if everything is ok, try to upload file
-             } else {
-                 if (move_uploaded_file($image["tmp_name"], $target_file)) {
-                     //$msg= "The file ". basename( $image["name"]). " has been uploaded.";
-                 } else {
-                     $msg[4] = "Sorry, there was an error uploading your file.";
-                 }
-             }
-             // echo "<pre>";
-             // print_r($msg);
-             return ltrim($target_file, '');
-             } catch (Exception $e) {
-             // echo "Message" . $e->getmessage();
-         }
-     }else{
-         return "";
-     }
-     }
-
+     function upload_Profile($image, $customFilename, $target_dir)
+    {
+        if ($image['name'] != "") {
+            $imageFileType = strtolower(pathinfo($image["name"], PATHINFO_EXTENSION));
+            $target_file = $target_dir . $customFilename . "." . $imageFileType;
+            $uploadOk = 1;
+            $msg = " ";
+            try {
+                $check = getimagesize($image["tmp_name"]);
+                $msg = array();
+                if ($check !== false) {
+                    $uploadOk = 1;
+                }
+                // Check if file already exists
+                if (file_exists($target_file)) {
+                    $msg[1] = "Sorry, file already exists.";
+                    $uploadOk = 0;
+                }
+                // Allow certain file formats
+                if ($imageFileType != "pdf" && $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+                    $msg[2] = "Sorry, only PDF, JPG, JPEG, PNG & GIF files are allowed.";
+                    $uploadOk = 0;
+                }
+                // Check if $uploadOk is set to 0 by an error
+                if ($uploadOk == 0) {
+                    $msg[3] = "Sorry, your file was not uploaded.";
+                } else {
+                    if (move_uploaded_file($image["tmp_name"], $target_file)) {
+                        //$msg= "The file ". basename( $image["name"]). " has been uploaded.";
+                    } else {
+                        $msg[4] = "Sorry, there was an error uploading your file.";
+                    }
+                }
+                return ltrim($target_file, '');
+            } catch (Exception $e) {
+                // Handle exceptions if needed
+            }
+        } else {
+            return "";
+        }
+    }
      ?>

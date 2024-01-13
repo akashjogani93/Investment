@@ -82,7 +82,7 @@
                 <div class="box">
 
                         <center><h3>
-                            Log Permission Details
+                            Member Login Details
                         </h3></center>
                     <div id="tablepdf" style="overflow-x: auto; height:400px;">
                         <table id="employee_grid" class="table table-striped table-bordered table-hover example1">

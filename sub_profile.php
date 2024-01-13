@@ -6,31 +6,22 @@
             }
         </style>
         <?php require_once("header.php"); ?>
-            
-        
-            
-        
-        
-        <div class="content-wrapper" style="border:1px solid black;">
-            <section class="content-header">
-                <h1>
-                    Profile Details
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="sub_home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                </ol>
-            </section>
-
+        <?php
+                            $query="SELECT * FROM `register` WHERE `cid`='$id';";
+                            $confirm=mysqli_query($conn,$query) or die(mysqli_error());
+                            $out=mysqli_fetch_array($confirm);
+                            $query="SELECT * FROM `login` WHERE `cid`='$id' AND `user`='Member';";
+                            $confirm=mysqli_query($conn,$query) or die(mysqli_error());
+                            $logid=mysqli_fetch_array($confirm);
+                        ?>
+        <div class="content-wrapper">
+            <script>
+                $("#dyna").text("profile detail");
+                tex();
+            </script>
             <section class="content">
                 <div class="box box-default">
-                    <?php
-                        $query="SELECT * FROM `register` WHERE `cid`='$id';";
-                        $confirm=mysqli_query($conn,$query) or die(mysqli_error());
-                        $out=mysqli_fetch_array($confirm);
-                        $query="SELECT * FROM `login` WHERE `cid`='$id' AND `user`='Member';";
-                        $confirm=mysqli_query($conn,$query) or die(mysqli_error());
-                        $logid=mysqli_fetch_array($confirm);
-                    ?>
+                    <div class="box-body">
                     <table class="table table-striped" id="profile_table">
                         <tbody>
                             <tr >
@@ -40,21 +31,27 @@
                                 <td><?php echo $out['full']; ?></td>
                             </tr>
                             <tr>
-                                <th>Mobile_no1:</th>
+                                <th>Mobile_no:</th>
                                 <td><?php echo $out['mobile']; ?></td>
-                                <th>Address:</th>
+                                <th>Email:</th>
                                 <td><?php echo $out['email']; ?></td>
                             </tr>
                             <tr>
-                                <th>Addredd:</th>
+                                <th>Address:</th>
                                 <td><?php echo $out['address']; ?></td>
                                 <th>Gender:</th>
                                 <td><?php echo $out['gender']; ?></td>
                             </tr>
                             <tr>
-                                <th>Bank:</th>
+                                <th>Blood Group:</th>
+                                <td><?php echo $out['blood']; ?></td>
+                                <th>Pan Card:</th>
+                                <td><?php echo $out['pan']; ?></td>
+                            </tr>
+                            <tr>
+                                <th>Bank Name:</th>
                                 <td><?php echo $out['bank']; ?></td>
-                                <th>Bank Branch:</th>
+                                <th>Branch Name:</th>
                                 <td><?php echo $out['branch']; ?></td>
                             </tr>
                             <tr>
@@ -64,6 +61,12 @@
                                 <td><?php echo $out['ifsc']; ?></td>
                             </tr>
                             <tr>
+                                <th>Nominee:</th>
+                                <td><?php echo $out['nominee']; ?></td>
+                                <th>Relation:</th>
+                                <td><?php echo $out['relation']; ?></td>
+                            </tr>
+                            <tr>
                                 <th>Username:</th>
                                 <td><?php echo $logid['username']; ?></td>
                                 <th>Password:</th>
@@ -71,6 +74,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </section>
         </div>

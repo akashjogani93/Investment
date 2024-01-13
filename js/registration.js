@@ -1,42 +1,55 @@
 $(document).ready(function()
 {
-    $(".pan").change(function () 
-    {      
-        const emailInput = document.getElementById('pan');
-        var inputvalues = $(this).val(); 
-        var reg = /([A-Z]){5}([0-9]){4}([A-Z]){1}$/;
-        if(inputvalues.match(reg))
-        {
-            $('#sub').prop('disabled',false);   
-            emailInput.style.borderColor = '';
-            $('#pan_valid').html(``);
-            return true;    
-        }
-        else {    
-                emailInput.style.borderColor = 'red';
-                $('#sub').prop('disabled',true);
-                $('#pan_valid').html(`<span style='color:red'>Pan Number Not Valid</span>`);
-                return false;    
-            }    
-        });
+    // $(".pan").change(function () 
+    // {      
+        // const emailInput = document.getElementById('pan');
+        // var inputvalues = $(this).val(); 
+        // var reg = /([A-Z]){5}([0-9]){4}([A-Z]){1}$/;
+        // if(inputvalues.match(reg))
+        // {
+        //     $('#sub').prop('disabled',false);   
+        //     emailInput.style.borderColor = '';
+        //     $('#pan_valid').html(``);
+        //     return true;    
+        // }
+        // else {    
+        //         emailInput.style.borderColor = 'red';
+        //         $('#sub').prop('disabled',true);
+        //         $('#pan_valid').html(`<span style='color:red'>Pan Number Not Valid</span>`);
+        //         return false;    
+        //     }    
+    // });
 
-        $(".ifsc, .pan").on('input',function ()
+        $(".pan").on('input',function ()
         {
             var inputvalues = $(this).val();
             var uppercaseValues = inputvalues.toUpperCase();
             $(this).val(uppercaseValues);
+
+            const emailInput = document.getElementById('pan');
+            var inputvalues = $(this).val(); 
+            var reg = /([A-Z]){5}([0-9]){4}([A-Z]){1}$/;
+            if(inputvalues.match(reg))
+            {
+                $('#sub').prop('disabled',false);   
+                emailInput.style.borderColor = '';
+                $('#pan_valid').html(``);
+                return true;    
+            }
+            else {
+                    emailInput.style.borderColor = 'red';
+                    $('#sub').prop('disabled',true);
+                    $('#pan_valid').html(`<span style='color:red'>Pan Number Not Valid</span>`);
+                    return false;    
+                }  
         });
 
-        $("#fname, #mname, #lname").on('input',function ()
+        $(".ifsc").on('input',function ()
         {
             var inputvalues = $(this).val();
-            var uppercaseValues = inputvalues.charAt(0).toUpperCase() + inputvalues.slice(1);
-            uppercaseValues = uppercaseValues.trim();
+            var uppercaseValues = inputvalues.toUpperCase();
             $(this).val(uppercaseValues);
-        });
 
-        $(".ifsc").change(function ()
-        {      
             var inputvalues = $(this).val();
             const ifsc = document.getElementById('ifsc');      
             var reg = /[A-Z|a-z]{4}[0][a-zA-Z0-9]{6}$/;    
@@ -52,8 +65,36 @@ $(document).ready(function()
                     $('#sub').prop('disabled',true);
                     $('#ifsc_valid').html(`<span style='color:red'>IFSC Number Not Valid</span>`);
                     return false;      
-                }    
-        }); 
+                }  
+        });
+
+        $("#fname, #mname, #lname").on('input',function ()
+        {
+            var inputvalues = $(this).val();
+            var uppercaseValues = inputvalues.charAt(0).toUpperCase() + inputvalues.slice(1);
+            uppercaseValues = uppercaseValues.trim();
+            $(this).val(uppercaseValues);
+        });
+
+        // $(".ifsc").change(function ()
+        // {      
+        //     var inputvalues = $(this).val();
+        //     const ifsc = document.getElementById('ifsc');      
+        //     var reg = /[A-Z|a-z]{4}[0][a-zA-Z0-9]{6}$/;    
+        //     if (inputvalues.match(reg))
+        //     {
+        //         $('#sub').prop('disabled',false);  
+        //         ifsc.style.borderColor = '';
+        //         $('#ifsc_valid').html(``);                
+        //         return true;    
+        //     }    
+        //     else {    
+        //             ifsc.style.borderColor = 'red';
+        //             $('#sub').prop('disabled',true);
+        //             $('#ifsc_valid').html(`<span style='color:red'>IFSC Number Not Valid</span>`);
+        //             return false;      
+        //         }    
+        // }); 
 
             
         $('#lname , #nom , #rel , #fname , #mname').keypress(function(event){

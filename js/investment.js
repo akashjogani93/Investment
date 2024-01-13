@@ -67,7 +67,6 @@ $(document).ready(function()
         return false;
         
         return true;
-    
     });
 
     //invest to only number And Asign Only Numbers
@@ -215,6 +214,7 @@ $(document).ready(function()
     }));
     $(document).on('focus','.referal',handleAuctocomplet);
 });
+
 function searchfull()
 {
     var cid = $('#full1').val();
@@ -335,10 +335,7 @@ $(function() {
                 },
                 success:function(data) 
                 {
-                    // $('.loader').fadeIn();
                     $('.mytable').html(data);
-                    // $('.loader').fadeOut();
-                    // $('.loader').hide();
                         oTable = $('#example1').dataTable({
                             searching: false,
                             pageLength : 10,
@@ -348,11 +345,11 @@ $(function() {
                             ],
                             iDisplayLength: -1
                         });  
-                    searchfull1()
-                    totalinterest()
                     //console.log(data);
                 }
             });
+            searchfull1()
+            totalinterest()
             // console.log(log)
         }
         function searchfull1()
@@ -388,7 +385,7 @@ $(function() {
                     // console.log(data);
                 }
             });
-            // console.log(log)
+            console.log(log)
         }
         function totalinterest()
         {
@@ -402,15 +399,25 @@ $(function() {
                 },
                 success:function(data) 
                 {
-                    $('.dis_loader').fadeOut();
-                    $('#totalmonth').html(Math.round(data[0]));
-                    $('#totalinvest').html(Math.round(data[1]).toFixed(2));
-                    $('#totaint').html(Math.round(data[2]).toFixed(2));
-                    $('#refmonth').html(Math.round(data[3]).toFixed(2));
-                    $('#refint').html(Math.round(data[4]).toFixed(2));
-                    $('#refamount').html(Math.round(data[5]).toFixed(2));
-                    $('#totalint').val(Math.round(data[6]).toFixed(2));
-                    $('#regdate1').val(Math.round(data[7]).toFixed(2));
+                    // $('.dis_loader').fadeOut();
+                    // $('#totalmonth').html(Math.round(data[0]));
+                    // $('#totalinvest').html(Math.round(data[1]).toFixed(2));
+                    // $('#totaint').html(Math.round(data[2]).toFixed(2));
+                    // $('#refmonth').html(Math.round(data[3]).toFixed(2));
+                    // $('#refint').html(Math.round(data[4]).toFixed(2));
+                    // $('#refamount').html(Math.round(data[5]).toFixed(2));
+                    // $('#totalint').val(Math.round(data[6]).toFixed(2));
+                    // $('#regdate1').val(Math.round(data[7]).toFixed(2));
+                    $('#totalmonth').html(Math.round(data[0]).toLocaleString('en-IN', { minimumFractionDigits: 2 }));
+                    $('#totalinvest').html(Math.round(data[1]).toLocaleString('en-IN', { minimumFractionDigits: 2 }));
+                    $('#totaint').html(Math.round(data[2]).toLocaleString('en-IN', { minimumFractionDigits: 2 }));
+                    $('#refmonth').html(Math.round(data[3]).toLocaleString('en-IN', { minimumFractionDigits: 2 }));
+                    $('#refint').html(Math.round(data[4]).toLocaleString('en-IN', { minimumFractionDigits: 2 }));
+                    $('#refamount').html(Math.round(data[5]).toLocaleString('en-IN', { minimumFractionDigits: 2 }));
+                    $('#totalint').val(Math.round(data[6]).toLocaleString('en-IN', { minimumFractionDigits: 2 }));
+                    $('#regdate1').val(Math.round(data[7]).toLocaleString('en-IN', { minimumFractionDigits: 2 }));
+
+
                 }
             });
             console.log(log);
