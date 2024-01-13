@@ -1,11 +1,11 @@
 <body class="hold-transition skin-blue sidebar-mini">
         <style>
-            .error {
+            .error 
+            {
                 color: red;
             }
         </style> 
     <div class="wrapper" id="form1">
-      
         <?php require_once("header.php"); ?>
         <div class="content-wrapper">
             <script>
