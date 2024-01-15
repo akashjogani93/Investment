@@ -267,10 +267,13 @@ if ($destinationConnection->connect_error) {
 // $sourceQuery = "SELECT * FROM `withdraw` ORDER BY `w_id` ASC";
 
 // -------------------------------resister------------------------------------------
-//  $sourceQuery = "SELECT * FROM `resister` ORDER BY `cid` ASC";
+// $sourceQuery = "SELECT * FROM `resister` ORDER BY `cid` ASC";
 
 // -------------------------------invest------------------------------------------
 // $sourceQuery = "SELECT * FROM `invest` ORDER BY `i_id` ASC";
+
+// -------------------------------withdraw------------------------------------------
+$sourceQuery = "SELECT * FROM `withdraw` ORDER BY `w_id` ASC";
 
 // -------------------------------introduce------------------------------------------
 // $sourceQuery="SELECT * FROM `introduce` ORDER BY `r_id` ASC";
@@ -318,22 +321,22 @@ while ($row = $sourceResult->fetch_assoc())
 
      // $insertValues .= "('$cid','$date','$f_name','$m_name','$l_name','$mobile','','$pan_card_num','$address','$blood_gp','','$bank','$acc_no1','$isfc_no','$branch','$nominee','$relation','$full_name'),";
 
-     // -------------------------------invest------------------------------------------
+     // -------------------------------WITHDRAW------------------------------------------
 
-          // $w_id=$row['w_id'];
-          // $cid=$row['cid'];
-          // $i_id=$row['i_id'];
-          // $w_date=$row['w_date'];
-          // $w_amt=$row['w_amt'];
-          // // $perday=$row['perday'];
-          // // $permonth=$perday*30;
+          $w_id=$row['w_id'];
+          $cid=$row['cid'];
+          $i_id=$row['i_id'];
+          $w_date=$row['w_date'];
+          $w_amt=$row['w_amt'];
+          // $perday=$row['perday'];
+          // $permonth=$perday*30;
 
-          // $year = date('Y', strtotime($w_date));
-          // $Month = date('M', strtotime($w_date));
+          $year = date('Y', strtotime($w_date));
+          $Month = date('M', strtotime($w_date));
 
-          // $insertValues .= "('$w_id','$cid','$i_id','$w_date','$w_amt','$year','$Month',''),";
+          $insertValues .= "('$cid','$i_id','$w_date','$w_amt','$year','$Month',''),";
      
-     // -------------------------------withdraw------------------------------------------
+     // -------------------------------INVEST------------------------------------------
 
      // $i_id=$row['i_id'];
      // $cid=$row['cid'];
@@ -392,6 +395,9 @@ while ($row = $sourceResult->fetch_assoc())
           // -------------------------------invest------------------------------------------
           // $insertQuery = "INSERT INTO `invest`(`id`, `cid`, `regdate`, `invest`, `asign`, `pday`, `pmonth`, `pmode`, `img`, `year`, `month`, `path`) VALUES $insertValues";
 
+          // -------------------------------widraw------------------------------------------
+          $insertQuery = "INSERT INTO `widraw`(`cid`, `inv_id`, `wdate`, `wamt`, `year`, `month`, `path`)  VALUES $insertValues";
+
           // -------------------------------introduce------------------------------------------
           // $insertQuery = "INSERT INTO `referal`(`refid`, `id`, `r_name`, `refasign`, `refpday`, `refpmonth`) VALUES $insertValues";
           // INSERT INTO `log_info`(`logg_id`, `cid`, `login`, `logout`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]')
@@ -443,7 +449,8 @@ if ($batchCount > 0)
      // $insertQuery = "INSERT INTO `log_info`(`logg_id`, `cid`, `login`, `logout`) VALUES $insertValues";
 
 
-     // $insertQuery = "INSERT INTO `widraw`(`wid`, `cid`, `inv_id`, `wdate`, `wamt`, `year`, `month`, `path`) VALUES $insertValues";
+    // -------------------------------widraw------------------------------------------
+    $insertQuery = "INSERT INTO `widraw`(`cid`, `inv_id`, `wdate`, `wamt`, `year`, `month`, `path`)  VALUES $insertValues";
 
     // Execute the INSERT statement
      if ($destinationConnection->query($insertQuery) === TRUE) 

@@ -176,7 +176,7 @@ $(document).ready(function()
             
             success: function(data)
             {
-                // console.log(log);
+                let datatrim = data.trim();
                 let log1 = $.ajax({
                     url: 'ajax/introduceReferal1.php',
                     type: "POST",

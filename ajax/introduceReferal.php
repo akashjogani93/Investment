@@ -9,8 +9,8 @@ $randomNumber = rand($min, $max);
 $cid=$_POST['full1'];
 $regdate = $_POST['regdate'];
 
-    $year = date('Y', strtotime($regdate));
-    $Month = date('M', strtotime($regdate));
+$year = date('Y', strtotime($regdate));
+$Month = date('M', strtotime($regdate));
 $invest = $_POST['invest'];
 $asign = $_POST['asign'];
 $pday = $_POST['pday'];
