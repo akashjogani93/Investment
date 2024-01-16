@@ -80,7 +80,7 @@
                             <div class="row">
                                 <div class="group-form col-md-12">
                                     <h3>
-                                        <b>Customer Personal Detail's</b>
+                                        <b>Customer Personal Detail</b>
                                     </h3>
                                 </div>
                             </div></br>

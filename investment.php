@@ -71,7 +71,18 @@
                                 </div>
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Assign %:</label>
-                                    <input type="text" class="col-sm-4 form-control form-control-sm investOne" required name="asign" id="asign" placeholder="Type Here..">
+                                    <!-- <input type="text" class="col-sm-4 form-control form-control-sm investOne" required name="asign" id="asign" placeholder="Type Here.."> -->
+                                    <select class="form-control form-control-sm investOne" name="asign" required id="asign">
+                                        <option value="">Select %</option>
+                                        <option>0.5</option>
+                                        <option>1.0</option>
+                                        <option>1.5</option>
+                                        <option>2.0</option>
+                                        <option>2.5</option>
+                                        <option>3.0</option>
+                                        <option>3.5</option>
+                                        <option>4.0</option>
+                                    <select>
                                     <script>
                                         $('#invest , #asign').keyup(function() 
                                         {
@@ -102,7 +113,7 @@
                                     <select class="form-control form-control-sm" name="pmode" required id="pmode">
                                         <option value="">Select Mode</option>
                                         <option>Cash</option>
-                                        <option>Bank Check</option>
+                                        <option>Cheque</option>
                                         <option>Online</option>
                                         <option>Other</option>
                                     <select>
@@ -132,7 +143,18 @@
                                     </div>
                                     <div class="group-form col-md-2">
                                         <label for="inputEmail3" class="form_label">Assign %:</label>
-                                        <input type="text" class=" col-sm-4 form-control form-control-sm asignke" name="refAsign[]" id="refAsign[]" placeholder="Type Here..">
+                                        <!-- <input type="text" class=" col-sm-4 form-control form-control-sm asignke" name="refAsign[]" id="refAsign[]" placeholder="Type Here.."> -->
+                                        <select class="form-control form-control-sm asignke" name="refAsign[]" required id="refAsign[]">
+                                            <option value="">Select %</option>
+                                            <option>0.5</option>
+                                            <option>1.0</option>
+                                            <option>1.5</option>
+                                            <option>2.0</option>
+                                            <option>2.5</option>
+                                            <option>3.0</option>
+                                            <option>3.5</option>
+                                            <option>4.0</option>
+                                        <select>
                                     </div>
                                     <div class="group-form col-md-2">
                                         <label for="inputEmail3" class="form_label">Per Day:</label>

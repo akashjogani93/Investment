@@ -267,7 +267,7 @@ if($id==0)
                     $confor1=mysqli_query($conn,"UPDATE `invest` SET `path`='$path1' WHERE `id`='$investid'");*/
 
                     $msg="Rs :$wamt, Withdrawaled Successfully From Your Account.\nFrom: SHIVAM ASSOCIATES.\nThank You.";
-                    // sms($mobile,$msg,$conn);
+                    sms($mobile,$msg,$conn);
 
                 
                     echo "Debited Amount Successfully";

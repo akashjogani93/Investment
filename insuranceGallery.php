@@ -99,7 +99,7 @@
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="group-form col-md-8">
-                                        <label for="inputEmail3" class="form_label">Vidios Url</label>
+                                        <label for="inputEmail3" class="form_label">Videos Url</label>
                                         <input type="text" class="col-sm-4 form-control form-control-sm url" name="url" id="url">
                                     </div>
                                     <div class="group-form col-md-4">
@@ -198,7 +198,7 @@
                                 }
                             }
                         });
-                        // console.log(log)
+                        console.log(log)
                     });
                     loade();
                     fetchData(0);

@@ -49,7 +49,7 @@ a:hover{
     margin-right: 10px;
 }
 span.logo-lg {
-    margin-left: 60px;
+    /* margin-left: 60px; */
 }
 </style>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -57,8 +57,8 @@ span.logo-lg {
         <!-- <div class="fixs" style="position:fixed;"> -->
             <header class="main-header">
                 <center><a href="#" class="logo">
-                    <span class="logo-mini"><b>T I<b></span>
-                    <span class="logo-lg"><img src="img/shivam.png" class="sidebar-toggle" height="70px" width="70px">
+                    <!-- <span class="logo-mini"><b>T I<b></span> -->
+                    <span class="logo-lg"><img src="img/shivamlogo.png" class="sidebar-toggle" height="70px" width="70px">
                     </span>
                 </a></center>
                 <nav class="navbar navbar-static-top">
@@ -90,7 +90,9 @@ span.logo-lg {
             </header>
             <aside class="main-sidebar">
                 <section class="sidebar">
-            
+                    <!-- <a href="#" >
+                        <span class="logo-lg"><img src="img/shivamlogo.JPG" class="sidebar-toggle" height="70px" width="70px">
+                    </a> -->
                     <!-- <div class="user-panel">
                         <div class="pull-left image">
                         
@@ -170,7 +172,7 @@ span.logo-lg {
                         <li><a href="home.php"><i class="fa-solid fa-gauge"></i><span>Dashboard</span></a></li>
                         <li><a href="sub_profile.php"><i class="fa-solid fa-user"></i><span>Profile</span></a></li>
                         <li><a href="sub_payment.php"><i class="fa-solid fa-file-invoice-dollar"></i><span>Payment Details</span></a></li>
-                        <li><a href="member_change_pass.php"><<i class="fa-solid fa-key"></i><span>Change Password</span></a></li>
+                        <li><a href="member_change_pass.php"><i class="fa-solid fa-key"></i><span>Change Password</span></a></li>
                         <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a></li>
                         <!-- <li><a href="#"><i class="fa fa-table"></i> <span><?php echo $id; ?></span></a></li> -->
                     <?php

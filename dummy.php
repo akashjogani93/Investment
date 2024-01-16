@@ -267,19 +267,19 @@ if ($destinationConnection->connect_error) {
 // $sourceQuery = "SELECT * FROM `withdraw` ORDER BY `w_id` ASC";
 
 // -------------------------------resister------------------------------------------
-// $sourceQuery = "SELECT * FROM `resister` ORDER BY `cid` ASC";
+// $sourceQuery = "SELECT * FROM `resister` WHERE `cid`>11295 ORDER BY `cid` ASC";
 
 // -------------------------------invest------------------------------------------
-// $sourceQuery = "SELECT * FROM `invest` ORDER BY `i_id` ASC";
+// $sourceQuery = "SELECT * FROM `invest` WHERE `i_id`>26441 ORDER BY `i_id` ASC";
 
 // -------------------------------withdraw------------------------------------------
-$sourceQuery = "SELECT * FROM `withdraw` ORDER BY `w_id` ASC";
+// $sourceQuery = "SELECT * FROM `withdraw` ORDER BY `w_id` ASC";
 
 // -------------------------------introduce------------------------------------------
 // $sourceQuery="SELECT * FROM `introduce` ORDER BY `r_id` ASC";
 
 // -------------------------------login------------------------------------------
-// $sourceQuery = "SELECT * FROM `login` ORDER BY `logid` ASC";
+$sourceQuery = "SELECT * FROM `login` ORDER BY `logid` ASC";
 
 // -------------------------------log_info------------------------------------------
 // $sourceQuery = "SELECT * FROM `log_info` ORDER BY `logg_id` ASC";
@@ -323,18 +323,18 @@ while ($row = $sourceResult->fetch_assoc())
 
      // -------------------------------WITHDRAW------------------------------------------
 
-          $w_id=$row['w_id'];
-          $cid=$row['cid'];
-          $i_id=$row['i_id'];
-          $w_date=$row['w_date'];
-          $w_amt=$row['w_amt'];
-          // $perday=$row['perday'];
-          // $permonth=$perday*30;
+          // $w_id=$row['w_id'];
+          // $cid=$row['cid'];
+          // $i_id=$row['i_id'];
+          // $w_date=$row['w_date'];
+          // $w_amt=$row['w_amt'];
+          // // $perday=$row['perday'];
+          // // $permonth=$perday*30;
 
-          $year = date('Y', strtotime($w_date));
-          $Month = date('M', strtotime($w_date));
+          // $year = date('Y', strtotime($w_date));
+          // $Month = date('M', strtotime($w_date));
 
-          $insertValues .= "('$cid','$i_id','$w_date','$w_amt','$year','$Month',''),";
+          // $insertValues .= "('$cid','$i_id','$w_date','$w_amt','$year','$Month',''),";
      
      // -------------------------------INVEST------------------------------------------
 
@@ -362,13 +362,13 @@ while ($row = $sourceResult->fetch_assoc())
 
           // $insertValues .= "('$r_id','$i_id','$r_name','$r_pecentag','$r_perday','$permonth'),";
      // -------------------------------login------------------------------------------
-          // $cid=$row['cid'];
-          // $logid=$row['logid'];
-          // $username=$row['username'];
-          // $password=$row['password'];
-          // $user=$row['user'];
+          $cid=$row['cid'];
+          $logid=$row['logid'];
+          $username=$row['username'];
+          $password=$row['password'];
+          $user=$row['user'];
 
-          // $insertValues .= "('','$cid','$username','$password','$user'),";
+          $insertValues .= "('','$cid','$username','$password','$user'),";
 
      // -------------------------------log_info------------------------------------------
           // $cid=$row['cid'];
@@ -396,14 +396,14 @@ while ($row = $sourceResult->fetch_assoc())
           // $insertQuery = "INSERT INTO `invest`(`id`, `cid`, `regdate`, `invest`, `asign`, `pday`, `pmonth`, `pmode`, `img`, `year`, `month`, `path`) VALUES $insertValues";
 
           // -------------------------------widraw------------------------------------------
-          $insertQuery = "INSERT INTO `widraw`(`cid`, `inv_id`, `wdate`, `wamt`, `year`, `month`, `path`)  VALUES $insertValues";
+          // $insertQuery = "INSERT INTO `widraw`(`cid`, `inv_id`, `wdate`, `wamt`, `year`, `month`, `path`)  VALUES $insertValues";
 
           // -------------------------------introduce------------------------------------------
           // $insertQuery = "INSERT INTO `referal`(`refid`, `id`, `r_name`, `refasign`, `refpday`, `refpmonth`) VALUES $insertValues";
           // INSERT INTO `log_info`(`logg_id`, `cid`, `login`, `logout`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]')
 
           // -------------------------------login------------------------------------------
-          // $insertQuery = "INSERT INTO `login`(`logid`, `cid`, `username`, `password`, `user`) VALUES $insertValues";
+          $insertQuery = "INSERT INTO `login`(`logid`, `cid`, `username`, `password`, `user`) VALUES $insertValues";
 
            // -------------------------------log_info------------------------------------------
           // $insertQuery = "INSERT INTO `log_info`(`logg_id`, `cid`, `login`, `logout`) VALUES $insertValues";
@@ -443,7 +443,7 @@ if ($batchCount > 0)
      //  $insertQuery = "INSERT INTO `referal`(`refid`, `id`, `r_name`, `refasign`, `refpday`, `refpmonth`) VALUES $insertValues";
       
       // -------------------------------login------------------------------------------
-     //  $insertQuery = "INSERT INTO `login`(`logid`, `cid`, `username`, `password`, `user`) VALUES $insertValues";
+      $insertQuery = "INSERT INTO `login`(`logid`, `cid`, `username`, `password`, `user`) VALUES $insertValues";
 
      // -------------------------------log_info------------------------------------------
      // $insertQuery = "INSERT INTO `log_info`(`logg_id`, `cid`, `login`, `logout`) VALUES $insertValues";

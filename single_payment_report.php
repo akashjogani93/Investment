@@ -173,7 +173,6 @@
                             <tbody id="mytable1">
                                 
                             </tbody>    
-                            
                         </table>
                         <!-- <center><div class="loader"></div></center> -->
                     </div>
@@ -335,13 +334,11 @@
                 var name=$('#full').val();
                 var from=$('#fromdate').val();
                 var to= $('#todate').val();
-
                 if(cid=='')
                 {
                     alert('Please Select Name');
                     exit();
                 }
-
                 if(from=='')
                 {
                     alert('Please Select From Date');
@@ -349,7 +346,6 @@
                 }
                 var table=$('#employee_grid').DataTable();
                     table.destroy();
-                
                 let log=$('#employee_grid').DataTable({
                     "lengthMenu": [[100, -1], [100, "All"]],
                     dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
@@ -398,113 +394,114 @@
                             //   console.log(data);
                             // }
                         }
-                    });//console.log(log2)
+                    });
+                    // console.log(log2)
 
 
-                var filter=$('#select').val();
-                if(filter=="Search By Name")
-                {
-                    $('#fromdate').val('');
-                    $('#amtstart').val('');
-                    $('#amtend').val('');
-                    var cid=$('#full1').val();
-                    var name=$('#full').val();
-                    filter=$('#select').val();
-                    if(name=='')
-                    {
-                        alert('Please Select Name');
-                        exit();
-                    }
-                    var table=$('#employee_grid').DataTable();
-                        table.destroy();
+                // var filter=$('#select').val();
+                // if(filter=="Search By Name")
+                // {
+                //     $('#fromdate').val('');
+                //     $('#amtstart').val('');
+                //     $('#amtend').val('');
+                //     var cid=$('#full1').val();
+                //     var name=$('#full').val();
+                //     filter=$('#select').val();
+                //     if(name=='')
+                //     {
+                //         alert('Please Select Name');
+                //         exit();
+                //     }
+                //     var table=$('#employee_grid').DataTable();
+                //         table.destroy();
 
-                        let log=$('#employee_grid').DataTable({
-                                    "lengthMenu": [[100, -1], [100, "All"]],
-                                    dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                                    buttons:['csv','excel'],
-                                    "bProcessing": true,
-                                    "serverSide": true,
-                                    "ajax":{
-                                        url :"ajax/allIndividual.php",
-                                        type: "post",
-                                        datatype: 'json',
-                                        data:{submit:'cid',cid:cid},
-                                        error: function()
-                                        {
-                                            $("#employee_grid_processing").css("display","none");
-                                        }
-                                        //,
-                                        // success:function(data)
-                                        // {
-                                        //   console.log(data);
-                                        // }
-                                }
-                            });
+                //         let log=$('#employee_grid').DataTable({
+                //                     "lengthMenu": [[100, -1], [100, "All"]],
+                //                     dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                //                     buttons:['csv','excel'],
+                //                     "bProcessing": true,
+                //                     "serverSide": true,
+                //                     "ajax":{
+                //                         url :"ajax/allIndividual.php",
+                //                         type: "post",
+                //                         datatype: 'json',
+                //                         data:{submit:'cid',cid:cid},
+                //                         error: function()
+                //                         {
+                //                             $("#employee_grid_processing").css("display","none");
+                //                         }
+                //                         //,
+                //                         // success:function(data)
+                //                         // {
+                //                         //   console.log(data);
+                //                         // }
+                //                 }
+                //             });
 
-                            var table1=$('#employee_grid1').DataTable();
-                                table1.destroy(); 
+                //             var table1=$('#employee_grid1').DataTable();
+                //                 table1.destroy(); 
 
-                            let log2=$('#employee_grid1').DataTable({
-                                    "lengthMenu": [[100, -1], [100, "All"]],
-                                    dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                                    buttons: ['csv', 'excel', 'pdf', 'print'],
-                                    "bProcessing": true,
-                                    "serverSide": true,
-                                    "ajax":{
-                                        url :"ajax/allIndividual.php",
-                                        type: "post",
-                                        datatype: 'json',
-                                        data:{submit1:'cid',cid:cid},
-                                        error: function()
-                                        {
-                                            $("#employee_grid1_processing").css("display","none");
-                                        }
-                                        // ,
-                                        // success:function(data)
-                                        // {
-                                                //console.log(data);
-                                        // }
-                                    }
-                                }); 
-                }else if(filter=="Search By Date")
-                {
-                    var from=$('#fromdate').val();
-                    var to= $('#todate').val();
+                //             let log2=$('#employee_grid1').DataTable({
+                //                     "lengthMenu": [[100, -1], [100, "All"]],
+                //                     dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                //                     buttons: ['csv', 'excel', 'pdf', 'print'],
+                //                     "bProcessing": true,
+                //                     "serverSide": true,
+                //                     "ajax":{
+                //                         url :"ajax/allIndividual.php",
+                //                         type: "post",
+                //                         datatype: 'json',
+                //                         data:{submit1:'cid',cid:cid},
+                //                         error: function()
+                //                         {
+                //                             $("#employee_grid1_processing").css("display","none");
+                //                         }
+                //                         // ,
+                //                         // success:function(data)
+                //                         // {
+                //                                 //console.log(data);
+                //                         // }
+                //                     }
+                //                 }); 
+                // }else if(filter=="Search By Date")
+                // {
+                //     var from=$('#fromdate').val();
+                //     var to= $('#todate').val();
 
-                    if(from=='')
-                    {
-                        alert('Please Select From Date');
-                        exit();
-                    }
-                    var table=$('#employee_grid').DataTable();
-                        table.destroy();
+                //     if(from=='')
+                //     {
+                //         alert('Please Select From Date');
+                //         exit();
+                //     }
+                //     var table=$('#employee_grid').DataTable();
+                //         table.destroy();
                     
-                    let log=$('#employee_grid').DataTable({
-                        "lengthMenu": [[100, -1], [100, "All"]],
-                        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-                                            buttons: [
-                                            'csv', 'excel', 'pdf', 'print'
-                                            ],
-                                    "bProcessing": true,
-                            "serverSide": true,
-                            "ajax":{
-                                url :"ajax/allIndividual.php",
-                                type: "post",
-                                datatype: 'json',
-                                data:{submit:'date',from:from,to:to},
-                                error: function()
-                                {
-                                    $("#employee_grid_processing").css("display","none");
-                                }
-                                // ,
-                                // success:function(data)
-                                // {
-                                //   console.log(data);
-                                // }
-                            }
-                        });
-                        // console.log(log)
-                }
+                //     let log=$('#employee_grid').DataTable({
+                //         "lengthMenu": [[100, -1], [100, "All"]],
+                //         dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                //                             buttons: [
+                //                             'csv', 'excel', 'pdf', 'print'
+                //                             ],
+                //                     "bProcessing": true,
+                //             "serverSide": true,
+                //             "ajax":{
+                //                 url :"ajax/allIndividual.php",
+                //                 type: "post",
+                //                 datatype: 'json',
+                //                 data:{submit:'date',from:from,to:to},
+                //                 error: function()
+                //                 {
+                //                     $("#employee_grid_processing").css("display","none");
+                //                 }
+                //                 // ,
+                //                 // success:function(data)
+                //                 // {
+                //                 //   console.log(data);
+                //                 // }
+                //             }
+                //         });
+                //         // console.log(log)
+                // }
             });
         });
     </script>

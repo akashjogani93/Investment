@@ -109,6 +109,17 @@
                             return '₹' . number_format($number, 2, '.', ',');
                         }
                     }
+
+                    function formatIndianNumber1($number) 
+                    {
+                        if ($number >= 10000000) {
+                            return number_format($number / 10000000, 2, '.', ',') . ' Crores';
+                        } elseif ($number >= 100000) {
+                            return number_format($number / 100000, 2, '.', ',') . ' Lakhs';
+                        } else {
+                            return number_format($number, 2, '.', ',');
+                        }
+                    }
             ?>
             <?php 
                 if($_SESSION["type"]<>"Member")
@@ -120,7 +131,16 @@
                                 <div class="card bg-c-blue order-card">
                                     <div class="card-block">
                                         <h6 class="m-b-20">Total Customers <i class="fa fa-solid fa-users f-right"></i></h6>
-                                        <h2 class="text-left"><span class="spanshow"><?php $userCount =get_Dash_Data($conn, "SELECT COUNT(`cid`) FROM `register`;"); echo ($userCount > 0) ? $userCount : 0; ?></span></h2>
+                                        <h2 class="text-left">
+                                            <span class="spanshow">
+                                                <?php 
+                                                    $userCount =get_Dash_Data($conn, "SELECT COUNT(`cid`) FROM `register`;"); 
+                                                    // echo ($userCount > 0) ? $userCount : 0; 
+                                                    $investAmtFormatted = formatIndianNumber1($userCount);
+                                                    echo $investAmtFormatted;
+                                                    ?>
+                                            </span>
+                                        </h2>
                                     </div>
                                 </div>
                             </div>
@@ -250,7 +270,14 @@
                                         <div class="card bg-c-blue order-card">
                                             <div class="card-block">
                                                 <h5 class="m-b-20"><b>Total FD Investment</b></h5>
-                                                <h2 class="text-right"><i class="fa-solid fa-sack-dollar f-left"></i><span class="spanshow"><?php  $userCount=get_Dash_Data($conn,"SELECT  SUM(`amount`) FROM `fd`;"); echo ($userCount > 0) ? $userCount : 0;?></span></h2>
+                                                <h2 class="text-right"><i class="fa-solid fa-sack-dollar f-left"></i><span class="spanshow">
+                                                    <?php  $userCount12=get_Dash_Data($conn,"SELECT  SUM(`amount`) FROM `fd`;"); 
+                                                            // echo ($userCount > 0) ? $userCount : 0;
+                                                            $investAmtFormatted = formatIndianNumber($userCount12);
+                                                            echo $investAmtFormatted;
+                                                    ?></span>
+                                                            
+                                                    </h2>
                                             </div>
                                         </div>
                                     </div>
@@ -258,7 +285,11 @@
                                         <div class="card bg-c-blue order-card">
                                             <div class="card-block">
                                                 <h5 class="m-b-20"><b>Total Customer Registered</b></h5>
-                                                <h2 class="text-right"><i class="fa fa-solid fa-users f-left"></i><span class="spanshow"><?php echo get_Dash_Data($conn,"SELECT  COUNT(`f_cid`) FROM `fd_customers`;"); ?></span></h2>
+                                                <h2 class="text-right"><i class="fa fa-solid fa-users f-left"></i><span class="spanshow">
+                                                    <?php $totcus= get_Dash_Data($conn,"SELECT  COUNT(`f_cid`) FROM `fd_customers`;"); 
+                                                            $investAmtFormatted = formatIndianNumber1($totcus);
+                                                            echo $investAmtFormatted;
+                                                    ?></span></h2>
                                             </div>
                                         </div>
                                     </div>
@@ -271,7 +302,12 @@
                                                     $current_month = date('m'); $current_year = date('Y');
                                                 ?>
                                                 <h5 class="m-b-20"><b>Current Month FD</b></h5>
-                                                <h2 class="text-right"><i class="fa-solid fa-sack-dollar f-left"></i><span class="spanshow"><?php $userCount= get_Dash_Data($conn,"SELECT  SUM(`amount`) FROM `fd` WHERE MONTH(date) = $current_month AND YEAR(date) = $current_year;"); echo ($userCount > 0) ? $userCount : 0;?></span></h2>
+                                                <h2 class="text-right"><i class="fa-solid fa-sack-dollar f-left"></i><span class="spanshow">
+                                                    <?php $userCount= get_Dash_Data($conn,"SELECT  SUM(`amount`) FROM `fd` WHERE MONTH(date) = $current_month AND YEAR(date) = $current_year;");
+                                                    //  echo ($userCount > 0) ? $userCount : 0;
+                                                     $investAmtFormatted = formatIndianNumber($userCount);
+                                                            echo $investAmtFormatted;
+                                                    ?></span></h2>
                                             </div>
                                         </div>
                                     </div>
@@ -279,7 +315,11 @@
                                         <div class="card bg-c-pink order-card">
                                             <div class="card-block">
                                                 <h5 class="m-b-20 text-dark"><b>Current Month Registered</b></h5>
-                                                <h2 class="text-right"><i class="fa fa-solid fa-users f-left"></i><span class="spanshow"><?php echo get_Dash_Data($conn,"SELECT  COUNT(`f_cid`) FROM `fd_customers` WHERE MONTH(regdate) = $current_month AND YEAR(regdate) = $current_year;"); ?></span></h2>
+                                                <h2 class="text-right"><i class="fa fa-solid fa-users f-left"></i><span class="spanshow">
+                                                    <?php $curemontreg=get_Dash_Data($conn,"SELECT  COUNT(`f_cid`) FROM `fd_customers` WHERE MONTH(regdate) = $current_month AND YEAR(regdate) = $current_year;"); 
+                                                            $investAmtFormatted = formatIndianNumber1($curemontreg);
+                                                            echo $investAmtFormatted;
+                                                        ?></span></h2>
                                             </div>
                                         </div>
                                     </div>
@@ -335,7 +375,11 @@
                                         <div class="card bg-c-green order-card">
                                             <div class="card-block">
                                                 <h5 class="m-b-20"><b>Number Of Investment</b></h5>
-                                                <h2 class="text-right"><i class="fa-solid fa-sack-dollar f-left"></i><span class="spanshow"><?php echo get_Dash_Data($conn,"SELECT  COUNT(`id`) FROM `invest`;"); ?></span></h2>
+                                                <h2 class="text-right"><i class="fa-solid fa-sack-dollar f-left"></i><span class="spanshow">
+                                                    <?php $numberofinv=get_Dash_Data($conn,"SELECT  COUNT(`id`) FROM `invest`;"); 
+                                                        $investAmtFormatted = formatIndianNumber1($numberofinv);
+                                                        echo $investAmtFormatted;
+                                                    ?></span></h2>
                                             </div>
                                         </div>
                                     </div>
@@ -347,7 +391,8 @@
                                                     <span class="spanshow">
                                                         <?php 
                                                         $currentMonthInv=get_Dash_Data($conn,"SELECT  SUM(`invest`) FROM `invest` WHERE MONTH(regdate) = $current_month AND YEAR(regdate) = $current_year;"); 
-                                                        echo number_format($currentMonthInv,2);
+                                                        $investAmtFormatted = formatIndianNumber($currentMonthInv);
+                                                        echo $investAmtFormatted;
                                                         ?>
                                                     </span></h2>
                                             </div>
@@ -359,7 +404,11 @@
                                         <div class="card bg-c-pink order-card">
                                             <div class="card-block">
                                                 <h5 class="m-b-20"><b>Number Of Withdrawals</b></h5>
-                                                <h2 class="text-right"><i class="fa-solid fa-money-bill-transfer f-left"></i><span class="spanshow"><?php echo get_Dash_Data($conn,"SELECT  COUNT(`wid`) FROM `widraw`;"); ?></span></h2>
+                                                <h2 class="text-right"><i class="fa-solid fa-money-bill-transfer f-left"></i><span class="spanshow">
+                                                    <?php $numberofwith=get_Dash_Data($conn,"SELECT  COUNT(`wid`) FROM `widraw`;"); 
+                                                        $investAmtFormatted = formatIndianNumber1($numberofwith);
+                                                        echo $investAmtFormatted;
+                                                    ?></span></h2>
                                             </div>
                                         </div>
                                     </div>
@@ -370,7 +419,8 @@
                                                 <h2 class="text-right"><i class="fa-solid fa-money-bill-transfer f-left"></i><span class="spanshow">
                                                     <?php 
                                                         $currentMWithDra=get_Dash_Data($conn,"SELECT  SUM(`wamt`) FROM `widraw` WHERE MONTH(wdate) = $current_month AND YEAR(wdate) = $current_year;");
-                                                        echo number_format($currentMWithDra,2);
+                                                        $investAmtFormatted = formatIndianNumber($currentMWithDra);
+                                                        echo $investAmtFormatted;
                                                     ?>
                                                 </span></h2>
                                             </div>
@@ -401,10 +451,33 @@
             $data[] = $row;
         }
         ?>
-        
+        <style>
+            /* Default styles for the canvas */
+            /* #myChart {
+                background-color: white;
+                height: 50px;
+                width: 100%;
+            }
+*/
+            .canva{
+                background-color: white;
+                height:700px;
+                width: 100%;
+            }
+
+            @media only screen and (max-width: 600px) {
+                .canva {
+                background-color: lightgray;
+                height: 100%;
+                width: 100%;
+                }
+            } 
+        </style>
+
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <canvas id="myChart" style="background-color:white;" height="90" widht="50"></canvas>
-        
+        <div class="canva">
+            <canvas id="myChart" style=" background-color: white;"></canvas>
+        </div>
         <script>
                 var ctx = document.getElementById('myChart').getContext('2d');
                 var labels = [];
@@ -418,7 +491,7 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: 'Invested Amount',
+                            label: 'Invested',
                             data: amounts,
                             backgroundColor: {
                                 type: 'linear',

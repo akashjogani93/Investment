@@ -1,36 +1,20 @@
 <?php include('../dbcon.php');
-// error_reporting(E_ERROR | E_WARNING | E_PARSE);
-// ini_set('display_errors', 1);
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+ini_set('display_errors', 1);
 ?>
 
 <?php
 class Main{
-    public function fetchData($limit, $std,$newCurrentMonth,$cid,$fromdate,$todate,$monthwise,$conn) 
+    public function fetchData($limit, $std,$newCurrentMonth,$cid,$conn) 
     {
-        $monthwise=$_POST["monthwise"];
-
         $limit=$_POST["limit"];
         $std=$_POST["start"];
         $cid=$_POST["cid"];
         $newCurrentMonth=$_POST["newCurrentMonth"];
         $customerData = array();
 
-        if($newCurrentMonth=='datesearch')
-        {
-           $start=date("Y-m-d", strtotime($_POST["fromdate"]));
-           $end=date("Y-m-d", strtotime($_POST["todate"]));
-        }else
-        {
-            if($monthwise=='monthwise')
-            {
-                $start=date("Y-m-01", strtotime("first day of last month"));
-                $end=date("Y-m-30", strtotime("last day of last month"));
-            }else
-            {
-                $start=date("Y-m-01", strtotime("first day of this month"));
-                $end=date("Y-m-d");
-            }
-        }
+        $start=date("Y-m-01", strtotime("first day of this month"));
+        $end=date("Y-m-d");
 
         if(date("d", strtotime($end))=="31"){ $end=date("Y-m-30");}
         $today=date("d-m-Y");
@@ -52,6 +36,12 @@ class Main{
         while($row=mysqli_fetch_array($confirm_query))
         {
             $cid=$row['cid'];
+
+            $sum="SELECT SUM(`invest`) AS `investment` FROM `invest` WHERE `cid`='$cid'";
+            $c=mysqli_query($conn,$sum) or die(mysqli_error());
+            $r=mysqli_fetch_array($c);
+            if($r['investment']==""){$inv="-";}else{$inv=$r['investment'];}
+
             $name=$row['full'];
             $bank=$row['bank'];
             $acc=$row['account'];
@@ -63,50 +53,18 @@ class Main{
             {
                 $a=round($pay*15/100);
                     $c=$pay-$a;
-                // $customerData[] = array(
-                //     'custId' => $row['cid'],
-                //     'fullName' => $row['full'],
-                //     'amount' =>round($pay),
-                //     'diduct' =>round($a),
-                //     'currentPayment' =>round($c),
-                //     'bankName' => $row['bank'],
-                //     'accountNo' => $row['account'],
-                //     'ifscCode' => $row['ifsc'],
-                //     'panCardNumber' => $row['pan'],
-                //     'date' =>date("d-m-Y",strtotime($end)),
-                // );
-                if($monthwise=='monthwise')
-                {
-                    ?>
-                        <tr>
-                            <td><?php echo $row['cid'];?></td>
-                            <td><?php echo $row['full']; ?></td>
-                            <td><?php echo $formatter->format($pay); ?></td>
-                            <td><?php echo $row['address']; ?></td>
-                            <td><?php echo date("d-m-Y",strtotime($end)); ?></td>
-                            <td><?php echo $row['bank']; ?></td>
-                            <td><?php echo $row['account']; ?></td>
-                            <td><?php echo $row['ifsc']; ?></td>
-                            <td><?php echo $row['pan']; ?></td>
-                        </tr>
-                    <?php
-                }else
-                {
-                    ?>
-                        <tr>
-                            <td><?php echo $row['cid'];?></td>
-                            <td><?php echo $row['full']; ?></td>
-                            <td><?php echo $formatter->format($pay); ?></td>
-                            <td><?php echo $formatter->format($a); ?></td>
-                            <td><?php echo $formatter->format($c); ?></td>
-                            <td><?php echo $row['bank']; ?></td>
-                            <td><?php echo $row['account']; ?></td>
-                            <td><?php echo $row['ifsc']; ?></td>
-                            <td><?php echo $row['pan']; ?></td>
-                            <td><?php echo date("d-m-Y",strtotime($end)); ?></td>
-                        </tr>
-                    <?php
-                }
+                ?>
+                <tr>
+                    <td><?php echo $row['cid'];?></td>
+                    <td><?php echo $row['full']; ?></td>
+                    <td><?php echo $inv === "-" ? $inv : $formatter->format(floatval($inv)); ?></td>
+                    <td><?php echo $formatter->format($pay); ?></td>
+                    <td><?php echo $row['bank']; ?></td>
+                    <td><?php echo $row['account']; ?></td>
+                    <td><?php echo $row['ifsc']; ?></td>
+                    <td><?php echo $row['pan']; ?></td>
+                </tr>
+                <?php
             }
         }
         // header('Content-Type: application/json');
@@ -232,30 +190,18 @@ $mainInstance = new Main();
 
         
 // Get the parameters from the AJAX request
-// if(isset($_POST['limit']) && isset($_POST['start']) && isset($_POST['newCurrentMonth']) && isset($_POST['cid']) && isset($_POST['todate']) && isset($_POST['fromdate']) && isset($_POST['monthwise']))
-// {
-//     $monthwise = $_POST['monthwise'];
-//     $limit = $_POST['limit'];
-//     $start = $_POST['start'];
-//     $fromdate = $_POST['fromdate'];
-//     $todate = $_POST['todate'];
-//     $cid = $_POST['cid'];
-//     $newCurrentMonth = $_POST['newCurrentMonth'];
-//     // $mainInstance->fetchData($limit, $start,$newCurrentMonth,$cid,$fromdate,$todate,$monthwise,$conn);
-//     echo $cid;
-// }
-
-if(isset($_POST['limit']) && isset($_POST['start']) && isset($_POST['newCurrentMonth']) && isset($_POST['cid']) && isset($_POST['fromdate']) && isset($_POST['todate']) && isset($_POST['todate']) && isset($_POST['monthwise']))
+if(isset($_POST['limit']) && isset($_POST['start']) && isset($_POST['newCurrentMonth']) && isset($_POST['cid']))
 {
-    $limit =$_POST['limit'];
-    $newCurrentMonth =$_POST['newCurrentMonth'];
-    $start = $_POST['start'];
-    $cid = $_POST['cid'];
-    $fromdate = $_POST['fromdate'];
-    $todate = $_POST['todate'];
-    $monthwise = $_POST['monthwise'];
-    $mainInstance->fetchData($limit, $start,$newCurrentMonth,$cid,$fromdate,$todate,$monthwise,$conn);
+    $limit = isset($_POST['limit']);
+    $start = isset($_POST['start']);
+    // $fromdate = isset($_POST['fromdate']);
+    // $todate = isset($_POST['todate']);
+    $cid = isset($_POST['cid']);
+    $newCurrentMonth = isset($_POST['newCurrentMonth']);
+    $mainInstance->fetchData($limit, $start,$newCurrentMonth,$cid,$conn);
+    // echo 'running';
 }
+
 // Close the database connection
 mysqli_close($conn);
 ?>

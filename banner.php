@@ -117,14 +117,14 @@
                                 if(response==0)
                                 {
                                     alert('Added Successfully');
-                                    window.location='banner.php';
+                                    // window.location='banner.php';
                                 }else
                                 {
                                     alert('Something Went wrong')
                                 }
                             }
                         });
-                        // console.log(log);
+                        console.log(log);
                     });
                 });
 

@@ -83,9 +83,16 @@ if(isset($_POST['title']))
 
 if(isset($_POST['addFunction']))
 {
+    $min = 1000;
+    $max = 9999;
+    $randomNumber = rand($min, $max);
+    $fileName = $randomNumber . time();
+
+    $file = $_FILES['file'];
+    $bond1 = upload_Profile($file, $fileName, "../img/gallery/");
     $cate=$_POST['addFunction'];
-     $file = $_FILES['file'];
-    $bond1 = upload_Profile($file,"../img/gallery/");
+    //  $file = $_FILES['file'];
+    // $bond1 = upload_Profile($file,"../img/gallery/");
     $query="SELECT * FROM `category` WHERE `function`='$cate'";
     $exc=mysqli_query($conn,$query);
     if(mysqli_num_rows($exc) > 0)
@@ -105,8 +112,15 @@ if(isset($_POST['addFunction']))
 if(isset($_POST['addFunction1']))
 {
     $cate=$_POST['addFunction1'];
+
+    $min = 1000;
+    $max = 9999;
+    $randomNumber = rand($min, $max);
+    $fileName = $randomNumber . time();
+
     $file = $_FILES['file1'];
-    $bond1 = upload_Profile($file,"../img/insuGallery/");
+    $bond1 = upload_Profile($file, $fileName, "../img/insuGallery/");
+
     $query="SELECT * FROM `insurancecategory` WHERE `category`='$cate'";
     $exc=mysqli_query($conn,$query);
     if(mysqli_num_rows($exc) > 0)

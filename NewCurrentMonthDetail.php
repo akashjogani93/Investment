@@ -78,18 +78,14 @@
             }
         </style>
         
-        <?php require_once("header.php"); 
-            
-        ?>
+        <?php require_once("header.php"); ?>
         <script>
             $("#dyna").text("NEw courEnt Month Details");
             tex();
         </script>
         <script type="text/javascript">
             $(function() {
-                
                 $(".full").autocomplete({
-
                     source: 'widraw_searchName.php',
                     focus: function (event, ui) {
                         event.preventDefault();
@@ -100,10 +96,7 @@
                         $("#full1").val(ui.item.value);
                         $("#full").val(ui.item.label);
                 }
-                    
                 });
-                
-                
             });
         </script>
         <div class="content-wrapper" style="border:1px solid black;">
@@ -225,7 +218,6 @@
         </div>
         <?php include('footer.php');?>
     </div>
-    <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
@@ -235,6 +227,10 @@
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
     <script src="reports.js"></script>
     
     <script type="text/javascript">
@@ -545,13 +541,11 @@
             var t = "true";
             var action = 'inactive';
             var search_action='inactive';
-            var todate=$('#todate').val();
-            var fromdate=$('#fromdate').val();
-
+            var todate='todate';
+            var fromdate='from';
+            var monthwise="newcurrent";
             function load_customer_data(limit, start) 
             {
-                console.log('check');
-                console.log(limit,start)
                 let log=$.ajax({
                     url: "ajax/Fetch_data.php",
                     method: "POST",
@@ -562,6 +556,7 @@
                         cid:'cid',
                         todate:todate,
                         fromdate:fromdate,
+                        monthwise:monthwise,
                     },
                     cache: false,
                     success: function(data) 
@@ -599,6 +594,8 @@
 
             $('#search1').click(function() 
             {
+                var todate='todate';
+                var fromdate='from';
                 var option=$('#select').val();
                 if(option=='Search By Name')
                 {
@@ -622,6 +619,7 @@
                             cid:cid,
                             todate:todate,
                             fromdate:fromdate,
+                            monthwise:monthwise,
                         },
                         cache: false,
                         success: function(data) 
@@ -643,16 +641,19 @@
                     }
                     $('#mytable1').hide();
                     $('#searchName').show();
+                    $('#searchName').empty();
                     var myVar1 = setInterval(function() 
                     {
-                        if (search_action == 'inactive') {
+                        if (search_action == 'inactive') 
+                        {
                             ser_start = ser_start + ser_limit;
                             $(document.body).css({
                                 'cursor': 'not-allowed'
                             });
                             load_customer_data_date(ser_limit, ser_start);
-
-                        } else {
+                        } 
+                        else 
+                        {
                             clearInterval(myVar1);
                             $(document.body).css({
                                 'cursor': 'default'
@@ -675,12 +676,12 @@
                                 cid:'cid',
                                 todate:todate,
                                 fromdate:fromdate,
+                                monthwise:monthwise,
                             },
                             cache: false,
                             success: function(data) 
                             {
 
-                                $('#searchName').empty();
                                 $('#searchName').append(data);
                                 if (data == 0) {
                                     search_action = 'active';

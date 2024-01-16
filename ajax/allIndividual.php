@@ -16,7 +16,10 @@ if(isset($_POST["submit"]))
         {
             $end=date("Y-m-d", strtotime($_POST["to"]));
         }
+
         $sql="SELECT `invest`.*,`register`.`bank`,`register`.`account`,`register`.`cid`,`register`.`full` FROM `invest`,`register` WHERE `invest`.`regdate`<='$end' AND `invest`.`cid`=`register`.`cid` AND `invest`.`cid`='$cid'";
+
+        // $query ="SELECT `invest`.`i_id` AS `id`,`resister`.`cid` AS `cid`,`resister`.`full_name` as `fullname`,`resister`.`bank` as `bank`, `resister`.`acc_no` as `acc`,`invest`.`i_date` as `date`,`invest`.`temp` as `iv_amt`,`invest`.`pecentage` as `perc`,`invest`.`perday` as `day_amt` FROM `resister`,`invest` WHERE `invest`.`i_date`<='$end' AND `resister`.`cid` = `invest`.`cid` AND `resister`.`full_name`='$name';";
 
         // $query ="SELECT `invest`.`i_id` AS `id`,`resister`.`cid` AS `cid`,`resister`.`full_name` as `fullname`,`resister`.`bank` as `bank`, `resister`.`acc_no` as `acc`,`invest`.`i_date` as `date`,`invest`.`temp` as `iv_amt`,`invest`.`pecentage` as `perc`,`invest`.`perday` as `day_amt` FROM `resister`,`invest` WHERE  `invest`.`i_date`<='$end' AND `resister`.`cid` = `invest`.`cid` AND `resister`.`full_name`='$name';";
     }
@@ -145,7 +148,41 @@ if(isset($_POST["submit1"]))
         {
             $end=date("Y-m-d", strtotime($_POST["to"]));
         }
-        $sql="SELECT `referal`.*,`invest`.`cid`,`invest`,`invest`,`invest`.`regdate`,`register`.`full` FROM `referal`,`invest`,`register` WHERE `invest`.`regdate`<='$end' AND `referal`.`refcid`='$cid' AND `referal`.`id`=`invest`.`id` AND `invest`.`cid`=`register`.`cid`";
+        // $sql="SELECT 
+        //             `referal`.*,
+                    // `invest`.`cid`,
+                    // `invest`.`invest`,
+                    // `invest`.`regdate`,
+        //             `register`.`full`
+        //         FROM `referal`,`invest`,`register` 
+        //         WHERE `invest`.`regdate`<'$end' 
+        //         AND `referal`.`refcid`='$cid'
+        //         AND `referal`.`id`=`invest`.`id`
+        //         AND `invest`.`cid`=`register`.`cid`";
+
+        $sql="SELECT 
+                    `referal`.*,
+                    `invest`.`cid`,
+                    `invest`.`invest`,
+                    `invest`.`regdate`,
+                    `register`.`full` FROM `referal`,`invest`,`register`
+                WHERE `referal`.`refcid`='$cid'
+                AND `referal`.`id`=`invest`.`id`
+                AND `invest`.`regdate`<'$end'
+                AND `invest`.`cid`=`register`.`cid`";
+        // $query="SELECT 
+        //             `introduce`.`i_id` AS `id`,
+        //             `resister`.`cid` as `cid`,
+        //             `resister`.`full_name` as `fullname`,
+        //             `invest`.`i_date` AS `date`,
+        //             `invest`.`temp` AS `value`,
+        //             `introduce`.`r_pecentag` as `perc`,
+        //             `introduce`.`r_perday` AS `perday`
+        //         FROM `resister`,`introduce`, `invest`
+        //         WHERE `introduce`.`i_id`=`invest`.`i_id` 
+        //         AND `invest`.`cid`=`resister`.`cid` 
+        //         AND `introduce`.`r_name`='$name' 
+        //         AND `invest`.`i_date`<'$end';";
     }else if($new=='cid')
     {
         $cid=$_POST["cid"];
@@ -225,7 +262,7 @@ if(isset($_POST["submit1"]))
     // if(date("d", strtotime($end))=="31"){ $end=date("Y-m-30");}
     $today=date("d-m-Y");
     $srch_date=date_diff1($today,$start);
-
+    // $today=date("d-m-Y");
     $formatter = new NumberFormatter('en_IN', NumberFormatter::DECIMAL);
     $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, 2);
     while($row = mysqli_fetch_row($queryRecords) )
@@ -233,12 +270,12 @@ if(isset($_POST["submit1"]))
         $temp[0]=$row[1]; //investid
         $temp[1]=$row[10]; //name
         $temp[2]=$formatter->format($row[8]); //amount
-        $temp[3]=$row[3]; //asign
+        $temp[3]=$row[4]; //asign
 
-        $pday=(($temp[2]*$temp[3]/100)/30);
+        $pday=(($row[8]*$row[4]/100)/30);
         $temp[4]=round($pday); //pday
 
-        // //date Calculation
+        // // //date Calculation
         
         $i_days=date_diff1($today,$row[9]);
 
@@ -270,17 +307,15 @@ if(isset($_POST["submit1"]))
     function date_diff1($start,$end)
     {
         $diff=strtotime($start)-strtotime($end);
-        //echo $diff;
         $days=abs(round($diff/86400));
         if($days==0)
         {
-            return $days;
+          return $days;
         }
         else
         {
-            return $days+1;
+          return $days+1;
         }
-        
     }
 ?>
 

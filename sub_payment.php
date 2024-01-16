@@ -4,10 +4,25 @@
             .error {
                 color: red;
             }
-            #bottom {
+            #bottom 
+            {
                 position: fixed;
                 bottom: 0;
-                }
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            table {
+                width: 100%; /* Make the table fill the container */
+                white-space: nowrap; /* Prevent line breaks in table cells */
+            }
+
+            th, td {
+                padding: 10px;
+                /* Add any other styling you need for your table cells */
+            }
         </style>
         <?php require_once("header.php"); ?>
         <div class="content-wrapper">
@@ -58,6 +73,7 @@
                     <center><h3>
                         Investor Payment
                     </h3></center>
+                    <div class="table-container">
                     <table id="example1" class="table table-striped table-bordered table-hover example1">
                             <thead>
                                 <tr>
@@ -74,6 +90,7 @@
                             <tbody class="mytable">
                             </tbody>    
                         </table>
+                        </div>
                     </div>   
                 </div>
                 
@@ -82,6 +99,7 @@
                         Introducer Payment
                     </h3></center>
                     <div class="box-body">
+                        <div class="table-container">
                     <table id="example2" class="table table-striped table-bordered table-hover example1">
                             <thead>
                                 <tr>
@@ -98,6 +116,7 @@
                             <tbody class="mytable1">
                             </tbody>    
                         </table>
+                        </div>
                     </div>   
                 </div>
             </section>

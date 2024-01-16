@@ -86,7 +86,8 @@
     ];
 
     // Function to create the vertical bar chart
-    function createVerticalBarChart(investmentData, withdrawalData) {
+    function createVerticalBarChart(investmentData, withdrawalData) 
+    {
       // Check if data is an array
       if (!Array.isArray(investmentData) || !Array.isArray(withdrawalData)) {
         console.error('Data is not an array');

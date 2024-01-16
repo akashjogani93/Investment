@@ -2,7 +2,7 @@
 include("../dbcon.php");
 if(isset($_POST['cate']))
 {
-$urls = $_POST['url'];
+
 $cate = $_POST['cate'];
 $check = $_POST['check'];
 $check1 = $_POST['check1'];
@@ -22,6 +22,7 @@ if($check==1)
 
 if($check1==1)
 {
+    $urls = $_POST['url'];
     $urlsString = implode(',', $urls);
 }else
 {

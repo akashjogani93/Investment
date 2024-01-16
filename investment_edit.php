@@ -146,10 +146,18 @@
                                 </div>
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Assign %:</label>
-                                        <input type="text" class=" col-sm-4 form-control form-control-sm" required name="asign" id="asign"
-                                            placeholder="Asign %">
-
-                                    
+                                        <input type="text" class=" col-sm-4 form-control form-control-sm" required name="asign" id="asign" placeholder="Asign %">
+                                    <!-- <select class="form-control form-control-sm" name="asign" required id="asign">
+                                        <option value="">Select %</option>
+                                        <option>0.5</option>
+                                        <option>1.0</option>
+                                        <option>1.5</option>
+                                        <option>2.0</option>
+                                        <option>2.5</option>
+                                        <option>3.0</option>
+                                        <option>3.5</option>
+                                        <option>4.0</option>
+                                    <select> -->
                                 </div>
                                 <div class="group-form col-md-2">
                                     <label for="inputEmail3" class="form_label">Per Day:</label>

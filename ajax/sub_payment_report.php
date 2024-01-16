@@ -12,7 +12,7 @@ $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, 2);
         }
         else
         {
-          return $days;
+          return $days+1;
         }
         
     }

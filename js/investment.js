@@ -17,8 +17,17 @@ $(document).ready(function()
                         </div>
                         <div class="group-form col-md-2">
                             <label for="inputEmail3" class="form_label">Asign %:</label>
-                                <input type="text" class=" col-sm-4 form-control form-control-sm asignke" name="refAsign[]" id="refAsign[]"
-                                    placeholder="Asign %">
+                                <select class="form-control form-control-sm asignke" name="refAsign[]" required id="refAsign[]">
+                                    <option value="">Select %</option>
+                                    <option>0.5</option>
+                                    <option>1.0</option>
+                                    <option>1.5</option>
+                                    <option>2.0</option>
+                                    <option>2.5</option>
+                                    <option>3.0</option>
+                                    <option>3.5</option>
+                                    <option>4.0</option>
+                                <select>
 
                             
                         </div>
@@ -71,7 +80,9 @@ $(document).ready(function()
 
     //invest to only number And Asign Only Numbers
     $('.asignke').keypress(function(event)
+    // $('.asignke').on('change',function(event)
     {
+        console.log('working');
         acc =$('#acc').val();
         if(acc=='')
         {
@@ -102,19 +113,30 @@ $(document).ready(function()
     });
 
     //asign to change per month and per day calculation
-    $('#asign').keyup(function(){
-        var invest = $('#invest').val();
-        var asign = $('#asign').val();
+    // $('#asign').keyup(function(){
+        // var invest = $('#invest').val();
+        // var asign = $('#asign').val();
+        
+        // var calc=(invest/100)*asign;
+        // var calx=calc/30;
+        // $('#pmonth').val(calc.toFixed(2)); 
+        // $('#pday').val(calx.toFixed(2)); 
+
+    // });
+
+    $('#asign').on('change',function()
+    {
+        var invest = parseFloat($('#invest').val());
+        var asign = parseFloat($('#asign').val());
         
         var calc=(invest/100)*asign;
         var calx=calc/30;
         $('#pmonth').val(calc.toFixed(2)); 
-        $('#pday').val(calx.toFixed(2)); 
-
+        $('#pday').val(calx.toFixed(2));
     });
 
     //asign to change per month and per day calculation bye referals
-    $(document).on('keyup', '.asignke', function(e)
+    $(document).on('change', '.asignke', function(e)
     {
         let asignke = $(this).val();
         let invest = $('#invest').val();
@@ -420,6 +442,5 @@ $(function() {
 
                 }
             });
-            console.log(log);
-
+            // console.log(log);
         }

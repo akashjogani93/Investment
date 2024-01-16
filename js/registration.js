@@ -130,8 +130,26 @@ $(document).ready(function()
                 $('#sub').prop('disabled',true);
             }else
             {
-                $('#lab_mob').html(`<span style='color:green'>Mobile Number is Valid</span>`);
-                $('#sub').prop('disabled',false);
+                jQuery.ajax({
+                    url:'ajax/accnum.php',
+                    data:{'mob':mob},
+                    type:"POST",
+                    success:function(data)
+                    {
+                        console.log(data);
+                        if(data==0)
+                        {
+                            $('#lab_mob').html(`<span style='color:green'>Mobile Number is Valid</span>`);
+                            $('#sub').prop('disabled',false);
+                        }else
+                        {
+                            $('#lab_mob').html(`<span style='color:red'>Mobile Number Already Existed..</span>`);
+                            $('#sub').prop('disabled',true);
+                        }
+                    },
+                    error:function(){}
+                
+                });
             }
         }
     });
@@ -145,11 +163,17 @@ $(document).ready(function()
     });
 });
 
-$(document).ready( function() {
+$(document).ready(function() {
     var yourDateValue = new Date();
-    var formattedDate = yourDateValue.toISOString().substr(0, 10)
+    yourDateValue.setDate(1); // Set day of the month to 1
+
+    // Format the date as "YYYY-MM-DD"
+    var formattedDate = yourDateValue.toISOString().substr(0, 10);
+
     $('#regdate').val(formattedDate);
 });
+
+
          
 function isNumberKey(evt)
 {
