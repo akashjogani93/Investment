@@ -5,7 +5,8 @@ $(document).ready(function()
     var formattedDate = yourDateValue.toISOString().substr(0, 10)
     $('#regdate').val(formattedDate);
 
-    $('.add_more').click(function(e) {
+    $('.add_more').click(function (e)
+    {
         e.preventDefault();
         $('#show').after(`<div class="row">  
                         <div class="group-form col-md-4">
@@ -19,6 +20,7 @@ $(document).ready(function()
                             <label for="inputEmail3" class="form_label">Asign %:</label>
                                 <select class="form-control form-control-sm asignke" name="refAsign[]" required id="refAsign[]">
                                     <option value="">Select %</option>
+                                    <option>0</option>
                                     <option>0.5</option>
                                     <option>1.0</option>
                                     <option>1.5</option>
@@ -203,7 +205,7 @@ $(document).ready(function()
                     url: 'ajax/introduceReferal1.php',
                     type: "POST",
                     data: {
-                        data : data,
+                        data: datatrim,
                         referals : vals
                     },
                     success: function(response) 
@@ -231,8 +233,10 @@ $(document).ready(function()
                         $('#screen').val('');
                     }
                 });
+                console.log(log1);
             }
         });
+        console.log(log)
     }));
     $(document).on('focus','.referal',handleAuctocomplet);
 });

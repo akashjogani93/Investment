@@ -130,7 +130,7 @@
                             <div class="row">
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">First Name *</label>
-                                    <input type="text" class=" col-sm-4 form-control form-control-sm"  value="<?php echo $fname;?>" name="fname" id="fname" placeholder="Type Here..." required>
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm"  value="<?php echo $fname;?>" name="fname" id="fname" placeholder="Type Here..." required autofocus>
                                 </div>
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Middle Name</label>
@@ -144,8 +144,8 @@
                                     </script>
                                 </div>
                                 <div class="group-form col-md-4">
-                                    <label for="inputEmail3" class="form_label">Last Name *</label>
-                                    <input type="text" class=" col-sm-4 form-control form-control-sm" value="<?php echo $lname;?>" name="lname" id="lname" placeholder="Type Here..." required>
+                                    <label for="inputEmail3" class="form_label">Last Name </label>
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm" value="<?php echo $lname;?>" name="lname" id="lname" placeholder="Type Here..." >
                                 </div>
                             </div></br>
                             <div class="row">
@@ -175,14 +175,14 @@
                                 </div>
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Pan Card *</label>
-                                    <input type="text" class=" col-sm-4 form-control form-control-sm pan" name="pan" value="<?php echo $pan;?>" id="pan" placeholder="Type Here..." required>
+                                    <input type="text" class=" col-sm-4 form-control form-control-sm pan" name="pan" value="<?php echo $pan;?>" id="pan" placeholder="Type Here...">
                                     <div id="pan_valid"></div>
                                 </div>
                             </div></br>
                             <div class="row">
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Select Gender *</label>
-                                    <select class="form-control form-control-sm" required name="gen" id="gen">
+                                    <select class="form-control form-control-sm" name="gen" id="gen">
                                         <?php if($click=='reg')
                                         {
                                             echo '<option value="">Select Gender</option>';

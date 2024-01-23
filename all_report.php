@@ -50,6 +50,7 @@ h4>span{
 
 .f-left {
     float: left;
+    font-size:50px !important;
 }
 
 .f-right {

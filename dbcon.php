@@ -1,9 +1,9 @@
 <?php
 
     $host = "localhost";
-    $dbuser = "root";
-    $dbpass = "";
-    $db = "investment1";
+    $dbuser = "shivambgm_new";
+    $dbpass = "ShivamNew@2024";
+    $db = "shivambgm_new";
     $conn = mysqli_connect($host,$dbuser,$dbpass,$db) or die("Cannot Connect to Database Server");
     $d = mysqli_select_db($conn, $db) or die("Database does not exist");
 

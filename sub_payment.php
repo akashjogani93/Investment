@@ -152,22 +152,22 @@
                         success:function(data)
                         {
                             $('.mytable').append(data);
-                            $('#example1').dataTable({
-                            pageLength : 10,
+                            // $('#example1').dataTable({
+                            // pageLength : 10,
                             
-                            pageLength : 10,
-                            "lengthMenu": [[10, 25, 100, -1], [10, 25, 100, "All"]],
-                            language: {
-                                'paginate': {
-                                'previous': '<a type="button" class="btn btn-primary">Previous</a>',
-                                'next': '<a type="button" class="btn btn-primary">Next</a>'
-                                }
-                            },
-                            // footerCallback: function( tfoot, data, start, end, display ) {
-                            //     $(tfoot).append('<tr><td>Total:</td><td></td><td></td></tr>');
-                            // }
+                            // pageLength : 10,
+                            // "lengthMenu": [[10, 25, 100, -1], [10, 25, 100, "All"]],
+                            // language: {
+                            //     'paginate': {
+                            //     'previous': '<a type="button" class="btn btn-primary">Previous</a>',
+                            //     'next': '<a type="button" class="btn btn-primary">Next</a>'
+                            //     }
+                            // },
+                            // // footerCallback: function( tfoot, data, start, end, display ) {
+                            // //     $(tfoot).append('<tr><td>Total:</td><td></td><td></td></tr>');
+                            // // }
                             
-                            });
+                            // });
                             moveRowToBottom1("botom1")
                         
                         }
@@ -182,23 +182,23 @@
                         success:function(data)
                         {
                             $('.mytable1').append(data);
-                            $('#example2').dataTable({
-                            pageLength : 10,
+                            // $('#example2').dataTable({
+                            // pageLength : 10,
                             
-                            pageLength : 10,
-                            "lengthMenu": [[10, 25, 100, -1], [10, 25, 100, "All"]],
-                            language: {
-                                'paginate': {
-                                'previous': '<a type="button" class="btn btn-primary">Previous</a>',
-                                'next': '<a type="button" class="btn btn-primary">Next</a>'
-                                }
-                            },
-                            // "rowCallback": function() 
-                            // {
-                            //     moveRowToBottom("botom");
-                            // }
+                            // pageLength : 10,
+                            // "lengthMenu": [[10, 25, 100, -1], [10, 25, 100, "All"]],
+                            // language: {
+                            //     'paginate': {
+                            //     'previous': '<a type="button" class="btn btn-primary">Previous</a>',
+                            //     'next': '<a type="button" class="btn btn-primary">Next</a>'
+                            //     }
+                            // },
+                            // // "rowCallback": function() 
+                            // // {
+                            // //     moveRowToBottom("botom");
+                            // // }
                                 
-                            });
+                            // });
                             
 
                             moveRowToBottom("botom")

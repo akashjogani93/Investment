@@ -8,7 +8,7 @@ include('dbcon.php');
     $searchTerm = $_GET['term'];
     
     //get matched data from skills table
-    $sql = "SELECT DISTINCT full,cid FROM  register WHERE full LIKE '".$searchTerm."%'";
+    $sql = "SELECT DISTINCT full,cid FROM  register WHERE full LIKE '%".$searchTerm."%'";
     $retval=mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_array($retval)) 
     {

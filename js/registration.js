@@ -44,6 +44,12 @@ $(document).ready(function()
                 }  
         });
 
+    $("#bank").on('input', function () {
+        var inputvalues = $(this).val();
+        var uppercaseValues = inputvalues.toUpperCase();
+        $(this).val(uppercaseValues);
+    });
+
         $(".ifsc").on('input',function ()
         {
             var inputvalues = $(this).val();
@@ -68,7 +74,7 @@ $(document).ready(function()
                 }  
         });
 
-        $("#fname, #mname, #lname").on('input',function ()
+        $("#fname, #mname, #lname, #branch, #nom, #rel").on('input', function ()
         {
             var inputvalues = $(this).val();
             var uppercaseValues = inputvalues.charAt(0).toUpperCase() + inputvalues.slice(1);

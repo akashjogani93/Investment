@@ -77,7 +77,7 @@
             <div class="col-md-12 text-center">
                 <!-- <h1>SHIVAM ASSOCIATES</h1> -->
                 <!-- <p class="login-box-msg">Investment Of Trust</p> -->
-                <img src="img/shivamlogo (1).png" alt="" width="200">
+                <img src="img/Shivamlogo _1_.png" alt="" height="200" width="200">
             </div>
 
             <div class="col-md-12 d-flex justify-content-center login-box-msg">

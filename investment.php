@@ -111,7 +111,7 @@
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Transaction Type:</label>
                                     <select class="form-control form-control-sm" name="pmode" required id="pmode">
-                                        <option value="">Select Mode</option>
+                                        <option>Other</option>
                                         <option>Cash</option>
                                         <option>Cheque</option>
                                         <option>Online</option>
@@ -146,6 +146,7 @@
                                         <!-- <input type="text" class=" col-sm-4 form-control form-control-sm asignke" name="refAsign[]" id="refAsign[]" placeholder="Type Here.."> -->
                                         <select class="form-control form-control-sm asignke" name="refAsign[]" required id="refAsign[]">
                                             <option value="">Select %</option>
+                                            <option>0</option>
                                             <option>0.5</option>
                                             <option>1.0</option>
                                             <option>1.5</option>

@@ -56,9 +56,11 @@ span.logo-lg {
     <div class="wrapper" id="form1">
         <!-- <div class="fixs" style="position:fixed;"> -->
             <header class="main-header">
-                <center><a href="#" class="logo">
+                <center><a href="home.php" class="logo">
                     <!-- <span class="logo-mini"><b>T I<b></span> -->
-                    <span class="logo-lg"><img src="img/shivamlogo.png" class="sidebar-toggle" height="70px" width="70px">
+                    <span class="logo-lg text-left" style="color:white;">
+                        <!--<img src="img/Shivamlogo.png" class="sidebar-toggle" height="70px" width="70px">-->
+                        SHIVAM
                     </span>
                 </a></center>
                 <nav class="navbar navbar-static-top">
@@ -69,12 +71,12 @@ span.logo-lg {
                     <center><h2 style="margin-top:7px;"><b id="dyna"></b></h2></center>
                         
                         <script>
-                            $(document).ready(function() {
-                                $('body').bind('cut copy', function(e)
-                                    {
-                                    e.preventDefault();
-                                    });
-                                });
+                            // $(document).ready(function() {
+                            //     $('body').bind('cut copy', function(e)
+                            //         {
+                            //         e.preventDefault();
+                            //         });
+                            //     });
                             function tex()
                             {
                                 var tex = document.getElementById('dyna').textContent.toUpperCase();
@@ -90,9 +92,21 @@ span.logo-lg {
             </header>
             <aside class="main-sidebar">
                 <section class="sidebar">
-                    <!-- <a href="#" >
-                        <span class="logo-lg"><img src="img/shivamlogo.JPG" class="sidebar-toggle" height="70px" width="70px">
-                    </a> -->
+                <?php 
+                    if($_SESSION["type"] !="Member")
+                    {
+                ?>
+                        <a href="#" >
+                            <span class="logo-lg">
+                                <img src="img/shivamlogo.JPG" class="sidebar-toggle" width="55%">
+                            </span>
+                           <!--<span>
+                                ADMIN
+                            </span>--->
+                        </a>
+                <?php 
+                    }
+                ?>
                     <!-- <div class="user-panel">
                         <div class="pull-left image">
                         

@@ -189,7 +189,7 @@
                                 <div class="group-form col-md-2">
                                     <label for="inputEmail3" class="form_label">Payment Mode:</label>
                                     <select class="form-control form-control-sm" name="pmode" required id="pmode">
-                                        <option value="">Select Mode</option>
+                                        <option>Other</option>
                                         <option>Cash</option>
                                         <option>Bank Check</option>
                                         <option>Online</option>
@@ -377,11 +377,12 @@
                     success: function(data)
                     {
                         // console.log(log);
+                        let datatrim = data.trim();
                         let log1 = $.ajax({
                             url: 'ajax/edit_referalInvestment1.php',
                             type: "POST",
                             data: {
-                                data : data,
+                                data : datatrim,
                                 referals : vals
                             },
                             success: function(response) 
@@ -411,9 +412,10 @@
                                 // $('#screen').val('');
                             }
                         });
+                        console.log(log1)
                     }
                 });
-                //console.log("error========>",log);
+                console.log("error========>",log);
             }));
            
             function addInvest1()

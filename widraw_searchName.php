@@ -5,7 +5,7 @@ include('dbcon.php');
     $searchTerm = $_GET['term'];
     
     //get matched data from skills table
-    $sql = "SELECT DISTINCT `invest`.`cid`,`register`.`full`,`register`.`cid` FROM  `invest`,`register` WHERE `invest`.`cid`=`register`.`cid` AND `register`.`full` LIKE '".$searchTerm."%'";
+    $sql = "SELECT DISTINCT `invest`.`cid`,`register`.`full`,`register`.`cid` FROM  `invest`,`register` WHERE `invest`.`cid`=`register`.`cid` AND `register`.`full` LIKE '%".$searchTerm."%'";
     $retval=mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_array($retval)) {
         $data[] = array("value"=>$row['cid'],"label"=>$row['full']);
