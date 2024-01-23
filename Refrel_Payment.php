@@ -190,131 +190,6 @@
     <script>
         $(document).ready(function()
         {
-            // Vue.component('my-component', {
-            // template: `
-            //     <div>
-            //         <!-- Your existing HTML content here -->
-            //         <table id="example1" class="table table-striped table-bordered table-hover example1">
-            //             <thead>
-            //                 <tr>
-            //                     <th>Action</th>
-            //                     <th>In_id</th>
-            //                     <th>Investor Name</th>
-            //                     <th>Invest Date</th>
-            //                     <th>Invest Amount</th>
-            //                     <th>Assigned %</th>
-            //                     <th>Per Day</th>
-            //                     <th>Per Month</th>
-
-            //                     <th>1st Introducer</th>
-            //                     <th>%</th>
-            //                     <th>Perday Amount</th>
-            //                     <th>T.A</th>
-
-            //                     <th>2nd Introducer</th>
-            //                     <th>%</th>
-            //                     <th>Perday Amount</th>
-            //                     <th>T.A</th>
-
-            //                     <th>3th Introducer</th>
-            //                     <th>%</th>
-            //                     <th>Perday Amount</th>
-            //                     <th>T.A</th>
-
-            //                     <th>4th Introducer</th>
-            //                     <th>%</th>
-            //                     <th>Perday Amount</th>
-            //                     <th>T.A</th>
-
-            //                     <th>5th Introducer</th>
-            //                     <th>%</th>
-            //                     <th>Perday Amount</th>
-            //                     <th>T.A</th>
-
-            //                     <th>6th Introducer</th>
-            //                     <th>%</th>
-            //                     <th>Perday Amount</th>
-            //                     <th>T.A</th>
-
-            //                     <th>7th Introducer</th>
-            //                     <th>%</th>
-            //                     <th>Perday Amount</th>
-            //                     <th>T.A</th>
-
-            //                     <th>8th Introducer</th>
-            //                     <th>%</th>
-            //                     <th>Perday Amount</th>
-            //                     <th>T.A</th>
-            //                 </tr>
-            //             </thead>
-            //             <tbody id="mytable1">
-            //             </tbody>    
-            //         </table>
-            //         <div v-if="loading" class="loader">Loading...</div>
-            //         </div>
-            //     </div>
-            // `,
-            // data() {
-            //     return {
-            //     limit: 50,
-            //     start: -50,
-            //     action: 'inactive',
-            //     intervalId: null,
-            //     loading: false
-            //     };
-            // },
-            // methods: 
-            // {
-            //     load_customer_data() {
-            //     const self = this;
-            //     self.loading = true;
-            //     $.ajax({
-            //         url: 'ajax/ReferalIndividual.php',
-            //         method: 'POST',
-            //         data: { submit: 'submit', limit: self.limit, start: self.start },
-            //         cache: false,
-            //         success: function (data) 
-            //         {
-            //         $('#example1').append(data);
-            //         console.log(data);
-            //         if (data == 0) {
-            //             self.action = 'active';
-            //         } else {
-            //             self.action = 'inactive';
-            //         }
-            //         self.loading = false;
-            //         },
-            //         error: function () {
-            //         self.loading = false;
-            //         }
-            //     });
-            //     },
-            //     startInterval() 
-            //     {
-            //     const self = this;
-            //     self.intervalId = setInterval(function () {
-            //         if (self.action === 'inactive') {
-            //         self.start += self.limit;
-            //         self.load_customer_data();
-            //         } else {
-            //         clearInterval(self.intervalId);
-            //         $(document.body).css({ cursor: 'default' });
-            //         alert('No more records found!');
-            //         self.loading = false;
-            //         }
-            //     }, 300);
-            //     },
-            // },
-            // mounted() {
-            //     this.startInterval();
-            // }
-            // });
-
-            // // Create the Vue app
-            // var app = new Vue({
-            // el: '#app'
-            // });
-
             var limit = 50;
             var start = -50;
             var t = "true";
@@ -401,7 +276,6 @@
                 }
                 ],
             });
-            // alert('hii');
         }
         function loading1()
         {
@@ -419,56 +293,5 @@
                 // ],
             });
         }
-
-        </script>
-
-        
-<!-- Introducer 1
-<td><?php //echo $intro[1][0]; ?></td>
-<td><?php //echo $intro[1][1]; ?></td>
-<td><?php //echo $intro[1][2]; ?></td>
-<td><?php //echo $intro[1][3]; ?></td>
-
-Introducer 2
-<td><?php //echo $intro[2][0]; ?></td>
-<td><?php //echo $intro[2][1]; ?></td>
-<td><?php //echo $intro[2][2]; ?></td>
-<td><?php //echo $intro[2][3]; ?></td>
-
-Introducer 3
-<td><?php //echo $intro[3][0]; ?></td>
-<td><?php //echo $intro[3][1]; ?></td>
-<td><?php //echo $intro[3][2]; ?></td>
-<td><?php //echo $intro[3][3]; ?></td>
-
-Introducer 4
-<td><?php //echo $intro[4][0]; ?></td>
-<td><?php //echo $intro[4][1]; ?></td>
-<td><?php //echo $intro[4][2]; ?></td>
-<td><?php //echo $intro[4][3]; ?></td>
-
-Introducer 5
-<td><?php //echo $intro[5][0]; ?></td>
-<td><?php //echo $intro[5][1]; ?></td>
-<td><?php //echo $intro[5][2]; ?></td>
-<td><?php //echo $intro[5][3]; ?></td>
-
-Introducer 6
-<td><?php //echo $intro[6][0]; ?></td>
-<td><?php //echo $intro[6][1]; ?></td>
-<td><?php //echo $intro[6][2]; ?></td>
-<td><?php //echo $intro[6][3]; ?></td>
-
-Introducer 7
-<td><?php //echo $intro[7][0]; ?></td>
-<td><?php //echo $intro[7][1]; ?></td>
-<td><?php //echo $intro[7][2]; ?></td>
-<td><?php //echo $intro[7][3]; ?></td>
-
-Introducer 8
-<td><?php //echo $intro[8][0]; ?></td>
-<td><?php //echo $intro[8][1]; ?></td>
-<td><?php //echo $intro[8][2]; ?></td>
-<td><?php //echo $intro[8][3]; ?></td> -->
-
+    </script>
 </body>

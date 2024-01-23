@@ -17,11 +17,13 @@ if(isset($_POST["submit"]))
     $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, 2);
 
     $retval=mysqli_query($conn, $query);
+    $i=$total1=$total2=$total3=0;
     while ($row = mysqli_fetch_array($retval)) 
     {
         $id=$row['id'];
         $invest=$row['invest'];
         $intro=array();
+        // $i=1; 
         $qry="SELECT `referal`.*,`register`.`full`,`register`.`mobile` FROM `referal`,`register` WHERE `referal`.`refcid`=`register`.`cid` AND `id`='$id'";
         $confirm1=mysqli_query($conn,$qry);
         $i=1;
@@ -47,6 +49,11 @@ if(isset($_POST["submit"]))
             $intro[$i][3]='-';
             $i=$i+1;
         } 
+
+        $total1=$total1+round($row['invest']);
+        $total2=$total2+$row['pday'];
+        $total3=$total3+round($row['pday']*30);
+
         ?>
             <tr>
                 <td><button onclick="editupdate(<?php echo $row['id']; ?>)" class="btn btn-info">Edit</button></td>
@@ -109,6 +116,18 @@ if(isset($_POST["submit"]))
             </tr>
         <?php
     }
+    ?>
+        <tr class="table-active">
+            <!---invester ----->
+            <td colspan="1"></td>
+            <td colspan="3">-</td>
+            <th><?php echo $formatter->format($total1) ?></th>
+            <td>-</td>
+            <th><?php echo $formatter->format($total2) ?></th>
+            <th><?php echo $formatter->format($total3) ?></th>
+            <td colspan="32">-</td>
+       </tr>
+    <?php
 }
 
 ?>

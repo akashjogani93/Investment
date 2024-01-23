@@ -7,7 +7,7 @@ $(document).ready(function()
         // var reg = /([A-Z]){5}([0-9]){4}([A-Z]){1}$/;
         // if(inputvalues.match(reg))
         // {
-        //     $('#sub').prop('disabled',false);   
+        //     $('#sub').prop('disabled',false);
         //     emailInput.style.borderColor = '';
         //     $('#pan_valid').html(``);
         //     return true;    
@@ -20,6 +20,7 @@ $(document).ready(function()
         //     }    
     // });
 
+        var randon=Math.floor (1000 + Math.random () * 9000);
         $(".pan").on('input',function ()
         {
             var inputvalues = $(this).val();
@@ -66,12 +67,12 @@ $(document).ready(function()
                 $('#ifsc_valid').html(``);                
                 return true;    
             }    
-            else {    
-                    ifsc.style.borderColor = 'red';
-                    $('#sub').prop('disabled',true);
-                    $('#ifsc_valid').html(`<span style='color:red'>IFSC Number Not Valid</span>`);
-                    return false;      
-                }  
+            else {
+                ifsc.style.borderColor = 'red';
+                $('#sub').prop('disabled',true);
+                $('#ifsc_valid').html(`<span style='color:red'>IFSC Number Not Valid</span>`);
+                return false;      
+            }  
         });
 
         $("#fname, #mname, #lname, #branch, #nom, #rel").on('input', function ()
@@ -82,6 +83,28 @@ $(document).ready(function()
             $(this).val(uppercaseValues);
         });
 
+        // $('#address').on('input',function ()
+        // {
+        //     var inputvalues = $(this).val();
+        //     var uppercaseValues = inputvalues.charAt(0).toUpperCase() + inputvalues.slice(1);
+        //     $(this).val(uppercaseValues);
+        // });
+        $('#address').on('input', function() {
+            var inputValues = $(this).val().toLowerCase();
+            var words = inputValues.split(/\s+/);
+        
+            for (var i = 0; i < words.length; i++) {
+                words[i] = capitalizeFirstLetter(words[i]);
+            }
+        
+            var capitalizedValues = words.join(' ');
+            $(this).val(capitalizedValues);
+        });
+        
+        function capitalizeFirstLetter(word) {
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        }
+        
         // $(".ifsc").change(function ()
         // {      
         //     var inputvalues = $(this).val();
@@ -102,7 +125,6 @@ $(document).ready(function()
         //         }    
         // }); 
 
-            
         $('#lname , #nom , #rel , #fname , #mname').keypress(function(event){
 	
                 var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -112,8 +134,6 @@ $(document).ready(function()
                 return false;
             
         });
-            
-
 
     $("#mobile").keyup(function()
     { 
@@ -154,18 +174,17 @@ $(document).ready(function()
                         }
                     },
                     error:function(){}
-                
                 });
             }
         }
     });
 
 
-    $("#fname").blur(function()
+    $("#fname").on('input',function()
     { 
         let fname=$("#fname").val();
         let trimmedStr = fname.replace(/\s+/g, '');
-        $("#password").val(trimmedStr+Math.floor (1000 + Math.random () * 9000));
+        $("#password").val(trimmedStr+randon);
     });
 });
 

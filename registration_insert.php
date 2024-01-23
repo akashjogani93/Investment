@@ -26,7 +26,7 @@ include('sms.php');
         $full=$fname." ".$mname." ".$lname;
         $user=$_POST['username'];
         $pass=$_POST['password'];
-        $msg = "Welcome to SHIVAM ASSOCIATES  log-in link: www.evontest.com/investment , user name: $user , password: $pass";
+        $msg = "Welcome to SHIVAM ASSOCIATES  log-in link: www.shivambgm.com , user name: $user , password: $pass";
         $query="INSERT INTO `register`(`cid`, `regdate`, `fname`, `mname`, `lname`, `mobile`, `email`, `pan`, `address`, `blood`, `gender`, `bank`, `account`, `ifsc`, `branch`, `nominee`, `relation`,`full`) 
         VALUES('$cid','$regdate','$fname','$mname','$lname','$mobile','$email','$pan','$address','$blood','$gender','$bank','$account','$ifsc','$branch','$nominee','$relation','$full')";
          $confirm = mysqli_query($conn,$query) or die(mysqli_error());

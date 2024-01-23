@@ -176,14 +176,14 @@
                             <div class="row">
                                 <div class="group-form col-md-2">
                                     <label for="inputEmail3" class="form_label">Investment Date</label>
-                                    <input type="date" class="col-sm-4 form-control form-control-sm" required name="regdate" id="regdate" placeholder="Registration Date" readonly>
+                                    <input type="date" class="col-sm-4 form-control form-control-sm" required name="regdate" id="regdate" placeholder="Registration Date">
                                 </div>
                                 <script>
-                                    $(document).ready( function() {
-                                        var yourDateValue = new Date();
-                                        var formattedDate = yourDateValue.toISOString().substr(0, 10)
-                                        $('#regdate').val(formattedDate);
-                                    });
+                                    // $(document).ready( function() {
+                                    //     var yourDateValue = new Date();
+                                    //     var formattedDate = yourDateValue.toISOString().substr(0, 10)
+                                    //     $('#regdate').val(formattedDate);
+                                    // });
                                 
                                 </script>
                                 <div class="group-form col-md-2">
