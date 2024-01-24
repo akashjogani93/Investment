@@ -61,7 +61,7 @@
                 
                 $(".full").autocomplete({
 
-                    source: 'widraw_searchName.php',
+                    source: 'investment_searchName.php',
                     focus: function (event, ui) {
                         event.preventDefault();
                         $("#full").val(ui.item.label);

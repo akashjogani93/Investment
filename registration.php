@@ -210,13 +210,13 @@
                             </div></br>
                             <div class="row">
                                 <div class="group-form col-md-4">
+                                    <label for="inputEmail3" class="form_label">Bank Name *</label>
+                                    <input type="text" class="col-sm-4 form-control form-control-sm" value="<?php echo $bank;?>" name="bank" id="bank" placeholder="Type Here..." required>    
+                                </div>
+                                <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label" id="checku">Account No *</label>
                                     <input type="text" class="col-sm-4 form-control form-control-sm" value="<?php echo $account;?>" onInput="checku()" name="acc" id="acc" placeholder="Type Here..." required maxlength="20">
                                     <div id="msg"></div>
-                                </div>
-                                <div class="group-form col-md-4">
-                                    <label for="inputEmail3" class="form_label">Bank Name *</label>
-                                    <input type="text" class="col-sm-4 form-control form-control-sm" value="<?php echo $bank;?>" name="bank" id="bank" placeholder="Type Here..." required>    
                                 </div>
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">IFSC Code *</label>

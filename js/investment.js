@@ -233,10 +233,10 @@ $(document).ready(function()
                         $('#screen').val('');
                     }
                 });
-                console.log(log1);
+                // console.log(log1);
             }
         });
-        console.log(log)
+        // console.log(log)
     }));
     $(document).on('focus','.referal',handleAuctocomplet);
 });

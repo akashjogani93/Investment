@@ -136,15 +136,18 @@
                             </div></br>
 
                             <div class="row">
-                                
-                                <div class="group-form col-md-4">
+                                <div class="group-form col-md-3">
+                                    <label for="inputEmail3" class="form_label">Investment Date</label>
+                                    <input type="date" class="col-sm-4 form-control form-control-sm" required name="regdate" id="regdate" placeholder="Registration Date">
+                                </div>
+                                <div class="group-form col-md-3">
                                     <label for="inputEmail3" class="form_label">Invest Amount:</label>
                                         <input type="text" class=" col-sm-4 form-control form-control-sm" required name="invest" id="invest"
                                             placeholder="Invest To Amount">
 
                                     
                                 </div>
-                                <div class="group-form col-md-4">
+                                <div class="group-form col-md-2">
                                     <label for="inputEmail3" class="form_label">Assign %:</label>
                                         <input type="text" class=" col-sm-4 form-control form-control-sm" required name="asign" id="asign" placeholder="Asign %">
                                     <!-- <select class="form-control form-control-sm" name="asign" required id="asign">
@@ -174,10 +177,6 @@
                                 
                             </div></br>
                             <div class="row">
-                                <div class="group-form col-md-2">
-                                    <label for="inputEmail3" class="form_label">Investment Date</label>
-                                    <input type="date" class="col-sm-4 form-control form-control-sm" required name="regdate" id="regdate" placeholder="Registration Date">
-                                </div>
                                 <script>
                                     // $(document).ready( function() {
                                     //     var yourDateValue = new Date();
@@ -188,14 +187,14 @@
                                 </script>
                                 <div class="group-form col-md-2">
                                     <label for="inputEmail3" class="form_label">Payment Mode:</label>
-                                    <select class="form-control form-control-sm" name="pmode" required id="pmode">
+                                    <select class="form-control form-control-sm" name="pmode" id="pmode">
                                         <option>Other</option>
                                         <option>Cash</option>
                                         <option>Bank Check</option>
                                         <option>Online</option>
                                     <select>
                                 </div>
-                                <div class="group-form col-md-2">
+                                <div class="group-form col-md-3">
                                     <label for="inputEmail3" class="form_label">Confirmation:</label>
                                     <input type="file" class="form-control form-control-smss" placeholder="" name="screen" id="screen" accept=".png, .jpeg, .jpg"> 
                                 </div>
@@ -203,7 +202,7 @@
                                     <button type="button" onclick="picture()" style="margin-top:25px;">Download</button>
                                     <!-- <button type="button" onclick="viewProf()" style="margin-top:25px;">View</button> -->
                                 </div>
-                                <div class="group-form col-md-2">
+                                <div class="group-form col-md-3">
                                     <label for="inputEmail3" class="form_label">Agreement:</label>
                                     <input type="file" class="form-control form-control-smss" placeholder="" name="agreement" id="agreement" accept=".png, .jpeg, .jpg"> 
                                 </div>

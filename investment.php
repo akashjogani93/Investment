@@ -33,6 +33,10 @@
                                 <label for="inputEmail3" id="search_name" class="control-label">Search Full Name</label>
                                 <input  type="text" class="form-control full" name="full" id="full" placeholder="Search Full Name" required="required">
                             </div>
+                            <!-- <div class="form-group col-md-2">
+                                <label for="inputEmail3" id="search_name" class="control-label">Customer Id</label>
+                                <input  type="text" class="form-control full" name="cissearch" id="full" placeholder="Customer Id" required="required">
+                            </div> -->
                             <div class="group-form col-md-1">
                                 <a type="button" id="search1" onclick="searchfull()" class="btn btn-primary" style="margin-top:25px;">Search</a>
                             </div>
@@ -65,11 +69,15 @@
                                 </div>
                             </div></br>
                             <div class="row">
-                                <div class="group-form col-md-4">
+                                <div class="group-form col-md-3">
+                                    <label for="inputEmail3" class="form_label">Transaction Date</label>
+                                    <input type="date" class="col-sm-4 form-control form-control-sm" required name="regdate" id="regdate" placeholder="Type Here..">
+                                </div>
+                                <div class="group-form col-md-3">
                                     <label for="inputEmail3" class="form_label">Invest Amount:</label>
                                     <input type="text" class="col-sm-4 form-control form-control-sm investOne" required name="invest" id="invest" placeholder="Type Here..">
                                 </div>
-                                <div class="group-form col-md-4">
+                                <div class="group-form col-md-2">
                                     <label for="inputEmail3" class="form_label">Assign %:</label>
                                     <!-- <input type="text" class="col-sm-4 form-control form-control-sm investOne" required name="asign" id="asign" placeholder="Type Here.."> -->
                                     <select class="form-control form-control-sm investOne" name="asign" required id="asign">
@@ -104,25 +112,24 @@
                                 </div>
                             </div></br>
                             <div class="row">
-                                <div class="group-form col-md-4">
+                                <!-- <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Transaction Date</label>
                                     <input type="date" class="col-sm-4 form-control form-control-sm" required name="regdate" id="regdate" placeholder="Type Here..">
-                                </div>
-                                <div class="group-form col-md-4">
+                                </div> -->
+                                <div class="group-form col-md-3">
                                     <label for="inputEmail3" class="form_label">Transaction Type:</label>
-                                    <select class="form-control form-control-sm" name="pmode" required id="pmode">
+                                    <select class="form-control form-control-sm" name="pmode" id="pmode">
                                         <option>Other</option>
                                         <option>Cash</option>
                                         <option>Cheque</option>
                                         <option>Online</option>
-                                        <option>Other</option>
                                     <select>
                                 </div>
-                                <div class="group-form col-md-2">
+                                <div class="group-form col-md-3">
                                     <label for="inputEmail3" class="form_label">Confirmation:</label>
                                     <input type="file" class="form-control form-control-smss" placeholder="" name="screen" id="screen" accept=".jpg, .jpeg, .png, .gif, .pdf">
                                 </div>    
-                                <div class="group-form col-md-2">
+                                <div class="group-form col-md-3">
                                     <label for="inputEmail3" class="form_label">Agreement:</label>
                                     <input type="file" class="form-control form-control-smss" placeholder="" name="agreement" id="agreement" accept=".jpg, .jpeg, .png, .gif, .pdf"> 
                                 </div>                
