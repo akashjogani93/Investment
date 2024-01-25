@@ -102,7 +102,7 @@ i.fa{
                                 
                                 <div class="col-md-4">
                                     <div class="card bg-c-yellow order-card">
-                                        <a href="investment_report.php" title="All Investment Details">
+                                        <a href="investment_report1.php" title="All Investment Details">
                                         <div class="card-block">
                                             <h4 class="text-right"><i class="fa fa fa-solid fa-indian-rupee-sign f-left"></i><span>Investment Details</span></h4>
                                         </div></a>

@@ -347,6 +347,8 @@
                                                 <th>Full Name</th>
                                                 <th>Mobile</th>
                                                 <th>Date</th>
+                                                <th>IFSC</th>
+                                                <th>Account</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -360,6 +362,8 @@
                                                         <td>".$row['full']."</td>
                                                         <td>".$row['mobile']."</td>
                                                         <td>".$row['regdate']."</td>
+                                                        <td>".$row['ifsc']."</td>
+                                                        <td>".$row['account']."</td>
                                                     </tr>";
                                                 }
                                             ?>                     

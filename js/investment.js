@@ -18,7 +18,7 @@ $(document).ready(function()
                         </div>
                         <div class="group-form col-md-2">
                             <label for="inputEmail3" class="form_label">Asign %:</label>
-                                <select class="form-control form-control-sm asignke" name="refAsign[]" required id="refAsign[]">
+                                <select class="form-control form-control-sm asignke" name="refAsign[]" id="refAsign[]">
                                     <option value="">Select %</option>
                                     <option>0</option>
                                     <option>0.5</option>
@@ -188,6 +188,7 @@ $(document).ready(function()
         }else
         {
             var formData = new FormData(this);
+            formData.append('full1', cid);
         }
         let log = $.ajax({
             url: 'ajax/introduceReferal.php',
@@ -244,7 +245,6 @@ $(document).ready(function()
 function searchfull()
 {
     var cid = $('#full1').val();
-    // console.log(full);
     let log = $.ajax({
         url: 'ajax/investSearchDetail.php',
         type: "POST",
@@ -268,6 +268,37 @@ function searchfull()
     });
     // console.log(log);
 }
+
+$("#full1").keyup(function()
+{
+    var x = $(this).val();
+    if(x != '')
+    {
+        $.ajax({
+            url:"search.php",
+            method : "POST",
+            data :{queryformcid : x },
+            success : function(status)
+            {
+                $('#inputZip1').val(status);
+                if(status.trim()=="0")
+                {
+                    x = x.slice(0, -1);
+                    $('#full1').val('');
+                    $('#inputZip1').val('');
+                    alert('Id Not Regestered');
+                }
+                // $('#list').fadeIn();
+                // $('#list').html(data);
+            }
+        });
+    }
+    else
+    {
+        $('#inputZip1').val('');
+        // $('#list').html("");
+    }
+});
 
 //image click trigger
 function image_select()

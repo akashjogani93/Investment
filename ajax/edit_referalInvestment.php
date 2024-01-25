@@ -8,7 +8,7 @@ $invest = $_POST['invest'];
 $asign = $_POST['asign'];
 $pday = $_POST['pday'];
 $pmonth = $_POST['pmonth'];
-$pmode = $_POST['pmode'];
+// $pmode = $_POST['pmode'];
 
 $image = $_FILES['screen'];
 $profile = upload_Profile($image,"../img/");
@@ -16,7 +16,7 @@ $profile = upload_Profile($image,"../img/");
 $bond = $_FILES['agreement'];
 $bond1 = upload_Profile($bond,"pdf/");
 
-    $query="UPDATE `invest` SET `cid`='$cid',`regdate`='$regdate',`invest`='$invest',`asign`='$asign',`pday`='$pday',`pmonth`='$pmonth',`pmode`='$pmode' WHERE `id`='$in_id'";
+    $query="UPDATE `invest` SET `cid`='$cid',`regdate`='$regdate',`invest`='$invest',`asign`='$asign',`pday`='$pday',`pmonth`='$pmonth' WHERE `id`='$in_id'";
     if($profile!='')
     {
         $query="UPDATE `invest` SET `img`='$profile' WHERE `id`='$in_id'";  

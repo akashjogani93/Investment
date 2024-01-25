@@ -22,10 +22,7 @@
                         $("#full1").val(ui.item.value);
                         $("#full").val(ui.item.label);
                 }
-                    
                 });
-                
-                
             });
         </script>
             
@@ -93,7 +90,6 @@
                                                 <input type="date" class="form-control" name="regdate" id="regdate"
                                                     placeholder="Registration Date" value="<?php //echo date('Y-m-d'); ?>"
                                                     required>
-
                                             </div>
                                         </div> -->
                                     </div>
@@ -375,7 +371,7 @@
                     
                     success: function(data)
                     {
-                        // console.log(log);
+                        console.log(data);
                         let datatrim = data.trim();
                         let log1 = $.ajax({
                             url: 'ajax/edit_referalInvestment1.php',
@@ -389,7 +385,7 @@
                                 alert(response)
                                 button.text("Submit");
                                 button.prop("disabled", false);
-                                window.history.back();
+                                // window.history.back();
                                 // $('#full').val('');
                                 // $('#full1').val('');
                                 // $('#in_id').val('');

@@ -36,10 +36,15 @@
                 background-color: #AF2D2D;
                 color: white;
             }
+            #list{ max-height: 200px;
+                overflow-y: auto;
+            }
+            #list ul{background-color: #eee;  cursor: pointer;  }
+            #list li{ color: black; font: 12pt; padding: 8px;}
+            #list li:hover{ color: white;  background-color: #b3b3ff;}
         </style>
         
-        <?php require_once("header.php"); 
-        ?>
+        <?php require_once("header.php"); ?>
         <script>
             $("#dyna").text("Investment Details");
             tex();
@@ -54,12 +59,12 @@
                         event.preventDefault();
                         $("#full").val(ui.item.label);
                     },
-                    select: function (event, ui) {
+                    select: function (event, ui)
+                    {
                         event.preventDefault();
                         $("#full1").val(ui.item.value);
                         $("#full").val(ui.item.label);
-                }
-                    
+                    }
                 });
                 
                 
@@ -93,11 +98,17 @@
                                                 <option>Name & Date</option>
                                             </select>                
                                         </div>
-                                        <div class="group-form col-md-4" id="namewise">
+                                        <!-- <div class="group-form col-md-4" id="namewise">
                                             <label for="inputEmail3" class="form_label">Search Name</label>
                                             <input  type="text" class="form-control full" name="full" id="full"
                                                      placeholder="Search Full Name" required="required">
+                                            <input type="text" name="full1" id="full1">
+                                        </div> -->
+                                        <div class="group-form col-md-4 p-3" id="namewise">
+                                            <label for="inputEmail3" class="form_label">Search Name</label>
                                             <input type="hidden" name="full1" id="full1">
+                                            <input class="form-control" type="text" id="inputZip1" name="name1" autocomplete="off" placeholder="Search By Name">
+                                            <div id="list"></div>
                                         </div>
                                         <div class="group-form col-md-2" id="datewise1" style="display: none;">
                                             <label for="inputEmail3" class="form_label">Select From Date</label>
@@ -129,7 +140,7 @@
                                         <div class="group-form col-md-2">
                                             <div class="butto" style="display:flex;  justify-content: space-between; margin-top:25px; width:80%;">
                                                 <a type="button" id="search1" class="btn btn-primary">Search</a>
-                                                <a href="investment_report.php" id="search" class="btn btn-warning">Refresh</a>
+                                                <a href="investment_report1.php" id="search" class="btn btn-warning">Refresh</a>
                                             </div>
                                         </div>
                                     </div></br>
@@ -300,7 +311,7 @@
                     $('#amtend').val('');
                     $('#asi').val('');
                     var cid=$('#full1').val();
-                    var name=$('#full').val();
+                    var name=$('#inputZip1').val();
                     
                     if(name=='')
                     {
@@ -309,7 +320,7 @@
                     }
                     var table = $('#employee_grid').DataTable();
                     table.destroy();
-
+                    console.log(cid);
                     //console.log(name);
                     let log=$('#employee_grid').DataTable({
                         "lengthMenu": [[100, -1], [100, "All"]],
@@ -475,7 +486,7 @@
                     $('#fromdate').val('');
                     $('#asi').val('');
                     var cid=$('#full1').val();
-                    var name=$('#full').val();
+                    var name=$('#inputZip1').val();
                     var amtstart=$('#amtstart').val();
                     var amtend=$('#amtend').val();
                     if(name=='')
@@ -522,7 +533,7 @@
                 else if(filter=="Asigned By %")
                 {
                     $('#full1').val('');
-                    $('#full').val('');
+                    $('#inputZip1').val('');
                     $('#amtstart').val('');
                     $('#amtend').val('');
                     $('#fromdate').val('');
@@ -605,4 +616,39 @@
             });
         });
     </script>
+
+<script>
+    $(document).ready(function()
+    {
+        $("#inputZip1").keyup(function()
+        {
+           var x = $(this).val();
+            if(x != '')
+            {
+                $.ajax({
+                    url:"search.php",
+                    method : "POST",
+                    data :{query : x },
+                    success : function(data)
+                    {
+                        // console.log(data);
+                        $('#list').fadeIn();
+                        $('#list').html(data);
+                    }
+                });
+            }
+            else
+            {
+                $('#list').html("");
+            }
+            
+            $(document).on('click','#lii',function()
+            {
+                $('#inputZip1').val($(this).text());
+                $('#full1').val($(this).data('cid')); // Set the cid value
+                $('#list').fadeOut();
+            });
+        });
+    });
+</script>
 </body>

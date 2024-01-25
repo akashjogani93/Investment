@@ -93,7 +93,9 @@ if(isset($_POST["submit"]))
         $temp[0]=$row[0];
         $temp[1]=$row[8];
         $temp[2]=$row[9];
-        $temp[3]=$row[3];
+        // $temp[3]=$row[3];
+        $temp[3]=date('d-m-Y', strtotime($row[3]));
+
         $temp[4]=number_format($row[4],2);
         if($row[7]=='')
         {

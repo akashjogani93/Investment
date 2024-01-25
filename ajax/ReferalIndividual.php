@@ -59,7 +59,7 @@ if(isset($_POST["submit"]))
                 <td><button onclick="editupdate(<?php echo $row['id']; ?>)" class="btn btn-info">Edit</button></td>
                 <td><?php echo $row['id']; ?></td>
                 <td><?php echo $row['full']; ?></td>
-                <td><?php echo $row['regdate']; ?></td>
+                <td><?php echo date('d-m-Y', strtotime($row['regdate'])); ?></td>
                 <td><?php echo $formatter->format($row['invest']); ?></td>  
                 <td><?php echo $row['asign']; ?></td>  
                 <td><?php echo $formatter->format($row['pday']); ?></td>  

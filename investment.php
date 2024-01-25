@@ -19,7 +19,9 @@
                 background-color: #555;
             }
         </style>
-        <?php require_once("header.php"); ?>
+        <?php require_once("header.php");
+            include("js/search.php");
+        ?>
         <script>
             $("#dyna").text("Investment Assign %");
             tex();
@@ -31,7 +33,13 @@
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="inputEmail3" id="search_name" class="control-label">Search Full Name</label>
-                                <input  type="text" class="form-control full" name="full" id="full" placeholder="Search Full Name" required="required">
+                                <!-- <input  type="text" class="form-control full" name="full" id="full" placeholder="Search Full Name" required="required"> -->
+                                <input class="form-control" type="text" id="inputZip1" name="name1" autocomplete="off" placeholder="Search By Name">
+                                <div id="list"></div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="inputEmail3" id="search_name" class="control-label">Search Customer Id</label>
+                                <input type="text" class="form-control" name="full1" id="full1">
                             </div>
                             <!-- <div class="form-group col-md-2">
                                 <label for="inputEmail3" id="search_name" class="control-label">Customer Id</label>
@@ -57,7 +65,6 @@
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Bank Name:</label>
                                     <input type="text" class=" col-sm-4 form-control form-control-sm" readonly name="bank" id="bank" placeholder="Type Here..">
-                                    <input type="hidden" name="full1" id="full1">
                                 </div>
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Account No:</label>
@@ -151,7 +158,7 @@
                                     <div class="group-form col-md-2">
                                         <label for="inputEmail3" class="form_label">Assign %:</label>
                                         <!-- <input type="text" class=" col-sm-4 form-control form-control-sm asignke" name="refAsign[]" id="refAsign[]" placeholder="Type Here.."> -->
-                                        <select class="form-control form-control-sm asignke" name="refAsign[]" required id="refAsign[]">
+                                        <select class="form-control form-control-sm asignke" name="refAsign[]" id="refAsign[]">
                                             <option value="">Select %</option>
                                             <option>0</option>
                                             <option>0.5</option>
