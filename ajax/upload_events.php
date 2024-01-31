@@ -57,7 +57,6 @@ if (isset($_POST['title']))
         {
             $query="UPDATE `events` SET `title`='$title',`date`='$date',`location`='$location',`description`='$desc',`mobile`='$mobile' WHERE `id`=$cid";
         }
-        
     }
     
     if (mysqli_query($conn, $query)) 

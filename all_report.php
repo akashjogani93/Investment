@@ -177,6 +177,26 @@ i.fa{
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <div class="card bg-c-green order-card">
+                                    <a href="agreement_take.php" title="">
+                                        <div class="card-block">
+                                            <h4 class="text-right"><i class="fa fa-solid fa-money-bill-1-wave f-left"></i><span>Agreement</span></h4>
+                                        </div></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card bg-c-green order-card">
+                                    <a href="cheque_take.php" title="">
+                                        <div class="card-block">
+                                            <h4 class="text-right"><i class="fa fa-solid fa-money-bill-1-wave f-left"></i><span>Cheque Print</span></h4>
+                                        </div></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                             <!-- <div class="row">
                                 <div class="groupcol-md-2" >
                                         
