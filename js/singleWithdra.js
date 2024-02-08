@@ -1,6 +1,6 @@
 $(document).ready(function()
 {
-    $('.full').keypress(function(event)
+    $('#inputZip1').keypress(function(event)
     {
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if ((keycode < 48 || keycode > 57))
@@ -9,9 +9,13 @@ $(document).ready(function()
         return false;
     });
 
-    var yourDateValue = new Date();
-    var formattedDate = yourDateValue.toISOString().substr(0, 10)
+    var today = new Date();
+    var firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    var formattedDate = new Date(firstDayOfMonth.getTime() - (firstDayOfMonth.getTimezoneOffset() * 60000))
+        .toISOString()
+        .split('T')[0];
     $('#regdate').val(formattedDate);
+
     
                 $('#wamt').keyup(function()
                 {

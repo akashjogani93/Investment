@@ -371,7 +371,7 @@
                     
                     success: function(data)
                     {
-                        console.log(data);
+                        // console.log(data);
                         let datatrim = data.trim();
                         let log1 = $.ajax({
                             url: 'ajax/edit_referalInvestment1.php',
@@ -385,7 +385,7 @@
                                 alert(response)
                                 button.text("Submit");
                                 button.prop("disabled", false);
-                                // window.history.back();
+                                window.history.back();
                                 // $('#full').val('');
                                 // $('#full1').val('');
                                 // $('#in_id').val('');
@@ -407,10 +407,10 @@
                                 // $('#screen').val('');
                             }
                         });
-                        console.log(log1)
+                        // console.log(log1)
                     }
                 });
-                console.log("error========>",log);
+                // console.log("error========>",log);
             }));
            
             function addInvest1()

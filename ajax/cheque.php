@@ -14,32 +14,13 @@ if (isset($_POST['cid'])) {
     }
 }
 
-if (isset($_POST['olddatacid']))
-{
-    $cid = $_POST['olddatacid'];
-    $query = "SELECT `cheque`.* FROM `cheque` WHERE `cheque`.`cid`='$cid'";
-    $result = mysqli_query($conn, $query);
-    while($row=mysqli_fetch_assoc($result))
-    {
-        ?>
-            <tr>
-                <td><?php echo $row['date']; ?></td>
-                <td><?php echo $row['party']; ?></td>
-                <td><?php echo $row['amount']; ?></td>
-            </tr>
-        <?php
-    }
-}
-
-
 if (isset($_POST['insert']))
 {
     $date = $_POST['date'];
-    $party = $_POST['party'];
-    $amt = $_POST['amt'];
     $cid = $_POST['insert'];
+    $aggid = $_POST['aggid'];
 
-    $query="INSERT INTO `cheque`(`date`, `party`,`amount`,`cid`) VALUES ('$date','$party','$amt','$cid')";
+    $query="INSERT INTO `cheque`(`date`,`cid`,`aggid`) VALUES ('$date','$cid','$aggid')";
     $exc=mysqli_query($conn,$query);
     if($exc)
     {

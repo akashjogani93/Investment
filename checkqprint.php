@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Loan Agreement</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
@@ -16,22 +16,6 @@
             font-family: 'Roboto', sans-serif;
         }
 
-        .main {
-            display: flex;
-            justify-content: center;
-            align-items: center;  
-        }
-
-        #A4 {
-            width: 840px;
-            height: 351px;
-            display: flex;
-            justify-content: center;
-            position: relative;
-            
-        }
-
- 
         @media print {
         html,
         body {
@@ -41,101 +25,71 @@
             font-family: 'Roboto', sans-serif;
         }
 
-        .main {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-           
-        }
-
         #A4 {
-            width: 840px;
-            height: 351px;
-            display: flex;
-            justify-content: center;
-            position: relative;
-            
+            padding:100px 60px;
         }
 
-        .bottomText {
-            padding: 80px;
+        .main {
+            position:relative;
+            top:410px;
+            right:68px;
+            transform: rotate(-90deg);
+
+        }
+        .cont > span{
+            line-height:100px;
         }
 
        
         @page {
-    size: auto; /* Use the default page size */
-    margin: 0; /* Set margins to zero */
-  }
+            size: auto; /* Use the default page size */
+            margin: 0; /* Set margins to zero */
+        }
+
+        @page :first {
+            margin-top: 0;
+        }
+
+        @page :left {
+            margin-left: 0;
+        }
+
+        @page :right {
+            margin-right: 0;
+        }
+        }
 
 
+        .second-line{
+            display:flex;
+            margin-top:10px;
+        }
+        .word-rupees{
+            width:70%;
+        }
+        .num-rupee{
+            width:30%;
+        
+        }
 
-  /* Add other print styles as needed */
+        .cont{
+            width:100%;
+        }
 
-  /* Hide header and footer */
-  @page :first {
-    margin-top: 0;
-  }
+        .main 
+        {
+            transform: rotate(-90deg); 
+        }
 
-  @page :left {
-    margin-left: 0;
-  }
-
-  @page :right {
-    margin-right: 0;
-  }
-}
-
-.pay-data{
-width:90%;
-/* border-bottom:1px dotted black; */
-}
-.pay-name{
-    display:flex;
-    border-bottom:1px dotted black;
-}
-.second-line{
-    /* width:100%; */
-    display:flex;
-    margin-top:10px;
-}
-.word-rupees{
-    width:80%;
-    /* display:flex; */
-    /* border-bottom:1px dotted black; */
-
-}
-.num-rupee{
-    width:20%;
-   height:25px;
-   position:relative;
-   top:12px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border:1px solid black;
-}
-.rupee-icon{
-    border-right:1px solid black;
-    width:10%;
-    float:left;
-}
-.pay-data > p {
-    font-size:12px;
-    font-weight:400;
-    margin:0;
-    padding:0;
-}
-.pay-data > p > span{
-    font-size:16px;
-    font-weight:400;
-    margin:0;
-    padding:0;
-}
-.cont{
-    width:100%;
-    border-bottom:1px dotted black;
-    
-}
+        .amt
+        {
+            position:relative;
+            left:130px;
+        }
+        #inwords, #partyName, #partyAmt
+        {
+            font-weight:700;
+        }
     </style>
 </head>
 
@@ -145,41 +99,109 @@ width:90%;
             <div class="bottomText">
                 <div class="pay-name">
                     <!-- <div class="name-label"> <b>Pay:-</b></div> -->
-                    <div class="pay-data"> <p>Pay:-<span>Sagar</span> </p></div>
+                    <div class="pay-data"> <p><span>&nbsp; &nbsp; &nbsp; &nbsp;   </span><span style="line-height:18px; font-size:18px;" id="partyName"></span> </p></div>
                 </div>
 
                 <div class="second-line">
                     <div class="word-rupees">
                         <!-- <div class="name-label1"> <b>Rupees:-</b></div> -->
-                        <div class="pay-data cont"><p>Rupees:- <span> Lorem Ipsum is simply dummy text.</span></p> </div>
-                        <div class="pay-data cont"> <span> Lorem Ipsum is simply dummy text.</span></p> </div>
+                        <div class="pay-data cont"><p style="line-height:24px;margin-top:-10px; text-align:left;" id="inwords">&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;<span ></span></p> </div>
                     </div>
                     
 
-                    <div class="num-rupee">
-                        <div class="rupee-icon">₹</div>
-                        <div class="amt">10,000000</div>
+                    <div class="num-rupee" style=" font-size:18px; margin-top:20px;">
+                    
+                        <div class="amt" id="partyAmt"></div>
                     </div>
-            </div>
+                </div>
 
         </div>
     </div>
 
 </body>
+
 <script>
-    var printWindow = window.open('', '_blank');
-    printWindow.document.write('<html><head><title></title>');
-    printWindow.document.write('<style>');
-    // Copy the styles for both screen and print
-    var styles = document.getElementsByTagName('style');
-    for (var i = 0; i < styles.length; i++) {
-        printWindow.document.write(styles[i].innerHTML);
+$(document).ready(function()
+    {
+        const urlParams = new URLSearchParams(window.location.search);
+        const aggId = urlParams.get('aggId');
+        const cid = urlParams.get('cid');
+        let log=$.ajax({
+            url: "ajax/agreement.php",
+            method: "POST",
+            data: { aggId: aggId },
+            dataType: "json",
+            success: function (data) 
+            {
+                console.log(data);
+                var amountAsNumber = parseFloat(data.amount);
+                var amtinwords=convertNumberToWords(amountAsNumber);
+                var amt = amountAsNumber.toFixed(2);
+                var name=data.party;
+                var name1=name.toUpperCase();
+                $('#partyName').html(name1);
+                $('#partyAmt').html(amt);
+                $('#inwords').html(amtinwords+" ONLY")
+                printPage();
+            }
+        });
+        console.log(log);
+        // printPage();
+    });
+    function convertNumberToWords(number) 
+    {
+        var words = ["ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN",
+            "ELEVEN", "TWELVE", "THIRTEEN", "FOURTEEN", "FIFTEEN", "SIXTEEN", "SEVENTEEN", "EIGHTEEN", "NINETEEN"
+        ];
+
+        var tensWords = ["", "", "TWENTY", "THIRTY", "FORTY", "FIFTY", "SIXTY", "SEVENTY", "EIGHTY", "NINETY"];
+
+        var wordsToReturn = "";
+        var crore = Math.floor(number / 10000000);
+        var lakh = Math.floor((number % 10000000) / 100000);
+        var thousand = Math.floor((number % 100000) / 1000);
+        var hundreds = Math.floor((number % 1000) / 100);
+        var tens = Math.floor((number % 100) / 10);
+        var ones = Math.floor(number % 10);
+
+        if (crore > 0) {
+            wordsToReturn += convertNumberToWords(crore) + " CRORE ";
+        }
+
+        if (lakh > 0) {
+            wordsToReturn += convertNumberToWords(lakh) + " LAKH ";
+        }
+
+        if (thousand > 0) {
+            wordsToReturn += convertNumberToWords(thousand) + " THOUSAND ";
+        }
+
+        if (hundreds > 0) {
+            wordsToReturn += words[hundreds] + " HUNDRED ";
+        }
+
+        if (tens > 0 || ones > 0) {
+            if (tens < 2) {
+            wordsToReturn += words[tens * 10 + ones] + " ";
+            } else {
+            wordsToReturn += tensWords[tens] + " ";
+            if (ones > 0) {
+                wordsToReturn += words[ones] + " ";
+            }
+            }
+        }
+        return wordsToReturn.trim();
     }
-    printWindow.document.write('</style></head><body>');
-    // Copy the HTML content
-    printWindow.document.write(document.getElementById('A4').innerHTML);
-    printWindow.document.write('</body></html>');
-    printWindow.document.close();
-    printWindow.print();
+    function printPage() 
+    {
+        window.close();
+        window.print();
+        window.close();
+        window.onafterprint = function(event)
+        {
+            // window.location.href = "agreement_take.php?aggid="+aggId +"&cid="+cid;
+            window.close();
+        };
+    }
 </script>
 </html>

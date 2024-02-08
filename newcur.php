@@ -4,6 +4,7 @@
             .error {
                 color: red;
             }
+            
             th, td { white-space: nowrap; }
             
             div.dataTables_wrapper {
@@ -235,6 +236,279 @@
     <script type="text/javascript">
         $(document).ready(function()
         {
+            // var app = new Vue({
+            //     el: '#app',
+            //     data:{
+            //         limit:50,
+            //         start:-50,
+            //         records: [],
+            //         searchResults: [],
+            //         isLoading: true,
+            //         searchLoading: true,
+            //         t:'true',
+            //         showOriginalTable: true,
+            //         showSearchTable: false
+            //     },
+            //     methods:{
+            //         load_customer_data: function() 
+            //         {
+                        // let self = this;
+                        // let loadDirect= $.ajax({
+                        //     url: 'ajax/Fetch_data.php',
+                        //     type: "POST",
+                        //     data: {
+                        //         limit: self.limit,
+                        //         start: self.start,
+                        //     },
+                        //     cache: false,
+                        //     success: function(data) 
+                        //     {
+                                
+                        //         console.log(data)
+                        //         if (data.length === 0) 
+                        //         {
+                        //             self.isLoading = false;
+                        //             // if ($.fn.DataTable.isDataTable('#example')) 
+                        //             // {
+                        //             //     $('#example').DataTable().destroy();
+                        //             // }
+                        //             // $('#example').DataTable({
+                        //             //     "paging": false,
+                        //             //     searching:false,
+                        //             //     dom: "<'row'<'col-sm-4 text-left'B><'col-sm-4'f>>tp",
+                        //             //     buttons: ['csv', 'excel'],
+                        //             // });
+                        //         }else 
+                        //         {
+                        //             console.log(data);
+                        //             $('#mytable1').append(data);
+                        //             // self.records = self.records.concat(data);
+                        //             self.start += self.limit;
+                        //              self.load_customer_data();
+                        //         }
+                        //     },
+                        //         error: function(xhr, status, error) {
+                        //         console.error(error);
+                        //     }
+                        // });
+                        // console.log(loadDirect);
+                    // },
+                    // load_search_data: function(searchlimit, srarchstart, fromdate, todate)
+            //             {
+            //                 var self = this;
+            //                 let co=$.ajax({
+            //                     url: 'ajax/CurrentMonthPayment1.php',
+            //                     type: "POST",
+            //                     data: {
+            //                         currentMonthPayment:'newCurrentMonth',
+            //                         limit: searchlimit,
+            //                         start: srarchstart,
+            //                         d1: fromdate,
+            //                         d2: todate,
+            //                         k: 1,
+            //                     },
+            //                     cache:false,
+            //                     success:function(data)
+            //                     {
+            //                         console.log(data);
+            //                         self.showOriginalTable = false;
+            //                         self.showSearchTable = true;
+            //                         if (data.length === 0) 
+            //                         {
+            //                             self.searchLoading = false;
+                                        
+            //                             $('#example1').DataTable({
+            //                                 "paging": false,
+            //                                 searching:false,
+            //                                 dom: "<'row'<'col-sm-4 text-left'B><'col-sm-4'f>>tp",
+            //                                 buttons: ['csv', 'excel'],
+            //                             });
+            //                         } else {
+            //                             self.searchResults = self.searchResults.concat(data);
+            //                             self.srarchstart += self.searchlimit;
+            //                             self.load_search_data(self.searchlimit, self.srarchstart, fromdate, todate);
+            //                         }
+            //                     }
+            //                 });
+            //                 console.log(co);
+            //             },
+                            // searchClicked: function()
+            //             {
+            //                 var self = this;
+            //                 var option=$('#select').val();
+                        // if(option=='Search By Name')
+                        // {
+                        //     var cid=$('#full1').val();
+                        //     var name=$('#full').val();
+                        //     if(name=='')
+                        //     {
+                        //         alert('Please Select Name');
+                        //         return;
+                        //     }
+            //                     $('#example').DataTable().destroy();
+            //                     $('#example1').DataTable().destroy();
+            //                     let co=$.ajax({
+            //                         url: 'ajax/CurrentMonthPayment1.php',
+            //                         type: "POST",
+            //                         data: {
+            //                             currentMonthPayment: 'newCurrentMonth',
+            //                             cid: cid,
+            //                             k: 2,
+            //                         },
+            //                         cache:false,
+            //                         success:function(data)
+            //                         {
+            //                             // console.log(data)
+            //                             self.searchLoading = false;
+            //                             self.searchResults = data;
+            //                             self.showOriginalTable = false;
+            //                             self.showSearchTable = true;
+            //                         }
+            //                     });
+            //                     // console.log(co);
+            //                 }else
+            //                 {
+                                // var todate=$('#todate').val();
+                                // var fromdate=$('#fromdate').val();
+                                // if(fromdate=='')
+                                // {
+                                //     alert('Please Select From Date');
+                                //     return;
+                                // }
+            //                     $('#example').DataTable().destroy();
+            //                     this.searchResults = [];
+            //                     this.searchLoading = true;
+            //                     this.searchlimit=300;
+            //                     this.srarchstart=-300;
+            //                     this.load_search_data(this.searchlimit, this.srarchstart, fromdate, todate);
+            //                 }
+            //             },
+                    //     fetchData: function() 
+                    //     {
+                    //         var self = this;
+                    //         self.load_customer_data();
+                    //     },
+                    //     refreshClicked: function() 
+                    //     {
+                    //         this.showSearchTable = false;
+                    //         this.showOriginalTable = true;
+                    //     }
+                    // },
+                    // mounted: function() 
+                    // {
+                    //     this.fetchData();
+                    // },
+            //         template: `
+            //             <div>
+            //                 <div v-if="showOriginalTable">
+                                // <table id="example" class="table table-striped table-bordered table-hover example">
+                                //     <thead>
+                                //         <tr>
+                                //             <th>cid</th>
+                                //             <th>Full Name</th>
+                                //             <th>Current Payment</th>
+                                //             <th>15% Of Current Payment</th>
+                                //             <th>Payment Amount</th>
+                                //             <th>Bank Name</th>
+                                //             <th>Account No</th>
+                                //             <th>IFSC Code</th>
+                                //             <th>Pan Card Number</th>
+                                //             <th>Date</th>
+                                //         </tr>
+                                //     </thead>
+                                //     <tbody>
+                                //         <tr v-for="(record, index) in records" :key="index">
+                                //             <td>{{ record.custId }}</td>
+                                //             <td>{{ record.fullName }}</td>
+                                //             <td>{{ record.amount }}</td>
+                                //             <td>{{ record.diduct }}</td>
+                                //             <td>{{ record.currentPayment }}</td>
+                                //             <td>{{ record.bankName }}</td>
+                                //             <td>{{ record.accountNo }}</td>
+                                //             <td>{{ record.ifscCode }}</td>
+                                //             <td>{{ record.panCardNumber }}</td>
+                                //             <td>{{ record.date }}</td>
+                                //         </tr>
+                                //     </tbody>
+                                // </table>
+            //                     <center>
+            //                         <div v-if="isLoading" class="loader"><div></div><div></div><div></div></div>
+            //                     </center>
+            //                 </div>
+            //                 <div v-if="showSearchTable">
+            //                     <table id="example1" class="table table-striped table-bordered table-hover example">
+            //                         <thead>
+            //                             <tr>
+            //                                 <th>cid</th>
+            //                                 <th>Full Name</th>
+            //                                 <th>Current Payment</th>
+            //                                 <th>15% Of Current Payment</th>
+            //                                 <th>Payment Amount</th>
+            //                                 <th>Bank Name</th>
+            //                                 <th>Account No</th>
+            //                                 <th>IFSC Code</th>
+            //                                 <th>Pan Card Number</th>
+            //                                 <th>Date</th>
+            //                             </tr>
+            //                         </thead>
+            //                         <tbody>
+            //                             <tr v-for="(result, index) in searchResults" :key="index">
+            //                                 <td>{{ result.custId }}</td>
+            //                                 <td>{{ result.fullName }}</td>
+            //                                 <td>{{ result.amount }}</td>
+            //                                 <td>{{ result.diduct }}</td>
+            //                                 <td>{{ result.currentPayment }}</td>
+            //                                 <td>{{ result.bankName }}</td>
+            //                                 <td>{{ result.accountNo }}</td>
+            //                                 <td>{{ result.ifscCode }}</td>
+            //                                 <td>{{ result.panCardNumber }}</td>
+            //                                 <td>{{ result.date }}</td>
+            //                             </tr>
+            //                         </tbody>
+            //                     </table>
+            //                     <center>
+            //                         <div v-if="searchLoading" class="loader"><div></div><div></div><div></div></div>
+            //                     </center>
+            //                 </div>
+            //             </div>
+                    // `,
+                // });
+
+                // $('#search1').click(function() {
+                //     app.searchClicked();
+                // });
+            //     $('#refresh').click(function() 
+            //     {
+            //         if(app.showOriginalTable==false)
+            //         {
+            //             $("#full1").val('');
+            //             $("#full").val('');
+            //             $('#fromdate').val('');
+            //             app.refreshClicked();
+            //         }else
+            //         {
+            //             alert('First Search Something..');
+            //         }
+
+            //         if ($.fn.DataTable.isDataTable('#example')) 
+            //         {
+            //             $('#example').DataTable().destroy();
+            //         }
+            //         if ($.fn.DataTable.isDataTable('#example1')) {
+            //             $('#example1').DataTable().destroy();
+            //         }
+
+            //         if (app.showOriginalTable) 
+            //         {
+            //             $('#example').DataTable({
+            //                 "paging": false,
+            //                 searching: false,
+            //                 dom: "<'row'<'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+            //                 buttons: ['csv', 'excel'],
+            //             });
+            //         }
+            //     }); 
+
             $('#namewise').show();
             $('#datewise1').hide();
             $('#datewise3').hide();
@@ -393,16 +667,16 @@
                     function load_customer_data_date(limit, start) 
                     {
                         let log=$.ajax({
-                            url: "ajax/new_report.php",
+                            url: "ajax/Fetch_data.php",
                             method: "POST",
                             data: {
                                 limit: limit,
                                 start: start,
-                                // newCurrentMonth:'datesearch',
-                                // cid:'cid',
+                                newCurrentMonth:'datesearch',
+                                cid:'cid',
                                 todate:todate,
                                 fromdate:fromdate,
-                                // monthwise:monthwise,
+                                monthwise:monthwise,
                             },
                             cache: false,
                             success: function(data) 
@@ -428,8 +702,7 @@
         });
     </script>
 <script>
-   function exportToExcel() 
-   {
+   function exportToExcel() {
     var table = document.getElementById("example1");
     var data = [];
 
@@ -452,6 +725,7 @@
         for (var j = 0; j < cells.length; j++) {
             rowData.push(cells[j].innerText);
         }
+
         data.push(rowData);
     }
 

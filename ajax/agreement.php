@@ -17,12 +17,13 @@ if (isset($_POST['cid'])) {
 if (isset($_POST['olddatacid']))
 {
     $cid = $_POST['olddatacid'];
-    $query = "SELECT `agreement`.* FROM `agreement` WHERE `agreement`.`cid`='$cid'";
+    $query = "SELECT `agreement`.* FROM `agreement` WHERE `agreement`.`cid`='$cid' ORDER BY `id` DESC";
     $result = mysqli_query($conn, $query);
     while($row=mysqli_fetch_assoc($result))
     {
         ?>
             <tr>
+                <td><?php echo $row['id']; ?></td>
                 <td><?php echo $row['date']; ?></td>
                 <td><?php echo $row['party']; ?></td>
                 <td><?php echo $row['age']; ?></td>
@@ -70,6 +71,15 @@ if (isset($_POST['aggId']))
     } else {
         echo json_encode(['error' => mysqli_error($conn)]);
     }
+}
+
+if(isset($_POST['cheque']) && isset($_POST['chequeinsert']))
+{
+    $aggid=$_POST['cheque'];
+    $cid=$_POST['chequeinsert'];
+    $sql="INSERT INTO `chequetable`(`agid`, `cid`) VALUES ('$aggid','$cid')";
+    mysqli_query($conn,$sql);
+    echo 'Created';
 }
 ?>
 

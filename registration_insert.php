@@ -72,7 +72,7 @@ include('sms.php');
         $full=$fname." ".$mname." ".$lname;
         $user=$_POST['username'];
         $pass=$_POST['password'];
-
+        
         $query="UPDATE `register` SET  `regdate`='$regdate',`fname`='$fname',`mname`='$mname',`lname`='$lname',`mobile`='$mobile',`email`='$email',`pan`='$pan',`address`='$address',`blood`='$blood',`gender`='$gender',`bank`='$bank',`account`='$account',`ifsc`='$ifsc',`branch`='$branch',`nominee`='$nominee',`relation`='$relation',`full`='$full' WHERE `cid`='$cid'";
         $confirm = mysqli_query($conn,$query) or die(mysqli_error());
          if($confirm)

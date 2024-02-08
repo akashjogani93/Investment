@@ -162,13 +162,17 @@
                                             <option value="">Select %</option>
                                             <option>0</option>
                                             <option>0.5</option>
+                                            <option>0.6</option>
+                                            <option>0.7</option>
+                                            <option>0.8</option>
+                                            <option>0.9</option>
                                             <option>1.0</option>
                                             <option>1.5</option>
-                                            <option>2.0</option>
+                                            <!-- <option>2.0</option>
                                             <option>2.5</option>
                                             <option>3.0</option>
                                             <option>3.5</option>
-                                            <option>4.0</option>
+                                            <option>4.0</option> -->
                                         <select>
                                     </div>
                                     <div class="group-form col-md-2">

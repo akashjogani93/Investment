@@ -13,6 +13,9 @@
                 display: inline-block;
                 width: calc(100% - 110px); /* Adjust the width as needed, considering label width */
             }
+            tr:hover {
+                    background-color: yellow;
+            }
         </style>
         <div class="content-wrapper">
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -32,6 +35,7 @@
                             <!-- <div class="form-group col-md-3"> -->
                                 <!-- <label for="inputEmail3" id="search_name" class="control-label">Search Customer Id</label> -->
                                 <input type="hidden" class="form-control" name="full1" id="full1">
+                                <input type="hidden" class="form-control form-control-sm" name="date" id="date">
                             <!-- </div> -->
                             <div class="group-form col-md-1">
                                 <a type="button" id="search1" onclick="searchfull()" class="btn btn-primary" style="margin-top:25px;">Search</a>
@@ -42,11 +46,11 @@
                 <div class="box">
                     <div class="box-body">
                         <div class="row">
-                            <div class="form-group col-md-5 form-group-inline">
+                            <!-- <div class="form-group col-md-5 form-group-inline">
                                 <div class="row">
                                     <div class="form-group col-md-12">
-                                        <!-- <label for="date" class="form_label">Date:</label> -->
-                                        <input type="hidden" class="form-control form-control-sm" name="date" id="date">
+                                        <label for="date" class="form_label">Date:</label>
+                                        
                                     </div>
                                 </div>
                                 <div class="row">
@@ -55,7 +59,7 @@
                                         <input type="text" class="form-control form-control-sm" name="customerName" id="customerName">
                                     </div>
                                 </div>
-                                <!-- <div class="row">
+                                <div class="row">
                                     <div class="form-group col-md-12">
                                         <label for="age" class="form_label">Age:</label>
                                         <input type="text" class="form-control form-control-sm" name="age" id="age">
@@ -72,14 +76,14 @@
                                         <label for="age" class="form_label">Resident:</label>
                                         <input type="text" class="form-control form-control-sm" name="res" id="res">
                                     </div>
-                                </div> -->
+                                </div>
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <label for="age" class="form_label">Amount:</label>
                                         <input type="text" class="form-control form-control-sm" name="amt" id="amt">
                                     </div>
                                 </div>
-                                <!-- <div class="row">
+                                <div class="row">
                                     <div class="form-group col-md-12">
                                         <label for="age" class="form_label">Bank:</label>
                                         <input type="text" class="form-control form-control-sm" name="bank" id="bank">
@@ -90,24 +94,29 @@
                                         <label for="age" class="form_label">Remark:</label>
                                         <input type="text" class="form-control form-control-sm" name="remark" id="remark">
                                     </div>
-                                </div> -->
+                                </div>
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <center><button class="btn btn-success" id='save'>Save</button></center>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-7">
-                                <table id="example1" class="table table-bordered table-striped">
+                            </div> -->
+                            <div class="col-md-12">
+                                <table id="example1" class="table table-bordered">
                                     <thead>
                                         <tr>
+                                            <th>Slno</th>
                                             <th>Date</th>
                                             <th>Party</th>
+                                            <th>Age</th>
+                                            <th>Occupation</th>
+                                            <th>Resident</th>
                                             <th>Amount</th>
+                                            <th>Bank</th>
+                                            <th>Remark</th>
                                         </tr>
                                     </thead>
                                     <tbody class="mytable">
-
                                     </tbody>
                                 </table>
                             </div>
@@ -130,45 +139,32 @@
                 $(this).css('border-color', '');
             });
 
-            $('#save').on('click',function()
+            $('#example1 tbody').on('dblclick', 'tr', function () 
             {
-                
-                var  name=$('#inputZip1').val();
+                var rowData = $(this).find('td').map(function () 
+                {
+                    return $(this).text();
+                }).get();
+                var aggid=rowData[0];
                 var  cid=$('#full1').val();
                 var date=$('#date').val();
-                var party=$('#customerName').val();
-                var amt=$('#amt').val();
-
-                var input = ['#customerName','#amt'];
-                for (var i = 0; i < input.length; i++)
-                {
-                    if($(input[i]).val()=='')
-                    {
-                        $(input[i]).css('border-color','red');
-                        return;
-                    }
-                }
-
                     let log=$.ajax({
                         url: 'ajax/cheque.php',
                         method: 'POST',
                         data: {
                             date: date,
-                            party: party,
-                            amt: amt,
                             insert:cid,
+                            aggid:aggid,
                         },
                         success: function(response)
                         {
-                            fetch(cid)
-                            for (var i = 0; i < input.length; i++)
-                            {
-                                $(input[i]).val('');
-                            }
-                            var aggId=response.trim();
+                            fetch(cid);
+                            var chequeid=response.trim();
                             // window.location="agreementPrint.php?aggId="+aggId;
                             // var url = "agreementPrint.php?aggId=" + aggId;
                             // window.open(url, '_blank');
+                            var url = "checkqprint.php?aggId=" + aggid +"&cid="+cid; 
+                            window.open(url, '_blank');
                         },
                         error: function(xhr, status, error) 
                         {
@@ -188,35 +184,13 @@
                 alert('Customer Not Found..');
                 return;
            }
-
-           let log=$.ajax({
-                url: "ajax/cheque.php",
-                method: "POST",
-                data: { cid: cid },
-                dataType: "json",
-                success: function (data) 
-                {
-                    $('#customerName').val(data.full);
-                    // $('#age').val('MAJOR');
-                    // $('#occ').val('BUSINESS');
-                    // $('#res').val(data.address);
-                    $('#amt').val();
-                    // $('#bank').val();
-                    // $('#remark').val('AGREEMENT');
-                },
-                error: function (xhr, status, error) {
-                    console.error("AJAX Error:", status, error);
-                }
-            });
             fetch(cid)
-
         }
 
         function fetch(cid)
         {
-            
             let log1=$.ajax({
-                url:"ajax/cheque.php",
+                url:"ajax/agreement.php",
                 method : "POST",
                 data :{olddatacid : cid },
                 success : function(data)
