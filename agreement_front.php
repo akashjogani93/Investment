@@ -239,11 +239,11 @@
     function printPage(aggId,cid) 
     {
         window.print();
-        window.onafterprint = function(event)
-        {
+        // window.onafterprint = function(event)
+        // {
             // window.location.href = "agreement_take.php?aggid="+aggId +"&cid="+cid;
             window.close();
-        };
+        // };
     }
 </script>
 </html>

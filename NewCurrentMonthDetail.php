@@ -5,10 +5,8 @@
                 color: red;
             }
             th, td { white-space: nowrap; }
-            
             div.dataTables_wrapper {
             }
-            
             .table-striped>tbody>tr:nth-child(odd)>td, 
             .table-striped>tbody>tr:nth-child(odd)>th 
             {
@@ -155,39 +153,6 @@
                             </div>
                         </div></br>
                         <div id="tablepdf" style="overflow-x: auto; height:400px;">
-                            <div id="app">
-                                <!-- <my-component></my-component> -->
-                                <!-- <table id="example" class="table table-striped table-bordered table-hover example">
-                                <thead>
-                                    <tr>
-                                        <th>cid</th>
-                                        <th>Full Name</th>
-                                        <th>Current Payment</th>
-                                        <th>15% Of Current Payment</th>
-                                        <th>Payment Amount</th>
-                                        <th>Bank Name</th>
-                                        <th>Account No</th>
-                                        <th>IFSC Code</th>
-                                        <th>Pan Card Number</th>
-                                        <th>Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="(record, index) in records" :key="index">
-                                        <td>{{ record.custId }}</td>
-                                        <td>{{ record.fullName }}</td>
-                                        <td>{{ record.amount }}</td>
-                                        <td>{{ record.diduct }}</td>
-                                        <td>{{ record.currentPayment }}</td>
-                                        <td>{{ record.bankName }}</td>
-                                        <td>{{ record.accountNo }}</td>
-                                        <td>{{ record.ifscCode }}</td>
-                                        <td>{{ record.panCardNumber }}</td>
-                                        <td>{{ record.date }}</td>
-                                    </tr>
-                                </tbody>
-                                </table> -->
-                            </div>
                             <table id="example1" class="table table-striped table-bordered table-hover example1">
                                 <thead>
                                     <tr>
@@ -196,6 +161,7 @@
                                         <th>Current Payment</th>
                                         <th>15% Of Current Payment</th>
                                         <th>Payment Amount</th>
+                                        <th>Place</th>
                                         <th>Bank Name</th>
                                         <th>Account No</th>
                                         <th>IFSC Code</th>
@@ -206,9 +172,17 @@
                                 <tbody id="mytable1">
                                     
                                 </tbody>   
-                                <tbody id="searchName" style="display:none">
-                                    
-                                </tbody>    
+                                <!--<tbody id="searchName" style="display:none">
+                                </tbody>-->
+                                <tfoot>
+                                    <tr class="tfut">
+                                        <th colspan="2"></th>
+                                        <th id="tpay"></th>
+                                        <th id="tfive"></th>
+                                        <th id="tamt"></th>
+                                        <th colspan="4"></th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
@@ -226,12 +200,8 @@
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
-
-
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
-
     <script src="reports.js"></script>
-    
     <script type="text/javascript">
         $(document).ready(function()
         {
@@ -260,16 +230,15 @@
 
         $(document).ready(function()
         {
-            var limit = 50;
-            var start = -50;
-            var ser_limit = 50;
-            var ser_start = -50;
-            var t = "true";
-            var action = 'inactive';
-            var search_action='inactive';
             var todate='todate';
             var fromdate='from';
             var monthwise="newcurrent";
+
+            var limit = 15;
+            var start = -15;
+            var t = "true";
+            var action = 'inactive';
+
             function load_customer_data(limit, start) 
             {
                 let log=$.ajax({
@@ -288,31 +257,32 @@
                     success: function(data) 
                     {
                         $('#mytable1').append(data);
-
-                        if (data == 0) {
+                        if (data == 0) 
+                        {
                             action = 'active';
+                            $('.tfut:last').show();
                         } else {
                             action = "inactive";
                         }
                     }
                 });
+                // console.log(log)
             }
             var myVar = setInterval(function() 
             {
-                console.log('running');
                 if (action == 'inactive') {
                     start = start + limit;
                     $(document.body).css({
                         'cursor': 'not-allowed'
                     });
                     load_customer_data(limit, start);
-
                 } else {
                     clearInterval(myVar);
                     $(document.body).css({
                         'cursor': 'default'
                     });
-                    $('#example thead th').each(function(i) {
+                    $('#example1 thead th').each(function(i) 
+                    {
                         calculateColumn(i);
                     });
                 }
@@ -320,148 +290,125 @@
 
             $('#search1').click(function() 
             {
-                var todate='todate';
-                var fromdate='from';
-                var option=$('#select').val();
-                if(option=='Search By Name')
+                $('table tfoot').remove();
+                var name = $('#full1').val();
+                var type = $('#select').val();
+                if (type == 'Search By Name') 
                 {
-                    var cid=$('#full1').val();
-                    var name=$('#full').val();
-                    if(name=='')
-                    {
-                        alert('Please Select Name');
-                        return;
-                    }
-                    $('#mytable1').hide();
-                    $('#searchName').show();
+                    //     $.ajax({
+                    //         url: "ajax_code/new_payment_report_ajax.php",
+                    //         method: "POST",
+                    //         data: {
+                    //             submit: "submit",
+                    //             name: name
+                    //         },
+                    //         cache: false,
+                    //         success: function(data) {
+                    //             action = "active";
+                    //             $('#mytable').html(data);
+                    //             clearInterval(myVar);
+                    //         }
+                    //     });
+                }
+                if(type=='Search By Date')
+                {
+                    var d1 = $('#fromdate').val();
+                    var d2 = $('#todate').val();
+                    $(document.body).css({
+                        'cursor': 'wait'
+                    });
 
-                    let logcheck=$.ajax({
-                        url: "ajax/Fetch_data.php",
+                    let log=$.ajax({
+                        url: "ajax/new_payment_report_ajax1.php",
                         method: "POST",
-                        data: {
-                            limit: limit,
-                            start: start,
-                            newCurrentMonth:'searchName',
-                            cid:cid,
-                            todate:todate,
-                            fromdate:fromdate,
-                            monthwise:monthwise,
+                        data: 
+                        {
+                            submit: "submit",
+                            option: type,
+                            d1: d1,
+                            d2: d2
                         },
                         cache: false,
                         success: function(data) 
                         {
-                            console.log(data);
-                            $('#searchName').empty();
-                            $('#searchName').append(data);
-                        }
-                    });
-                    console.log(logcheck);
-                }else
-                {
-                    var todate=$('#todate').val();
-                    var fromdate=$('#fromdate').val();
-                    if(fromdate=='')
-                    {
-                        alert('Please Select From Date');
-                        return;
-                    }
-                    $('#mytable1').hide();
-                    $('#searchName').show();
-                    $('#searchName').empty();
-                    var myVar1 = setInterval(function() 
-                    {
-                        if (search_action == 'inactive') 
-                        {
-                            ser_start = ser_start + ser_limit;
-                            $(document.body).css({
-                                'cursor': 'not-allowed'
-                            });
-                            load_customer_data_date(ser_limit, ser_start);
-                        } 
-                        else 
-                        {
-                            clearInterval(myVar1);
+                            $('#mytable1').html(data);
                             $(document.body).css({
                                 'cursor': 'default'
                             });
-                            $('#example thead th').each(function(i) {
-                                calculateColumn(i);
-                            });
                         }
-                    }, 300);
-
-                    function load_customer_data_date(limit, start) 
-                    {
-                        let log=$.ajax({
-                            url: "ajax/new_report.php",
-                            method: "POST",
-                            data: {
-                                limit: limit,
-                                start: start,
-                                // newCurrentMonth:'datesearch',
-                                // cid:'cid',
-                                todate:todate,
-                                fromdate:fromdate,
-                                // monthwise:monthwise,
-                            },
-                            cache: false,
-                            success: function(data) 
-                            {
-
-                                $('#searchName').append(data);
-                                if (data == 0) {
-                                    search_action = 'active';
-                                } else {
-                                    search_action = "inactive";
-                                }
-                            }
-                        });
-                    }
+                    });
+                    console.log(log);
                 }
-                
             });
-            $('#refresh').click(function() 
-            {
-                $('#searchName').hide();
-                $('#mytable1').show();
+
+            $('#reset').click(function() {
+                window.location = 'new_payment_report.php';
             });
         });
+
+        function calculateColumn(index) 
+        {
+            console.log('running');
+            var total= total1 = total2 = 0;
+            $('#mytable1 tr').each(function() 
+            {
+                var value = parseFloat($('.pay', this).eq(index).text());
+                var value1 = parseFloat($('.five', this).eq(index).text());
+                var value2 = parseFloat($('.famt', this).eq(index).text());
+               // alert(value);
+                if (!isNaN(value)) 
+                {
+                    total += value;
+                    total1 += value1;
+                    total2 += value2;
+                }
+            });
+            $('table tfoot #tpay').eq(index).text(round(total));
+            $('table tfoot #tfive').eq(index).text(round(total1));
+            $('table tfoot #tamt').eq(index).text(round(total2));
+        }
+        function round(number) 
+        {
+            return Math.round(number);
+        }
     </script>
+
 <script>
    function exportToExcel() 
    {
-    var table = document.getElementById("example1");
-    var data = [];
+        var table = document.getElementById("example1");
+        var data = [];
 
-    // Add the header row data
-    var headerRow = [];
-    var headerCells = table.getElementsByTagName("th");
-    for (var i = 0; i < headerCells.length; i++) {
-        headerRow.push(headerCells[i].innerText);
-    }
-    data.push(headerRow);
-
-    // Add the data rows
-    var tbodyToExport = $('#mytable1').is(':visible') ? $('#mytable1') : $('#searchName');
-    var rows = tbodyToExport.find('tr');
-
-    for (var i = 0; i < rows.length; i++) {
-        var cells = rows[i].getElementsByTagName("td");
-        var rowData = [];
-
-        for (var j = 0; j < cells.length; j++) {
-            rowData.push(cells[j].innerText);
+        // Add the header row data
+        var headerRow = [];
+        var headerCells = table.getElementsByTagName("th");
+        for (var i = 0; i < headerCells.length; i++) {
+            headerRow.push(headerCells[i].innerText);
         }
-        data.push(rowData);
+        data.push(headerRow);
+
+        // Add the data rows
+        var tbodyToExport = $('#mytable1').is(':visible') ? $('#mytable1') : $('#searchName');
+        var rows = tbodyToExport.find('tr');
+
+        for (var i = 0; i < rows.length; i++) {
+            var cells = rows[i].getElementsByTagName("td");
+            var rowData = [];
+
+            for (var j = 0; j < cells.length; j++) {
+                rowData.push(cells[j].innerText);
+            }
+
+            data.push(rowData);
+        }
+
+        var ws = XLSX.utils.aoa_to_sheet(data);
+        var wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+
+        var fileName = "account_data.xlsx";
+        XLSX.writeFile(wb, fileName);
     }
-
-    var ws = XLSX.utils.aoa_to_sheet(data);
-    var wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-
-    var fileName = "account_data.xlsx";
-    XLSX.writeFile(wb, fileName);
-}
 </script>
 </body>
 

@@ -41,7 +41,7 @@ class Main{
             $sql = "SELECT * FROM `register` WHERE `cid`='$cid'";
         }else
         {
-            $sql = "SELECT * FROM `register` WHERE `cid` ORDER BY `cid` ASC LIMIT $std, $limit";
+            $sql = "SELECT * FROM `register` ORDER BY `cid` ASC LIMIT $std, $limit";
         }   
 
         $confirm_query=mysqli_query($conn,$sql) or die(mysqli_error());
@@ -99,6 +99,7 @@ class Main{
                             <td><?php echo $formatter->format($pay); ?></td>
                             <td><?php echo $formatter->format($a); ?></td>
                             <td><?php echo $formatter->format($c); ?></td>
+                            <td><?php echo $row['address']; ?></td>
                             <td><?php echo $row['bank']; ?></td>
                             <td><?php echo $row['account']; ?></td>
                             <td><?php echo $row['ifsc']; ?></td>

@@ -20,8 +20,8 @@
             }
         </style>
         <?php require_once("header.php");
-            include("js/search.php");
-        ?>
+                include("js/search.php");
+         ?>
         <script>
             $("#dyna").text("Investment Assign %");
             tex();
@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="inputEmail3" id="search_name" class="control-label">Search Full Name</label>
-                                <!-- <input  type="text" class="form-control full" name="full" id="full" placeholder="Search Full Name" required="required"> -->
+                                <!--<input  type="text" class="form-control full" name="full" id="full" placeholder="Search Full Name" required="required">-->
                                 <input class="form-control" type="text" id="inputZip1" name="name1" autocomplete="off" placeholder="Search By Name">
                                 <div id="list"></div>
                             </div>
@@ -41,10 +41,6 @@
                                 <label for="inputEmail3" id="search_name" class="control-label">Search Customer Id</label>
                                 <input type="text" class="form-control" name="full1" id="full1">
                             </div>
-                            <!-- <div class="form-group col-md-2">
-                                <label for="inputEmail3" id="search_name" class="control-label">Customer Id</label>
-                                <input  type="text" class="form-control full" name="cissearch" id="full" placeholder="Customer Id" required="required">
-                            </div> -->
                             <div class="group-form col-md-1">
                                 <a type="button" id="search1" onclick="searchfull()" class="btn btn-primary" style="margin-top:25px;">Search</a>
                             </div>
@@ -65,6 +61,7 @@
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Bank Name:</label>
                                     <input type="text" class=" col-sm-4 form-control form-control-sm" readonly name="bank" id="bank" placeholder="Type Here..">
+                                    <!--<input type="hidden" name="full1" id="full1">-->
                                 </div>
                                 <div class="group-form col-md-4">
                                     <label for="inputEmail3" class="form_label">Account No:</label>
@@ -119,10 +116,6 @@
                                 </div>
                             </div></br>
                             <div class="row">
-                                <!-- <div class="group-form col-md-4">
-                                    <label for="inputEmail3" class="form_label">Transaction Date</label>
-                                    <input type="date" class="col-sm-4 form-control form-control-sm" required name="regdate" id="regdate" placeholder="Type Here..">
-                                </div> -->
                                 <div class="group-form col-md-3">
                                     <label for="inputEmail3" class="form_label">Transaction Type:</label>
                                     <select class="form-control form-control-sm" name="pmode" id="pmode">
@@ -161,6 +154,7 @@
                                         <select class="form-control form-control-sm asignke" name="refAsign[]" id="refAsign[]">
                                             <option value="">Select %</option>
                                             <option>0</option>
+                                            <option>0.1</option>
                                             <option>0.5</option>
                                             <option>0.6</option>
                                             <option>0.7</option>
@@ -168,11 +162,11 @@
                                             <option>0.9</option>
                                             <option>1.0</option>
                                             <option>1.5</option>
-                                            <!-- <option>2.0</option>
+                                            <!--<option>2.0</option>
                                             <option>2.5</option>
                                             <option>3.0</option>
                                             <option>3.5</option>
-                                            <option>4.0</option> -->
+                                            <option>4.0</option>-->
                                         <select>
                                     </div>
                                     <div class="group-form col-md-2">

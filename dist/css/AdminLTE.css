@@ -557,8 +557,6 @@ a:focus {
 }
 .sidebar-menu li.active > .treeview-menu {
   display: block;
-  
-
 }
 .sidebar-menu .treeview-menu {
   display: none;

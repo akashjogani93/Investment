@@ -45,7 +45,7 @@
         </style>
         
         <?php require_once("header.php"); 
-        include("js/search.php");
+                include("js/search.php");
         ?>
         <script>
             $("#dyna").text("Withdrawal Details");
@@ -97,7 +97,8 @@
                                         </div>
                                         <div class="group-form col-md-4" id="namewise">
                                             <label for="inputEmail3" class="form_label">Search Name</label>
-                                            <!-- <input  type="text" class="col-sm-4 form-control form-control-sm full" name="full" id="full" placeholder="Search Full Name" required="required"> -->
+                                            <!--<input  type="text" class="col-sm-4 form-control form-control-sm full" name="full" id="full" placeholder="Search Full Name" required="required">
+                                            <input type="hidden" name="full1" id="full1">--->
                                             <input class="form-control" type="text" id="inputZip1" name="name1" autocomplete="off" placeholder="Search By Name">
                                             <div id="list"></div>
                                             <input type="hidden" name="full1" id="full1">
@@ -278,7 +279,7 @@
                     $('#amtstart').val('');
                     $('#amtend').val('');
                     var cid=$('#full1').val();
-                    var name=$('#inputZip1').val();
+                    var name=$('#full').val();
                     if(name=='')
                     {
                         alert('Please Select Name');
@@ -312,7 +313,7 @@
                 else if(filter=="Search By Date")
                 {
                     $('#full1').val('');
-                    $('#inputZip1').val('');
+                    $('#full').val('');
                     $('#amtstart').val('');
                     $('#amtend').val('');
                     //console.log(filter);
@@ -352,7 +353,7 @@
                 else if(filter=="Search By Amount")
                 {
                     $('#full1').val('');
-                    $('#inputZip1').val('');
+                    $('#full').val('');
                     $('#fromdate').val('');
                     var amtstart=$('#amtstart').val();
                     var amtend=$('#amtend').val();
@@ -395,7 +396,7 @@
                 else if(filter=="Date & Amount")
                 {
                     $('#full1').val('');
-                    $('#inputZip1').val('');
+                    $('#full').val('');
                     var fromdate=$('#fromdate').val();
                     var todate=$('#todate').val();
                     var amtstart=$('#amtstart').val();
@@ -445,7 +446,7 @@
                 {
                     $('#fromdate').val('');
                     var cid=$('#full1').val();
-                    var name=$('#inputZip1').val();
+                    var name=$('#full').val();
                     var amtstart=$('#amtstart').val();
                     var amtend=$('#amtend').val();
                     if(name=='')

@@ -67,7 +67,7 @@
                             <tr>
                                 <th>Bank Account:</th>
                                 <td><?php echo $out['account']; ?></td>
-                                <th>Bank IFCF code:</th>
+                                <th>Bank IFSC:</th>
                                 <td><?php echo $out['ifsc']; ?></td>
                             </tr>
                             <tr>

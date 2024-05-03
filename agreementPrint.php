@@ -46,7 +46,7 @@
             /* position: absolute;
             bottom: 3.5%; */
             padding: 0px;
-            margin-top:50px;
+            
         }
 
 
@@ -141,7 +141,7 @@
             /* position: absolute;
             bottom: 3.5%; */
             padding: 0px;
-            margin-top:50px;
+            
         }
 
 
@@ -224,21 +224,22 @@
 
 <body>
     <div id="front">
-        <div id="main1">
-            <div id="frontPage">
-                <div class="bottomText1">
-                    <h2>HAND LOAN AGREEMENT</h2>
-                    <p style="text-align: justify !important;">
-                        This hand loan agreement is made on this <span class="lineWithBold" id="datef"></span> between
-                        <span class="onlyBold">Mr. Shivanand S Neelannavar</span>, Age - 43 yrs, Occ - Business, R / o, Plot
-                        No - 11, Ram Nagar, Belagavi, hereafter called the <span class="onlyBold">Party No. 1</span> (which
-                        expression shall mean and include their heirs, successors, assigns, representatives, legal claimants
-                        administrators etc) and
-                    </p>
-                </div>
+    <div id="main1">
+        <div id="frontPage">
+            <div class="bottomText1">
+                <h2>HAND LOAN AGREEMENT</h2>
+                <p style="text-align: justify !important;">
+                    This hand loan agreement is made on this <span class="lineWithBold" id="datef"></span> between
+                    <span class="onlyBold">Mr. Shivanand S Neelannavar</span>, Age - 43 yrs, Occ - Business, R / o, Plot
+                    No - 11, Ram Nagar, Belagavi, hereafter called the <span class="onlyBold">Party No. 1</span> (which
+                    expression shall mean and include their heirs, successors, assigns, representatives, legal claimants
+                    administrators etc) and
+                </p>
             </div>
         </div>
     </div>
+    </div>
+
     <div id="main">
         <div id="backPage">
             <div class="bottomText">

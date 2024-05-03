@@ -100,9 +100,8 @@ if(isset($_POST["submit"]))
         $temp[0]=$row[0];
         $temp[1]=$row[15]; //name
         $temp[2]=$row[13]; //account
-        // $temp[3]=$row[2];
+        // $temp[3]=$row[2]; //date
         $temp[3]=date('d-m-Y', strtotime($row[2]));
-         //date
         $temp[4]=$formatter->format($row[3]); //investamount
         $temp[5]=$row[4]; //asign
         $temp[6]=$row[5]; //pday

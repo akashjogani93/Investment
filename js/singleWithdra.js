@@ -1,6 +1,6 @@
 $(document).ready(function()
 {
-    $('#inputZip1').keypress(function(event)
+    $('.full').keypress(function(event)
     {
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if ((keycode < 48 || keycode > 57))
@@ -15,7 +15,6 @@ $(document).ready(function()
         .toISOString()
         .split('T')[0];
     $('#regdate').val(formattedDate);
-
     
                 $('#wamt').keyup(function()
                 {

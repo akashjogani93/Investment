@@ -153,7 +153,7 @@ if(isset($_POST['Submit']))
                         {
                             ?>
                                 <td><?php echo round($pay); ?></td>
-                                <td class="five"><?php echo $a=round($pay*5/100);?></td>
+                                <td class="five"><?php echo $a=round($pay*15/100);?></td>
                                 <td class="famt"><?php echo round($k=$pay-$a);?></td>
                             <?php
                         }

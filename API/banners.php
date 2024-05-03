@@ -7,10 +7,8 @@
      // $data =json_decode(file_get_contents("php://input"));
      $data =file_get_contents("php://input");
      $data=json_decode($data,TRUE);
-   //  $oid=$data['id'];
-    //  $type=$data['Type'];
-    //  $mode=$data['mode'];
-     // echo $data['status'];
+    
+  
      $screen=$data['screen'];
      $sql = "SELECT * FROM `banner` WHERE `cate`='$screen';";
      $exc=mysqli_query($conn,$sql);

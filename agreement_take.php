@@ -8,11 +8,7 @@
                 display: inline-block;
                 width: 100px; /* Adjust the width as needed */
             }
-            .form-group-inline input {
-                display: inline-block;
-                width: calc(100% - 110px); /* Adjust the width as needed, considering label width */
-            }
-            .form-group-inline select {
+            .form-group-inline input, .form-group-inline select {
                 display: inline-block;
                 width: calc(100% - 110px); /* Adjust the width as needed, considering label width */
             }
@@ -89,7 +85,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <label for="age" class="form_label">Bank:</label>
-                                        <!-- <input type="text" class="form-control form-control-sm" name="bank" id="bank"> -->
+                                        <!--<input type="text" class="form-control form-control-sm" name="bank" id="bank">-->
                                         <select name="bank" id="bank" class="form-control">
                                             <option value=""></option>
                                             <option>AXIS BANK, BELAGAVI</option>
@@ -154,8 +150,7 @@
                 {
                     return $(this).text();
                 }).get();
-                // console.log('Row Data:', rowData[0]);
-                // console.log(rowData[0]);
+                console.log('Row Data:', rowData[0]);
                 let log = $.ajax({
                     url: "ajax/agreement.php",
                     method: "POST",
@@ -163,20 +158,19 @@
                     dataType: "json",
                     success: function (data) 
                     {
-                        $('#agg').val(rowData[0]);
                         $('#date').val(data.date);
                         $('#customerName').val(data.party);
                         $('#age').val('MAJOR');
                         $('#occ').val('BUSINESS');
                         $('#res').val(data.resident);
                         $('#amt').val(data.amount);
+                        $('#agg').val(rowData[0]);
                         $('#bank').val(data.bank);
                         $('#remark').val('AGREEMENT');
                         $('#frontPage').show();
                         $('#backpage').show();
-                        $('#cheque').show();
+                        // $('#cheque').show();
                         $('#save').hide();
-
                     },
                     error: function (error) {
                         console.error("AJAX request failed:", error);
@@ -299,6 +293,7 @@
             $('#backpage').on('click',function()
             {
                 var agg=$('#agg').val();
+
                 var cid=$('#full1').val();
                 var url = "agreement_back.php?aggId=" + agg +"&cid="+cid; 
                 window.open(url, '_blank');

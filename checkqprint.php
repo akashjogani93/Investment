@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,8 +32,8 @@
 
         .main {
             position:relative;
-            top:410px;
-            right:68px;
+            top:315px;
+            right:75px;
             transform: rotate(-90deg);
 
         }
@@ -76,17 +77,16 @@
             width:100%;
         }
 
-        .main 
-        {
+        .main {
             transform: rotate(-90deg); 
-        }
+            }
 
-        .amt
-        {
+        .amt{
             position:relative;
-            left:130px;
+            left:80px;
+            top:7px;
         }
-        #inwords, #partyName, #partyAmt
+        #inwords , #partyName , #partyAmt
         {
             font-weight:700;
         }
@@ -105,7 +105,7 @@
                 <div class="second-line">
                     <div class="word-rupees">
                         <!-- <div class="name-label1"> <b>Rupees:-</b></div> -->
-                        <div class="pay-data cont"><p style="line-height:24px;margin-top:-10px; text-align:left;" id="inwords">&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;<span ></span></p> </div>
+                        <div class="pay-data cont"><p style="line-height:24px; text-align:left;">&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;<span id="inwords"></span></p> </div>
                     </div>
                     
 
@@ -194,14 +194,12 @@ $(document).ready(function()
     }
     function printPage() 
     {
-        window.close();
         window.print();
-        window.close();
-        window.onafterprint = function(event)
-        {
+        // window.onafterprint = function(event)
+        // {
             // window.location.href = "agreement_take.php?aggid="+aggId +"&cid="+cid;
             window.close();
-        };
+        // };
     }
 </script>
 </html>

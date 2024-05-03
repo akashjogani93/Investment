@@ -42,7 +42,7 @@
                 }
             }
         </style>
-        <?php require_once("header.php"); 
+        <?php require_once("header.php");
                 include("js/search.php");
         ?>
         <script type="text/javascript">
@@ -74,7 +74,7 @@
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="inputEmail3" id="search_name" class="control-label">Search Full Name</label>
-                                <!-- <input  type="text" class="form-control full" name="full" id="full" placeholder="Search Full Name" required="required"> -->
+                                <!--<input  type="text" class="form-control full" name="full" id="full" placeholder="Search Full Name" required="required">-->
                                 <input class="form-control" type="text" id="inputZip1" name="name1" autocomplete="off" placeholder="Search By Name">
                                 <div id="list"></div>
                                 <input type="hidden" name="full1" id="full1">

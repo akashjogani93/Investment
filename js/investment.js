@@ -18,17 +18,20 @@ $(document).ready(function()
                         </div>
                         <div class="group-form col-md-2">
                             <label for="inputEmail3" class="form_label">Asign %:</label>
-                                <select class="form-control form-control-sm asignke" name="refAsign[]" id="refAsign[]">
+                                <select class="form-control form-control-sm asignke" name="refAsign[]" required id="refAsign[]">
                                     <option value="">Select %</option>
                                     <option>0</option>
-                                    <option>0.5</option>
-                                    <option>0.6</option>
-                                    <option>0.7</option>
-                                    <option>0.8</option>
-                                    <option>0.9</option>
-                                    <option>1.0</option>
-                                    <option>1.5</option>
+                                            <option>0.1</option>
+                                            <option>0.5</option>
+                                            <option>0.6</option>
+                                            <option>0.7</option>
+                                            <option>0.8</option>
+                                            <option>0.9</option>
+                                            <option>1.0</option>
+                                            <option>1.5</option>
                                 <select>
+
+                            
                         </div>
                         <div class="group-form col-md-2">
                             <label for="inputEmail3" class="form_label">Per Day:</label>
@@ -162,6 +165,8 @@ $(document).ready(function()
             button.text("Submitting");
             button.prop("disabled", true);
         var cid = $('#full1').val();
+        var mobile = $('#mobile').val();
+        var invest = $('#invest').val();
         // get all referals
         var vals = [];
         let i = 0;
@@ -186,6 +191,7 @@ $(document).ready(function()
         {
             var formData = new FormData(this);
             formData.append('full1', cid);
+            // formData.append('referals', vals);
         }
         let log = $.ajax({
             url: 'ajax/introduceReferal.php',
@@ -204,7 +210,9 @@ $(document).ready(function()
                     type: "POST",
                     data: {
                         data: datatrim,
-                        referals : vals
+                        referals: vals,
+                        mobile: mobile,
+                        invest: invest
                     },
                     success: function(response) 
                     {
@@ -231,10 +239,10 @@ $(document).ready(function()
                         $('#screen').val('');
                     }
                 });
-                // console.log(log1);
+                console.log(log1);
             }
         });
-        // console.log(log)
+        console.log(log)
     }));
     $(document).on('focus','.referal',handleAuctocomplet);
 });
@@ -242,12 +250,14 @@ $(document).ready(function()
 function searchfull()
 {
     var cid = $('#full1').val();
+    // console.log(full);
     let log = $.ajax({
         url: 'ajax/investSearchDetail.php',
         type: "POST",
         dataType: 'json',
         data: {
             cid: cid,
+            
         },
         success: function(data) {
             $("#bank").val(data[0].bank);
@@ -265,20 +275,16 @@ function searchfull()
     // console.log(log);
 }
 
-$("#full1").keyup(function()
-{
+$("#full1").keyup(function () {
     var x = $(this).val();
-    if(x != '')
-    {
+    if (x != '') {
         $.ajax({
-            url:"search.php",
-            method : "POST",
-            data :{queryformcid : x },
-            success : function(status)
-            {
+            url: "search.php",
+            method: "POST",
+            data: { queryformcid: x },
+            success: function (status) {
                 $('#inputZip1').val(status);
-                if(status.trim()=="0")
-                {
+                if (status.trim() == "0") {
                     x = x.slice(0, -1);
                     $('#full1').val('');
                     $('#inputZip1').val('');
@@ -289,8 +295,7 @@ $("#full1").keyup(function()
             }
         });
     }
-    else
-    {
+    else {
         $('#inputZip1').val('');
         // $('#list').html("");
     }

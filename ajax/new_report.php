@@ -10,7 +10,7 @@ if(isset($_POST["limit"], $_POST["start"]))
     $end=date("Y-m-d");
     if(date("d", strtotime($end))=="31"){ $end=date("Y-m-30");}
     $i=1;
-    $query="SELECT DISTINCT `register`.`cid` AS `cid`, `register`.`full` AS `fullname`,`register`.`address` as `place`, `register`.`bank` AS `bank`,`register`.`account` AS `acc_no`,`register`.`ifsc` AS `isfc`, `register`.`pan` AS `pan_card_num` FROM `register` WHERE `register`.`cid`< 50 ORDER BY `register`.`cid` ASC LIMIT $std, $limit;";
+    $query="SELECT DISTINCT `resister`.`cid` AS `cid`, `resister`.`full_name` AS `fullname`,`resister`.`address` as `place`, `resister`.`bank` AS `bank`,`resister`.`acc_no` AS `acc_no`,`resister`.`isfc_no` AS `isfc`, `resister`.`pan_card_num` AS `pan_card_num` FROM `resister` ORDER BY `resister`.`cid` ASC LIMIT $std, $limit;";
      $confirm_query=mysqli_query($conn,$query) or die(mysqli_error());
     $num= mysqli_num_rows($confirm_query);
     if($num>0)
@@ -18,7 +18,6 @@ if(isset($_POST["limit"], $_POST["start"]))
      while($row=mysqli_fetch_array($confirm_query))
     {
        $id=$row['cid'];
-       $cid=$row['cid'];
         $name=$row['fullname'];
          $q="SELECT SUM(`invest`.`temp`) as `investment` FROM `invest` WHERE `invest`.`cid`='$id';";
        $c=mysqli_query($conn,$q) or die(mysqli_error());
@@ -26,11 +25,11 @@ if(isset($_POST["limit"], $_POST["start"]))
         if($r['investment']==""){$invest="-";}else{$invest=$r['investment'];}
 
         //goldplan investmet
-        // $g="SELECT SUM(`amount`) FROM `plan` WHERE `cid`='$id';";
-        // $g_c=mysqli_query($conn,$g) or die(mysqli_error());
-        // $gold=mysqli_fetch_array($g_c);
-        // if($gold[0]==""){$god="-";}else{$god=$gold[0];}
-        $pay=payment_Calculation($conn,$cid,$start,$end);//this month payment calculation                 
+        $g="SELECT SUM(`amount`) FROM `plan` WHERE `cid`='$id';";
+        $g_c=mysqli_query($conn,$g) or die(mysqli_error());
+        $gold=mysqli_fetch_array($g_c);
+        if($gold[0]==""){$god="-";}else{$god=$gold[0];}
+        $pay=payment_Calculation($conn,$name,$start,$end);//this month payment calculation                 
           if($pay > 0){?>
         <tr>
             <td><?php echo $id;?></td>
@@ -116,8 +115,9 @@ if(isset($_POST["fromdate"]) && isset($_POST["todate"]) && isset($_POST["limit"]
     $end=date("Y-m-d", strtotime($_POST["todate"]));
     if(date("d", strtotime($end))=="31"){ $end=date("Y-m-30");}
     $i=$i+1;
-    $query="SELECT DISTINCT `register`.`cid` AS `cid`, `register`.`full` AS `fullname`,`register`.`address` as `place`, `register`.`bank` AS `bank`,`register`.`account` AS `acc_no`,`register`.`ifsc` AS `isfc`, `register`.`pan` AS `pan_card_num` FROM `register` WHERE `register`.`cid`< 50 ORDER BY `register`.`cid` ASC LIMIT $std, $limit;";
+    $query="SELECT DISTINCT `register`.`cid` AS `cid`, `register`.`full` AS `fullname`,`register`.`address` as `place`, `register`.`bank` AS `bank`,`register`.`account` AS `acc_no`,`register`.`ifsc` AS `isfc`, `register`.`pan` AS `pan_card_num` FROM `register` ORDER BY `register`.`cid` ASC LIMIT $std, $limit;";
      $confirm_query=mysqli_query($conn,$query) or die(mysqli_error());
+     $tpay=0;
     while($row=mysqli_fetch_array($confirm_query))
     {
         $id=$row['cid'];
@@ -150,17 +150,17 @@ if(isset($_POST["fromdate"]) && isset($_POST["todate"]) && isset($_POST["limit"]
                 <td><?php echo date("d-m-Y",strtotime($end));?></td>
             </tr>
             <?php }
-            //  $tpay=$tpay+ $pay;
-            //         $ta = $ta+$a;
-            //         $tk = $tk+$k;
+             $tpay=$tpay+ $pay;
+                $ta = $ta+$a;
+                $tk = $tk+$k;
     } ?>
-        <!-- <tr>
+        <!--<tr>
             <td colspan="2"></td>
             <td><?php //echo $tpay;?></td>
             <td><?php //echo $ta;?></td>
             <td><?php //echo $tk;?></td>
             <td colspan="5"></td>
-        </tr> -->
+        </tr>-->
         <?php
 } ?>
 

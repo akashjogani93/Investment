@@ -1,8 +1,11 @@
 <?php
 require_once('../dbcon.php');
-
+include('../sms.php');
 $id=$_POST['data'];
+$mobile=$_POST['mobile'];
+$invest=$_POST['invest'];
 $referals =$_POST['referals'];
+$msg = "Rs ".$invest.", Successfully Added to your account.\nFrom: SHIVAM ASSOCIATES.\nThank You.";
 if($referals != 0)
 {
     foreach ($referals as $referal)
@@ -13,3 +16,4 @@ if($referals != 0)
     }
 } 
 echo "Invested Successfully";
+sms($mobile,$msg,$conn);

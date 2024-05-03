@@ -7,6 +7,7 @@ header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Origin,
 
 $data = file_get_contents("php://input");
 $data = json_decode($data, TRUE);
+
 $user = $data['user'];
 $pass = $data['pass'];
 
@@ -14,12 +15,12 @@ $sql = "SELECT * FROM `login` WHERE `username`='$user' AND `password`='$pass' AN
 $exc = mysqli_query($conn, $sql);
 $row = mysqli_num_rows($exc);
 $arr = array();
-
+// echo json_encode(array('user' => $user,'pass'=>$pass)); 
 if ($row > 0) {
     $data = mysqli_fetch_assoc($exc);  // Fetching the data as an associative array
     
-    echo json_encode($data);  // Output the data as JSON
+    echo json_encode(array('message'=>'true','data'=>$data));  // Output the data as JSON
 } else {
-    echo json_encode(array('message' => 'false'));  // Output a JSON response
+    echo json_encode(array('message' => 'false','Count'=>$row));  // Output a JSON response
 }
 ?>

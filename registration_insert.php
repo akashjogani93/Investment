@@ -72,18 +72,18 @@ include('sms.php');
         $full=$fname." ".$mname." ".$lname;
         $user=$_POST['username'];
         $pass=$_POST['password'];
-        
+
         $query="UPDATE `register` SET  `regdate`='$regdate',`fname`='$fname',`mname`='$mname',`lname`='$lname',`mobile`='$mobile',`email`='$email',`pan`='$pan',`address`='$address',`blood`='$blood',`gender`='$gender',`bank`='$bank',`account`='$account',`ifsc`='$ifsc',`branch`='$branch',`nominee`='$nominee',`relation`='$relation',`full`='$full' WHERE `cid`='$cid'";
         $confirm = mysqli_query($conn,$query) or die(mysqli_error());
          if($confirm)
          {
-            $query="UPDATE `login` SET `username`='$user',`password`='$pass' WHERE `cid`='$cid'";
-            $confirm = mysqli_query($conn,$query) or die(mysqli_error());
-            if($confirm)
-            {
+            // $query="UPDATE `login` SET `username`='$user',`password`='$pass' WHERE `cid`='$cid'";
+            // $confirm = mysqli_query($conn,$query) or die(mysqli_error());
+            // if($confirm)
+            // {
                 echo "<script>alert('Updated successfully');</script>";
                 echo '<script> window.location="register_customer1.php"; </script>';
-            }
+            // }
          }
          else
          {

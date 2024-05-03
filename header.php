@@ -186,7 +186,7 @@ span.logo-lg {
                         <li><a href="home.php"><i class="fa-solid fa-gauge"></i><span>Dashboard</span></a></li>
                         <li><a href="sub_profile.php"><i class="fa-solid fa-user"></i><span>Profile</span></a></li>
                         <li><a href="sub_payment.php"><i class="fa-solid fa-file-invoice-dollar"></i><span>Payment Details</span></a></li>
-                        <li><a href="member_change_pass.php"><i class="fa-solid fa-key"></i><span>Change Password</span></a></li>
+                        <!--<li><a href="member_change_pass.php"><i class="fa-solid fa-key"></i><span>Change Password</span></a></li>-->
                         <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a></li>
                         <!-- <li><a href="#"><i class="fa fa-table"></i> <span><?php echo $id; ?></span></a></li> -->
                     <?php

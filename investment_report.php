@@ -38,8 +38,7 @@
             }
         </style>
         
-        <?php require_once("header.php"); 
-        ?>
+        <?php require_once("header.php"); ?>
         <script>
             $("#dyna").text("Investment Details");
             tex();
@@ -167,6 +166,7 @@
                                 <tbody id="mytable1">
                                     
                                 </tbody>    
+                                
                             </table>
                             <!-- <center><div class="loader"></div></center> -->
                         </div>

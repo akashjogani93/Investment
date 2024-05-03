@@ -8,7 +8,7 @@ $invest = $_POST['invest'];
 $asign = $_POST['asign'];
 $pday = $_POST['pday'];
 $pmonth = $_POST['pmonth'];
-// $pmode = $_POST['pmode'];
+// $pmode = "Other";
 
 $image = $_FILES['screen'];
 $profile = upload_Profile($image,"../img/");

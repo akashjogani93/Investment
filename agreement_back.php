@@ -392,10 +392,10 @@
     function printPage(aggId,cid) 
     {
         window.print();
-        window.onafterprint = function(event)
-        {
+        // window.onafterprint = function(event)
+        // {
             window.close();
-        };
+        // };
     }
 </script>
 </html>

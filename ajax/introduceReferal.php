@@ -20,6 +20,7 @@ $agreement = $_FILES['agreement'];
 $mobile = $_POST['mobile'];
 
 $image = $_FILES['screen'];
+$referals =$_POST['referals'];
 
 $typeamount =$invest.time();
 
@@ -28,7 +29,7 @@ $agreementType =$randomNumber.time();
 $profile = upload_Profile($image,$typeamount,"../img/");
 
 $agreement1 = upload_Profile($agreement,$agreementType,"pdf/");
-$msg = "Rs ".$invest.", Successfully Added to your account.\nFrom: SHIVAM ASSOCIATES.\nThank You.";
+// $msg = "Rs ".$invest.", Successfully Added to your account.\nFrom: SHIVAM ASSOCIATES.\nThank You.";
     $q="INSERT INTO `invest`(`cid`, `regdate`, `invest`, `asign`, `pday`, `pmonth`,`pmode`,`img`,`year`,`month`,`path`)VALUES 
     ('$cid','$regdate','$invest','$asign','$pday','$pmonth','$pmode','$profile','$year','$Month','$agreement1');";
     $conform=mysqli_query($conn,$q);
@@ -38,15 +39,28 @@ $msg = "Rs ".$invest.", Successfully Added to your account.\nFrom: SHIVAM ASSOCI
         $cfm=mysqli_query($conn,$q1);
         $row=mysqli_fetch_array($cfm);
         $invest_id=$row[0];
-      	sms($mobile,$msg,$conn);
         echo $invest_id;
-        // foreach ($referals as $referal)
+        // if($referals != 0)
         // {
-        //     $q="INSERT INTO `referal`(`id`, `refcid`, `refasign`, `refpday`, `refpmonth`) VALUES 
-        //     ('$row[0]','$referal[0]','$referal[1]','$referal[2]','$referal[3]');";
-        //     $conf=mysqli_query($conn,$q);
+        //     foreach ($referals as $referal)
+        //     {
+        //         $q="INSERT INTO `referal`(`id`, `refcid`, `refasign`, `refpday`, `refpmonth`) VALUES 
+        //         ('$row[0]','$referal[0]','$referal[1]','$referal[2]','$referal[3]');";
+        //         $conf=mysqli_query($conn,$q);
+        //     }
         // }
-        //echo "Invested Successfully";
+        // if($referals != 0)
+        // {
+        //     foreach ($referals as $referal)
+        //     {
+        //         $q="INSERT INTO `referal`(`id`, `refcid`, `refasign`, `refpday`, `refpmonth`) VALUES 
+        //         ('$invest_id','$referal[0]','$referal[1]','$referal[2]','$referal[3]');";
+        //         $conf=mysqli_query($conn,$q);
+        //     }
+        // } 
+      	// sms($mobile,$msg,$conn);
+        // echo "Invested Successfully";
+        // echo $referals;
     }
 
 

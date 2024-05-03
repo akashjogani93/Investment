@@ -43,27 +43,28 @@
         </style>
         
         <?php require_once("header.php");
-        include("js/search.php"); ?>
+                include("js/search.php");
+            ?>
         <script>
             $("#dyna").text("Current Month Payment");
             tex();
         </script>
         <script type="text/javascript">
-            // $(function() {
-            //     $(".full").autocomplete({
+            $(function() {
+                $(".full").autocomplete({
 
-            //         source: 'investment_searchName.php',
-            //         focus: function (event, ui) {
-            //             event.preventDefault();
-            //             $("#full").val(ui.item.label);
-            //         },
-            //         select: function (event, ui) {
-            //             event.preventDefault();
-            //             $("#full1").val(ui.item.value);
-            //             $("#full").val(ui.item.label);
-            //     }
-            //     });
-            // });
+                    source: 'investment_searchName.php',
+                    focus: function (event, ui) {
+                        event.preventDefault();
+                        $("#full").val(ui.item.label);
+                    },
+                    select: function (event, ui) {
+                        event.preventDefault();
+                        $("#full1").val(ui.item.value);
+                        $("#full").val(ui.item.label);
+                }
+                });
+            });
         </script>
         <div class="content-wrapper">
             <section class="content">
@@ -72,7 +73,8 @@
                         <div class="row">
                             <div class="group-form col-md-4" id="namewise">
                                 <label for="inputEmail3" class="form_label">Search Name</label>
-                                <!-- <input  type="text" class="col-sm-4 form-control form-control-sm full" name="full" id="full" placeholder="Search Full Name" required="required"> -->
+                                <!--<input  type="text" class="col-sm-4 form-control form-control-sm full" name="full" id="full" placeholder="Search Full Name" required="required">
+                                <input type="hidden" name="full1" id="full1">-->
                                 <input class="form-control" type="text" id="inputZip1" name="name1" autocomplete="off" placeholder="Search By Name">
                                 <div id="list"></div>
                                 <input type="hidden" name="full1" id="full1">

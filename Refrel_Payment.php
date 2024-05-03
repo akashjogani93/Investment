@@ -4,7 +4,7 @@
         .error {
             color: red;
         }
-        th, td{ white-space: nowrap; }
+        th, td { white-space: nowrap; }
         div.dataTables_wrapper { }
         .table-striped>tbody>tr:nth-child(odd)>td, 
         .table-striped>tbody>tr:nth-child(odd)>th 
@@ -20,7 +20,7 @@
         }
         /* table.dataTable thead {background-color:#D3E4CD} */
     </style>
-<?php require_once("header.php"); 
+<?php require_once("header.php");   
         include("js/search.php");
 ?>
     <script>
@@ -28,21 +28,21 @@
         tex();
     </script>
     <script type="text/javascript">
-        // $(function() 
-        // {
-        //     $(".full").autocomplete({
-        //         source: 'investment_searchName.php',
-        //         focus: function (event, ui) {
-        //             event.preventDefault();
-        //             $("#full").val(ui.item.label);
-        //         },
-        //         select: function (event, ui) {
-        //             event.preventDefault();
-        //             $("#full1").val(ui.item.value);
-        //             $("#full").val(ui.item.label);
-        //         }
-        //     });
-        // });
+        $(function() 
+        {
+            $(".full").autocomplete({
+                source: 'investment_searchName.php',
+                focus: function (event, ui) {
+                    event.preventDefault();
+                    $("#full").val(ui.item.label);
+                },
+                select: function (event, ui) {
+                    event.preventDefault();
+                    $("#full1").val(ui.item.value);
+                    $("#full").val(ui.item.label);
+                }
+            });
+        });
     </script>
     <div class="content-wrapper">
         <section class="content">
@@ -57,7 +57,8 @@
                         </div>
                         <div class="group-form col-md-4" id="namewise">
                             <label for="inputEmail3" class="form_label">Search Name</label>
-                            <!-- <input  type="text" class="col-sm-4 form-control form-control-sm full" name="full" id="full" placeholder="Search Full Name" required="required"> -->
+                            <!--<input  type="text" class="col-sm-4 form-control form-control-sm full" name="full" id="full" placeholder="Search Full Name" required="required">
+                            <input type="hidden" name="full1" id="full1">-->
                             <input type="hidden" name="full1" id="full1">
                             <input class="form-control" type="text" id="inputZip1" name="name1" autocomplete="off" placeholder="Search By Name">
                             <div id="list"></div>
@@ -104,6 +105,11 @@
                             </h3>
                         </div>
                     </div></br>
+                    <!-- <div id="tablepdf" style="overflow-x: auto; height:400px;">
+                        <div id="app">
+                            <my-component></my-component>
+                        </div>
+                    </div> -->
                     <div id="tablepdf2" style="overflow-x: auto; height:400px;">
                         <table id="example2" class="table table-striped table-bordered table-hover example1">
                             <thead>
@@ -168,16 +174,24 @@
         </section>
     </div>
     <?php include("footer.php"); ?>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script> 
 </div>
     <script>
         function editupdate(cid)
         {
-            if(confirm("Are you sure?")==true)
-            {
+            if(confirm("Are you sure?")==true){
                 location = "investment_edit.php?cid="+cid;
             }
         }
     </script>
+
     <script>
         $(document).ready(function()
         {
@@ -221,26 +235,26 @@
                     $(document.body).css({'cursor' : 'default'});
                 }
             }, 300);
-            $('#search1').click(function()
-            {
-                var name=$('#full1').val();
-                let log=$.ajax({
-                    url:"ajax/ReferalIndividual.php",
-                    method:"POST",
-                    data:{submit:"name", name:name},
-                    cache:false,
-                    success:function(data)
-                    {
-                        $('#mytable2').html(data);
+
+        $('#search1').click(function()
+        {
+            var name=$('#full1').val();
+            let log=$.ajax({
+                url:"ajax/ReferalIndividual.php",
+                method:"POST",
+                data:{submit:"name", name:name},
+                cache:false,
+                success:function(data)
+                {
+                     $('#mytable2').html(data);
                         action ='active';
-                    }
-                });
-            });
-            $('#refre').click(function()
-            {
-                window.location='Refrel_Payment.php';
+                }
             });
         });
+        $('#refre').click(function()
+        {
+            window.location='Refrel_Payment.php';
+        });
+    });
     </script>
-
 </body>
